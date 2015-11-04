@@ -61,7 +61,7 @@ REM	xcopy /Y "$(SolutionDir)lib\SDL2_image-2.0.0\lib\x86\*.dll" "$(OutDir)*.dll"
 REM	Copy SDL2_mixer
 REM	xcopy /Y "$(SolutionDir)lib\SDL2_mixer-2.0.0\lib\x86\*.dll" "$(OutDir)*.dll"
 REM	Copy SDL2_ttf
-REM	xcopy /Y "$(SolutionDir)lib\SDL2_ttf-2.0.12\lib\x86\*.dll" "$(OutDir)*.dll"</Command>
+xcopy /Y "$(SolutionDir)lib\SDL2_ttf-2.0.12\lib\x86\*.dll" "$(OutDir)*.dll"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
