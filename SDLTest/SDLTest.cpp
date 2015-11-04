@@ -59,14 +59,14 @@ int main(int, char** argv)
 	SDL_Window *window = SDL_CreateWindow("SDLTest", 100, 100, WINDOW_WIDTH, WINDOW_HEIGHT, SDL_WINDOW_SHOWN);
 
 	//	If window has not been created, exit application
-	if (window == NULL)	
+	if (window == nullptr)	
 		return 0;
 
 	//	Create SDL renderer
 	SDL_Renderer *renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
 
 	//	If renderer has not been created, exit application
-	if (renderer == NULL)
+	if (renderer == nullptr)
 		return 0;
 
 	//	Initialize TTF
