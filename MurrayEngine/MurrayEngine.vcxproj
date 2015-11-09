@@ -17,7 +17,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GenericObject.cpp" />
-    <ClCompile Include="Source.cpp" />
+    <ClCompile Include="AssetHandler.cpp" />
     <ClCompile Include="SpriteAssetHandler.cpp" />
     <ClCompile Include="Test.cpp" />
   </ItemGroup>
