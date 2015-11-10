@@ -2,7 +2,7 @@
 #define	_FRAME_COUNTER_H
 
 //			Max history value for averaging frame rate
-#define		FRAME_AVG_HISTORY_SAMPLE			60
+#define		FRAME_AVG_HISTORY_SAMPLE			2
 
 #include	<SDL.h>
 #include	<vector>
