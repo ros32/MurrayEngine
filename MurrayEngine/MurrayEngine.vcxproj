@@ -12,17 +12,25 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AssetHandler.h" />
+    <ClInclude Include="FrameCounter.h" />
     <ClInclude Include="GenericObject.h" />
+    <ClInclude Include="Position.h" />
     <ClInclude Include="SpriteAssetHandler.h" />
+    <ClInclude Include="Timer.h" />
+    <ClInclude Include="Viewport.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="FrameCounter.cpp" />
     <ClCompile Include="GenericObject.cpp" />
     <ClCompile Include="AssetHandler.cpp" />
     <ClCompile Include="SpriteAssetHandler.cpp" />
     <ClCompile Include="Test.cpp" />
+    <ClCompile Include="Timer.cpp" />
+    <ClCompile Include="Viewport.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="spritesheet.png" />
+    <Image Include="tileset.png" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{0B410340-103B-4353-AE08-68F0C922FE2D}</ProjectGuid>
