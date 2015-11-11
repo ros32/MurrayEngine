@@ -11,6 +11,7 @@
 class FrameLimiter
 {
 public:
+	FrameLimiter();
 	FrameLimiter(Timer timer, int limit);
 	~FrameLimiter();
 

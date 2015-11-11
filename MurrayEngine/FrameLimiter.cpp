@@ -1,6 +1,6 @@
 #include	"FrameLimiter.h"
 
-
+FrameLimiter::FrameLimiter() : FrameLimiter(Timer(), 30) { }
 
 FrameLimiter::FrameLimiter(Timer timer, int limit)
 {
