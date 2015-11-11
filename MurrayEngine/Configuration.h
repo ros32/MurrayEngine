@@ -1,6 +1,8 @@
 #ifndef _CONFIGURATION_H
 #define	_CONFIGURATION_H
 
+#include	<iostream>
+#include	<fstream>
 #include	<string>
 #include	<map>
 
@@ -8,6 +10,7 @@ class Configuration
 {
 public:
 	Configuration();
+	Configuration(std::string path);
 	~Configuration();
 
 	std::string		getProperty(std::string key);

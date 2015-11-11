@@ -16,13 +16,16 @@
     <ClInclude Include="FrameLimiter.h" />
     <ClInclude Include="GameInstance.h" />
     <ClInclude Include="GenericObject.h" />
+    <ClInclude Include="GenericObjectFactory.h" />
     <ClInclude Include="Position.h" />
     <ClInclude Include="SpriteAssetHandler.h" />
     <ClInclude Include="Timer.h" />
     <ClInclude Include="Viewport.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Configuration.cpp" />
     <ClCompile Include="FrameLimiter.cpp" />
+    <ClCompile Include="GameInstance.cpp" />
     <ClCompile Include="GenericObject.cpp" />
     <ClCompile Include="AssetHandler.cpp" />
     <ClCompile Include="SpriteAssetHandler.cpp" />
