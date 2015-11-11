@@ -1,8 +1,8 @@
-#include	"FrameCounter.h"
+#include	"FrameLimiter.h"
 
 
 
-FrameCounter::FrameCounter(Timer timer, int limit)
+FrameLimiter::FrameLimiter(Timer timer, int limit)
 {
 	this->timer = timer;
 	this->frameLimit = limit;
@@ -15,12 +15,12 @@ FrameCounter::FrameCounter(Timer timer, int limit)
 	}
 }
 
-FrameCounter::~FrameCounter()
+FrameLimiter::~FrameLimiter()
 {
 	this->timer.stop();
 }
 
-Uint32	FrameCounter::getAvgFrames()
+Uint32	FrameLimiter::getAvgFrames()
 {
 	Uint32	avgFrames = 0;
 	for (Uint32 frame : this->frameHistory)
@@ -31,12 +31,12 @@ Uint32	FrameCounter::getAvgFrames()
 	return avgFrames/FRAME_AVG_HISTORY_SAMPLE;
 }
 
-void FrameCounter::start()
+void FrameLimiter::start()
 {
 	this->timer.start();
 }
 
-void FrameCounter::limit()
+void FrameLimiter::limit()
 {
 	//	Get current frame processing time
 	Uint32	frameTime = this->timer.getTicks();

@@ -12,7 +12,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AssetHandler.h" />
-    <ClInclude Include="FrameCounter.h" />
+    <ClInclude Include="FrameLimiter.h" />
     <ClInclude Include="GenericObject.h" />
     <ClInclude Include="Position.h" />
     <ClInclude Include="SpriteAssetHandler.h" />
@@ -20,7 +20,7 @@
     <ClInclude Include="Viewport.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="FrameCounter.cpp" />
+    <ClCompile Include="FrameLimiter.cpp" />
     <ClCompile Include="GenericObject.cpp" />
     <ClCompile Include="AssetHandler.cpp" />
     <ClCompile Include="SpriteAssetHandler.cpp" />

@@ -1,5 +1,5 @@
-#ifndef _FRAME_COUNTER_H
-#define	_FRAME_COUNTER_H
+#ifndef _FRAME_LIMITER_H
+#define	_FRAME_LIMITER_H
 
 //			Max history value for averaging frame rate
 #define		FRAME_AVG_HISTORY_SAMPLE			2
@@ -8,19 +8,25 @@
 #include	<vector>
 #include	"Timer.h"
 
-class FrameCounter
+class FrameLimiter
 {
 public:
-	FrameCounter(Timer timer, int limit);
-	~FrameCounter();
+	FrameLimiter(Timer timer, int limit);
+	~FrameLimiter();
 
-	Uint32			getFrames();
+	//	Return average frame rate
 	Uint32			getAvgFrames();
 
+	//	Return frame limit
 	int				getLimit();
+
+	//	Set frame limit
 	void			setLimit(int limit);
 
+	//	Start frame limiter
 	void			start();
+
+	//	Calculate delay
 	void			limit();
 
 private:
@@ -33,4 +39,4 @@ private:
 
 };
 
-#endif // !_FRAME_COUNTER_H
+#endif // !_FRAME_LIMITER_H
