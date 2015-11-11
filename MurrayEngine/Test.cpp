@@ -1,5 +1,5 @@
 #include "SpriteAssetHandler.h"
-#include "FrameCounter.h"
+#include "FrameLimiter.h"
 #include <string>
 #include <direct.h>
 #include <stdlib.h>
@@ -70,7 +70,7 @@ int main(int, char** argv)
 	fileName += "\\spritesheet.png";*/
 	SpriteAssetHandler	spriteHandler(renderer, "tileset.png", 32, 0, SDL_Color{ 255, 0, 255 });
 
-	FrameCounter	counter = FrameCounter(*new Timer(), _DEBUG_FRAME_LIMIT);
+	FrameLimiter	counter = FrameLimiter(*new Timer(), _DEBUG_FRAME_LIMIT);
 
 	//	Loop forever
 	while (1)
