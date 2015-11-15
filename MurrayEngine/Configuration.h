@@ -5,19 +5,21 @@
 #include	<fstream>
 #include	<string>
 #include	<map>
+#include    <SDL.h>
 
 class Configuration
 {
 public:
 	Configuration();
-	Configuration(std::string path);
+	Configuration(std::string fileName);
 	~Configuration();
 
+	std::string		fileName;
 	std::string		getProperty(std::string key);
-	void			setProperty(std::string key, std::string value);
+	void			setProperty(std::string file, std::string key, std::string value);
 
-	bool			importConfig(std::string path);
-	bool			exportConfig(std::string path);
+	void			importConfig(std::string fileName);
+	void			exportConfig(std::string fileName, std::string keyName, std::string valueName);
 
 private:
 
