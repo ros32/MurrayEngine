@@ -5,6 +5,9 @@
 #include	<map>
 #include	<fstream>
 
+typedef std::map<std::string, std::string>::iterator iterator;
+typedef std::map<std::string, std::string>::const_iterator const_iterator;
+
 
 Configuration::Configuration()
 {
@@ -188,3 +191,22 @@ bool fileExists(std::string fileName)
 	return false;
 }
 
+iterator Configuration::begin()
+{
+	return this->configurationData.begin();
+}
+
+const_iterator Configuration::begin() const
+{
+	return this->configurationData.begin();
+}
+
+iterator Configuration::end()
+{
+	return this->configurationData.end();
+}
+
+const_iterator Configuration::end() const
+{
+	return this->configurationData.end();
+}

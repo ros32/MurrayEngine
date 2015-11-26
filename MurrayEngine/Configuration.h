@@ -17,6 +17,9 @@ public:
 	Configuration(std::string fileName);
 	~Configuration();
 
+	typedef std::map<std::string, std::string>::iterator iterator;
+	typedef std::map<std::string, std::string>::const_iterator const_iterator;
+
 	std::string		fileName;
 
 	///	<summary>
@@ -38,6 +41,12 @@ public:
 	///	Export Configuration to a file
 	///	</summary>
 	void			exportConfig(std::string fileName, std::string keyName, std::string valueName);
+
+	iterator		begin();
+	const_iterator	begin() const;
+
+	iterator		end();
+	const_iterator	end() const;
 
 private:
 
