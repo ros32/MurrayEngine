@@ -5,10 +5,14 @@
 #include	"Asset.h"
 #include	"Configuration.h"
 
+///	<summary>
+///	The AssetFactory is an abstract class that takes a Configuration object and creates Asset objects from it, depending on the implementation.
+///	</summary>
 class AssetFactory
 {
 public:
 	AssetFactory();
+	AssetFactory(Configuration configuration);
 	~AssetFactory();
 
 	std::vector< Asset >	createAsset(Configuration configuration);
