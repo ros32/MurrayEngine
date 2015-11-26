@@ -14,7 +14,12 @@ Configuration::Configuration()
 
 }
 
-Configuration::Configuration(std::string fileName)
+Configuration::Configuration(std::string id)
+{
+	this->id = id;
+}
+
+Configuration::Configuration(std::string id, std::string fileName) : Configuration(id)
 {
 	//1. Kolla om pathen innehåller en fil.. Kanske borde ta filnamn som argument istället? Hm.
 	this->fileName = fileName;

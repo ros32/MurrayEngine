@@ -44,7 +44,7 @@ int main(int, char** argv)
 
 
 
-	Configuration testConfig = Configuration();
+	Configuration testConfig = Configuration("Test");
 	testConfig.setProperty("Test", "TestValue");
 
 	for (auto pair : testConfig)
