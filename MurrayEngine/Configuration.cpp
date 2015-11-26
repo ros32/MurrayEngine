@@ -108,6 +108,7 @@ void Configuration::exportConfig(std::string fileName, std::string keyName, std:
 	std::string tempString;
 	std::string lineString;
 
+	// TODO: Cleanup debug code
 	configurationData.insert(std::pair<std::string, std::string>(keyName, valueName));
 	configurationData.insert(std::pair<std::string, std::string>("ehhej", "ehneh"));
 	configurationData.insert(std::pair<std::string, std::string>("Age", "666"));
@@ -150,6 +151,8 @@ std::string	Configuration :: getProperty(std::string keyName)
 
 }
 
+
+// TODO: Cleanup commented out code
 /*
 Is this ment to open an existing file and then add keys + values if they dont exist and/or change a value for a given key?
 
