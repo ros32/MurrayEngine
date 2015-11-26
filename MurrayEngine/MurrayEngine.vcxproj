@@ -20,6 +20,7 @@
     <ClInclude Include="GenericObjectFactory.h" />
     <ClInclude Include="Position.h" />
     <ClInclude Include="TextureAsset.h" />
+    <ClInclude Include="TextureAssetFactory.h" />
     <ClInclude Include="Timer.h" />
     <ClInclude Include="Viewport.h" />
   </ItemGroup>
@@ -32,6 +33,7 @@
     <ClCompile Include="Asset.cpp" />
     <ClCompile Include="TextureAsset.cpp" />
     <ClCompile Include="Test.cpp" />
+    <ClCompile Include="TextureAssetFactory.cpp" />
     <ClCompile Include="Timer.cpp" />
     <ClCompile Include="Viewport.cpp" />
   </ItemGroup>

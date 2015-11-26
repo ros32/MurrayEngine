@@ -5,6 +5,11 @@ AssetFactory::AssetFactory()
 
 }
 
+AssetFactory::AssetFactory(Configuration configuration)
+{
+
+}
+
 AssetFactory::~AssetFactory()
 {
 
