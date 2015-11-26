@@ -136,7 +136,7 @@ void Configuration::exportConfig(std::string fileName, std::string keyName, std:
 
 	
 }
-
+/*
 //Returns the value for a given key
 std::string	Configuration :: getProperty(std::string keyName)
 {
@@ -150,7 +150,12 @@ std::string	Configuration :: getProperty(std::string keyName)
 	return resultValue;
 
 }
+*/
 
+std::string Configuration::getProperty(std::string keyName)
+{
+	return this->configurationData.find(keyName)->second;
+}
 
 // TODO: Cleanup commented out code
 /*
@@ -192,7 +197,7 @@ void Configuration :: setProperty(std::string fileName, std::string keyName, std
 
 void Configuration::setProperty(std::string key, std::string value)
 {
-	this->configurationData.insert(key, value);
+	this->configurationData.insert(std::map<std::string, std::string>::value_type(key, value));
 }
 
 //Will check if a file with the given name already exists

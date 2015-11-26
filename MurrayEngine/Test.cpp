@@ -45,10 +45,11 @@ int main(int, char** argv)
 
 
 	Configuration testConfig = Configuration();
+	testConfig.setProperty("Test", "TestValue");
 
 	for (auto pair : testConfig)
 	{
-		std::string outString = pair.first;
+		std::string outString = pair.first + ": " + pair.second;
 		SDL_Log(outString.c_str());
 	}
 
