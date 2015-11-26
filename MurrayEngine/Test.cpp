@@ -1,4 +1,4 @@
-#include "SpriteAssetHandler.h"
+#include "TextureAsset.h"
 #include "FrameLimiter.h"
 #include <string>
 #include <direct.h>
@@ -68,7 +68,7 @@ int main(int, char** argv)
 	SDL_Log(filePath);
 	std::string fileName(filePath);
 	fileName += "\\spritesheet.png";*/
-	SpriteAssetHandler	spriteHandler(renderer, "tileset.png", 32, 0, SDL_Color{ 255, 0, 255 });
+	TextureAsset	spriteHandler(renderer, "tileset.png", 32, 0, SDL_Color{ 255, 0, 255 });
 
 	FrameLimiter	counter = FrameLimiter(*new Timer(), _DEBUG_FRAME_LIMIT);
 

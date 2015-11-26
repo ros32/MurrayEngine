@@ -1,12 +1,12 @@
-#ifndef SPRITE_ASSET_HANDLER_H
-#define SPRITE_ASSET_HANDLER_H
+#ifndef TEXTURE_ASSET_H
+#define TEXTURE_ASSET_H
 
 #include <SDL.h>
 #include <SDL_image.h>
 #include <vector>
-#include "AssetHandler.h"
+#include "Asset.h"
 
-class SpriteAssetHandler : public AssetHandler
+class TextureAsset : public Asset
 {
 private:
 //	SDL_Surface*			surface;
@@ -20,8 +20,8 @@ private:
 	SDL_Color				colorKey;
 
 public:
-	SpriteAssetHandler(SDL_Renderer* renderer, const char* filePath, unsigned int cellSize, unsigned int offset, SDL_Color colorKey);
-	~SpriteAssetHandler();
+	TextureAsset(SDL_Renderer* renderer, const char* filePath, unsigned int cellSize, unsigned int offset, SDL_Color colorKey);
+	~TextureAsset();
 
 	SDL_Texture*	getTexture();
 	SDL_Rect*		getSourceRect(unsigned int x, unsigned int y);
@@ -30,4 +30,4 @@ public:
 	void	unload();
 };
 
-#endif // !SPRITE_ASSET_HANDLER_H
+#endif // !TEXTURE_ASSET_H

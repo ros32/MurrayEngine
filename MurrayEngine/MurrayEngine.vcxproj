@@ -11,14 +11,14 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="AssetHandler.h" />
+    <ClInclude Include="Asset.h" />
     <ClInclude Include="Configuration.h" />
     <ClInclude Include="FrameLimiter.h" />
     <ClInclude Include="GameInstance.h" />
     <ClInclude Include="GenericObject.h" />
     <ClInclude Include="GenericObjectFactory.h" />
     <ClInclude Include="Position.h" />
-    <ClInclude Include="SpriteAssetHandler.h" />
+    <ClInclude Include="TextureAsset.h" />
     <ClInclude Include="Timer.h" />
     <ClInclude Include="Viewport.h" />
   </ItemGroup>
@@ -27,8 +27,8 @@
     <ClCompile Include="FrameLimiter.cpp" />
     <ClCompile Include="GameInstance.cpp" />
     <ClCompile Include="GenericObject.cpp" />
-    <ClCompile Include="AssetHandler.cpp" />
-    <ClCompile Include="SpriteAssetHandler.cpp" />
+    <ClCompile Include="Asset.cpp" />
+    <ClCompile Include="TextureAsset.cpp" />
     <ClCompile Include="Test.cpp" />
     <ClCompile Include="Timer.cpp" />
     <ClCompile Include="Viewport.cpp" />

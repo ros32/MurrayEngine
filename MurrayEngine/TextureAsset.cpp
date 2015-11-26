@@ -1,8 +1,8 @@
-#include "SpriteAssetHandler.h"
+#include "TextureAsset.h"
 #include <iostream>
 #include <string>
 
-SpriteAssetHandler::SpriteAssetHandler(SDL_Renderer* renderer, const char* filePath, unsigned int cellSize, unsigned int offset, SDL_Color colorKey)
+TextureAsset::TextureAsset(SDL_Renderer* renderer, const char* filePath, unsigned int cellSize, unsigned int offset, SDL_Color colorKey)
 {
 	this->renderer	= renderer;
 	this->filePath	= filePath;
@@ -14,29 +14,29 @@ SpriteAssetHandler::SpriteAssetHandler(SDL_Renderer* renderer, const char* fileP
 	this->generateIndex();
 }
 
-SpriteAssetHandler::~SpriteAssetHandler()
+TextureAsset::~TextureAsset()
 {
 	this->unload();
 }
 
-void			SpriteAssetHandler::load()
+void			TextureAsset::load()
 {
 	this->texture = IMG_LoadTexture(this->renderer, this->filePath);
 	if (this->texture == nullptr)
 		SDL_Log(SDL_GetError());
 }
 
-void			SpriteAssetHandler::unload()
+void			TextureAsset::unload()
 {
 	SDL_DestroyTexture(texture);
 }
 
-SDL_Texture*	SpriteAssetHandler::getTexture()
+SDL_Texture*	TextureAsset::getTexture()
 {
 	return this->texture;
 }
 
-void			SpriteAssetHandler::generateIndex()
+void			TextureAsset::generateIndex()
 {
 	int sizeX = 0;
 	int sizeY = 0;
@@ -70,7 +70,7 @@ void			SpriteAssetHandler::generateIndex()
 
 }
 
-SDL_Rect*		SpriteAssetHandler::getSourceRect(unsigned int x, unsigned int y)
+SDL_Rect*		TextureAsset::getSourceRect(unsigned int x, unsigned int y)
 {
 	size_t sizeX = 0;
 	size_t sizeY = 0;
