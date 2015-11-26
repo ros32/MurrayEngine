@@ -1,3 +1,4 @@
+#include "Configuration.h"
 #include "TextureAsset.h"
 #include "FrameLimiter.h"
 #include <string>
@@ -43,7 +44,13 @@ int main(int, char** argv)
 
 
 
+	Configuration testConfig = Configuration();
 
+	for (auto pair : testConfig)
+	{
+		std::string outString = pair.first;
+		SDL_Log(outString.c_str());
+	}
 
 	//	Initialize SDL
 	SDL_Init(SDL_INIT_EVERYTHING);
