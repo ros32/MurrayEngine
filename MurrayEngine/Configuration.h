@@ -30,7 +30,7 @@ public:
 	///	<summary>
 	///	Set value of a Configuration key
 	///	</summary>
-	void			setProperty(std::string file, std::string key, std::string value);
+	void			setProperty(std::string key, std::string value);
 
 	///	<summary>
 	///	Import Configuration from a file

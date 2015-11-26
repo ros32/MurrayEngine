@@ -154,6 +154,7 @@ std::string	Configuration :: getProperty(std::string keyName)
 Is this ment to open an existing file and then add keys + values if they dont exist and/or change a value for a given key?
 
 */
+/*
 void Configuration :: setProperty(std::string fileName, std::string keyName, std::string valueName)
 {
 	std::string tempString;
@@ -183,6 +184,12 @@ void Configuration :: setProperty(std::string fileName, std::string keyName, std
 		SDL_Log(msg.c_str());
 	}
 	
+}
+*/
+
+void Configuration::setProperty(std::string key, std::string value)
+{
+	this->configurationData.insert(key, value);
 }
 
 //Will check if a file with the given name already exists
