@@ -1,6 +1,7 @@
 #ifndef _GAME_INSTANCE_H
 #define	_GAME_INSTANCE_H
 
+#include	"Asset.h"
 #include	"Configuration.h"
 #include	"FrameLimiter.h"
 #include	"Viewport.h"
@@ -12,7 +13,7 @@
 class GameInstance
 {
 public:
-	GameInstance();
+	GameInstance(SDL_Window* window, SDL_Renderer* renderer, Configuration configuration);
 	~GameInstance();
 
 	///	<summary>
@@ -46,9 +47,13 @@ public:
 
 private:
 
-	Configuration	debugConfig;
-	Configuration	clientConfig;
-	Configuration	engineConfig;
+	///	<summary>
+	///	Do not allow creation of empty constructor
+	/// </summary>
+	GameInstance();
+
+	std::map<std::string, Configuration> configurations;
+	std::map<std::string, Asset> assets;
 
 	//	Maybe these should be passed by the implementation instead?
 	SDL_Window*		instanceWindow;

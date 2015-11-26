@@ -2,7 +2,14 @@
 
 GameInstance::GameInstance()
 {
+	
+}
+
+GameInstance::GameInstance(SDL_Window* window, SDL_Renderer* renderer, Configuration configuration)
+{
 	this->frameLimiter = FrameLimiter(Timer(), 30);
+	this->instanceWindow = window;
+	this->instanceRenderer = renderer;
 }
 
 GameInstance::~GameInstance()
