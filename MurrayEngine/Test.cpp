@@ -4,7 +4,7 @@
 #include <direct.h>
 #include <stdlib.h>
 
-#define	_DEBUG_FRAME_LIMIT		30
+#define	_DEBUG_FRAME_LIMIT		100
 
 #define		_DEBUG_START_POS	=	{121, 333};
 

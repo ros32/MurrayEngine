@@ -7,6 +7,9 @@
 #include	<map>
 #include    <SDL.h>
 
+///	<summary>
+///	The Configuration class contain mapped data read from a configuration file
+//	</summary>
 class Configuration
 {
 public:
@@ -15,10 +18,25 @@ public:
 	~Configuration();
 
 	std::string		fileName;
+
+	///	<summary>
+	///	Get value of a Configuration key
+	///	</summary>
 	std::string		getProperty(std::string key);
+
+	///	<summary>
+	///	Set value of a Configuration key
+	///	</summary>
 	void			setProperty(std::string file, std::string key, std::string value);
 
+	///	<summary>
+	///	Import Configuration from a file
+	///	</summary>
 	void			importConfig(std::string fileName);
+
+	///	<summary>
+	///	Export Configuration to a file
+	///	</summary>
 	void			exportConfig(std::string fileName, std::string keyName, std::string valueName);
 
 private:
