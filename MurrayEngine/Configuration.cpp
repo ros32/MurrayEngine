@@ -25,6 +25,7 @@ Configuration::Configuration(std::string id, std::string fileName) : Configurati
 	//1. Kolla om pathen innehåller en fil.. Kanske borde ta filnamn som argument istället? Hm.
 	this->fileName = fileName;
 	this->configurationData;
+	this->importConfig(fileName);
 
 	
 
