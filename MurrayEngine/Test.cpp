@@ -14,10 +14,7 @@
 
 int main(int, char** argv)
 {
-	Configuration mainConfig = Configuration("main");
-	mainConfig.setProperty("WINDOW_HEIGHT", "480");
-	mainConfig.setProperty("WINDOW_WIDTH", "640");
-	mainConfig.setProperty("FRAME_LIMIT2", "30");
+	Configuration mainConfig = Configuration("main", "main.cfg");
 
 	SDL_Init(SDL_INIT_EVERYTHING);
 	SDL_Window* mainWindow = SDL_CreateWindow(

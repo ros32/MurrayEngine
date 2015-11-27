@@ -41,6 +41,9 @@
     <Image Include="spritesheet.png" />
     <Image Include="tileset.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="main.cfg" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{0B410340-103B-4353-AE08-68F0C922FE2D}</ProjectGuid>
     <RootNamespace>MurrayEngine</RootNamespace>
