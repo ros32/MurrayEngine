@@ -1,3 +1,4 @@
+#include "GameInstance.h"
 #include "Configuration.h"
 #include "TextureAsset.h"
 #include "FrameLimiter.h"
@@ -5,11 +6,54 @@
 #include <direct.h>
 #include <stdlib.h>
 
-#define	_DEBUG_FRAME_LIMIT		100
+#define		DEFAULT_WINDOW_WIDTH	640
+#define		DEFAULT_WINDOW_HEIGHT	480
 
-#define		_DEBUG_START_POS	=	{121, 333};
+#define	_DEBUG_FRAME_LIMIT		100
+#define	_DEBUG_START_POS	=	{121, 333};
 
 int main(int, char** argv)
+{
+	Configuration mainConfig = Configuration("main");
+	mainConfig.setProperty("WINDOW_HEIGHT", "480");
+	mainConfig.setProperty("WINDOW_WIDTH", "640");
+	mainConfig.setProperty("FRAME_LIMIT", "30");
+
+	SDL_Init(SDL_INIT_EVERYTHING);
+	SDL_Window* mainWindow = SDL_CreateWindow(
+		"MurrayEngine", 
+		100, 
+		100, 
+		mainConfig.getProperty("WINDOW_WIDTH", DEFAULT_WINDOW_WIDTH), 
+		mainConfig.getProperty("WINDOW_HEIGHT", DEFAULT_WINDOW_HEIGHT), 
+		SDL_WINDOW_SHOWN);
+
+	if (mainWindow == nullptr)
+		return 0;
+
+	SDL_Renderer* mainRenderer = SDL_CreateRenderer(mainWindow, -1, SDL_RENDERER_PRESENTVSYNC);
+
+	if (mainRenderer == nullptr)
+		return 0;
+
+	GameInstance gameInstance = GameInstance(mainWindow, mainRenderer, mainConfig);
+
+	bool quitGame = false;
+	while (!quitGame)
+	{
+		gameInstance.initialize();
+		gameInstance.run();
+		gameInstance.exit();
+	}
+
+	SDL_DestroyRenderer(mainRenderer);
+	SDL_DestroyWindow(mainWindow);
+	SDL_Quit();
+
+	return 0;
+}
+
+int maindos(int, char** argv)
 {
 	//	Define size of window
 	const int WINDOW_WIDTH = 640;
@@ -123,4 +167,5 @@ int main(int, char** argv)
 
 	//	Return 0 and end application
 	return 0;						//	Return 0 to report success
+
 }

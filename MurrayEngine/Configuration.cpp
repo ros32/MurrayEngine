@@ -157,9 +157,34 @@ std::string	Configuration :: getProperty(std::string keyName)
 }
 */
 
-std::string Configuration::getProperty(std::string keyName)
+std::string Configuration::getProperty(std::string key)
 {
-	return this->configurationData.find(keyName)->second;
+	return this->configurationData.find(key)->second;
+}
+
+std::string Configuration::getProperty(std::string key, std::string defaultValue)
+{
+	std::string output = this->getProperty(key);
+	if (output == "")
+		return defaultValue;
+	else
+		return output;
+}
+
+int	Configuration::getProperty(std::string key, int defaultValue)
+{
+	std::string output = this->getProperty(key);
+	int returnValue;
+	try
+	{
+		returnValue = std::stoi(output);
+	}
+	catch (std::exception e)
+	{
+		return defaultValue;
+	}
+
+	return returnValue;
 }
 
 // TODO: Cleanup commented out code

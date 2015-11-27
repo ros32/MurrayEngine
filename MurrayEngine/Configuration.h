@@ -27,6 +27,9 @@ public:
 	///	</summary>
 	std::string		getProperty(std::string key);
 
+	std::string		getProperty(std::string key, std::string defaultValue);
+	int				getProperty(std::string key, int defaultValue);
+
 	///	<summary>
 	///	Set value of a Configuration key
 	///	</summary>
