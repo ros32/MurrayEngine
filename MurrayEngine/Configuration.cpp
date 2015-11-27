@@ -159,14 +159,24 @@ std::string	Configuration :: getProperty(std::string keyName)
 
 std::string Configuration::getProperty(std::string key)
 {
-	return this->configurationData.find(key)->second;
+	iterator iterator;
+	iterator = this->configurationData.find(key);
+
+	if (iterator != this->configurationData.end())
+		return iterator->second;
+	else
+		return "";
 }
 
 std::string Configuration::getProperty(std::string key, std::string defaultValue)
 {
 	std::string output = this->getProperty(key);
 	if (output == "")
+	{
+		std::string errorMessage = "A value for key \"" + key + "\" does not exist! Using default value: (string) \"" + defaultValue + "\".";
+		SDL_Log(errorMessage.c_str());
 		return defaultValue;
+	}
 	else
 		return output;
 }
@@ -181,6 +191,8 @@ int	Configuration::getProperty(std::string key, int defaultValue)
 	}
 	catch (std::exception e)
 	{
+		std::string errorMessage = "A value for key \"" + key + "\" does not exist! Using default value: (int) \"" + std::to_string(defaultValue) + "\".";
+		SDL_Log(errorMessage.c_str());
 		return defaultValue;
 	}
 
