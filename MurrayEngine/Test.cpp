@@ -17,7 +17,7 @@ int main(int, char** argv)
 	Configuration mainConfig = Configuration("main");
 	mainConfig.setProperty("WINDOW_HEIGHT", "480");
 	mainConfig.setProperty("WINDOW_WIDTH", "640");
-	mainConfig.setProperty("FRAME_LIMIT", "30");
+	mainConfig.setProperty("FRAME_LIMIT2", "30");
 
 	SDL_Init(SDL_INIT_EVERYTHING);
 	SDL_Window* mainWindow = SDL_CreateWindow(
@@ -41,9 +41,16 @@ int main(int, char** argv)
 	bool quitGame = false;
 	while (!quitGame)
 	{
-		gameInstance.initialize();
+		if (!gameInstance.isInitialized())
+			gameInstance.initialize();
+
 		gameInstance.run();
-		gameInstance.exit();
+
+		if (!gameInstance.isExited())
+		{
+			gameInstance.exit();
+			quitGame = true;
+		}
 	}
 
 	SDL_DestroyRenderer(mainRenderer);

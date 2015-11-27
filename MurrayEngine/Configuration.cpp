@@ -5,6 +5,7 @@
 #include	<map>
 #include	<fstream>
 
+//	Set iterator and const_iterator to be iterators of std::map
 typedef std::map<std::string, std::string>::iterator iterator;
 typedef std::map<std::string, std::string>::const_iterator const_iterator;
 

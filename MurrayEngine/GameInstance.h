@@ -63,6 +63,10 @@ private:
 
 	void			loadConfigurations();
 
+	bool			initialized;
+	bool			runned;
+	bool			exited;
+
 
 
 
