@@ -13,8 +13,8 @@
 class Configuration
 {
 public:
-	Configuration(std::string id);
-	Configuration(std::string id, std::string fileName);
+	Configuration();
+	Configuration(std::string fileName);
 	~Configuration();
 
 	typedef std::map<std::string, std::string>::iterator iterator;
@@ -45,8 +45,6 @@ public:
 	///	</summary>
 	void			exportConfig(std::string fileName, std::string keyName, std::string valueName);
 
-	const std::string		getId();
-
 	iterator		begin();
 	const_iterator	begin() const;
 
@@ -54,9 +52,6 @@ public:
 	const_iterator	end() const;
 
 private:
-	Configuration();
-
-	std::string								id;
 	std::map<std::string, std::string>		configurationData;
 };
 
