@@ -14,7 +14,7 @@
 
 int main(int, char** argv)
 {
-	Configuration mainConfig = Configuration("main", "main.cfg");
+	Configuration mainConfig = Configuration("main.cfg");
 
 	SDL_Init(SDL_INIT_EVERYTHING);
 	SDL_Window* mainWindow = SDL_CreateWindow(

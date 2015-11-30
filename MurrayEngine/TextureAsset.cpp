@@ -12,6 +12,7 @@ TextureAsset::TextureAsset(SDL_Renderer* renderer, const char* filePath, unsigne
 	this->load();
 	this->index;
 	this->generateIndex();
+	this->nameIndex;
 }
 
 TextureAsset::~TextureAsset()
@@ -87,4 +88,20 @@ SDL_Rect*		TextureAsset::getSourceRect(unsigned int x, unsigned int y)
 		}
 	}
 	return &index[0][0];
+}
+
+SDL_Rect*	TextureAsset::getSourceRect(std::string name)
+{
+	std::map<std::string, Position>::iterator iterator;
+	iterator = this->nameIndex.find(name);
+
+	if (iterator != this->nameIndex.end())
+		return this->getSourceRect(iterator->second.x, iterator->second.y);
+	else
+		return this->getSourceRect(0, 0);
+}
+
+void		TextureAsset::setTextureNameIndex(std::map<std::string, Position> map)
+{
+	this->nameIndex = map;
 }

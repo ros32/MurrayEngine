@@ -3,20 +3,25 @@
 
 #include	<SDL.h>
 #include	"GenericObject.h"
+#include	"Position.h"
 
 class Viewport
 {
 public:
-	Viewport(SDL_Renderer* renderer, SDL_Rect viewportRect);
+	Viewport(SDL_Renderer* renderer);
 	~Viewport();
 
-	SDL_Renderer*		getRenderer();
-	SDL_Rect*			getViewportRect();
+	SDL_Rect			getViewportRect();
 
-	void				center(GenericObject object);
+	Position			getPosition();
+	void				setPosition(Position pos);
+	void				setPosition(GenericObject object);
+
+
 
 private:
 
+	Position			position;
 	SDL_Renderer*		renderer;
 	SDL_Rect			viewportRect;
 
