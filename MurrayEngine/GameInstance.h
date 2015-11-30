@@ -5,6 +5,7 @@
 #include	"Configuration.h"
 #include	"FrameLimiter.h"
 #include	"Viewport.h"
+#include	"TextureAsset.h"
 #include	<SDL.h>
 
 ///	<summary>
@@ -61,7 +62,11 @@ private:
 
 	FrameLimiter	frameLimiter;
 
+	Configuration	mainConfig;
+
 	void			loadConfigurations();
+	void			renderObjects();
+	void			moveObjects();
 
 	bool			initialized;
 	bool			runned;
