@@ -18,9 +18,11 @@
     <ClInclude Include="GameInstance.h" />
     <ClInclude Include="GenericObject.h" />
     <ClInclude Include="GenericObjectFactory.h" />
+    <ClInclude Include="Map.h" />
     <ClInclude Include="Position.h" />
     <ClInclude Include="TextureAsset.h" />
     <ClInclude Include="TextureAssetFactory.h" />
+    <ClInclude Include="Tile.h" />
     <ClInclude Include="Timer.h" />
     <ClInclude Include="Viewport.h" />
   </ItemGroup>
@@ -43,6 +45,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="main.cfg" />
+    <None Include="tileset.cfg" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{0B410340-103B-4353-AE08-68F0C922FE2D}</ProjectGuid>

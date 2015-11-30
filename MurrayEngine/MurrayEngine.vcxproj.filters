@@ -51,6 +51,12 @@
     <ClInclude Include="TextureAssetFactory.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Map.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Tile.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Test.cpp">
@@ -97,6 +103,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="main.cfg">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="tileset.cfg">
       <Filter>Resource Files</Filter>
     </None>
   </ItemGroup>
