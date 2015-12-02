@@ -15,7 +15,7 @@ public:
 	AssetFactory(Configuration configuration);
 	~AssetFactory();
 
-	std::vector< Asset >	createAsset(Configuration configuration);
+	Asset	createAsset(Configuration configuration);
 
 private:
 

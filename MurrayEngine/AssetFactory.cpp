@@ -15,3 +15,8 @@ AssetFactory::~AssetFactory()
 
 }
 
+Asset	AssetFactory::createAsset(Configuration configuration)
+{
+	return Asset();
+}
+
