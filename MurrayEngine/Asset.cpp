@@ -10,6 +10,7 @@ Asset::~Asset()
 
 }
 
-void	Asset::load()	{}
-
-void	Asset::unload() {}
+std::string Asset::getType()
+{
+	return "Asset";
+}
