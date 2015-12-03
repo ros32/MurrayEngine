@@ -2,15 +2,23 @@
 #define	_TEXTURE_ASSET_FACTORY_H
 
 #include "AssetFactory.h"
+#include "TextureAsset.h"
+#include "InvalidAsset.h"
+#include <SDL.h>
 
 class TextureAssetFactory: public AssetFactory
 {
 public:
 	TextureAssetFactory();
-	TextureAssetFactory(Configuration configuration);
+	TextureAssetFactory(SDL_Renderer* renderer);
 	~TextureAssetFactory();
 
+	void	setRenderer(SDL_Renderer* renderer);
+	Asset	createAsset(Configuration configuration);
+
 private:
+
+	SDL_Renderer*	instanceRenderer;
 
 };
 
