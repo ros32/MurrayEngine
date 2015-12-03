@@ -12,10 +12,9 @@ class AssetFactory
 {
 public:
 	AssetFactory();
-	AssetFactory(Configuration configuration);
 	~AssetFactory();
 
-	Asset	createAsset(Configuration configuration);
+	virtual Asset	createAsset(Configuration configuration) = 0;
 
 private:
 
