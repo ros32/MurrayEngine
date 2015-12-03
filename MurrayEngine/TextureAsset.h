@@ -35,6 +35,7 @@ public:
 	void	unload();
 
 	void	setTextureNameIndex(std::map<std::string, Position> map);
+	std::string		getType();
 };
 
 #endif // !TEXTURE_ASSET_H

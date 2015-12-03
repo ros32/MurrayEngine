@@ -1,6 +1,4 @@
 #include "TextureAsset.h"
-#include <iostream>
-#include <string>
 
 TextureAsset::TextureAsset(SDL_Renderer* renderer, const char* filePath, unsigned int cellSize, unsigned int offset, SDL_Color colorKey)
 {
@@ -104,4 +102,9 @@ SDL_Rect*	TextureAsset::getSourceRect(std::string name)
 void		TextureAsset::setTextureNameIndex(std::map<std::string, Position> map)
 {
 	this->nameIndex = map;
+}
+
+std::string		TextureAsset::getType()
+{
+	return "TextureAsset";
 }
