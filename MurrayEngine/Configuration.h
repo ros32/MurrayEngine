@@ -6,6 +6,8 @@
 #include	<string>
 #include	<map>
 #include    <SDL.h>
+#include	<sstream>
+
 
 ///	<summary>
 ///	The Configuration class contain mapped data read from a configuration file
