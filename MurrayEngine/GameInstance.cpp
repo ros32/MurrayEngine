@@ -52,24 +52,14 @@ bool GameInstance::initialize()
 
 		if (type == "TextureAsset")
 		{
-			//	Create texture Asset
-			std::string name = config.getProperty("NAME", "UNKNOWN");
-			std::string filePath = config.getProperty("PATH", "UNKNOWN");
-			unsigned int	cellSize = config.getProperty("CELL_SIZE", 32);
-			unsigned int	offset = config.getProperty("OFFSET", 0);
-			SDL_Color	color =
+			TextureAssetFactory assetFactory = TextureAssetFactory(this->instanceRenderer);
+			Asset tempAsset = assetFactory.createAsset(config);
+			//	HACK: Create class InvalidAsset and use for invalid assets
+			if (tempAsset.getType() != "InvalidAsset")
 			{
-				config.getProperty("COLOR_R", 255),
-				config.getProperty("COLOR_G", 255),
-				config.getProperty("COLOR_B", 255)
-			};
-			if (filePath != "UNKNOWN" && name != "UNKNOWN")
-			{
-				this->assets.insert(std::map<std::string, Asset>::value_type(name, TextureAsset(this->instanceRenderer, filePath.c_str(), cellSize, offset, color)));
-				std::string output = "[Asset] Name: " + name + ", Path: " + filePath + ", Cell size: " + std::to_string(cellSize) + ", Offset: " + std::to_string(offset);
-				SDL_Log(output.c_str());
+				this->assets.insert(std::map<std::string, Asset>::value_type(config.getProperty("NAME", "UNKNOWN"), tempAsset));
+				SDL_Log("Asset Loaded");
 			}
-
 		}
 		else if (type == "SoundAsset")
 		{

@@ -6,6 +6,8 @@
 #include	"FrameLimiter.h"
 #include	"Viewport.h"
 #include	"TextureAsset.h"
+#include	"TextureAssetFactory.h"
+#include	"InvalidAsset.h"
 #include	<SDL.h>
 
 ///	<summary>
