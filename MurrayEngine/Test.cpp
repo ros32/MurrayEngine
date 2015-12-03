@@ -2,9 +2,6 @@
 #include "Configuration.h"
 #include "TextureAsset.h"
 #include "FrameLimiter.h"
-#include <string>
-#include <direct.h>
-#include <stdlib.h>
 
 #define		DEFAULT_WINDOW_WIDTH	640
 #define		DEFAULT_WINDOW_HEIGHT	480

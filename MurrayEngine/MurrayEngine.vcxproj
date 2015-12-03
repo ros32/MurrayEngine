@@ -18,6 +18,7 @@
     <ClInclude Include="GameInstance.h" />
     <ClInclude Include="GenericObject.h" />
     <ClInclude Include="GenericObjectFactory.h" />
+    <ClInclude Include="InvalidAsset.h" />
     <ClInclude Include="Map.h" />
     <ClInclude Include="Position.h" />
     <ClInclude Include="TextureAsset.h" />
@@ -33,6 +34,7 @@
     <ClCompile Include="GameInstance.cpp" />
     <ClCompile Include="GenericObject.cpp" />
     <ClCompile Include="Asset.cpp" />
+    <ClCompile Include="InvalidAsset.cpp" />
     <ClCompile Include="TextureAsset.cpp" />
     <ClCompile Include="Test.cpp" />
     <ClCompile Include="TextureAssetFactory.cpp" />
