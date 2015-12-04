@@ -46,6 +46,7 @@
     <Image Include="tileset.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="GenericObject.cfg" />
     <None Include="main.cfg" />
     <None Include="tileset.cfg" />
   </ItemGroup>

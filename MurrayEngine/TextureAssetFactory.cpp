@@ -34,7 +34,10 @@ Asset	TextureAssetFactory::createAsset(Configuration configuration)
 		configuration.getProperty("COLOR_B", 255)
 	};
 	if (filePath != "UNKNOWN" && name != "UNKNOWN")
-		return TextureAsset(this->instanceRenderer, filePath.c_str(), cellSize, offset, color);
+	{
+		TextureAsset returnAsset = TextureAsset(this->instanceRenderer, filePath.c_str(), cellSize, offset, color);
 
+		//	Create texture name mapping from config
+	}
 	return InvalidAsset();
 }
