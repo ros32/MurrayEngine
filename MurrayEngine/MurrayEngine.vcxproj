@@ -20,6 +20,7 @@
     <ClInclude Include="GenericObjectFactory.h" />
     <ClInclude Include="InvalidAsset.h" />
     <ClInclude Include="Map.h" />
+    <ClInclude Include="MapFactory.h" />
     <ClInclude Include="Position.h" />
     <ClInclude Include="TextureAsset.h" />
     <ClInclude Include="TextureAssetFactory.h" />
@@ -35,6 +36,7 @@
     <ClCompile Include="GenericObject.cpp" />
     <ClCompile Include="Asset.cpp" />
     <ClCompile Include="InvalidAsset.cpp" />
+    <ClCompile Include="MapFactory.cpp" />
     <ClCompile Include="TextureAsset.cpp" />
     <ClCompile Include="Test.cpp" />
     <ClCompile Include="TextureAssetFactory.cpp" />
