@@ -8,6 +8,7 @@
 class Viewport
 {
 public:
+	Viewport();
 	Viewport(SDL_Renderer* renderer);
 	~Viewport();
 
