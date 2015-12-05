@@ -45,7 +45,7 @@ public:
 	///	<summary>
 	///	Export Configuration to a file
 	///	</summary>
-	void			exportConfig(std::string fileName, std::string keyName, std::string valueName);
+	void			exportConfig(std::string fileName);
 
 	iterator		begin();
 	const_iterator	begin() const;
