@@ -5,12 +5,12 @@ GenericObject::GenericObject()
 
 }
 
-GenericObject::GenericObject(std::string id, Position currentPosition, TextureAsset* texture, SDL_Rect* rect, double maxSpeed, double acceleration, Orientation orientation)
+GenericObject::GenericObject(std::string id, Position currentPosition, SDL_Texture* texture, SDL_Rect* rect, double maxSpeed, double acceleration, Orientation orientation)
 {
 	this->id = id;
 	this->currentPosition = currentPosition;
-	this->textureAsset = texture;
-	this->textureRect = rect;
+	this->texture = texture;
+	this->rect = rect;
 	this->maxSpeed = maxSpeed;
 	//this->acceleration = acceleration;
 	this->orientation = orientation;
