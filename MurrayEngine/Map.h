@@ -12,20 +12,28 @@
 class Map
 {
 public:
-	Map(Configuration configuration);
+	Map();
 	~Map();
 
 	///	<summary>
 	///	Return all objects on a given position
 	///	</summary>
-	std::vector<GenericObject>	getObject(Position pos);
+	std::vector<GenericObject*>	getObject(Position pos);
 
 	///	<summary>
 	///	Return the Tile on a given position
 	///	</summary>
 	Tile						getTile(Position pos);
 
-	void						render(SDL_Renderer* renderer, SDL_Rect viewport);
+	void						render(SDL_Renderer* renderer);
+
+	void						setTiles(std::vector<std::vector<Tile>> tiles);
+
+	void						setObjects(std::vector<GenericObject> objects);
+
+	void						addObject(GenericObject object);
+
+	void						removeObject(GenericObject object);
 
 private:
 	Map();
@@ -36,7 +44,7 @@ private:
 
 
 	std::vector<std::vector<Tile>>					tiles;
-	std::map<Position, std::vector<GenericObject>>	objects;
+	std::vector<GenericObject>						objects;
 
 
 };

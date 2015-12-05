@@ -28,10 +28,10 @@ private:
 	Position	targetPosition;
 
 	///	Texture asset used by object
-	TextureAsset*	textureAsset;
+	SDL_Texture*	texture;
 
 	///	SDL_Rect of texture asset
-	SDL_Rect*		textureRect;
+	SDL_Rect*		rect;
 
 	///	The maximum speed the GenericObject can travel, or 0 for static
 	double			maxSpeed;
@@ -53,43 +53,76 @@ private:
 
 public:
 	GenericObject();
-	GenericObject(std::string id, Position currentPosition, TextureAsset* texture, SDL_Rect* rect, double maxSpeed, double acceleration, Orientation orientation);
+	GenericObject(std::string id, Position currentPosition, SDL_Texture* texture, SDL_Rect* rect, double maxSpeed, double acceleration, Orientation orientation);
 	~GenericObject();
+
+	std::string				getId();
+	void					setId(std::string id);
+
+	Position				getCurrentPosition();
 
 	///	<summary>
 	///	Move (teleport) object to the specified absolute position
 	///	</summary>
-	void	setCurrentPosition(int x, int y);
+	void					setCurrentPosition(Position pos);
+
+	///	<summary>
+	///	Move (teleport) object to the specified absolute position
+	///	</summary>
+	void					setCurrentPosition(int x, int y);
+
+	Position				getTargetPosition();
 
 	///	<summary>
 	///	Move object to the specified relative position
 	///	</summary>
-	void	setTargetPosition(int x, int y);
+	void					setTargetPosition(Position pos);
+
+	void					setTargetPosition(int x, int y);
+
+	SDL_Texture*			getTexture();
+	void					setTexture(SDL_Texture* texture);
+
+	SDL_Rect*				getRect();
+	void					setRect(SDL_Rect* rect);
+
+	double					getMaxSpeed();
+	void					setMaxSpeed(double maxSpeed);
+
+	Orientation				getOrientation();
 
 	///	<summary>
 	///	Sets the orientation of the object
 	///	</summary>
-	void	setOrientation(Orientation orientation);
+	void					setOrientation(Orientation orientation);
+
+	Uint32					getLastRender();
+	void					setLastRender(Uint32 lastRender);
+
+	Uint32					getLastMove();
+	void					setLastMove(Uint32 lastMove);
 
 	///	<summary>
 	///	Move object towards target position
 	///	</summary>
-	void	move();
+	void					move();
 
 	///	<summary>
 	///	Detect per-pixel collision between two objects
 	///	</summary>
-	bool	collidePixel(GenericObject objectB);
+	bool					collidePixel(GenericObject objectB);
 
 	///	<summary>
 	///	Detect box collision between two objects
 	///	</summary>
-	bool	collideBox(GenericObject objectB);
+	bool					collideBox(GenericObject objectB);
 
 	///	<summary>
 	///	Render object in the specified renderer
 	///	</summary>
-	void	render(SDL_Renderer* renderer);
+	void					render(SDL_Renderer* renderer);
+
+
 
 //	std::string getId();
 };
