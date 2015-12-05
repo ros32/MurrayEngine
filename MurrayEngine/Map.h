@@ -36,7 +36,6 @@ public:
 	void						removeObject(GenericObject object);
 
 private:
-	Map();
 
 	int tileSize;
 
