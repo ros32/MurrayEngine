@@ -36,10 +36,12 @@
     <ClCompile Include="GenericObject.cpp" />
     <ClCompile Include="Asset.cpp" />
     <ClCompile Include="InvalidAsset.cpp" />
+    <ClCompile Include="Map.cpp" />
     <ClCompile Include="MapFactory.cpp" />
     <ClCompile Include="TextureAsset.cpp" />
     <ClCompile Include="Test.cpp" />
     <ClCompile Include="TextureAssetFactory.cpp" />
+    <ClCompile Include="Tile.cpp" />
     <ClCompile Include="Timer.cpp" />
     <ClCompile Include="Viewport.cpp" />
   </ItemGroup>
