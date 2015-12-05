@@ -42,6 +42,9 @@ int main(int, char** argv)
 	const int WINDOW_WIDTH = 640;
 	const int WINDOW_HEIGHT = 480;
 
+	//  Define the color blue
+	const SDL_Color BLUE = { 850, 320, 760, 56 };
+
 	//	Define the color white
 	const SDL_Color	WHITE = { 240, 240, 240 };
 
@@ -73,7 +76,7 @@ int main(int, char** argv)
 	TTF_Init();
 
 	//	Create a texture from a string using provided font
-	SDL_Texture *texture = renderText("Hello World", "C:\\Windows\\Fonts\\tahoma.ttf", WHITE, 24, renderer);
+	SDL_Texture *texture = renderText("Hello World", "C:\\Windows\\Fonts\\tahoma.ttf", BLUE, 24, renderer);
 
 	//	If texture is nullptr it failed to render text
 	if (texture == nullptr)
