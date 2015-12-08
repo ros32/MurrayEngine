@@ -108,3 +108,21 @@ std::string		TextureAsset::getType()
 {
 	return "TextureAsset";
 }
+
+void	TextureAsset::render(int x, int y, SDL_Rect* clip, double angle, SDL_Point* center, SDL_RendererFlip flip)
+{
+	SDL_Rect destination = { x, y, this->cellSize, this->cellSize };
+
+	if (clip != NULL)
+	{
+		destination.w = clip->w;
+		destination.h = clip->h;
+	}
+
+	SDL_RenderCopyEx(this->renderer, this->texture, clip, &destination, angle, center, flip);
+}
+
+void	TextureAsset::render(int x, int y, SDL_Rect* clip)
+{
+	this->render(x, y, clip, 0.0, NULL, SDL_FLIP_NONE);
+}

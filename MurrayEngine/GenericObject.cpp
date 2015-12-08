@@ -71,7 +71,7 @@ bool GenericObject::collidePixel(GenericObject objectB)
 	return false;
 }
 
-void GenericObject::render(SDL_Renderer* renderer)
+void GenericObject::render(Camera* camera)
 {
 
 }

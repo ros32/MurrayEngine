@@ -36,6 +36,10 @@ public:
 
 	void	setTextureNameIndex(std::map<std::string, Position> map);
 	std::string		getType();
+
+	void	render(int x, int y, SDL_Rect* clip);
+
+	void	render(int x, int y, SDL_Rect* clip, double angle, SDL_Point* center, SDL_RendererFlip flip);
 };
 
 #endif // !TEXTURE_ASSET_H

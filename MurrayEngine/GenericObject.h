@@ -5,6 +5,7 @@
 #include	"Position.h"
 #include	"TextureAsset.h"
 #include	"Timer.h"
+#include	"Camera.h"
 
 enum Orientation
 {
@@ -120,7 +121,7 @@ public:
 	///	<summary>
 	///	Render object in the specified renderer
 	///	</summary>
-	void					render(SDL_Renderer* renderer);
+	void					render(Camera* camera);
 
 
 
