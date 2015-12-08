@@ -14,6 +14,9 @@ public:
 
 	SDL_Rect			getViewportRect();
 
+	int					getHeight();
+	int					getWidth();
+
 	Position			getPosition();
 	void				setPosition(Position pos);
 	void				setPosition(GenericObject object);
@@ -21,6 +24,9 @@ public:
 
 
 private:
+
+	int					height;
+	int					width;
 
 	Position			position;
 	SDL_Renderer*		renderer;

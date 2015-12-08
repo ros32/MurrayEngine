@@ -14,3 +14,13 @@ Viewport::~Viewport()
 {
 
 }
+
+int	Viewport::getHeight()
+{
+	return this->height;
+}
+
+int Viewport::getWidth()
+{
+	return this->width;
+}
