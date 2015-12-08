@@ -7,6 +7,7 @@
 #include "GenericObject.h"
 #include "Position.h"
 #include "Tile.h"
+#include <SDL.h>
 #include "Camera.h"
 
 class Map
@@ -25,15 +26,30 @@ public:
 	///	</summary>
 	Tile						getTile(Position pos);
 
+	///	<summary>
+	///	Render all visible components in the Map
+	///	</summary>
 	void						render(SDL_Renderer* renderer);
 
+	///	<summary>
+	///	Set matrix of tiles in Map
+	///	</summary>
 	void						setTiles(std::vector<std::vector<Tile>> tiles);
 
-	void						setObjects(std::vector<GenericObject> objects);
+	///	<summary>
+	///	Set array of objects in Map
+	///	</summary>
+	void						setObjects(std::vector<GenericObject*> objects);
 
-	void						addObject(GenericObject object);
+	///	<summary>
+	///	Add an object to the Map
+	///	</summary>
+	void						addObject(GenericObject* object);
 
-	void						removeObject(GenericObject object);
+	///	<summary>
+	///	Remove specified object from Map
+	///	</summary>
+	void						removeObject(GenericObject* object);
 
 private:
 
@@ -41,9 +57,8 @@ private:
 
 	Camera camera;
 
-
 	std::vector<std::vector<Tile>>					tiles;
-	std::vector<GenericObject>						objects;
+	std::vector<GenericObject*>						objects;
 
 
 };

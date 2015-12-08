@@ -21,6 +21,11 @@ GenericObject::~GenericObject()
 
 }
 
+Position GenericObject::getCurrentPosition()
+{
+	return currentPosition;
+}
+
 void GenericObject::setCurrentPosition(int x, int y)
 {
 	this->currentPosition = { x, y };
