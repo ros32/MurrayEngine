@@ -73,5 +73,6 @@ bool GenericObject::collidePixel(GenericObject objectB)
 
 void GenericObject::render(int x, int y)
 {
-
+	if (this->texture != nullptr && this->textureName != "")
+		this->texture->render(x, y, this->texture->getSourceRect(this->textureName));
 }
