@@ -7,7 +7,7 @@
 #include "GenericObject.h"
 #include "Position.h"
 #include "Tile.h"
-#include "Viewport.h"
+#include "Camera.h"
 
 class Map
 {
@@ -39,7 +39,7 @@ private:
 
 	int tileSize;
 
-	Viewport viewport;
+	Camera camera;
 
 
 	std::vector<std::vector<Tile>>					tiles;

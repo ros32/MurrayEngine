@@ -26,7 +26,7 @@
     <ClInclude Include="TextureAssetFactory.h" />
     <ClInclude Include="Tile.h" />
     <ClInclude Include="Timer.h" />
-    <ClInclude Include="Viewport.h" />
+    <ClInclude Include="Camera.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AssetFactory.cpp" />
@@ -43,7 +43,7 @@
     <ClCompile Include="TextureAssetFactory.cpp" />
     <ClCompile Include="Tile.cpp" />
     <ClCompile Include="Timer.cpp" />
-    <ClCompile Include="Viewport.cpp" />
+    <ClCompile Include="Camera.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="spritesheet.png" />

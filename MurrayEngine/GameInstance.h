@@ -4,7 +4,7 @@
 #include	"Asset.h"
 #include	"Configuration.h"
 #include	"FrameLimiter.h"
-#include	"Viewport.h"
+#include	"Camera.h"
 #include	"TextureAsset.h"
 #include	"TextureAssetFactory.h"
 #include	"InvalidAsset.h"

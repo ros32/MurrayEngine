@@ -1,18 +1,18 @@
-#ifndef _VIEWPORT_H
-#define	_VIEWPORT_H
+#ifndef _CAMERA_H
+#define	_CAMERA_H
 
 #include	<SDL.h>
 #include	"GenericObject.h"
 #include	"Position.h"
 
-class Viewport
+class Camera
 {
 public:
-	Viewport();
-	Viewport(SDL_Renderer* renderer);
-	~Viewport();
+	Camera();
+	Camera(SDL_Renderer* renderer);
+	~Camera();
 
-	SDL_Rect			getViewportRect();
+	SDL_Rect			getCameraRect();
 
 	int					getHeight();
 	int					getWidth();
@@ -30,8 +30,8 @@ private:
 
 	Position			position;
 	SDL_Renderer*		renderer;
-	SDL_Rect			viewportRect;
+	SDL_Rect			cameraRect;
 
 };
 
-#endif // !_VIEWPORT_H
+#endif // !_CAMERA_H
