@@ -5,7 +5,6 @@
 #include	"Position.h"
 #include	"TextureAsset.h"
 #include	"Timer.h"
-#include	"Camera.h"
 
 enum Orientation
 {
@@ -29,10 +28,10 @@ private:
 	Position	targetPosition;
 
 	///	Texture asset used by object
-	SDL_Texture*	texture;
+	TextureAsset*	texture;
 
 	///	SDL_Rect of texture asset
-	SDL_Rect*		rect;
+	std::string		textureName;
 
 	///	The maximum speed the GenericObject can travel, or 0 for static
 	double			maxSpeed;
@@ -54,7 +53,7 @@ private:
 
 public:
 	GenericObject();
-	GenericObject(std::string id, Position currentPosition, SDL_Texture* texture, SDL_Rect* rect, double maxSpeed, double acceleration, Orientation orientation);
+	GenericObject(std::string id, Position currentPosition, TextureAsset* texture, std::string textureName, double maxSpeed, double acceleration, Orientation orientation);
 	~GenericObject();
 
 	std::string				getId();
@@ -82,10 +81,10 @@ public:
 	void					setTargetPosition(int x, int y);
 
 	SDL_Texture*			getTexture();
-	void					setTexture(SDL_Texture* texture);
+	void					setTexture(TextureAsset* texture);
 
-	SDL_Rect*				getRect();
-	void					setRect(SDL_Rect* rect);
+	SDL_Rect*				getTextureName();
+	void					setTextureName(std::string name);
 
 	double					getMaxSpeed();
 	void					setMaxSpeed(double maxSpeed);
@@ -121,7 +120,7 @@ public:
 	///	<summary>
 	///	Render object in the specified renderer
 	///	</summary>
-	void					render(Camera* camera);
+	void					render(int x, int y);
 
 
 

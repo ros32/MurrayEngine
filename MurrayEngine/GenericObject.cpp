@@ -5,12 +5,12 @@ GenericObject::GenericObject()
 
 }
 
-GenericObject::GenericObject(std::string id, Position currentPosition, SDL_Texture* texture, SDL_Rect* rect, double maxSpeed, double acceleration, Orientation orientation)
+GenericObject::GenericObject(std::string id, Position currentPosition, TextureAsset* texture, std::string textureName, double maxSpeed, double acceleration, Orientation orientation)
 {
 	this->id = id;
 	this->currentPosition = currentPosition;
 	this->texture = texture;
-	this->rect = rect;
+	this->textureName = textureName;
 	this->maxSpeed = maxSpeed;
 	//this->acceleration = acceleration;
 	this->orientation = orientation;
@@ -71,7 +71,7 @@ bool GenericObject::collidePixel(GenericObject objectB)
 	return false;
 }
 
-void GenericObject::render(Camera* camera)
+void GenericObject::render(int x, int y)
 {
 
 }
