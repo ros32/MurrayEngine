@@ -39,17 +39,17 @@ public:
 	///	<summary>
 	///	Set array of objects in Map
 	///	</summary>
-	void						setObjects(std::vector<GenericObject*> objects);
+	void						setObjects(std::vector<GenericObject> objects);
 
 	///	<summary>
 	///	Add an object to the Map
 	///	</summary>
-	void						addObject(GenericObject* object);
+	void						addObject(GenericObject object);
 
 	///	<summary>
 	///	Remove specified object from Map
 	///	</summary>
-	void						removeObject(GenericObject* object);
+	void						removeObject(GenericObject object);
 
 private:
 
@@ -58,7 +58,7 @@ private:
 	Camera camera;
 
 	std::vector<std::vector<Tile>>					tiles;
-	std::vector<GenericObject*>						objects;
+	std::vector<GenericObject>						objects;
 
 
 };
