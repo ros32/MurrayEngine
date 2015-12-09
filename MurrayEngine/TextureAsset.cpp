@@ -126,3 +126,8 @@ void	TextureAsset::render(int x, int y, SDL_Rect* clip)
 {
 	this->render(x, y, clip, 0.0, NULL, SDL_FLIP_NONE);
 }
+
+int		TextureAsset::getCellSize()
+{
+	return this->cellSize;
+}
