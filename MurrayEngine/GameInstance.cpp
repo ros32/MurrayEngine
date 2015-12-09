@@ -71,6 +71,10 @@ bool GameInstance::initialize()
 	//	Load map
 
 
+	//	Test map
+
+	TextureAsset*	tileset = static_cast<TextureAsset*>(this->getAsset("tileset"));
+
 
 
 
@@ -141,5 +145,5 @@ void GameInstance::moveObjects()
 
 void GameInstance::renderObjects()
 {
-
+	this->map.render();
 }
