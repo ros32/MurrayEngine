@@ -54,13 +54,13 @@ bool GameInstance::initialize()
 		if (type == "TextureAsset")
 		{
 			TextureAssetFactory assetFactory = TextureAssetFactory(this->instanceRenderer);
-			Asset tempAsset = assetFactory.createAsset(config);
+			TextureAsset tempAsset = assetFactory.createAsset(config);
 			//	HACK: Create class InvalidAsset and use for invalid assets
-			if (tempAsset.getType() != "InvalidAsset")
-			{
-				this->assets.insert(std::map<std::string, Asset>::value_type(config.getProperty("NAME", "UNKNOWN"), tempAsset));
+			//if (tempAsset.getType() != "InvalidAsset")
+			//{
+				this->textureAssets.insert(std::map<std::string, TextureAsset>::value_type(config.getProperty("NAME", "UNKNOWN"), tempAsset));
 				SDL_Log("Asset Loaded");
-			}
+			//}
 		}
 		else if (type == "SoundAsset")
 		{
