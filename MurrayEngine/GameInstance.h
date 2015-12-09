@@ -49,6 +49,8 @@ public:
 	bool			isRun();
 	bool			isExited();
 
+	void			setMap(Map map);
+
 private:
 
 	///	<summary>

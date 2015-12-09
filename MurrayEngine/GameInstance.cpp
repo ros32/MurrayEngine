@@ -207,3 +207,8 @@ TextureAsset*	GameInstance::getTextureAsset(std::string name)
 		return &iterator->second;
 	return nullptr;
 }
+
+void			GameInstance::setMap(Map map)
+{
+	this->map = map;
+}
