@@ -11,6 +11,14 @@ Map::Map()
 	this->objects;
 }
 
+Map::Map(SDL_Window* window, SDL_Renderer* renderer)
+{
+	this->tileSize;
+	this->camera = Camera(window);
+	this->tiles;
+	this->objects;
+}
+
 Map::~Map()
 {
 
@@ -65,6 +73,27 @@ Tile Map::getTile(Position pos)
 
 void Map::render()
 {
+
+	//	Render tiles
+
+	//	Render objects
+	for (auto vectorX : this->tiles)
+	{
+		for (auto object : vectorX)
+		{
+
+			if ((object.getCurrentPosition().x >= (this->camera.getPosition().x - object.getTexture()->getCellSize()) && object.getCurrentPosition().x <= (this->camera.getPosition().x + this->camera.getWidth() + object.getTexture()->getCellSize())) &&
+				(object.getCurrentPosition().y >= (this->camera.getPosition().y - object.getTexture()->getCellSize()) && object.getCurrentPosition().y <= (this->camera.getPosition().y + this->camera.getHeight() + object.getTexture()->getCellSize())))
+			{
+				//	Object is within camera view
+
+				//	Render object with camera offset
+				object.render(object.getCurrentPosition().x - this->camera.getPosition().x, object.getCurrentPosition().y - this->camera.getPosition().x);
+			}
+
+		}
+	}
+
 	//	Render objects
 	for (auto object : this->objects)
 	{

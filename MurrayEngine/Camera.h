@@ -9,7 +9,7 @@ class Camera
 {
 public:
 	Camera();
-	Camera(SDL_Renderer* renderer);
+	Camera(SDL_Window* window);
 	~Camera();
 
 	SDL_Rect			getCameraRect();

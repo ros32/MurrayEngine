@@ -9,7 +9,12 @@ class Tile: public GenericObject
 {
 public:
 	Tile();
+	Tile(Position currentPosition, TextureAsset* texture, std::string textureName, Orientation orientation);
 	~Tile();
+
+	Position	getCurrentPosition();
+
+	void render(int x, int y);
 
 private:
 

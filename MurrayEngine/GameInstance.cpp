@@ -17,7 +17,7 @@ GameInstance::GameInstance(SDL_Window* window, SDL_Renderer* renderer, Configura
 	this->exited = false;
 	this->mainConfig = configuration;
 	this->configurations;
-	this->map;
+	this->map = Map(window, renderer);
 }
 
 GameInstance::~GameInstance()
@@ -78,6 +78,32 @@ bool GameInstance::initialize()
 	{
 		GenericObject tempObject = GenericObject("object1", { 100, 100 }, tileset, "Grass", 0.0, 0.0, NORTH);
 		this->map.addObject(tempObject);
+
+		std::vector<std::vector<Tile>> tiles(1, std::vector<Tile>(20));
+
+
+		tiles[0][0] = Tile({ 0, 0 }, this->getTextureAsset("tileset"), "Grass", NORTH);
+		tiles[0][1] = Tile({ 32, 0 }, this->getTextureAsset("tileset"), "Grass", NORTH);
+		tiles[0][2] = Tile({ 64, 0 }, this->getTextureAsset("tileset"), "Grass", NORTH);
+		tiles[0][3] = Tile({ 96, 0 }, this->getTextureAsset("tileset"), "Grass", NORTH);
+		tiles[0][4] = Tile({ 128, 0 }, this->getTextureAsset("tileset"), "Grass", NORTH);
+		tiles[0][5] = Tile({ 160, 0 }, this->getTextureAsset("tileset"), "Grass", NORTH);
+		tiles[0][6] = Tile({ 192, 0 }, this->getTextureAsset("tileset"), "Grass", NORTH);
+		tiles[0][7] = Tile({ 224, 0 }, this->getTextureAsset("tileset"), "Grass", NORTH);
+		tiles[0][8] = Tile({ 256, 0 }, this->getTextureAsset("tileset"), "Grass", NORTH);
+		tiles[0][9] = Tile({ 288, 0 }, this->getTextureAsset("tileset"), "Grass", NORTH);
+		tiles[0][10] = Tile({ 320, 0 }, this->getTextureAsset("tileset"), "Grass", NORTH);
+		tiles[0][11] = Tile({ 352, 0 }, this->getTextureAsset("tileset"), "Grass", NORTH);
+		tiles[0][12] = Tile({ 384, 0 }, this->getTextureAsset("tileset"), "Grass", NORTH);
+		tiles[0][13] = Tile({ 416, 0 }, this->getTextureAsset("tileset"), "Grass", NORTH);
+		tiles[0][14] = Tile({ 448, 0 }, this->getTextureAsset("tileset"), "Grass", NORTH);
+		tiles[0][15] = Tile({ 480, 0 }, this->getTextureAsset("tileset"), "Grass", NORTH);
+		tiles[0][16] = Tile({ 512, 0 }, this->getTextureAsset("tileset"), "Grass", NORTH);
+		tiles[0][17] = Tile({ 544, 0 }, this->getTextureAsset("tileset"), "Grass", NORTH);
+		tiles[0][18] = Tile({ 576, 0 }, this->getTextureAsset("tileset"), "Grass", NORTH);
+		tiles[0][19] = Tile({ 608, 0 }, this->getTextureAsset("tileset"), "Grass", NORTH);
+
+		this->map.setTiles(tiles);
 	}
 
 

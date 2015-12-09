@@ -16,6 +16,7 @@ TextureAsset::TextureAsset(SDL_Renderer* renderer, const char* filePath, unsigne
 TextureAsset::~TextureAsset()
 {
 	this->unload();
+	SDL_Log("Texture was destroyed");
 }
 
 void			TextureAsset::load()
@@ -27,7 +28,7 @@ void			TextureAsset::load()
 
 void			TextureAsset::unload()
 {
-	SDL_DestroyTexture(texture);
+	//SDL_DestroyTexture(texture);
 }
 
 SDL_Texture*	TextureAsset::getTexture()
@@ -119,7 +120,8 @@ void	TextureAsset::render(int x, int y, SDL_Rect* clip, double angle, SDL_Point*
 		destination.h = clip->h;
 	}
 
-	SDL_RenderCopyEx(this->renderer, this->texture, clip, &destination, angle, center, flip);
+	if (SDL_RenderCopyEx(this->renderer, this->texture, clip, &destination, angle, center, flip) != 0)
+		SDL_Log(SDL_GetError());
 }
 
 void	TextureAsset::render(int x, int y, SDL_Rect* clip)

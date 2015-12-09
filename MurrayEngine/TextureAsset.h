@@ -27,6 +27,7 @@ public:
 	TextureAsset(SDL_Renderer* renderer, const char* filePath, unsigned int cellSize, unsigned int offset, SDL_Color colorKey);
 	~TextureAsset();
 
+
 	SDL_Texture*	getTexture();
 	SDL_Rect*		getSourceRect(unsigned int x, unsigned int y);
 	SDL_Rect*		getSourceRect(std::string name);
