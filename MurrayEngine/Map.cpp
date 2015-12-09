@@ -63,7 +63,7 @@ Tile Map::getTile(Position pos)
 }
 
 
-void render(SDL_Renderer* renderer)
+void render()
 {
 
 }

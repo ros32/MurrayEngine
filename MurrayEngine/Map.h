@@ -29,7 +29,7 @@ public:
 	///	<summary>
 	///	Render all visible components in the Map
 	///	</summary>
-	void						render(SDL_Renderer* renderer);
+	void						render();
 
 	///	<summary>
 	///	Set matrix of tiles in Map
