@@ -20,7 +20,7 @@ void	TextureAssetFactory::setRenderer(SDL_Renderer* renderer)
 	this->instanceRenderer = renderer;
 }
 
-Asset	TextureAssetFactory::createAsset(Configuration configuration)
+TextureAsset	TextureAssetFactory::createAsset(Configuration configuration)
 {
 
 	std::string name = configuration.getProperty("NAME", "UNKNOWN");
@@ -33,11 +33,11 @@ Asset	TextureAssetFactory::createAsset(Configuration configuration)
 		configuration.getProperty("COLOR_G", 255),
 		configuration.getProperty("COLOR_B", 255)
 	};
-	if (filePath != "UNKNOWN" && name != "UNKNOWN")
-	{
+	//if (filePath != "UNKNOWN" && name != "UNKNOWN")
+	//{
 		TextureAsset returnAsset = TextureAsset(this->instanceRenderer, filePath.c_str(), cellSize, offset, color);
 		return returnAsset;
 		//	Create texture name mapping from config
-	}
-	return InvalidAsset();
+	//}
+	//return InvalidAsset();
 }
