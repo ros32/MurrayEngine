@@ -80,10 +80,10 @@ public:
 
 	void					setTargetPosition(int x, int y);
 
-	SDL_Texture*			getTexture();
+	TextureAsset*			getTexture();
 	void					setTexture(TextureAsset* texture);
 
-	SDL_Rect*				getTextureName();
+	std::string				getTextureName();
 	void					setTextureName(std::string name);
 
 	double					getMaxSpeed();

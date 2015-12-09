@@ -76,6 +76,16 @@ bool GenericObject::collidePixel(GenericObject objectB)
 	return false;
 }
 
+TextureAsset*	GenericObject::getTexture()
+{
+	return this->texture;
+}
+
+std::string		GenericObject::getTextureName()
+{
+	return this->textureName;
+}
+
 void GenericObject::render(int x, int y)
 {
 	if (this->texture != nullptr && this->textureName != "")
