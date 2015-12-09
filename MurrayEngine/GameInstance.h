@@ -60,6 +60,8 @@ private:
 	std::map<std::string, Asset> assets;
 	std::map<std::string, TextureAsset> textureAssets;
 
+	TextureAsset*				getTextureAsset(std::string name);
+
 	//	Maybe these should be passed by the implementation instead?
 	SDL_Window*		instanceWindow;
 	SDL_Renderer*	instanceRenderer;

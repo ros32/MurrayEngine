@@ -73,8 +73,12 @@ bool GameInstance::initialize()
 
 	//	Test map
 
-	//TextureAsset*	tileset = static_cast<TextureAsset*>(this->getAsset("tileset"));
-
+	TextureAsset*	tileset = this->getTextureAsset("tileset");
+	if (tileset != nullptr)
+	{
+		GenericObject tempObject = GenericObject("object1", { 100, 100 }, tileset, "Grass", 0.0, 0.0, NORTH);
+		this->map.addObject(tempObject);
+	}
 
 
 
@@ -146,4 +150,13 @@ void GameInstance::moveObjects()
 void GameInstance::renderObjects()
 {
 	this->map.render();
+}
+
+TextureAsset*	GameInstance::getTextureAsset(std::string name)
+{
+	std::map<std::string, TextureAsset>::iterator iterator;
+	iterator = this->textureAssets.find(name);
+	if (iterator != this->textureAssets.end())
+		return &iterator->second;
+	return nullptr;
 }
