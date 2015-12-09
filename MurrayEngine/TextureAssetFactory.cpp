@@ -36,7 +36,7 @@ Asset	TextureAssetFactory::createAsset(Configuration configuration)
 	if (filePath != "UNKNOWN" && name != "UNKNOWN")
 	{
 		TextureAsset returnAsset = TextureAsset(this->instanceRenderer, filePath.c_str(), cellSize, offset, color);
-
+		return returnAsset;
 		//	Create texture name mapping from config
 	}
 	return InvalidAsset();
