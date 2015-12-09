@@ -65,6 +65,7 @@ Tile Map::getTile(Position pos)
 
 void Map::render()
 {
+	//	Render objects
 	for (auto object : this->objects)
 	{
 		//	TODO: Optimize this
