@@ -17,6 +17,7 @@ GameInstance::GameInstance(SDL_Window* window, SDL_Renderer* renderer, Configura
 	this->exited = false;
 	this->mainConfig = configuration;
 	this->configurations;
+	this->map;
 }
 
 GameInstance::~GameInstance()

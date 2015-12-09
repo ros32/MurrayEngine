@@ -8,6 +8,7 @@
 #include	"TextureAsset.h"
 #include	"TextureAssetFactory.h"
 #include	"InvalidAsset.h"
+#include	"Map.h"
 #include	<SDL.h>
 
 ///	<summary>
@@ -74,7 +75,7 @@ private:
 	bool			runned;
 	bool			exited;
 
-
+	Map				map;
 
 
 };
