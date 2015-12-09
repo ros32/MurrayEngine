@@ -14,6 +14,7 @@ GenericObject::GenericObject(std::string id, Position currentPosition, TextureAs
 	this->maxSpeed = maxSpeed;
 	//this->acceleration = acceleration;
 	this->orientation = orientation;
+	this->targetPosition = { 0, 0 };
 }
 
 GenericObject::~GenericObject()
