@@ -24,3 +24,8 @@ int Camera::getWidth()
 {
 	return this->width;
 }
+
+Position	Camera::getPosition()
+{
+	return this->position;
+}

@@ -63,8 +63,20 @@ Tile Map::getTile(Position pos)
 }
 
 
-void render()
+void Map::render()
 {
+	for (auto object : this->objects)
+	{
+		//	TODO: Optimize this
+		if ((object->getCurrentPosition().x >= (this->camera.getPosition().x - object->getTexture()->getCellSize()) && object->getCurrentPosition().x <= (this->camera.getPosition().x + this->camera.getWidth() + object->getTexture()->getCellSize())) &&
+			(object->getCurrentPosition().y >= (this->camera.getPosition().y - object->getTexture()->getCellSize()) && object->getCurrentPosition().y <= (this->camera.getPosition().y + this->camera.getHeight() + object->getTexture()->getCellSize())))
+		{
+			//	Object is within camera view
+
+			//	Render object with camera offset
+			object->render(object->getCurrentPosition().x - this->camera.getPosition().x, object->getCurrentPosition().y - this->camera.getPosition().x);
+		}
+	}
 
 }
 
