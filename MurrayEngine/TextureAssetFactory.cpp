@@ -33,11 +33,25 @@ TextureAsset	TextureAssetFactory::createAsset(Configuration configuration)
 		configuration.getProperty("COLOR_G", 255),
 		configuration.getProperty("COLOR_B", 255)
 	};
-	//if (filePath != "UNKNOWN" && name != "UNKNOWN")
-	//{
-		TextureAsset returnAsset = TextureAsset(this->instanceRenderer, filePath.c_str(), cellSize, offset, color);
-		return returnAsset;
-		//	Create texture name mapping from config
-	//}
-	//return InvalidAsset();
+
+	TextureAsset returnAsset = TextureAsset(this->instanceRenderer, filePath.c_str(), cellSize, offset, color);
+
+	//	Create texture name mapping from config
+
+	std::map<std::string, Position>	nameIndex;
+
+	for (auto key : configuration)
+	{
+		// bool	keyIdentified = false;
+		std::size_t found = key.first.find("TEXTURE_");
+		if (found != std::string::npos)
+		{
+			int posX = atoi(key.first.substr(8, 2).c_str());
+			int posY = atoi(key.first.substr(11, 2).c_str());
+			Position	pos = { posX, posY };
+			nameIndex.insert(std::map<std::string, Position>::value_type(key.second, pos));
+		}
+	}
+	returnAsset.setTextureNameIndex(nameIndex);
+	return returnAsset;
 }
