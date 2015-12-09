@@ -42,9 +42,6 @@
     <ClInclude Include="TextureAsset.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="AssetFactory.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="TextureAssetFactory.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -87,9 +84,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="TextureAsset.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="AssetFactory.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="TextureAssetFactory.cpp">

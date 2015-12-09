@@ -1,11 +1,11 @@
 #include "TextureAssetFactory.h"
 
-TextureAssetFactory::TextureAssetFactory() : AssetFactory()
+TextureAssetFactory::TextureAssetFactory()
 {
 
 }
 
-TextureAssetFactory::TextureAssetFactory(SDL_Renderer* renderer) : AssetFactory()
+TextureAssetFactory::TextureAssetFactory(SDL_Renderer* renderer)
 {
 	this->instanceRenderer = renderer;
 }

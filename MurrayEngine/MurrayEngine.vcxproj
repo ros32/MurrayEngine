@@ -12,7 +12,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Asset.h" />
-    <ClInclude Include="AssetFactory.h" />
     <ClInclude Include="Configuration.h" />
     <ClInclude Include="FrameLimiter.h" />
     <ClInclude Include="GameInstance.h" />
@@ -29,7 +28,6 @@
     <ClInclude Include="Camera.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="AssetFactory.cpp" />
     <ClCompile Include="Configuration.cpp" />
     <ClCompile Include="FrameLimiter.cpp" />
     <ClCompile Include="GameInstance.cpp" />

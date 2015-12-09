@@ -1,12 +1,12 @@
 #ifndef _TEXTURE_ASSET_FACTORY_H
 #define	_TEXTURE_ASSET_FACTORY_H
 
-#include "AssetFactory.h"
+#include "Configuration.h"
 #include "TextureAsset.h"
 #include "InvalidAsset.h"
 #include <SDL.h>
 
-class TextureAssetFactory: public AssetFactory
+class TextureAssetFactory
 {
 public:
 	TextureAssetFactory();

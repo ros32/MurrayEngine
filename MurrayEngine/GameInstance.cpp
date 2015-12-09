@@ -73,7 +73,7 @@ bool GameInstance::initialize()
 
 	//	Test map
 
-	TextureAsset*	tileset = static_cast<TextureAsset*>(this->getAsset("tileset"));
+	//TextureAsset*	tileset = static_cast<TextureAsset*>(this->getAsset("tileset"));
 
 
 
