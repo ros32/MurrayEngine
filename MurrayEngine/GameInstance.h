@@ -1,6 +1,7 @@
 #ifndef _GAME_INSTANCE_H
 #define	_GAME_INSTANCE_H
 
+#include	"MapFactory.h"
 #include	"Asset.h"
 #include	"Configuration.h"
 #include	"FrameLimiter.h"
@@ -17,6 +18,7 @@
 class GameInstance
 {
 public:
+	GameInstance();
 	GameInstance(SDL_Window* window, SDL_Renderer* renderer, Configuration configuration);
 	~GameInstance();
 
@@ -58,7 +60,7 @@ private:
 	///	<summary>
 	///	Do not allow creation of empty constructor
 	/// </summary>
-	GameInstance();
+	
 
 	std::map<std::string, Configuration> configurations;
 	std::map<std::string, Asset> assets;
