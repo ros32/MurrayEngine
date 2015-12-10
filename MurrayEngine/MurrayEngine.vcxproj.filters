@@ -129,5 +129,8 @@
     <None Include="map.cfg">
       <Filter>Resource Files</Filter>
     </None>
+    <None Include="spritesheet.cfg">
+      <Filter>Resource Files</Filter>
+    </None>
   </ItemGroup>
 </Project>

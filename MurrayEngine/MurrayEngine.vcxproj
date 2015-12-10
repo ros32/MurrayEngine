@@ -51,6 +51,7 @@
     <None Include="GenericObject.cfg" />
     <None Include="main.cfg" />
     <None Include="map.cfg" />
+    <None Include="spritesheet.cfg" />
     <None Include="tileset.cfg" />
     <None Include="UML.vsd" />
   </ItemGroup>
