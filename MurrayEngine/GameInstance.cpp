@@ -18,6 +18,7 @@ GameInstance::GameInstance(SDL_Window* window, SDL_Renderer* renderer, Configura
 	this->mainConfig = configuration;
 	this->configurations;
 	this->map;
+	this->keyState;
 }
 
 GameInstance::~GameInstance()
@@ -115,6 +116,43 @@ bool GameInstance::run()
 				break;
 		}
 
+		//	Handle keys
+		const Uint8*	currentKeyState = SDL_GetKeyboardState(NULL);
+
+		if (currentKeyState[SDL_GetScancodeFromKey(SDLK_w)])
+			this->keyState.key_w = true;
+		else
+			this->keyState.key_w = false;
+		if (currentKeyState[SDL_GetScancodeFromKey(SDLK_s)])
+			this->keyState.key_s = true;
+		else
+			this->keyState.key_s = false;
+		if (currentKeyState[SDL_GetScancodeFromKey(SDLK_a)])
+			this->keyState.key_a = true;
+		else
+			this->keyState.key_a = false;
+		if (currentKeyState[SDL_GetScancodeFromKey(SDLK_d)])
+			this->keyState.key_d = true;
+		else
+			this->keyState.key_d = false;
+
+
+
+		if (keyState.key_w)
+			this->map.getCamera()->move(0, -5);
+		if (keyState.key_s)
+			this->map.getCamera()->move(0, 5);
+		if (keyState.key_a)
+			this->map.getCamera()->move(-5, 0);
+		if (keyState.key_d)
+			this->map.getCamera()->move(5, 0);
+
+		
+
+		const Uint8* keyState = SDL_GetKeyboardState(NULL);
+		if (keyState[SDLK_w])
+			this->map.getCamera()->move(0, -1);
+		
 		//	Clear renderer
 		SDL_RenderClear(this->instanceRenderer);
 		this->moveObjects();

@@ -12,6 +12,14 @@
 #include	"Map.h"
 #include	<SDL.h>
 
+struct KeyState
+{
+	bool	key_w = false;
+	bool	key_s = false;
+	bool	key_a = false;
+	bool	key_d = false;
+};
+
 ///	<summary>
 ///	GameInstance controls the current instance of a game. It consists of all assets and objects, and controls the state of the game.
 ///</summary>
@@ -83,6 +91,8 @@ private:
 	bool			exited;
 
 	Map				map;
+
+	KeyState		keyState;
 
 
 };

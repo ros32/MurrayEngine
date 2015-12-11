@@ -5,6 +5,12 @@
 #include	"GenericObject.h"
 #include	"Position.h"
 
+enum CameraFocus
+{
+	OBJECT_FOCUS = 0,
+	FREE_FOCUS = 1
+};
+
 class Camera
 {
 public:
@@ -21,6 +27,15 @@ public:
 	void				setPosition(Position pos);
 	void				setPosition(GenericObject object);
 
+	void				move(int x, int y);
+
+	CameraFocus			getFocusType();
+	void				setFocusType(CameraFocus focusType);
+
+	void				setWindow(SDL_Window* window);
+
+	void				center(Position pos);
+
 
 
 private:
@@ -31,6 +46,8 @@ private:
 	Position			position;
 	SDL_Renderer*		renderer;
 	SDL_Rect			cameraRect;
+
+	CameraFocus			focusType;
 
 };
 
