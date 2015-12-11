@@ -52,6 +52,8 @@ public:
 	///	</summary>
 	void						removeObject(GenericObject object);
 
+	Camera*						getCamera();
+
 private:
 
 	int tileSize;

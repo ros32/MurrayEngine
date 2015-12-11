@@ -88,7 +88,7 @@ void Map::render()
 				//	Object is within camera view
 
 				//	Render object with camera offset
-				object.render(object.getCurrentPosition().x - this->camera.getPosition().x, object.getCurrentPosition().y - this->camera.getPosition().x);
+				object.render(object.getCurrentPosition().x - this->camera.getPosition().x, object.getCurrentPosition().y - this->camera.getPosition().y);
 			}
 
 		}
@@ -138,3 +138,7 @@ void Map::removeObject(GenericObject object)
 
 }
 
+Camera*		Map::getCamera()
+{
+	return &this->camera;
+}
