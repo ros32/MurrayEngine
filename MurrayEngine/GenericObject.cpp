@@ -15,6 +15,9 @@ GenericObject::GenericObject(std::string id, Position currentPosition, TextureAs
 	//this->acceleration = acceleration;
 	this->orientation = orientation;
 	this->targetPosition = { 0, 0 };
+//	this->tempVector;
+	
+
 }
 
 GenericObject::~GenericObject()
@@ -32,6 +35,11 @@ void GenericObject::setCurrentPosition(int x, int y)
 	this->currentPosition = { x, y };
 }
 
+Position GenericObject::getTargetPosition(){
+
+	return targetPosition;
+}
+
 void GenericObject::setTargetPosition(int x, int y)
 {
 	this->targetPosition = { x, y };
@@ -42,9 +50,62 @@ void GenericObject::setOrientation(Orientation orientation)
 	this->orientation = orientation;
 }
 
+Orientation GenericObject::getOrientation()
+{
+	return orientation;
+}
+
+double GenericObject::getMaxSpeed()
+{
+	return maxSpeed;
+}
+
+/*
 void GenericObject::move()
 {
 	//	Move object distance equal to current speed closer to target
+
+	
+	currentPosition.x += maxSpeed;
+	currentPosition.y += maxSpeed;
+
+	//If current XPosition has not yet been reached and current position is greater than maxWidth - 1 spriteWidth: move back 20 pixels
+	//Or if current XPosition is less than 1 spriteWidth pixels: add one pixel
+	if ((currentPosition.x != targetPosition.x) && (currentPosition.x >= (640 - 32))){
+			currentPosition.x = currentPosition.x - 20;
+	} else if ((currentPosition.x != targetPosition.x) && (currentPosition.x <= 32)){
+			currentPosition.x = currentPosition.x + 20;
+	}
+	
+
+	//Same in Y as in X axis	
+	if ((currentPosition.y != targetPosition.y) && (currentPosition.y >= (480 - 32))){
+			currentPosition.y = currentPosition.y - 20;
+	} else if ((currentPosition.y != targetPosition.y) && (currentPosition.y <= 32)){
+			currentPosition.y = currentPosition.y + 20;
+	}
+	
+	
+	tempVector = Map::GetObject(currentPosition);
+
+	for (auto object : tempVector){
+		bool isCollided = this->collideBox(object);
+		if (isCollided == true){
+	
+		//	Check which objects collided to perform action
+		//	Switch case perhaps
+		//	Set targetPosition to current position
+
+		}
+	}
+	
+
+	// this->render(currentPosition.x, currentPosition.y);
+	
+
+
+
+
 
 	//	Check for collision
 
@@ -54,6 +115,7 @@ void GenericObject::move()
 
 	//	Update lastMoved
 }
+*/
 
 bool GenericObject::collideBox(GenericObject objectB)
 {

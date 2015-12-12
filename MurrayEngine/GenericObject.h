@@ -11,7 +11,8 @@ enum Orientation
 	NORTH = 0,
 	EAST = 1,
 	SOUTH = 2,
-	WEST = 3
+	WEST = 3,
+	NONE = 4
 };
 
 class GenericObject
@@ -37,7 +38,7 @@ private:
 	double			maxSpeed;
 
 	///	The current speed an object is travelling
-	///	double			currentSpeed;
+		double			currentSpeed;
 
 	///	How fast an object reaches its maxSpeed
 	///	double			acceleration;
@@ -49,6 +50,8 @@ private:
 
 	Uint32			lastRender;
 	Uint32			lastMove;
+
+	
 
 
 public:
@@ -65,6 +68,7 @@ public:
 	///	Move (teleport) object to the specified absolute position
 	///	</summary>
 	void					setCurrentPosition(Position pos);
+	int						getCurrentSpeed();
 
 	///	<summary>
 	///	Move (teleport) object to the specified absolute position
@@ -91,6 +95,7 @@ public:
 
 	Orientation				getOrientation();
 
+
 	///	<summary>
 	///	Sets the orientation of the object
 	///	</summary>
@@ -105,7 +110,7 @@ public:
 	///	<summary>
 	///	Move object towards target position
 	///	</summary>
-	void					move();
+	//void					move();
 
 	///	<summary>
 	///	Detect per-pixel collision between two objects

@@ -20,7 +20,7 @@ public:
 	///	<summary>
 	///	Return all objects on a given position
 	///	</summary>
-	std::vector<GenericObject*>	getObject(Position pos);
+	std::vector<GenericObject>	getObject(Position pos);
 
 	///	<summary>
 	///	Return the Tile on a given position
@@ -52,6 +52,8 @@ public:
 	///	</summary>
 	void						removeObject(GenericObject object);
 
+	void						move();
+
 	Camera*						getCamera();
 
 private:
@@ -62,6 +64,7 @@ private:
 
 	std::vector<std::vector<Tile>>					tiles;
 	std::vector<GenericObject>						objects;
+	std::vector <GenericObject>						tempVector;
 
 
 };

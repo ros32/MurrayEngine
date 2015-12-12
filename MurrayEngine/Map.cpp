@@ -9,6 +9,7 @@ Map::Map()
 	this->camera;
 	this->tiles;
 	this->objects;
+
 }
 
 Map::Map(SDL_Window* window, SDL_Renderer* renderer)
@@ -17,6 +18,7 @@ Map::Map(SDL_Window* window, SDL_Renderer* renderer)
 	this->camera = Camera(window);
 	this->tiles;
 	this->objects;
+	
 }
 
 Map::~Map()
@@ -25,12 +27,14 @@ Map::~Map()
 }
 
 
-std::vector<GenericObject*>	Map::getObject(Position pos)
+std::vector<GenericObject>	Map::getObject(Position pos)
 {
 	
-	std::vector<GenericObject*> tempVector;
+	std::vector<GenericObject> tempVector;
 
 	for (auto object : objects){
+
+
 	//	if (object->getCurrentPosition() == pos);
 	//	tempVector.push_back(object);
 	}
@@ -42,8 +46,8 @@ std::vector<GenericObject*>	Map::getObject(Position pos)
 
 Tile Map::getTile(Position pos)
 {
-	std::vector <std::vector<Tile>>::iterator row;
-	std::vector<Tile>::iterator column;
+//	std::vector <std::vector<Tile>>::iterator row;
+//	std::vector<Tile>::iterator column;
 
 	int posX = pos.x;
 	int posY = pos.y;
@@ -138,7 +142,85 @@ void Map::removeObject(GenericObject object)
 
 }
 
+
+void Map::move()
+{
+	
+	for (auto genericObject : objects)
+	{
+
+		int direction = genericObject.getOrientation();
+		int tempDirection;
+
+		switch (direction){
+		case 0:
+			tempDirection = 1;
+			break;
+		case 1:
+			tempDirection = 1;
+			break;
+		case 2:
+			tempDirection = -1;
+			break;
+		case 3:
+			tempDirection = -1;
+			break;
+		default:
+			break;
+		}
+
+		//Change from maxSpeed to currentSpeed. Perhaps an int value to represent number of pixels/tick 
+		//Need to also use timer
+		double velocity = genericObject.getMaxSpeed() * tempDirection;
+
+		//The bounds should not be a hard coded value, perhaps a setSize method is needed
+		do
+		{
+			//direction is in X axis
+			if (direction == 0 || direction == 2)
+			{
+				genericObject.setCurrentPosition(genericObject.getCurrentPosition().x + velocity, genericObject.getCurrentPosition().y);
+
+				if ((genericObject.getCurrentPosition().x > (640 - 32)) || (genericObject.getCurrentPosition().x < 32))
+				{
+					genericObject.setCurrentPosition(genericObject.getCurrentPosition().x - velocity, genericObject.getCurrentPosition().y);
+				}
+
+			}
+			//direction is in Y axis
+			else if (direction == 1 || direction == 3)
+			{
+				genericObject.setCurrentPosition(genericObject.getCurrentPosition().x, genericObject.getCurrentPosition().y + velocity);
+
+				if ((genericObject.getCurrentPosition().y >(480 - 32)) || (genericObject.getCurrentPosition().y < 32))
+				{
+					genericObject.setCurrentPosition(genericObject.getCurrentPosition().x, genericObject.getCurrentPosition().y - velocity);
+				}
+			}
+
+		} while ((genericObject.getCurrentPosition().x != genericObject.getTargetPosition().x) || (genericObject.getCurrentPosition().y != genericObject.getTargetPosition().y));
+
+		tempVector = getObject(genericObject.getCurrentPosition());
+
+		for (auto object : tempVector)
+		{
+			bool isCollided = genericObject.collideBox(object);
+
+			if (isCollided == true){
+				genericObject.setTargetPosition(genericObject.getCurrentPosition().x, genericObject.getCurrentPosition().y);
+				//Check object types to determine action type
+			}
+		}
+
+		genericObject.render(genericObject.getCurrentPosition().x, genericObject.getCurrentPosition().y);
+	}
+
+	}
+	
+
 Camera*		Map::getCamera()
 {
 	return &this->camera;
 }
+
+
