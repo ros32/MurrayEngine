@@ -161,17 +161,17 @@ bool GameInstance::run()
 			this->map.getCamera()->move(-5, 0);
 		if (keyState.key_d)
 			this->map.getCamera()->move(5, 0);
-		if (keyState.key_left)
+		//	if (keyState.key_left)
 			//set an objects orientation to west
-		if (keyState.key_right)
+		//	if (keyState.key_right)
 			//set an objects orientation to east
-		if (keyState.key_up)
+		//	if (keyState.key_up)
 			//set an objects orientation to north
-		if (keyState.key_down)
+		//	if (keyState.key_down)
 			//set an objects orientation to south
 		
 
-		const Uint8* keyState = SDL_GetKeyboardState(NULL);
+		//	const Uint8* keyState = SDL_GetKeyboardState(NULL);
 	//	if (keyState[SDLK_w])
 	//		this->map.getCamera()->move(0, -1);
 		
