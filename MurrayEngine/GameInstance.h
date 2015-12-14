@@ -63,7 +63,7 @@ public:
 	bool			isRun();
 	bool			isExited();
 
-	void			setMap(Map map);
+	void			setMap(Map* map);
 
 	TextureAsset*				getTextureAsset(std::string name);
 
@@ -94,7 +94,7 @@ private:
 	bool			runned;
 	bool			exited;
 
-	Map				map;
+	Map*			map;
 
 	KeyState		keyState;
 

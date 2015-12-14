@@ -17,12 +17,12 @@ MapFactory::~MapFactory()
 
 }
 
-Map	MapFactory::createMap(Configuration configuration)
+Map*	MapFactory::createMap(Configuration configuration)
 {
 	int cellSize = configuration.getProperty("CELL_SIZE", 32);
 	std::vector<std::vector<Tile>> tiles;
 	std::vector<Tile> tileMap;
-	Map	map(this->window, this->renderer);
+	Map* map = new Map(this->window, this->renderer);
 
 	// bool	keyIdentified = false;
 	for (auto key : configuration)
@@ -86,7 +86,7 @@ Map	MapFactory::createMap(Configuration configuration)
 		tiles[i][j] = key;
 	}
 
-	map.setTiles(tiles);
+	map->setTiles(tiles);
 
 	return map;
 }

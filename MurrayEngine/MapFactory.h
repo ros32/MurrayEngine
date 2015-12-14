@@ -14,7 +14,7 @@ public:
 	MapFactory(SDL_Window* window, SDL_Renderer* renderer, GameInstance* gameInstance);
 	~MapFactory();
 
-	Map		createMap(Configuration config);
+	Map*		createMap(Configuration config);
 
 private:
 

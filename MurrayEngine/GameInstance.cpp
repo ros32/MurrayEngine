@@ -154,13 +154,13 @@ bool GameInstance::run()
 
 
 		if (keyState.key_w)
-			this->map.getCamera()->move(0, -5);
+			this->map->getCamera()->move(0, -5);
 		if (keyState.key_s)
-			this->map.getCamera()->move(0, 5);
+			this->map->getCamera()->move(0, 5);
 		if (keyState.key_a)
-			this->map.getCamera()->move(-5, 0);
+			this->map->getCamera()->move(-5, 0);
 		if (keyState.key_d)
-			this->map.getCamera()->move(5, 0);
+			this->map->getCamera()->move(5, 0);
 		//	if (keyState.key_left)
 			//set an objects orientation to west
 		//	if (keyState.key_right)
@@ -190,6 +190,10 @@ bool GameInstance::run()
 
 bool GameInstance::exit()
 {
+
+	//	Delete map
+	delete this->map;
+
 	this->exited = true;
 	return true;
 }
@@ -221,7 +225,7 @@ void GameInstance::moveObjects()
 
 void GameInstance::renderObjects()
 {
-	this->map.render();
+	this->map->render();
 }
 
 TextureAsset*	GameInstance::getTextureAsset(std::string name)
@@ -233,7 +237,7 @@ TextureAsset*	GameInstance::getTextureAsset(std::string name)
 	return nullptr;
 }
 
-void			GameInstance::setMap(Map map)
+void			GameInstance::setMap(Map* map)
 {
 	this->map = map;
 }
