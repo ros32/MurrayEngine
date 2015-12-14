@@ -5,17 +5,19 @@ GenericObject::GenericObject()
 
 }
 
-GenericObject::GenericObject(std::string id, Position currentPosition, TextureAsset* texture, std::string textureName, double maxSpeed, double acceleration, Orientation orientation)
+GenericObject::GenericObject(std::string id, Position currentPosition, TextureAsset* texture, std::string textureName, double maxSpeed, double acceleration, int currentSpeed, Orientation orientation, bool hasCollision)
 {
 	this->id = id;
 	this->currentPosition = currentPosition;
 	this->texture = texture;
 	this->textureName = textureName;
 	this->maxSpeed = maxSpeed;
+	this->currentSpeed = currentSpeed;
 	//this->acceleration = acceleration;
 	this->orientation = orientation;
 	this->targetPosition = { 0, 0 };
-//	this->tempVector;
+	this->hasCollision = hasCollision;
+	this->lastPosition;
 	
 
 }
@@ -23,6 +25,11 @@ GenericObject::GenericObject(std::string id, Position currentPosition, TextureAs
 GenericObject::~GenericObject()
 {
 
+}
+
+std::string GenericObject::getId()
+{
+	return id;
 }
 
 Position GenericObject::getCurrentPosition()
@@ -60,62 +67,60 @@ double GenericObject::getMaxSpeed()
 	return maxSpeed;
 }
 
-/*
+bool GenericObject::getHasCollision()
+{
+//	return hasCollision;
+
+	return true;
+}
+
+void GenericObject::reverseMove()
+{
+	currentPosition = lastPosition;
+}
+
 void GenericObject::move()
 {
-	//	Move object distance equal to current speed closer to target
+	//Save the currentposition before we move
+	lastPosition = currentPosition;
 
-	
-	currentPosition.x += maxSpeed;
-	currentPosition.y += maxSpeed;
+	int directionValue;
+	//Set the appropriate directionValue after orientation
+	switch (orientation){
+		//North 
+	case 0:
+		directionValue = 1;
+		break;
+		//East
+	case 1:
+		directionValue = 1;
+		break;
+		//South
+	case 2:
+		directionValue = -1;
+		break;
+		//West
+	case 3:
+		directionValue = -1;
+		break;
+		//None
+	default:
+		break;
+	}
+	//The amount of pixels to travel in both x/y axis
+	int velocity = currentSpeed * directionValue;
 
-	//If current XPosition has not yet been reached and current position is greater than maxWidth - 1 spriteWidth: move back 20 pixels
-	//Or if current XPosition is less than 1 spriteWidth pixels: add one pixel
-	if ((currentPosition.x != targetPosition.x) && (currentPosition.x >= (640 - 32))){
-			currentPosition.x = currentPosition.x - 20;
-	} else if ((currentPosition.x != targetPosition.x) && (currentPosition.x <= 32)){
-			currentPosition.x = currentPosition.x + 20;
+	//Add the velocity to the current position
+	currentPosition.x += velocity;
+	currentPosition.y += velocity;
+
+	//If the new currentPosition is too close to the map edge, step back through reverseMove
+	if ((currentPosition.x > (640 - 32)) || (currentPosition.x < 32) || (currentPosition.y >(480 - 32)) || (currentPosition.y < 32)){
+        reverseMove();
 	}
 	
-
-	//Same in Y as in X axis	
-	if ((currentPosition.y != targetPosition.y) && (currentPosition.y >= (480 - 32))){
-			currentPosition.y = currentPosition.y - 20;
-	} else if ((currentPosition.y != targetPosition.y) && (currentPosition.y <= 32)){
-			currentPosition.y = currentPosition.y + 20;
-	}
-	
-	
-	tempVector = Map::GetObject(currentPosition);
-
-	for (auto object : tempVector){
-		bool isCollided = this->collideBox(object);
-		if (isCollided == true){
-	
-		//	Check which objects collided to perform action
-		//	Switch case perhaps
-		//	Set targetPosition to current position
-
-		}
-	}
-	
-
-	// this->render(currentPosition.x, currentPosition.y);
-	
-
-
-
-
-
-	//	Check for collision
-
-	//	If collided, set target position to current position
-
-	//	Perform collision action
-
-	//	Update lastMoved
 }
-*/
+
 
 bool GenericObject::collideBox(GenericObject objectB)
 {

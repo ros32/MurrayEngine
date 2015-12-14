@@ -28,6 +28,8 @@ private:
 	///	Target position of object
 	Position	targetPosition;
 
+	Position	lastPosition;
+
 	///	Texture asset used by object
 	TextureAsset*	texture;
 
@@ -38,10 +40,13 @@ private:
 	double			maxSpeed;
 
 	///	The current speed an object is travelling
-		double			currentSpeed;
+	int			currentSpeed;
 
 	///	How fast an object reaches its maxSpeed
 	///	double			acceleration;
+
+	/// If an object can collide with other objects or not
+	bool		hasCollision;
 
 	///	Current orientation of object
 	Orientation		orientation;
@@ -56,7 +61,7 @@ private:
 
 public:
 	GenericObject();
-	GenericObject(std::string id, Position currentPosition, TextureAsset* texture, std::string textureName, double maxSpeed, double acceleration, Orientation orientation);
+	GenericObject(std::string id, Position currentPosition, TextureAsset* texture, std::string textureName, double maxSpeed, double acceleration, int currentSpeed, Orientation orientation, bool hasCollision);
 	~GenericObject();
 
 	std::string				getId();
@@ -110,7 +115,7 @@ public:
 	///	<summary>
 	///	Move object towards target position
 	///	</summary>
-	//void					move();
+	void					move();
 
 	///	<summary>
 	///	Detect per-pixel collision between two objects
@@ -126,6 +131,10 @@ public:
 	///	Render object in the specified renderer
 	///	</summary>
 	void					render(int x, int y);
+
+	bool					getHasCollision();
+
+	void					reverseMove();
 
 
 
