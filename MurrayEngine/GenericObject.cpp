@@ -124,14 +124,42 @@ void GenericObject::move()
 
 bool GenericObject::collideBox(GenericObject objectB)
 {
-	//	compare position of object a rect and object b rect
+	
+	bool hit = true;
+	
+	//TODO: Is Y = 0 at the top or bottom? Might need to reverse y axis
+	//TODO: Implement and use textureWidth and Size instead of cellSize
+	textureWidth = texture->getCellSize();
+	textureHeight = texture->getCellSize();
 
-	//	If object a rect placed on object a position overlaps object b rect placed on object b position
+	int left = currentPosition.x;
+	int right = currentPosition.x + textureWidth;
+	int bottom = currentPosition.y;
+	int top = currentPosition.y + textureHeight;
+	
+	int otherTextureWidth = objectB.texture->getCellSize();
+	int otherTextureHeight = objectB.texture->getCellSize();
 
-		//	return true since objects has collided
+	int otherLeft = objectB.currentPosition.x;
+	int otherRight = objectB.currentPosition.x + otherTextureWidth;
+	int otherBottom = objectB.currentPosition.y;
+	int otherTop = objectB.currentPosition.y + otherTextureHeight;
 
-	//	Else return false since objects has not collided
-	return false;
+	//Checks if there is a distance between the current object sides and the other object sides.
+	if (right < otherLeft){
+		hit =  false;
+	} 
+	if (left > otherRight){
+		hit = false;
+	}
+	if (top < otherBottom){
+		hit =  false;
+	} 
+	if (bottom > otherTop){
+		hit = false;
+	} 
+		return hit;
+	
 }
 
 bool GenericObject::collidePixel(GenericObject objectB)

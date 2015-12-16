@@ -42,8 +42,6 @@ std::vector<GenericObject>	Map::getObject(Position pos)
 	return tempVector;
 }
 
-
-
 Tile Map::getTile(Position pos)
 {
 //	std::vector <std::vector<Tile>>::iterator row;
@@ -73,7 +71,6 @@ Tile Map::getTile(Position pos)
 	*/
 	
 }
-
 
 void Map::render()
 {
@@ -142,7 +139,6 @@ void Map::removeObject(GenericObject object)
 
 }
 
-
 void Map::move()
 {
 	
@@ -181,7 +177,6 @@ void Map::move()
 
 }
 	
-
 Camera*		Map::getCamera()
 {
 	return &this->camera;

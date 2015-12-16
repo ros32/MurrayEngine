@@ -56,6 +56,10 @@ private:
 	Uint32			lastRender;
 	Uint32			lastMove;
 
+	//Height and witdth of texture
+	int textureWidth, textureHeight;
+
+
 	
 
 
