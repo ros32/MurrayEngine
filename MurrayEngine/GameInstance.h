@@ -75,8 +75,8 @@ private:
 	
 
 	std::map<std::string, Configuration> configurations;
-	std::map<std::string, Asset> assets;
-	std::map<std::string, TextureAsset> textureAssets;
+	std::map<std::string, Asset*> assets;
+	std::map<std::string, TextureAsset*> textureAssets;
 
 	//	Maybe these should be passed by the implementation instead?
 	SDL_Window*		instanceWindow;

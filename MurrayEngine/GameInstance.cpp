@@ -56,11 +56,11 @@ bool GameInstance::initialize()
 		if (type == "TextureAsset")
 		{
 			TextureAssetFactory assetFactory = TextureAssetFactory(this->instanceRenderer);
-			TextureAsset tempAsset = assetFactory.createAsset(config);
+			TextureAsset* tempAsset = assetFactory.createAsset(config);
 			//	HACK: Create class InvalidAsset and use for invalid assets
 			//if (tempAsset.getType() != "InvalidAsset")
 			//{
-				this->textureAssets.insert(std::map<std::string, TextureAsset>::value_type(config.getProperty("NAME", "UNKNOWN"), tempAsset));
+				this->textureAssets.insert(std::map<std::string, TextureAsset*>::value_type(config.getProperty("NAME", "UNKNOWN"), tempAsset));
 				SDL_Log("Asset Loaded");
 			//}
 		}
@@ -191,6 +191,12 @@ bool GameInstance::run()
 bool GameInstance::exit()
 {
 
+	//	Delete texture assets
+	for (auto asset : this->textureAssets)
+	{
+		delete asset.second;
+	}
+
 	//	Delete map
 	delete this->map;
 
@@ -230,10 +236,10 @@ void GameInstance::renderObjects()
 
 TextureAsset*	GameInstance::getTextureAsset(std::string name)
 {
-	std::map<std::string, TextureAsset>::iterator iterator;
+	std::map<std::string, TextureAsset*>::iterator iterator;
 	iterator = this->textureAssets.find(name);
 	if (iterator != this->textureAssets.end())
-		return &iterator->second;
+		return iterator->second;
 	return nullptr;
 }
 

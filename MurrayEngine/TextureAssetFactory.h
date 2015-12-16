@@ -14,7 +14,7 @@ public:
 	~TextureAssetFactory();
 
 	void			setRenderer(SDL_Renderer* renderer);
-	TextureAsset	createAsset(Configuration configuration);
+	TextureAsset*	createAsset(Configuration configuration);
 
 private:
 

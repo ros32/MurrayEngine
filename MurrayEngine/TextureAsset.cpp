@@ -28,7 +28,7 @@ void			TextureAsset::load()
 
 void			TextureAsset::unload()
 {
-	//SDL_DestroyTexture(texture);
+	SDL_DestroyTexture(texture);
 }
 
 SDL_Texture*	TextureAsset::getTexture()
