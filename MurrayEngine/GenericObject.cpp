@@ -82,25 +82,25 @@ void GenericObject::reverseMove()
 void GenericObject::move()
 {
 	//Save the currentposition before we move
-	lastPosition = currentPosition;
+	this->lastPosition = this->currentPosition;
 
 	int directionValue;
 	//Set the appropriate directionValue after orientation
-	switch (orientation){
+	switch (this->orientation){
 		//North 
-	case 0:
+	case NORTH:
 		directionValue = 1;
 		break;
 		//East
-	case 1:
+	case EAST:
 		directionValue = 1;
 		break;
 		//South
-	case 2:
+	case SOUTH:
 		directionValue = -1;
 		break;
 		//West
-	case 3:
+	case WEST:
 		directionValue = -1;
 		break;
 		//None
@@ -108,7 +108,7 @@ void GenericObject::move()
 		break;
 	}
 	//The amount of pixels to travel in both x/y axis
-	int velocity = currentSpeed * directionValue;
+	int velocity = this->currentSpeed * directionValue;
 
 	//Add the velocity to the current position
 	currentPosition.x += velocity;

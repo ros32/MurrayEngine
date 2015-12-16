@@ -83,7 +83,7 @@ bool GameInstance::initialize()
 			if (!mapLoaded)
 			{
 				this->setMap(mapFactory.createMap(key.second));
-				GenericObject* tempObject = new GenericObject("test001", { 100, 100 }, this->getTextureAsset("tileset"), "TreeM", 1.0, 1.0, 0, NORTH, false);
+				GenericObject* tempObject = new GenericObject("test001", { 100, 100 }, this->getTextureAsset("tileset"), "TreeM", 1.0, 1.0, 1, NORTH, false);
 				this->map->addObject(tempObject);
 				this->map->setPlayerCharacter(tempObject);
 				
@@ -158,13 +158,45 @@ bool GameInstance::run()
 
 
 		if (keyState.key_w)
-			this->map->getCamera()->move(0, -5);
+		{
+			if (this->map->getCamera() != nullptr)
+			{
+				if (this->map->getCamera()->getFocusType() == FREE_FOCUS)
+					this->map->getCamera()->move(0, -5);
+				else if (this->map->getCamera()->getFocusType() == OBJECT_FOCUS)
+					this->map->getPlayerCharacter()->setTargetPosition(0, -5);
+			}
+		}
 		if (keyState.key_s)
-			this->map->getCamera()->move(0, 5);
+		{
+			if (this->map->getCamera() != nullptr)
+			{
+				if (this->map->getCamera()->getFocusType() == FREE_FOCUS)
+					this->map->getCamera()->move(0, 5);
+				else if (this->map->getCamera()->getFocusType() == OBJECT_FOCUS)
+					this->map->getPlayerCharacter()->setTargetPosition(0, 5);
+			}
+		}
 		if (keyState.key_a)
-			this->map->getCamera()->move(-5, 0);
+		{
+			if (this->map->getCamera() != nullptr)
+			{
+				if (this->map->getCamera()->getFocusType() == FREE_FOCUS)
+					this->map->getCamera()->move(-5, 0);
+				else if (this->map->getCamera()->getFocusType() == OBJECT_FOCUS)
+					this->map->getPlayerCharacter()->setTargetPosition(-5, 0);
+			}
+		}
 		if (keyState.key_d)
-			this->map->getCamera()->move(5, 0);
+		{
+			if (this->map->getCamera() != nullptr)
+			{
+				if (this->map->getCamera()->getFocusType() == FREE_FOCUS)
+					this->map->getCamera()->move(5, 0);
+				else if (this->map->getCamera()->getFocusType() == OBJECT_FOCUS)
+					this->map->getPlayerCharacter()->setTargetPosition(5, 0);
+			}
+		}
 		//	if (keyState.key_left)
 			//set an objects orientation to west
 		//	if (keyState.key_right)
@@ -230,7 +262,9 @@ bool GameInstance::isExited()
 
 void GameInstance::moveObjects()
 {
-
+	this->map->move();
+	if (this->map->getCamera()->getFocusType() == OBJECT_FOCUS)
+		this->map->getCamera()->center(this->map->getPlayerCharacter()->getCurrentPosition());
 }
 
 void GameInstance::renderObjects()

@@ -11,7 +11,7 @@ Camera::Camera(SDL_Window* window)
 {
 	this->position = { 0, 0 };
 	SDL_GetWindowSize(window, &this->width, &this->height);
-	this->focusType = FREE_FOCUS;
+	this->focusType = OBJECT_FOCUS;
 }
 
 Camera::~Camera()

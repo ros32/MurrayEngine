@@ -148,6 +148,7 @@ void Map::move()
 		{
 
 			 genericObject->move();
+			 SDL_Log(genericObject->getId().c_str());
 
 			 if (genericObject->getHasCollision())
 			 {
@@ -168,7 +169,9 @@ void Map::move()
 						
 					}
 				}
-			}
+
+				genericObject->setTargetPosition(0, 0);
+			}	 
 		}
 
 //		genericObject->render(genericObject->getCurrentPosition().x, genericObject->getCurrentPosition().y);
