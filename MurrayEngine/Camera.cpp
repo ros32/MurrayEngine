@@ -5,12 +5,18 @@ Camera::Camera()
 	this->position = { 0, 0 };
 	this->height = 0;
 	this->width = 0;
+	this->focusType = OBJECT_FOCUS;
 }
 
 Camera::Camera(SDL_Window* window)
 {
+	//	Set position to 0,0
 	this->position = { 0, 0 };
-	SDL_GetWindowSize(window, &this->width, &this->height);
+
+	//	Set Cameras width and height to the same as the provided window
+	this->setWindow(window);
+
+	//	Use OBJECT_FOCUS as standard
 	this->focusType = OBJECT_FOCUS;
 }
 
