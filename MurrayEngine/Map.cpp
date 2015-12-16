@@ -170,7 +170,17 @@ void Map::move()
 					}
 				}
 
-				genericObject->setTargetPosition(0, 0);
+				//If the new currentPosition is too close to the map edge, step back through reverseMove
+				if (
+						(genericObject->getCurrentPosition().x > (this->getMapMaxSize().x -32)) || 
+						(genericObject->getCurrentPosition().x < 32 - 32) || 
+						(genericObject->getCurrentPosition().y >(this->getMapMaxSize().y - 32)) || 
+						(genericObject->getCurrentPosition().y < 32 - 32)
+					)
+					genericObject->reverseMove();
+
+
+				//genericObject->setTargetPosition(0, 0);
 			}	 
 		}
 
@@ -193,6 +203,28 @@ GenericObject*	Map::getPlayerCharacter()
 void			Map::setPlayerCharacter(GenericObject* playerCharacter)
 {
 	this->playerCharacter = playerCharacter;
+}
+
+int				Map::getTileSize()
+{
+	return this->tileSize;
+}
+
+void			Map::setTileSize(int tileSize)
+{
+	this->tileSize = tileSize;
+}
+
+Position		Map::getMapMaxSize()
+{
+	if (this->tiles.size() > 0)
+	{
+		auto i = this->tiles.size() - 1;
+		auto j = this->tiles[i].size() - 1;
+		if (j >= 0)
+			return{ this->tiles[i][j].getCurrentPosition().x + this->tileSize, this->tiles[i][j].getCurrentPosition().y + this->tileSize };
+	}
+	return { 0, 0 };
 }
 
 

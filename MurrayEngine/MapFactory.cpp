@@ -23,7 +23,7 @@ Map*	MapFactory::createMap(Configuration configuration)
 	std::vector<std::vector<Tile>> tiles;
 	std::vector<Tile> tileMap;
 	Map* map = new Map(this->window, this->renderer);
-
+	map->setTileSize(cellSize);
 	// bool	keyIdentified = false;
 	for (auto key : configuration)
 	{

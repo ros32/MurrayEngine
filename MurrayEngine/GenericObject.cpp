@@ -111,13 +111,10 @@ void GenericObject::move()
 	int velocity = this->currentSpeed * directionValue;
 
 	//Add the velocity to the current position
-	currentPosition.x += velocity;
-	currentPosition.y += velocity;
+	currentPosition.x += this->currentSpeed * this->targetPosition.x;
+	currentPosition.y += this->currentSpeed * this->targetPosition.y;
 
-	//If the new currentPosition is too close to the map edge, step back through reverseMove
-	if ((currentPosition.x > (640 - 32)) || (currentPosition.x < 32) || (currentPosition.y >(480 - 32)) || (currentPosition.y < 32)){
-        reverseMove();
-	}
+	this->targetPosition = { 0, 0 };
 	
 }
 

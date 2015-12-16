@@ -59,6 +59,12 @@ public:
 	GenericObject*				getPlayerCharacter();
 	void						setPlayerCharacter(GenericObject* playerCharacter);
 
+	Position					getMapMaxSize();
+
+	int							getTileSize();
+	void						setTileSize(int tileSize);
+
+
 private:
 
 	int tileSize;
