@@ -66,6 +66,8 @@ private:
 	std::vector<GenericObject>						objects;
 	std::vector <GenericObject>						tempVector;
 
+	GenericObject*									playerCharacter;
+
 
 };
 
