@@ -83,6 +83,10 @@ bool GameInstance::initialize()
 			if (!mapLoaded)
 			{
 				this->setMap(mapFactory.createMap(key.second));
+				GenericObject* tempObject = new GenericObject("test001", { 100, 100 }, this->getTextureAsset("tileset"), "TreeM", 1.0, 1.0, 0, NORTH, false);
+				this->map->addObject(tempObject);
+				this->map->setPlayerCharacter(tempObject);
+				
 				mapLoaded = true;
 			}
 		}

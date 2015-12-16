@@ -27,10 +27,10 @@ Map::~Map()
 }
 
 
-std::vector<GenericObject>	Map::getObject(Position pos)
+std::vector<GenericObject*>	Map::getObject(Position pos)
 {
 	
-	std::vector<GenericObject> tempVector;
+	std::vector<GenericObject*> tempVector;
 
 	for (auto object : objects){
 
@@ -99,13 +99,13 @@ void Map::render()
 	for (auto object : this->objects)
 	{
 		//	TODO: Optimize this
-		if ((object.getCurrentPosition().x >= (this->camera.getPosition().x - object.getTexture()->getCellSize()) && object.getCurrentPosition().x <= (this->camera.getPosition().x + this->camera.getWidth() + object.getTexture()->getCellSize())) &&
-			(object.getCurrentPosition().y >= (this->camera.getPosition().y - object.getTexture()->getCellSize()) && object.getCurrentPosition().y <= (this->camera.getPosition().y + this->camera.getHeight() + object.getTexture()->getCellSize())))
+		if ((object->getCurrentPosition().x >= (this->camera.getPosition().x - object->getTexture()->getCellSize()) && object->getCurrentPosition().x <= (this->camera.getPosition().x + this->camera.getWidth() + object->getTexture()->getCellSize())) &&
+			(object->getCurrentPosition().y >= (this->camera.getPosition().y - object->getTexture()->getCellSize()) && object->getCurrentPosition().y <= (this->camera.getPosition().y + this->camera.getHeight() + object->getTexture()->getCellSize())))
 		{
 			//	Object is within camera view
 
 			//	Render object with camera offset
-			object.render(object.getCurrentPosition().x - this->camera.getPosition().x, object.getCurrentPosition().y - this->camera.getPosition().x);
+			object->render(object->getCurrentPosition().x - this->camera.getPosition().x, object->getCurrentPosition().y - this->camera.getPosition().y);
 		}
 	}
 
@@ -116,17 +116,17 @@ void Map::setTiles(std::vector<std::vector<Tile>> tiles)
 		this->tiles = tiles;
 }
 
-void Map::setObjects(std::vector<GenericObject> objects)
+void Map::setObjects(std::vector<GenericObject*> objects)
 {
 		this->objects = objects;
 }
 
-void Map::addObject(GenericObject object)
+void Map::addObject(GenericObject* object)
 {	
 		objects.push_back(object);
 }
 
-void Map::removeObject(GenericObject object)
+void Map::removeObject(GenericObject* object)
 {
 
 //	objects.erase(std::remove(objects.begin(), objects.end(), object), objects.end());
@@ -144,24 +144,24 @@ void Map::move()
 	
 	for (auto genericObject : objects)
 	{
-		if ((genericObject.getTargetPosition().x != 0) || (genericObject.getTargetPosition().y != 0))
+		if ((genericObject->getTargetPosition().x != 0) || (genericObject->getTargetPosition().y != 0))
 		{
 
-			 genericObject.move();
+			 genericObject->move();
 
-			 if (genericObject.getHasCollision())
+			 if (genericObject->getHasCollision())
 			 {
 
 				for (auto otherObject : objects)
 				{
 
-					if (otherObject.getId() != genericObject.getId())
+					if (otherObject->getId() != genericObject->getId())
 					{
 						
-						if (genericObject.collidePixel(otherObject))
+						if (genericObject->collidePixel(otherObject))
 						{
 
-							genericObject.reverseMove();
+							genericObject->reverseMove();
 							// genericObject.do (new CollisionAction (otherObject));
 							//genericObject.bounce (otherObject);
 						}
@@ -171,7 +171,7 @@ void Map::move()
 			}
 		}
 
-		genericObject.render(genericObject.getCurrentPosition().x, genericObject.getCurrentPosition().y);
+//		genericObject->render(genericObject->getCurrentPosition().x, genericObject->getCurrentPosition().y);
 	}
 	
 
@@ -180,6 +180,16 @@ void Map::move()
 Camera*		Map::getCamera()
 {
 	return &this->camera;
+}
+
+GenericObject*	Map::getPlayerCharacter()
+{
+	return this->playerCharacter;
+}
+
+void			Map::setPlayerCharacter(GenericObject* playerCharacter)
+{
+	this->playerCharacter = playerCharacter;
 }
 
 

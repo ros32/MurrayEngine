@@ -122,7 +122,7 @@ void GenericObject::move()
 }
 
 
-bool GenericObject::collideBox(GenericObject objectB)
+bool GenericObject::collideBox(GenericObject* objectB)
 {
 	
 	bool hit = true;
@@ -137,13 +137,13 @@ bool GenericObject::collideBox(GenericObject objectB)
 	int bottom = currentPosition.y;
 	int top = currentPosition.y + textureHeight;
 	
-	int otherTextureWidth = objectB.texture->getCellSize();
-	int otherTextureHeight = objectB.texture->getCellSize();
+	int otherTextureWidth = objectB->texture->getCellSize();
+	int otherTextureHeight = objectB->texture->getCellSize();
 
-	int otherLeft = objectB.currentPosition.x;
-	int otherRight = objectB.currentPosition.x + otherTextureWidth;
-	int otherBottom = objectB.currentPosition.y;
-	int otherTop = objectB.currentPosition.y + otherTextureHeight;
+	int otherLeft = objectB->currentPosition.x;
+	int otherRight = objectB->currentPosition.x + otherTextureWidth;
+	int otherBottom = objectB->currentPosition.y;
+	int otherTop = objectB->currentPosition.y + otherTextureHeight;
 
 	//Checks if there is a distance between the current object sides and the other object sides.
 	if (right < otherLeft){
@@ -162,7 +162,7 @@ bool GenericObject::collideBox(GenericObject objectB)
 	
 }
 
-bool GenericObject::collidePixel(GenericObject objectB)
+bool GenericObject::collidePixel(GenericObject* objectB)
 {
 	//	should only be run when collideBox is true
 

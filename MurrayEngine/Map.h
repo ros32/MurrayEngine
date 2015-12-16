@@ -20,7 +20,7 @@ public:
 	///	<summary>
 	///	Return all objects on a given position
 	///	</summary>
-	std::vector<GenericObject>	getObject(Position pos);
+	std::vector<GenericObject*>	getObject(Position pos);
 
 	///	<summary>
 	///	Return the Tile on a given position
@@ -40,21 +40,24 @@ public:
 	///	<summary>
 	///	Set array of objects in Map
 	///	</summary>
-	void						setObjects(std::vector<GenericObject> objects);
+	void						setObjects(std::vector<GenericObject*> objects);
 
 	///	<summary>
 	///	Add an object to the Map
 	///	</summary>
-	void						addObject(GenericObject object);
+	void						addObject(GenericObject* object);
 
 	///	<summary>
 	///	Remove specified object from Map
 	///	</summary>
-	void						removeObject(GenericObject object);
+	void						removeObject(GenericObject* object);
 
 	void						move();
 
 	Camera*						getCamera();
+
+	GenericObject*				getPlayerCharacter();
+	void						setPlayerCharacter(GenericObject* playerCharacter);
 
 private:
 
@@ -63,7 +66,7 @@ private:
 	Camera camera;
 
 	std::vector<std::vector<Tile>>					tiles;
-	std::vector<GenericObject>						objects;
+	std::vector<GenericObject*>						objects;
 	std::vector <GenericObject>						tempVector;
 
 	GenericObject*									playerCharacter;

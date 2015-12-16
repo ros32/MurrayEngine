@@ -124,12 +124,12 @@ public:
 	///	<summary>
 	///	Detect per-pixel collision between two objects
 	///	</summary>
-	bool					collidePixel(GenericObject objectB);
+	bool					collidePixel(GenericObject* objectB);
 
 	///	<summary>
 	///	Detect box collision between two objects
 	///	</summary>
-	bool					collideBox(GenericObject objectB);
+	bool					collideBox(GenericObject* objectB);
 
 	///	<summary>
 	///	Render object in the specified renderer
