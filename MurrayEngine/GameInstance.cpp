@@ -83,7 +83,7 @@ bool GameInstance::initialize()
 			if (!mapLoaded)
 			{
 				this->setMap(mapFactory.createMap(key.second));
-				GenericObject* tempObject = new GenericObject("test001", { 100, 100 }, this->getTextureAsset("tileset"), "TreeM", 1.0, 1.0, 1, NORTH, false);
+				GenericObject* tempObject = new GenericObject("test001", { 100, 100 }, this->getTextureAsset("tileset"), "TreeM", 1.0, 1.0, 5, NORTH, false);
 				this->map->addObject(tempObject);
 				this->map->setPlayerCharacter(tempObject);
 				
@@ -164,7 +164,7 @@ bool GameInstance::run()
 				if (this->map->getCamera()->getFocusType() == FREE_FOCUS)
 					this->map->getCamera()->move(0, -5);
 				else if (this->map->getCamera()->getFocusType() == OBJECT_FOCUS)
-					this->map->getPlayerCharacter()->setTargetPosition(0, -5);
+					this->map->getPlayerCharacter()->setTargetPosition(this->map->getPlayerCharacter()->getTargetPosition().x + 0, this->map->getPlayerCharacter()->getTargetPosition().y - this->map->getPlayerCharacter()->getCurrentSpeed());
 			}
 		}
 		if (keyState.key_s)
@@ -174,7 +174,7 @@ bool GameInstance::run()
 				if (this->map->getCamera()->getFocusType() == FREE_FOCUS)
 					this->map->getCamera()->move(0, 5);
 				else if (this->map->getCamera()->getFocusType() == OBJECT_FOCUS)
-					this->map->getPlayerCharacter()->setTargetPosition(0, 5);
+					this->map->getPlayerCharacter()->setTargetPosition(this->map->getPlayerCharacter()->getTargetPosition().x + 0, this->map->getPlayerCharacter()->getTargetPosition().y + this->map->getPlayerCharacter()->getCurrentSpeed());
 			}
 		}
 		if (keyState.key_a)
@@ -184,7 +184,7 @@ bool GameInstance::run()
 				if (this->map->getCamera()->getFocusType() == FREE_FOCUS)
 					this->map->getCamera()->move(-5, 0);
 				else if (this->map->getCamera()->getFocusType() == OBJECT_FOCUS)
-					this->map->getPlayerCharacter()->setTargetPosition(-5, 0);
+					this->map->getPlayerCharacter()->setTargetPosition(this->map->getPlayerCharacter()->getTargetPosition().x - this->map->getPlayerCharacter()->getCurrentSpeed(), this->map->getPlayerCharacter()->getTargetPosition().y + 0);
 			}
 		}
 		if (keyState.key_d)
@@ -194,7 +194,7 @@ bool GameInstance::run()
 				if (this->map->getCamera()->getFocusType() == FREE_FOCUS)
 					this->map->getCamera()->move(5, 0);
 				else if (this->map->getCamera()->getFocusType() == OBJECT_FOCUS)
-					this->map->getPlayerCharacter()->setTargetPosition(5, 0);
+					this->map->getPlayerCharacter()->setTargetPosition(this->map->getPlayerCharacter()->getTargetPosition().x + this->map->getPlayerCharacter()->getCurrentSpeed(), this->map->getPlayerCharacter()->getTargetPosition().y + 0);
 			}
 		}
 		//	if (keyState.key_left)
