@@ -5,6 +5,7 @@
 #include	"Position.h"
 #include	"TextureAsset.h"
 #include	"Timer.h"
+#include	"Physics.h"
 
 enum Orientation
 {
@@ -190,16 +191,16 @@ public:
 private:
 
 	//	Object identifier
-	std::string id;
+	std::string		id;
 
 	//	Current position of object
-	Position	currentPosition;
+	Position		currentPosition;
 
 	//	Target position of object
-	Position	targetPosition;
+	Position		targetPosition;
 
 	//	Last position of object
-	Position	lastPosition;
+	Position		lastPosition;
 
 	//	Texture asset used by object
 	TextureAsset*	texture;
@@ -211,10 +212,10 @@ private:
 	double			maxSpeed;
 
 	//	The current speed an object is travelling
-	int			currentSpeed;
+	int				currentSpeed;
 
 	// If an object can collide with other objects or not
-	bool		hasCollision;
+	bool			hasCollision;
 
 	//	Current orientation of object
 	Orientation		orientation;
@@ -229,7 +230,13 @@ private:
 	Uint32			lastMove;
 
 	//	Height and witdth of texture
-	int textureWidth, textureHeight;
+	int				textureWidth, 
+					textureHeight;
+
+	float			velocity;
+	float			force;
+	float			mass;
+
 };
 
 #endif // !_GENERIC_OBJECT_H

@@ -18,6 +18,9 @@ GenericObject::GenericObject(std::string id, Position currentPosition, TextureAs
 	this->targetPosition = { 0, 0 };
 	this->hasCollision = hasCollision;
 	this->lastPosition;
+	this->timer = Timer();
+
+	this->timer.start();
 	
 
 }
@@ -84,31 +87,7 @@ void GenericObject::move()
 	//Save the currentposition before we move
 	this->lastPosition = this->currentPosition;
 
-	int directionValue;
-	//Set the appropriate directionValue after orientation
-	switch (this->orientation){
-		//North 
-	case NORTH:
-		directionValue = 1;
-		break;
-		//East
-	case EAST:
-		directionValue = 1;
-		break;
-		//South
-	case SOUTH:
-		directionValue = -1;
-		break;
-		//West
-	case WEST:
-		directionValue = -1;
-		break;
-		//None
-	default:
-		break;
-	}
-	//The amount of pixels to travel in both x/y axis
-	int velocity = this->currentSpeed * directionValue;
+
 
 	//Add the velocity to the current position
 	currentPosition.x += this->currentSpeed * this->targetPosition.x;
