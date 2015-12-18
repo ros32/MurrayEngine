@@ -72,22 +72,28 @@ double GenericObject::getMaxSpeed()
 
 bool GenericObject::getHasCollision()
 {
-//	return hasCollision;
-
-	return true;
+	return hasCollision;
 }
 
 void GenericObject::reverseMove()
 {
-	currentPosition = lastPosition;
+		//North 
+		if (this->orientation == 0){ this->currentPosition.y += 1; }
+		//East 
+		if (this->orientation == 1){ this->currentPosition.x -= 1; }
+		//South
+		if (this->orientation == 2){ this->currentPosition.y -= 1; }
+		//West
+		if (this->orientation == 3){ this->currentPosition.x += 1; }
+
 }
 
 void GenericObject::move()
 {
 	//Save the currentposition before we move
+	
+	
 	this->lastPosition = this->currentPosition;
-
-
 
 	//Add the velocity to the current position
 	currentPosition.x += this->currentSpeed * this->targetPosition.x;
@@ -97,24 +103,21 @@ void GenericObject::move()
 	
 }
 
-
 bool GenericObject::collideBox(GenericObject* objectB)
 {
-	
 	bool hit = true;
 	
-	//TODO: Is Y = 0 at the top or bottom? Might need to reverse y axis
 	//TODO: Implement and use textureWidth and Size instead of cellSize
 	textureWidth = texture->getCellSize();
 	textureHeight = texture->getCellSize();
+
+	int otherTextureWidth = objectB->texture->getCellSize();
+	int otherTextureHeight = objectB->texture->getCellSize();
 
 	int left = currentPosition.x;
 	int right = currentPosition.x + textureWidth;
 	int bottom = currentPosition.y;
 	int top = currentPosition.y + textureHeight;
-	
-	int otherTextureWidth = objectB->texture->getCellSize();
-	int otherTextureHeight = objectB->texture->getCellSize();
 
 	int otherLeft = objectB->currentPosition.x;
 	int otherRight = objectB->currentPosition.x + otherTextureWidth;
@@ -134,6 +137,13 @@ bool GenericObject::collideBox(GenericObject* objectB)
 	if (bottom > otherTop){
 		hit = false;
 	} 
+	if (hit){
+		SDL_Log("Hit is true");
+	}
+	else{
+		SDL_Log("Hit is false");
+	}
+	
 		return hit;
 	
 }
@@ -141,9 +151,6 @@ bool GenericObject::collideBox(GenericObject* objectB)
 bool GenericObject::collidePixel(GenericObject* objectB)
 {
 	//	should only be run when collideBox is true
-
-
-
 
 	return false;
 }

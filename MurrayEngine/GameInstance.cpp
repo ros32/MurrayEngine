@@ -83,9 +83,11 @@ bool GameInstance::initialize()
 			if (!mapLoaded)
 			{
 				this->setMap(mapFactory.createMap(key.second));
-				GenericObject* tempObject = new GenericObject("test001", { 100, 100 }, this->getTextureAsset("tileset"), "TreeM", 1.0, 1.0, 5, NORTH, false);
+				GenericObject* tempObject = new GenericObject("test001", { 100, 100 }, this->getTextureAsset("tileset"), "TreeM", 1.0, 1.0, 5, NORTH, true);
 				this->map->addObject(tempObject);
 				this->map->setPlayerCharacter(tempObject);
+				GenericObject* anotherObject = new GenericObject("test002", { 200, 200 }, this->getTextureAsset("tileset"), "Brick", 1.0, 1.0, 0, NONE, true);
+				this->map->addObject(anotherObject);
 				
 				mapLoaded = true;
 			}
@@ -165,6 +167,7 @@ bool GameInstance::run()
 					this->map->getCamera()->move(0, -5);
 				else if (this->map->getCamera()->getFocusType() == OBJECT_FOCUS)
 					this->map->getPlayerCharacter()->setTargetPosition(this->map->getPlayerCharacter()->getTargetPosition().x + 0, this->map->getPlayerCharacter()->getTargetPosition().y - this->map->getPlayerCharacter()->getCurrentSpeed());
+				this->map->getPlayerCharacter()->setOrientation(NORTH);
 			}
 		}
 		if (keyState.key_s)
@@ -175,6 +178,7 @@ bool GameInstance::run()
 					this->map->getCamera()->move(0, 5);
 				else if (this->map->getCamera()->getFocusType() == OBJECT_FOCUS)
 					this->map->getPlayerCharacter()->setTargetPosition(this->map->getPlayerCharacter()->getTargetPosition().x + 0, this->map->getPlayerCharacter()->getTargetPosition().y + this->map->getPlayerCharacter()->getCurrentSpeed());
+				this->map->getPlayerCharacter()->setOrientation(SOUTH);
 			}
 		}
 		if (keyState.key_a)
@@ -185,6 +189,7 @@ bool GameInstance::run()
 					this->map->getCamera()->move(-5, 0);
 				else if (this->map->getCamera()->getFocusType() == OBJECT_FOCUS)
 					this->map->getPlayerCharacter()->setTargetPosition(this->map->getPlayerCharacter()->getTargetPosition().x - this->map->getPlayerCharacter()->getCurrentSpeed(), this->map->getPlayerCharacter()->getTargetPosition().y + 0);
+				this->map->getPlayerCharacter()->setOrientation(WEST);
 			}
 		}
 		if (keyState.key_d)
@@ -195,6 +200,7 @@ bool GameInstance::run()
 					this->map->getCamera()->move(5, 0);
 				else if (this->map->getCamera()->getFocusType() == OBJECT_FOCUS)
 					this->map->getPlayerCharacter()->setTargetPosition(this->map->getPlayerCharacter()->getTargetPosition().x + this->map->getPlayerCharacter()->getCurrentSpeed(), this->map->getPlayerCharacter()->getTargetPosition().y + 0);
+				this->map->getPlayerCharacter()->setOrientation(EAST);
 			}
 		}
 		//	if (keyState.key_left)

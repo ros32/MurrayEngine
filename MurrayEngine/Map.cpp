@@ -148,34 +148,41 @@ void Map::move()
 		{
 
 			 genericObject->move();
-			 SDL_Log(genericObject->getId().c_str());
+		//	 SDL_Log(genericObject->getId().c_str());
+			 
 
 			 if (genericObject->getHasCollision())
 			 {
 
 				for (auto otherObject : objects)
 				{
+					
 
 					if (otherObject->getId() != genericObject->getId())
 					{
-						
-						if (genericObject->collidePixel(otherObject))
-						{
+						SDL_Log(otherObject->getId().c_str());
 
-							genericObject->reverseMove();
+						if (genericObject->collideBox(otherObject)){
+							while (genericObject->collideBox(otherObject))
+							{
+
+								genericObject->reverseMove();
+
+							}
 							// genericObject.do (new CollisionAction (otherObject));
-							//genericObject.bounce (otherObject);
+							// genericObject.bounce (otherObject);
 						}
+
 						
 					}
 				}
 
 				//If the new currentPosition is too close to the map edge, step back through reverseMove
 				if (
-						(genericObject->getCurrentPosition().x > (this->getMapMaxSize().x -32)) || 
-						(genericObject->getCurrentPosition().x < 32 - 32) || 
-						(genericObject->getCurrentPosition().y >(this->getMapMaxSize().y - 32)) || 
-						(genericObject->getCurrentPosition().y < 32 - 32)
+						(genericObject->getCurrentPosition().x > (this->getMapMaxSize().x - 20)) || 
+						(genericObject->getCurrentPosition().x < 0) || 
+						(genericObject->getCurrentPosition().y >(this->getMapMaxSize().y - 8)) || 
+						(genericObject->getCurrentPosition().y < 0)
 					)
 					genericObject->reverseMove();
 
