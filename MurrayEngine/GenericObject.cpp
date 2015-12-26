@@ -170,10 +170,23 @@ std::string		GenericObject::getTextureName()
 void GenericObject::render(int x, int y)
 {
 	if (this->texture != nullptr && this->textureName != "")
+	{
 		this->texture->render(x, y, this->texture->getSourceRect(this->textureName));
+		this->lastRender = this->timer.getTicks();
+	}
 }
 
 int		GenericObject::getCurrentSpeed()
 {
 	return this->currentSpeed;
+}
+
+void	GenericObject::setTexture(TextureAsset* texture)
+{
+	this->texture = texture;
+}
+
+void	GenericObject::setTextureName(std::string name)
+{
+	this->textureName = name;
 }
