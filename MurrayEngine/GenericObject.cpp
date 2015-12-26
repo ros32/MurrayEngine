@@ -21,6 +21,8 @@ GenericObject::GenericObject(std::string id, Position currentPosition, TextureAs
 	this->timer = Timer();
 
 	this->timer.start();
+	this->lastRender = 0;
+	this->lastMove = 0;
 	
 
 }
