@@ -203,6 +203,11 @@ public:
 	///	<summary>
 	void					takeDamage();
 
+protected:
+
+	//	Timer used for measuring rendering and movement
+	Timer			timer;
+
 private:
 
 	//	Object identifier
@@ -234,9 +239,6 @@ private:
 
 	//	Current orientation of object
 	Orientation		orientation;
-
-	//	Timer used for measuring rendering and movement
-	Timer			timer;
 
 	//	Timestamp of last rendering
 	Uint32			lastRender;
