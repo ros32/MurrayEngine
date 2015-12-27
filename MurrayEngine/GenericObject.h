@@ -165,7 +165,7 @@ public:
 	///	<summary>
 	///	Performs rendering of the objects texture in the specified position
 	///	</summary>
-	void					render(int x, int y);
+	virtual void			render(int x, int y);
 
 	///	<summary>
 	///	Returns true if the object should use collision detection

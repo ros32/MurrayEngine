@@ -9,6 +9,7 @@ AnimatedObject::AnimatedObject(std::string id, Position currentPosition, Animati
 	GenericObject(id, currentPosition, Texture(), maxSpeed, acceleration, currentSpeed, orientation, hasCollision)
 {
 	this->animation = animation;
+	this->setTexture(this->animation.textures[0]);
 }
 
 Animation	AnimatedObject::getAnimation()
@@ -21,33 +22,22 @@ void		AnimatedObject::setAnimation(Animation animation)
 	this->animation = animation;
 }
 
-void		AnimatedObject::render()
+void		AnimatedObject::render(int x, int y)
 {
+	Uint32 lastRender = this->getLastRender();
 	if (this->timer.getTicks() > this->getLastRender() + this->animation.time)
 	{
-		if (this->animation.textures.size() >= this->animation.lastTexture)
+		if (this->animation.lastTexture >= this->animation.textures.size())
 			this->animation.lastTexture = 0;
 
-		std::stringstream ss(this->animation.textures[this->animation.lastTexture++]);
-
-		std::string segment;
-		std::vector<std::string> splitString;
-		std::string tileset;
-		std::string texture;
-
-		while (std::getline(ss, segment, '.'))
-		{
-			splitString.push_back(segment);
-		}
-
-		if (splitString.size() >= 2)
-		{
-			tileset = splitString[0];
-			texture = splitString[1];
-		}
-		else
-		{
-
-		}
+		this->setTexture(this->animation.textures[this->animation.lastTexture++]);
+		GenericObject::render(x, y);
 	}
+	else
+	{
+		GenericObject::render(x, y);
+		this->setLastRender(lastRender);
+	}
+
+	
 }

@@ -197,3 +197,8 @@ Uint32	GenericObject::getLastRender()
 {
 	return this->lastRender;
 }
+
+void	GenericObject::setLastRender(Uint32 lastRender)
+{
+	this->lastRender = lastRender;
+}

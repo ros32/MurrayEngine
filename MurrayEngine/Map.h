@@ -9,6 +9,7 @@
 #include "Tile.h"
 #include <SDL.h>
 #include "Camera.h"
+#include "AnimatedObject.h"
 
 class Map
 {

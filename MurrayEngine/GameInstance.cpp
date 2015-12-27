@@ -88,6 +88,12 @@ bool GameInstance::initialize()
 				this->map->setPlayerCharacter(tempObject);
 				GenericObject* anotherObject = new GenericObject("test002", { 200, 200 }, Texture(this->getTextureAsset("tileset"), "Brick"), 1.0, 1.0, 0, NONE, true);
 				this->map->addObject(anotherObject);
+				std::vector<Texture> textures;
+				textures.push_back(Texture(this->getTextureAsset("tileset"), "TreeD"));
+				textures.push_back(Texture(this->getTextureAsset("tileset"), "TreeM"));
+				textures.push_back(Texture(this->getTextureAsset("tileset"), "TreeL"));
+				AnimatedObject* animatedObject = new AnimatedObject("test002", { 250, 250 }, Animation(textures, 200), 1.0, 1.0, 0, NONE, true);
+				this->map->addObject(animatedObject);
 				
 				mapLoaded = true;
 			}
