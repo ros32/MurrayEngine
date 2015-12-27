@@ -6,7 +6,7 @@ AnimatedObject::AnimatedObject() : GenericObject()
 }
 
 AnimatedObject::AnimatedObject(std::string id, Position currentPosition, Animation animation, double maxSpeed, double acceleration, int currentSpeed, Orientation orientation, bool hasCollision) : 
-	GenericObject(id, currentPosition, nullptr, "", maxSpeed, acceleration, currentSpeed, orientation, hasCollision)
+	GenericObject(id, currentPosition, Texture(), maxSpeed, acceleration, currentSpeed, orientation, hasCollision)
 {
 	this->animation = animation;
 }

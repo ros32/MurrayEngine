@@ -32,7 +32,7 @@ public:
 	///	<summary>
 	///	Creates an object with the values provided
 	///	</summary>
-	GenericObject(std::string id, Position currentPosition, TextureAsset* texture, std::string textureName, double maxSpeed, double acceleration, int currentSpeed, Orientation orientation, bool hasCollision);
+	GenericObject(std::string id, Position currentPosition, Texture texture, double maxSpeed, double acceleration, int currentSpeed, Orientation orientation, bool hasCollision);
 
 	~GenericObject();
 
@@ -95,22 +95,12 @@ public:
 	///	<summary>
 	///	Returns a pointer to the TextureAsset used by the object.
 	///	</summary>
-	TextureAsset*			getTexture();
+	Texture					getTexture();
 
 	///	<summary>
 	///	Sets the TextureAsset used by the object
 	///	</summary>
-	void					setTexture(TextureAsset* texture);
-
-	///	<summary>
-	///	Returns the name of the texture used from the TextureAsset
-	///	</summary>
-	std::string				getTextureName();
-
-	///	<summary>
-	///	Sets the name of the texture to use from the TextureAsset
-	///	</summary>
-	void					setTextureName(std::string name);
+	void					setTexture(Texture texture);
 
 	///	<summary>
 	///	Returns the maximum speed the object is capable of moving
@@ -223,10 +213,7 @@ private:
 	Position		lastPosition;
 
 	//	Texture asset used by object
-	TextureAsset*	texture;
-
-	//	SDL_Rect of texture asset
-	std::string		textureName;
+	Texture			texture;
 
 	//	The maximum speed the GenericObject can travel, or 0 for static
 	double			maxSpeed;

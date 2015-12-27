@@ -15,6 +15,15 @@ struct Texture
 {
 	TextureAsset*	asset;
 	std::string		name;
+
+	Texture(TextureAsset* texture, std::string textureName)
+	{
+		asset = texture;
+		name = textureName;
+	}
+
+	Texture() : Texture(nullptr, "")
+	{ }
 };
 
 class TextureAsset : public Asset

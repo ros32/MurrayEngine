@@ -54,7 +54,7 @@ Map*	MapFactory::createMap(Configuration configuration)
 
 			}
 			if (gameInstance != nullptr)
-				tileMap.push_back(Tile(pos, gameInstance->getTextureAsset(tileset), texture, NORTH));
+				tileMap.push_back(Tile(pos, Texture(gameInstance->getTextureAsset(tileset), texture), NORTH));
 		}
 	}
 

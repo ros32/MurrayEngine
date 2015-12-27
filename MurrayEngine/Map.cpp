@@ -83,8 +83,8 @@ void Map::render()
 		for (auto object : vectorX)
 		{
 
-			if ((object.getCurrentPosition().x >= (this->camera.getPosition().x - object.getTexture()->getCellSize()) && object.getCurrentPosition().x <= (this->camera.getPosition().x + this->camera.getWidth() + object.getTexture()->getCellSize())) &&
-				(object.getCurrentPosition().y >= (this->camera.getPosition().y - object.getTexture()->getCellSize()) && object.getCurrentPosition().y <= (this->camera.getPosition().y + this->camera.getHeight() + object.getTexture()->getCellSize())))
+			if ((object.getCurrentPosition().x >= (this->camera.getPosition().x - object.getTexture().asset->getCellSize()) && object.getCurrentPosition().x <= (this->camera.getPosition().x + this->camera.getWidth() + object.getTexture().asset->getCellSize())) &&
+				(object.getCurrentPosition().y >= (this->camera.getPosition().y - object.getTexture().asset->getCellSize()) && object.getCurrentPosition().y <= (this->camera.getPosition().y + this->camera.getHeight() + object.getTexture().asset->getCellSize())))
 			{
 				//	Object is within camera view
 
@@ -99,8 +99,8 @@ void Map::render()
 	for (auto object : this->objects)
 	{
 		//	TODO: Optimize this
-		if ((object->getCurrentPosition().x >= (this->camera.getPosition().x - object->getTexture()->getCellSize()) && object->getCurrentPosition().x <= (this->camera.getPosition().x + this->camera.getWidth() + object->getTexture()->getCellSize())) &&
-			(object->getCurrentPosition().y >= (this->camera.getPosition().y - object->getTexture()->getCellSize()) && object->getCurrentPosition().y <= (this->camera.getPosition().y + this->camera.getHeight() + object->getTexture()->getCellSize())))
+		if ((object->getCurrentPosition().x >= (this->camera.getPosition().x - object->getTexture().asset->getCellSize()) && object->getCurrentPosition().x <= (this->camera.getPosition().x + this->camera.getWidth() + object->getTexture().asset->getCellSize())) &&
+			(object->getCurrentPosition().y >= (this->camera.getPosition().y - object->getTexture().asset->getCellSize()) && object->getCurrentPosition().y <= (this->camera.getPosition().y + this->camera.getHeight() + object->getTexture().asset->getCellSize())))
 		{
 			//	Object is within camera view
 

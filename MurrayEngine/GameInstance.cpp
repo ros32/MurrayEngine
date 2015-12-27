@@ -83,10 +83,10 @@ bool GameInstance::initialize()
 			if (!mapLoaded)
 			{
 				this->setMap(mapFactory.createMap(key.second));
-				GenericObject* tempObject = new GenericObject("test001", { 100, 100 }, this->getTextureAsset("tileset"), "TreeM", 1.0, 1.0, 5, NORTH, true);
+				GenericObject* tempObject = new GenericObject("test001", { 100, 100 }, Texture(this->getTextureAsset("tileset"), "TreeM"), 1.0, 1.0, 5, NORTH, true);
 				this->map->addObject(tempObject);
 				this->map->setPlayerCharacter(tempObject);
-				GenericObject* anotherObject = new GenericObject("test002", { 200, 200 }, this->getTextureAsset("tileset"), "Brick", 1.0, 1.0, 0, NONE, true);
+				GenericObject* anotherObject = new GenericObject("test002", { 200, 200 }, Texture(this->getTextureAsset("tileset"), "Brick"), 1.0, 1.0, 0, NONE, true);
 				this->map->addObject(anotherObject);
 				
 				mapLoaded = true;

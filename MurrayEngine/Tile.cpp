@@ -5,7 +5,7 @@ Tile::Tile() : GenericObject()
 
 }
 
-Tile::Tile(Position currentPosition, TextureAsset* texture, std::string textureName, Orientation orientation) : GenericObject("tile", currentPosition, texture, textureName, 0.0, 0.0, 0, orientation, false)
+Tile::Tile(Position currentPosition, Texture texture, Orientation orientation) : GenericObject("tile", currentPosition, texture, 0.0, 0.0, 0, orientation, false)
 {
 
 }

@@ -5,12 +5,11 @@ GenericObject::GenericObject()
 
 }
 
-GenericObject::GenericObject(std::string id, Position currentPosition, TextureAsset* texture, std::string textureName, double maxSpeed, double acceleration, int currentSpeed, Orientation orientation, bool hasCollision)
+GenericObject::GenericObject(std::string id, Position currentPosition, Texture texture, double maxSpeed, double acceleration, int currentSpeed, Orientation orientation, bool hasCollision)
 {
 	this->id = id;
 	this->currentPosition = currentPosition;
 	this->texture = texture;
-	this->textureName = textureName;
 	this->maxSpeed = maxSpeed;
 	this->currentSpeed = currentSpeed;
 	//this->acceleration = acceleration;
@@ -110,11 +109,11 @@ bool GenericObject::collideBox(GenericObject* objectB)
 	bool hit = true;
 	
 	//TODO: Implement and use textureWidth and Size instead of cellSize
-	textureWidth = texture->getCellSize();
-	textureHeight = texture->getCellSize();
+	textureWidth = texture.asset->getCellSize();
+	textureHeight = texture.asset->getCellSize();
 
-	int otherTextureWidth = objectB->texture->getCellSize();
-	int otherTextureHeight = objectB->texture->getCellSize();
+	int otherTextureWidth = objectB->texture.asset->getCellSize();
+	int otherTextureHeight = objectB->texture.asset->getCellSize();
 
 	int left = currentPosition.x;
 	int right = currentPosition.x + textureWidth;
@@ -157,21 +156,16 @@ bool GenericObject::collidePixel(GenericObject* objectB)
 	return false;
 }
 
-TextureAsset*	GenericObject::getTexture()
+Texture			GenericObject::getTexture()
 {
 	return this->texture;
 }
 
-std::string		GenericObject::getTextureName()
-{
-	return this->textureName;
-}
-
 void GenericObject::render(int x, int y)
 {
-	if (this->texture != nullptr && this->textureName != "")
+	if (this->texture.asset != nullptr && this->texture.name != "")
 	{
-		this->texture->render(x, y, this->texture->getSourceRect(this->textureName));
+		this->texture.asset->render(x, y, this->texture.asset->getSourceRect(this->texture.name));
 		this->lastRender = this->timer.getTicks();
 }
 }
@@ -194,14 +188,9 @@ void  GenericObject::takeDamage()
 	SDL_Log("Taking some damage");
 }
 
-void	GenericObject::setTexture(TextureAsset* texture)
+void	GenericObject::setTexture(Texture texture)
 {
 	this->texture = texture;
-}
-
-void	GenericObject::setTextureName(std::string name)
-{
-	this->textureName = name;
 }
 
 Uint32	GenericObject::getLastRender()
