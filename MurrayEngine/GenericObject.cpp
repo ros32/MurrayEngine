@@ -203,3 +203,8 @@ void	GenericObject::setTextureName(std::string name)
 {
 	this->textureName = name;
 }
+
+Uint32	GenericObject::getLastRender()
+{
+	return this->lastRender;
+}

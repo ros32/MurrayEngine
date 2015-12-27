@@ -8,6 +8,9 @@
 #include "Asset.h"
 #include "Position.h"
 
+//	Inform about TextureAsset so Texture knows what it is.
+class TextureAsset;
+
 struct Texture
 {
 	TextureAsset*	asset;
