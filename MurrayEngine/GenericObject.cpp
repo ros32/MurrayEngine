@@ -173,12 +173,25 @@ void GenericObject::render(int x, int y)
 	{
 		this->texture->render(x, y, this->texture->getSourceRect(this->textureName));
 		this->lastRender = this->timer.getTicks();
-	}
+}
 }
 
 int		GenericObject::getCurrentSpeed()
 {
 	return this->currentSpeed;
+}
+
+void   GenericObject::jump()
+{
+	SDL_Log("Jumping");
+}
+void   GenericObject::damage()
+{
+	SDL_Log("doing some damage");
+}
+void  GenericObject::takeDamage()
+{
+	SDL_Log("Taking some damage");
 }
 
 void	GenericObject::setTexture(TextureAsset* texture)

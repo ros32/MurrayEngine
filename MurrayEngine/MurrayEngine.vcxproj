@@ -11,13 +11,17 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Action.h" />
     <ClInclude Include="Asset.h" />
     <ClInclude Include="Configuration.h" />
+    <ClInclude Include="DamageAction.h" />
     <ClInclude Include="FrameLimiter.h" />
     <ClInclude Include="GameInstance.h" />
     <ClInclude Include="GenericObject.h" />
     <ClInclude Include="GenericObjectFactory.h" />
+    <ClInclude Include="InputControl.h" />
     <ClInclude Include="InvalidAsset.h" />
+    <ClInclude Include="JumpAction.h" />
     <ClInclude Include="Map.h" />
     <ClInclude Include="MapFactory.h" />
     <ClInclude Include="Physics.h" />
@@ -30,11 +34,14 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Configuration.cpp" />
+    <ClCompile Include="DamageAction.cpp" />
     <ClCompile Include="FrameLimiter.cpp" />
     <ClCompile Include="GameInstance.cpp" />
     <ClCompile Include="GenericObject.cpp" />
     <ClCompile Include="Asset.cpp" />
+    <ClCompile Include="InputControl.cpp" />
     <ClCompile Include="InvalidAsset.cpp" />
+    <ClCompile Include="JumpAction.cpp" />
     <ClCompile Include="Map.cpp" />
     <ClCompile Include="MapFactory.cpp" />
     <ClCompile Include="Physics.cpp" />

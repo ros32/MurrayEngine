@@ -11,6 +11,8 @@
 #include	"InvalidAsset.h"
 #include	"Map.h"
 #include	<SDL.h>
+#include	"Action.h"
+#include    "InputControl.h"
 
 struct KeyState
 {
@@ -22,7 +24,9 @@ struct KeyState
 	bool	key_right = false;
 	bool	key_up = false;
 	bool	key_down = false;
+	bool	key_space = false;
 };
+
 
 ///	<summary>
 ///	GameInstance controls the current instance of a game. It consists of all assets and objects, and controls the state of the game.
@@ -97,7 +101,6 @@ private:
 	Map*			map;
 
 	KeyState		keyState;
-
 
 };
 

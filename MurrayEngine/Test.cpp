@@ -47,6 +47,10 @@ int main(int, char** argv)
 		}
 	}
 
+	
+
+
+
 	SDL_DestroyRenderer(mainRenderer);
 	SDL_DestroyWindow(mainWindow);
 	SDL_Quit();

@@ -159,6 +159,7 @@ bool GameInstance::run()
 			this->keyState.key_down = false;
 
 
+
 		if (keyState.key_w)
 		{
 			if (this->map->getCamera() != nullptr)
@@ -203,14 +204,21 @@ bool GameInstance::run()
 				this->map->getPlayerCharacter()->setOrientation(EAST);
 			}
 		}
-		//	if (keyState.key_left)
-			//set an objects orientation to west
-		//	if (keyState.key_right)
-			//set an objects orientation to east
-		//	if (keyState.key_up)
-			//set an objects orientation to north
-		//	if (keyState.key_down)
-			//set an objects orientation to south
+	
+		InputControl inputControl;
+		Action* action = inputControl.inputHandler();
+
+		if (action){
+			SDL_Log("Made it to action-check in GameInstance");
+//			action->execute(this->map->getPlayerCharacter());
+		}
+		/*
+				else{
+			SDL_Log("Action is Null");
+		}
+		*/
+
+
 		
 
 		//	const Uint8* keyState = SDL_GetKeyboardState(NULL);

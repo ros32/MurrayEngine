@@ -188,6 +188,21 @@ public:
 	///	<summary>
 	void					reverseMove();
 
+	///	<summary>
+	///	Performs a jump action of the object  
+	///	<summary>
+	void					jump();
+
+	///	<summary>
+	///	Performs a damage action on enemy entity
+	///	<summary>
+	void					damage();
+
+	///	<summary>
+	///	Takes damage from enemy entity
+	///	<summary>
+	void					takeDamage();
+
 private:
 
 	//	Object identifier
