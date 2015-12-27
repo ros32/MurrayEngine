@@ -8,6 +8,12 @@
 #include "Asset.h"
 #include "Position.h"
 
+struct Texture
+{
+	TextureAsset*	asset;
+	std::string		name;
+};
+
 class TextureAsset : public Asset
 {
 private:
