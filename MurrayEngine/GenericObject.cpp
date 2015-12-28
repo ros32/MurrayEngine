@@ -139,10 +139,10 @@ bool GenericObject::collideBox(GenericObject* objectB)
 		hit = false;
 	} 
 	if (hit){
-		SDL_Log("Hit is true");
+//		SDL_Log("Hit is true");
 	}
 	else{
-		SDL_Log("Hit is false");
+//		SDL_Log("Hit is false");
 	}
 	
 		return hit;

@@ -160,7 +160,7 @@ void Map::move()
 
 					if (otherObject->getId() != genericObject->getId())
 					{
-						SDL_Log(otherObject->getId().c_str());
+	//					SDL_Log(otherObject->getId().c_str());
 
 						if (genericObject->collideBox(otherObject)){
 							while (genericObject->collideBox(otherObject))

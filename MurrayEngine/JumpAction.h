@@ -1,3 +1,7 @@
+/*
+The concrete action JumpAction
+*/
+
 #ifndef _JUMPACTION_H
 #define _JUMPACTION_H
 
@@ -5,11 +9,12 @@
 #include "Action.h"
 
 class JumpAction : public Action{
-//	JumpAction(GenericObject* source);
-	JumpAction();
+
+public:
+	JumpAction(GenericObject* source);
 	~JumpAction();
 
-	void execute(GenericObject* source);
+	void execute();
 
 private:
 

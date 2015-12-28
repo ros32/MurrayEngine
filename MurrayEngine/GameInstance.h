@@ -13,6 +13,7 @@
 #include	<SDL.h>
 #include	"Action.h"
 #include    "InputControl.h"
+#include	"JumpAction.h"
 
 struct KeyState
 {

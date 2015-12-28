@@ -1,3 +1,7 @@
+/*
+The concrete action DamageAction
+*/
+
 #ifndef _DAMAGEACTION_H
 #define _DAMAGEACTION_H
 
@@ -9,9 +13,9 @@ class DamageAction : public Action{
 
 public:
 //	DamageAction(GameInstance* instance, GenericObject* source, std::vector<GenericObject*> targets);
-	DamageAction();
+	DamageAction(GameInstance* instance, GenericObject* source, std::vector<GenericObject*> targets);
 	~DamageAction();
-	void execute(GenericObject* source);
+	void execute();
 
 private:
 	GameInstance* instance;

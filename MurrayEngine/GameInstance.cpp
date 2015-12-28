@@ -163,6 +163,10 @@ bool GameInstance::run()
 			this->keyState.key_down = true;
 		else
 			this->keyState.key_down = false;
+		if (currentKeyState[SDL_GetScancodeFromKey(SDLK_SPACE)])
+			this->keyState.key_space = true;
+		else
+			this->keyState.key_space = false;
 
 
 
@@ -210,22 +214,25 @@ bool GameInstance::run()
 				this->map->getPlayerCharacter()->setOrientation(EAST);
 			}
 		}
-	
-		InputControl inputControl;
-		Action* action = inputControl.inputHandler();
+		if (keyState.key_space)
+		{
+			SDL_Log("Space is pressed");
 
-		if (action){
-			SDL_Log("Made it to action-check in GameInstance");
-//			action->execute(this->map->getPlayerCharacter());
+			//Concrete Action
+			JumpAction *jump = new JumpAction(this->map->getPlayerCharacter());
+
+			//Invoker
+			InputControl *inputControl = new InputControl();
+
+			//execute
+			inputControl->setAction(jump);
+			inputControl->buttonPressed();
+
+
+			delete inputControl, jump;
+
+
 		}
-		/*
-				else{
-			SDL_Log("Action is Null");
-		}
-		*/
-
-
-		
 
 		//	const Uint8* keyState = SDL_GetKeyboardState(NULL);
 	//	if (keyState[SDLK_w])
