@@ -16,7 +16,7 @@ void MoveAction::execute()
 	SDL_Log("You are moving the player character");
 	}
 	else if (source != map->getPlayerCharacter()){
-	SDL_Log("You are moving something else");
+	SDL_Log("Something else is moving");
 	}
 
 	*/
@@ -28,6 +28,7 @@ void MoveAction::execute()
 
 		source->setTargetPosition(source->getTargetPosition().x + source->getCurrentSpeed(), source->getTargetPosition().y);
 		source->setOrientation(EAST);
+		//Call appropriate animation
 
 	}
 
@@ -36,7 +37,7 @@ void MoveAction::execute()
 
 		source->setTargetPosition(source->getTargetPosition().x - source->getCurrentSpeed(), source->getTargetPosition().y);
 		source->setOrientation(WEST);
-
+		//Call appropriate animation
 	}
 
 	if (direction == "NORTH")
@@ -44,7 +45,7 @@ void MoveAction::execute()
 
 		source->setTargetPosition(source->getTargetPosition().x, source->getTargetPosition().y - source->getCurrentSpeed());
 		source->setOrientation(NORTH);
-
+		//Call appropriate animation
 	}
 
 	if (direction == "SOUTH")
@@ -52,6 +53,6 @@ void MoveAction::execute()
 
 		source->setTargetPosition(source->getTargetPosition().x, source->getTargetPosition().y + source->getCurrentSpeed());
 		source->setOrientation(SOUTH);
-
+		//Call appropriate animation
 	}
 }

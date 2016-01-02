@@ -31,7 +31,7 @@ class AnimatedObject: public GenericObject
 {
 public:
 	AnimatedObject();
-	AnimatedObject(std::string id, Position currentPosition, Animation animation, double maxSpeed, double acceleration, int currentSpeed, Orientation orientation, bool hasCollision);
+	AnimatedObject(std::string id, Position currentPosition, Animation animation, double maxSpeed, double acceleration, int currentSpeed, Orientation orientation, bool isCollidable);
 	~AnimatedObject();
 
 	void	render(int x, int y);

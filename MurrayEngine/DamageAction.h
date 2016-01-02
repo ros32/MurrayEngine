@@ -12,7 +12,6 @@ The concrete action DamageAction
 class DamageAction : public Action{
 
 public:
-//	DamageAction(GameInstance* instance, GenericObject* source, std::vector<GenericObject*> targets);
 	DamageAction(GameInstance* instance, GenericObject* source, std::vector<GenericObject*> targets);
 	~DamageAction();
 	void execute();

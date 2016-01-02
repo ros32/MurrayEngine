@@ -1,3 +1,8 @@
+/*
+The concrete action MoveAction
+Triggers the movements of all movable objects
+*/
+
 #ifndef _MOVEACTION_H
 #define _MOVEACTION_H
 

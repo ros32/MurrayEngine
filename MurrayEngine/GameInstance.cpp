@@ -43,6 +43,10 @@ bool GameInstance::initialize()
 			Configuration newConfig = Configuration(key.second);
 			if (newConfig.getProperty("NAME", "NOTFOUND") != "NOTFOUND")
 				this->configurations.insert(std::map<std::string, Configuration>::value_type(newConfig.getProperty("NAME", "NOTFOUND"), newConfig));
+
+			if (newConfig.getProperty("NAME", "NOTFOUND") == "WitchSpritesheet"){
+				SDL_Log("WitchSpriteSheet is loaded");
+			}
 		}
 
 	}
@@ -93,7 +97,52 @@ bool GameInstance::initialize()
 				textures.push_back(Texture(this->getTextureAsset("tileset"), "TreeM"));
 				textures.push_back(Texture(this->getTextureAsset("tileset"), "TreeL"));
 				AnimatedObject* animatedObject = new AnimatedObject("test002", { 250, 250 }, Animation(textures, 200), 1.0, 1.0, 0, NONE, true);
+
 				this->map->addObject(animatedObject);
+
+				std::vector<Texture> witchTextures;
+				witchTextures.push_back(Texture(this->getTextureAsset("WitchSpritesheet"), "CauldronLeft0"));
+				witchTextures.push_back(Texture(this->getTextureAsset("WitchSpritesheet"), "CauldronLeft1"));
+				witchTextures.push_back(Texture(this->getTextureAsset("WitchSpritesheet"), "CauldronLeft2"));
+				witchTextures.push_back(Texture(this->getTextureAsset("WitchSpritesheet"), "CauldronLeft3"));
+				witchTextures.push_back(Texture(this->getTextureAsset("WitchSpritesheet"), "CauldronLeft4"));
+				witchTextures.push_back(Texture(this->getTextureAsset("WitchSpritesheet"), "CauldronLeft5"));
+				witchTextures.push_back(Texture(this->getTextureAsset("WitchSpritesheet"), "CauldronLeft6"));
+				witchTextures.push_back(Texture(this->getTextureAsset("WitchSpritesheet"), "CauldronLeft7"));
+				witchTextures.push_back(Texture(this->getTextureAsset("WitchSpritesheet"), "CauldronLeft8"));
+				witchTextures.push_back(Texture(this->getTextureAsset("WitchSpritesheet"), "CauldronLeft9"));
+				witchTextures.push_back(Texture(this->getTextureAsset("WitchSpritesheet"), "CauldronLeft10"));
+				witchTextures.push_back(Texture(this->getTextureAsset("WitchSpritesheet"), "CauldronLeft11"));
+				witchTextures.push_back(Texture(this->getTextureAsset("WitchSpritesheet"), "CauldronLeft12"));
+				witchTextures.push_back(Texture(this->getTextureAsset("WitchSpritesheet"), "CauldronLeft13"));
+				witchTextures.push_back(Texture(this->getTextureAsset("WitchSpritesheet"), "CauldronLeft11"));
+				witchTextures.push_back(Texture(this->getTextureAsset("WitchSpritesheet"), "CauldronLeft12"));
+				witchTextures.push_back(Texture(this->getTextureAsset("WitchSpritesheet"), "CauldronLeft13"));
+				witchTextures.push_back(Texture(this->getTextureAsset("WitchSpritesheet"), "CauldronLeft11"));
+				witchTextures.push_back(Texture(this->getTextureAsset("WitchSpritesheet"), "CauldronLeft12"));
+				witchTextures.push_back(Texture(this->getTextureAsset("WitchSpritesheet"), "CauldronLeft13"));
+				witchTextures.push_back(Texture(this->getTextureAsset("WitchSpritesheet"), "CauldronLeft11"));
+				witchTextures.push_back(Texture(this->getTextureAsset("WitchSpritesheet"), "CauldronLeft12"));
+				witchTextures.push_back(Texture(this->getTextureAsset("WitchSpritesheet"), "CauldronLeft13"));
+				witchTextures.push_back(Texture(this->getTextureAsset("WitchSpritesheet"), "CauldronLeft14"));
+				witchTextures.push_back(Texture(this->getTextureAsset("WitchSpritesheet"), "CauldronLeft15"));
+				witchTextures.push_back(Texture(this->getTextureAsset("WitchSpritesheet"), "CauldronLeft16"));
+				witchTextures.push_back(Texture(this->getTextureAsset("WitchSpritesheet"), "CauldronLeft17"));
+				witchTextures.push_back(Texture(this->getTextureAsset("WitchSpritesheet"), "CauldronLeft18"));
+				witchTextures.push_back(Texture(this->getTextureAsset("WitchSpritesheet"), "CauldronLeft19"));
+				witchTextures.push_back(Texture(this->getTextureAsset("WitchSpritesheet"), "CauldronLeft20"));
+				witchTextures.push_back(Texture(this->getTextureAsset("WitchSpritesheet"), "CauldronLeft19"));
+				witchTextures.push_back(Texture(this->getTextureAsset("WitchSpritesheet"), "CauldronLeft18"));
+				witchTextures.push_back(Texture(this->getTextureAsset("WitchSpritesheet"), "CauldronLeft17"));
+				witchTextures.push_back(Texture(this->getTextureAsset("WitchSpritesheet"), "CauldronLeft16"));
+				witchTextures.push_back(Texture(this->getTextureAsset("WitchSpritesheet"), "CauldronLeft15"));
+				witchTextures.push_back(Texture(this->getTextureAsset("WitchSpritesheet"), "CauldronLeft14"));
+				witchTextures.push_back(Texture(this->getTextureAsset("WitchSpritesheet"), "CauldronLeft0"));
+
+				AnimatedObject* witchObject = new AnimatedObject("test003", { 320, 120 }, Animation(witchTextures, 200),1.0, 1.0, 0, SOUTH, true);
+				this->map->addObject(witchObject);
+
+
 				
 				mapLoaded = true;
 			}
