@@ -32,7 +32,7 @@ public:
 	///	<summary>
 	///	Creates an object with the values provided
 	///	</summary>
-	GenericObject(std::string id, Position currentPosition, Texture texture, double maxSpeed, double acceleration, int currentSpeed, Orientation orientation, bool hasCollision);
+	GenericObject(std::string id, Position currentPosition, Texture texture, double maxSpeed, double acceleration, int currentSpeed, Orientation orientation, bool isCollidable);
 
 	~GenericObject();
 
@@ -170,7 +170,7 @@ public:
 	///	<summary>
 	///	Returns true if the object should use collision detection
 	///	</summary>
-	bool					getHasCollision();
+	bool					getIsCollidable();
 
 	///	<summary>
 	///	Reverses the move operation and restores the currentPositoin from 
@@ -186,7 +186,7 @@ public:
 	///	<summary>
 	///	Performs a damage action on enemy entity
 	///	<summary>
-	void					damage();
+	void					doDamage();
 
 	///	<summary>
 	///	Takes damage from enemy entity
@@ -222,7 +222,7 @@ private:
 	int				currentSpeed;
 
 	// If an object can collide with other objects or not
-	bool			hasCollision;
+	bool			isCollidable;
 
 	//	Current orientation of object
 	Orientation		orientation;

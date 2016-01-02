@@ -5,7 +5,7 @@ GenericObject::GenericObject()
 
 }
 
-GenericObject::GenericObject(std::string id, Position currentPosition, Texture texture, double maxSpeed, double acceleration, int currentSpeed, Orientation orientation, bool hasCollision)
+GenericObject::GenericObject(std::string id, Position currentPosition, Texture texture, double maxSpeed, double acceleration, int currentSpeed, Orientation orientation, bool isCollidable)
 {
 	this->id = id;
 	this->currentPosition = currentPosition;
@@ -15,7 +15,7 @@ GenericObject::GenericObject(std::string id, Position currentPosition, Texture t
 	//this->acceleration = acceleration;
 	this->orientation = orientation;
 	this->targetPosition = { 0, 0 };
-	this->hasCollision = hasCollision;
+	this->isCollidable = isCollidable;
 	this->lastPosition;
 	this->timer = Timer();
 
@@ -71,9 +71,9 @@ double GenericObject::getMaxSpeed()
 	return maxSpeed;
 }
 
-bool GenericObject::getHasCollision()
+bool GenericObject::getIsCollidable()
 {
-	return hasCollision;
+	return isCollidable;
 }
 
 void GenericObject::reverseMove()
@@ -179,7 +179,7 @@ void   GenericObject::jump()
 {
 	SDL_Log("Jumping");
 }
-void   GenericObject::damage()
+void   GenericObject::doDamage()
 {
 	SDL_Log("doing some damage");
 }

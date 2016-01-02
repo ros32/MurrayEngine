@@ -172,39 +172,77 @@ bool GameInstance::run()
 
 		if (keyState.key_w)
 		{
+			MoveAction *move = new MoveAction(this->map->getPlayerCharacter(), map, "NORTH");
+			ActionControl *actionControl = new ActionControl();
+
+			actionControl->setAction(move);
+			actionControl->buttonPressed();
+
+			/*
 			if (this->map->getCamera() != nullptr)
 			{
-				if (this->map->getCamera()->getFocusType() == FREE_FOCUS)
-					this->map->getCamera()->move(0, -5);
-				else if (this->map->getCamera()->getFocusType() == OBJECT_FOCUS)
-					this->map->getPlayerCharacter()->setTargetPosition(this->map->getPlayerCharacter()->getTargetPosition().x + 0, this->map->getPlayerCharacter()->getTargetPosition().y - this->map->getPlayerCharacter()->getCurrentSpeed());
-				this->map->getPlayerCharacter()->setOrientation(NORTH);
+			if (this->map->getCamera()->getFocusType() == FREE_FOCUS)
+			this->map->getCamera()->move(0, -5);
+			else if (this->map->getCamera()->getFocusType() == OBJECT_FOCUS)
+			this->map->getPlayerCharacter()->setTargetPosition(this->map->getPlayerCharacter()->getTargetPosition().x + 0, this->map->getPlayerCharacter()->getTargetPosition().y - this->map->getPlayerCharacter()->getCurrentSpeed());
+			this->map->getPlayerCharacter()->setOrientation(NORTH);
 			}
+			
+			*/
+			delete actionControl, move;
 		}
 		if (keyState.key_s)
 		{
+			MoveAction *move = new MoveAction(this->map->getPlayerCharacter(), map, "SOUTH");
+			ActionControl *actionControl = new ActionControl();
+
+			actionControl->setAction(move);
+			actionControl->buttonPressed();
+
+			/*
 			if (this->map->getCamera() != nullptr)
 			{
-				if (this->map->getCamera()->getFocusType() == FREE_FOCUS)
-					this->map->getCamera()->move(0, 5);
-				else if (this->map->getCamera()->getFocusType() == OBJECT_FOCUS)
-					this->map->getPlayerCharacter()->setTargetPosition(this->map->getPlayerCharacter()->getTargetPosition().x + 0, this->map->getPlayerCharacter()->getTargetPosition().y + this->map->getPlayerCharacter()->getCurrentSpeed());
-				this->map->getPlayerCharacter()->setOrientation(SOUTH);
+			if (this->map->getCamera()->getFocusType() == FREE_FOCUS)
+				this->map->getCamera()->move(0, 5);
+			else if (this->map->getCamera()->getFocusType() == OBJECT_FOCUS)
+				this->map->getPlayerCharacter()->setTargetPosition(this->map->getPlayerCharacter()->getTargetPosition().x + 0, this->map->getPlayerCharacter()->getTargetPosition().y + this->map->getPlayerCharacter()->getCurrentSpeed());
+			this->map->getPlayerCharacter()->setOrientation(SOUTH);
 			}
+			
+			*/
+			delete actionControl, move;
 		}
 		if (keyState.key_a)
 		{
+
+			MoveAction *move = new MoveAction(this->map->getPlayerCharacter(), map, "WEST");
+			ActionControl *actionControl = new ActionControl();
+
+			actionControl->setAction(move);
+			actionControl->buttonPressed();
+
+			/*
 			if (this->map->getCamera() != nullptr)
 			{
-				if (this->map->getCamera()->getFocusType() == FREE_FOCUS)
-					this->map->getCamera()->move(-5, 0);
-				else if (this->map->getCamera()->getFocusType() == OBJECT_FOCUS)
-					this->map->getPlayerCharacter()->setTargetPosition(this->map->getPlayerCharacter()->getTargetPosition().x - this->map->getPlayerCharacter()->getCurrentSpeed(), this->map->getPlayerCharacter()->getTargetPosition().y + 0);
-				this->map->getPlayerCharacter()->setOrientation(WEST);
+			if (this->map->getCamera()->getFocusType() == FREE_FOCUS)
+				this->map->getCamera()->move(-5, 0);
+			else if (this->map->getCamera()->getFocusType() == OBJECT_FOCUS)
+				this->map->getPlayerCharacter()->setTargetPosition(this->map->getPlayerCharacter()->getTargetPosition().x - this->map->getPlayerCharacter()->getCurrentSpeed(), this->map->getPlayerCharacter()->getTargetPosition().y + 0);
+			this->map->getPlayerCharacter()->setOrientation(WEST);
 			}
+			
+			*/
+			delete actionControl, move;
 		}
 		if (keyState.key_d)
 		{
+
+			MoveAction *move = new MoveAction(this->map->getPlayerCharacter(), map, "EAST");
+			ActionControl *actionControl = new ActionControl();
+
+			actionControl->setAction(move);
+			actionControl->buttonPressed();
+			/*
 			if (this->map->getCamera() != nullptr)
 			{
 				if (this->map->getCamera()->getFocusType() == FREE_FOCUS)
@@ -213,6 +251,9 @@ bool GameInstance::run()
 					this->map->getPlayerCharacter()->setTargetPosition(this->map->getPlayerCharacter()->getTargetPosition().x + this->map->getPlayerCharacter()->getCurrentSpeed(), this->map->getPlayerCharacter()->getTargetPosition().y + 0);
 				this->map->getPlayerCharacter()->setOrientation(EAST);
 			}
+			
+			*/
+			delete actionControl, move;
 		}
 		if (keyState.key_space)
 		{
@@ -222,14 +263,14 @@ bool GameInstance::run()
 			JumpAction *jump = new JumpAction(this->map->getPlayerCharacter());
 
 			//Invoker
-			InputControl *inputControl = new InputControl();
+			ActionControl *actionControl = new ActionControl();
 
 			//execute
-			inputControl->setAction(jump);
-			inputControl->buttonPressed();
+			actionControl->setAction(jump);
+			actionControl->buttonPressed();
 
 
-			delete inputControl, jump;
+			delete actionControl, jump;
 
 
 		}

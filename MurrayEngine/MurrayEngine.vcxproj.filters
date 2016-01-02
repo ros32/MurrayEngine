@@ -72,10 +72,13 @@
     <ClInclude Include="JumpAction.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="InputControl.h">
+    <ClInclude Include="AnimatedObject.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="AnimatedObject.h">
+    <ClInclude Include="MoveAction.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ActionControl.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -131,10 +134,13 @@
     <ClCompile Include="JumpAction.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="InputControl.cpp">
+    <ClCompile Include="AnimatedObject.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="AnimatedObject.cpp">
+    <ClCompile Include="MoveAction.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ActionControl.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -143,6 +149,9 @@
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="tileset.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="WitchSpritesheet.png">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>
@@ -163,6 +172,9 @@
       <Filter>Resource Files</Filter>
     </None>
     <None Include="spritesheet.cfg">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="WitchSpritesheet.cfg">
       <Filter>Resource Files</Filter>
     </None>
   </ItemGroup>

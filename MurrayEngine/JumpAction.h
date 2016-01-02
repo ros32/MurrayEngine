@@ -24,4 +24,4 @@ private:
 
 
 
-#endif //´!_JUMPACTION_H
+#endif //!_JUMPACTION_H

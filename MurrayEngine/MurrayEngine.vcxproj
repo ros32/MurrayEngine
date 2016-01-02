@@ -20,11 +20,12 @@
     <ClInclude Include="GameInstance.h" />
     <ClInclude Include="GenericObject.h" />
     <ClInclude Include="GenericObjectFactory.h" />
-    <ClInclude Include="InputControl.h" />
+    <ClInclude Include="ActionControl.h" />
     <ClInclude Include="InvalidAsset.h" />
     <ClInclude Include="JumpAction.h" />
     <ClInclude Include="Map.h" />
     <ClInclude Include="MapFactory.h" />
+    <ClInclude Include="MoveAction.h" />
     <ClInclude Include="Physics.h" />
     <ClInclude Include="Position.h" />
     <ClInclude Include="TextureAsset.h" />
@@ -41,11 +42,12 @@
     <ClCompile Include="GameInstance.cpp" />
     <ClCompile Include="GenericObject.cpp" />
     <ClCompile Include="Asset.cpp" />
-    <ClCompile Include="InputControl.cpp" />
+    <ClCompile Include="ActionControl.cpp" />
     <ClCompile Include="InvalidAsset.cpp" />
     <ClCompile Include="JumpAction.cpp" />
     <ClCompile Include="Map.cpp" />
     <ClCompile Include="MapFactory.cpp" />
+    <ClCompile Include="MoveAction.cpp" />
     <ClCompile Include="Physics.cpp" />
     <ClCompile Include="TextureAsset.cpp" />
     <ClCompile Include="Test.cpp" />
@@ -57,6 +59,7 @@
   <ItemGroup>
     <Image Include="spritesheet.png" />
     <Image Include="tileset.png" />
+    <Image Include="WitchSpritesheet.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="GenericObject.cfg" />
@@ -65,6 +68,7 @@
     <None Include="spritesheet.cfg" />
     <None Include="tileset.cfg" />
     <None Include="UML.vsd" />
+    <None Include="WitchSpritesheet.cfg" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{0B410340-103B-4353-AE08-68F0C922FE2D}</ProjectGuid>

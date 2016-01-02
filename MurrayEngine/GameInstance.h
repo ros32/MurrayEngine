@@ -12,8 +12,9 @@
 #include	"Map.h"
 #include	<SDL.h>
 #include	"Action.h"
-#include    "InputControl.h"
+#include    "ActionControl.h"
 #include	"JumpAction.h"
+#include	"MoveAction.h"
 
 struct KeyState
 {

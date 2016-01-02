@@ -1,8 +1,6 @@
 #include "Map.h"
 
 
-
-
 Map::Map()
 {
 	this->tileSize;
@@ -151,7 +149,7 @@ void Map::move()
 		//	 SDL_Log(genericObject->getId().c_str());
 			 
 
-			 if (genericObject->getHasCollision())
+			 if (genericObject->getIsCollidable())
 			 {
 
 				for (auto otherObject : objects)
@@ -179,9 +177,9 @@ void Map::move()
 
 				//If the new currentPosition is too close to the map edge, step back through reverseMove
 				if (
-						(genericObject->getCurrentPosition().x > (this->getMapMaxSize().x - 20)) || 
+						(genericObject->getCurrentPosition().x > (this->getMapMaxSize().x - 32)) || 
 						(genericObject->getCurrentPosition().x < 0) || 
-						(genericObject->getCurrentPosition().y >(this->getMapMaxSize().y - 8)) || 
+						(genericObject->getCurrentPosition().y > (this->getMapMaxSize().y - 32)) || 
 						(genericObject->getCurrentPosition().y < 0)
 					)
 					genericObject->reverseMove();

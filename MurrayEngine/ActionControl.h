@@ -3,17 +3,17 @@ Invoker
 Stores the concrete actions
 */
 
-#ifndef _INPUT_CONTROL_H
-#define _INPUT_CONTROL_H
+#ifndef _ACTION_CONTROL_H
+#define _ACTION_CONTROL_H
 
 #include "Action.h"
 
-class InputControl{
+class ActionControl{
 
 public:
-	InputControl();
+	ActionControl();
 
-	~InputControl();
+	~ActionControl();
 
 	void setAction(Action *action);
 
@@ -27,4 +27,4 @@ private:
 
 
 
-#endif // !_INPUT_CONTROL_H
+#endif // !_ACTION_CONTROL_H

@@ -10,9 +10,12 @@ DamageAction::~DamageAction(){
 
 }
 void DamageAction::execute(){
-	source->damage();
+	source->doDamage();
 
 	for (auto target : targets){
 		target->takeDamage();
+
+		//get target HP
+		//If target HP <=0, call map->removeObject(target)
 	}
 }
