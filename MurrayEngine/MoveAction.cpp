@@ -11,53 +11,47 @@ MoveAction::~MoveAction(){
 void MoveAction::execute()
 {
 
+	/*
+	if (source == map->getPlayerCharacter()){
+	SDL_Log("You are moving the player character");
+	}
+	else if (source != map->getPlayerCharacter()){
+	SDL_Log("You are moving something else");
+	}
+
+	*/
+
+
+
 	if (direction == "EAST")
 	{
-		if (map->getCamera() != nullptr)
-		{
-			SDL_Log("Inside MoveAction-Execute");
-			if (this->map->getCamera()->getFocusType() == FREE_FOCUS)
-				this->map->getCamera()->move(5, 0);
-			else if (this->map->getCamera()->getFocusType() == OBJECT_FOCUS)
-				this->map->getPlayerCharacter()->setTargetPosition(this->map->getPlayerCharacter()->getTargetPosition().x + this->map->getPlayerCharacter()->getCurrentSpeed(), this->map->getPlayerCharacter()->getTargetPosition().y + 0);
-			this->map->getPlayerCharacter()->setOrientation(EAST);
-		}
+
+		source->setTargetPosition(source->getTargetPosition().x + source->getCurrentSpeed(), source->getTargetPosition().y);
+		source->setOrientation(EAST);
+
 	}
 
 	if (direction == "WEST")
 	{
-		if (this->map->getCamera() != nullptr)
-		{
-			if (this->map->getCamera()->getFocusType() == FREE_FOCUS)
-				this->map->getCamera()->move(-5, 0);
-			else if (this->map->getCamera()->getFocusType() == OBJECT_FOCUS)
-				this->map->getPlayerCharacter()->setTargetPosition(this->map->getPlayerCharacter()->getTargetPosition().x - this->map->getPlayerCharacter()->getCurrentSpeed(), this->map->getPlayerCharacter()->getTargetPosition().y + 0);
-			this->map->getPlayerCharacter()->setOrientation(WEST);
-		}
+
+		source->setTargetPosition(source->getTargetPosition().x - source->getCurrentSpeed(), source->getTargetPosition().y);
+		source->setOrientation(WEST);
+
 	}
 
 	if (direction == "NORTH")
 	{
-		if (this->map->getCamera() != nullptr)
-		{
-			if (this->map->getCamera()->getFocusType() == FREE_FOCUS)
-				this->map->getCamera()->move(0, -5);
-			else if (this->map->getCamera()->getFocusType() == OBJECT_FOCUS)
-				this->map->getPlayerCharacter()->setTargetPosition(this->map->getPlayerCharacter()->getTargetPosition().x + 0, this->map->getPlayerCharacter()->getTargetPosition().y - this->map->getPlayerCharacter()->getCurrentSpeed());
-			this->map->getPlayerCharacter()->setOrientation(NORTH);
-		}
+
+		source->setTargetPosition(source->getTargetPosition().x, source->getTargetPosition().y - source->getCurrentSpeed());
+		source->setOrientation(NORTH);
+
 	}
 
 	if (direction == "SOUTH")
 	{
-		if (this->map->getCamera() != nullptr)
-		{
-			if (this->map->getCamera()->getFocusType() == FREE_FOCUS)
-				this->map->getCamera()->move(0, 5);
-			else if (this->map->getCamera()->getFocusType() == OBJECT_FOCUS)
-				this->map->getPlayerCharacter()->setTargetPosition(this->map->getPlayerCharacter()->getTargetPosition().x + 0, this->map->getPlayerCharacter()->getTargetPosition().y + this->map->getPlayerCharacter()->getCurrentSpeed());
-			this->map->getPlayerCharacter()->setOrientation(SOUTH);
-		}
+
+		source->setTargetPosition(source->getTargetPosition().x, source->getTargetPosition().y + source->getCurrentSpeed());
+		source->setOrientation(SOUTH);
 
 	}
 }

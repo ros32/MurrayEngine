@@ -15,6 +15,6 @@ void ActionControl::setAction(Action *action){
 }
 
 void ActionControl::buttonPressed(){
-	SDL_Log("Arrived at ActionControl");
+//	SDL_Log("Arrived at ActionControl");
 	action->execute();
 }
