@@ -175,15 +175,6 @@ void Map::move()
 					}
 				}
 
-				//If the new currentPosition is too close to the map edge, step back through reverseMove
-				if (
-						(genericObject->getCurrentPosition().x > (this->getMapMaxSize().x - 32)) || 
-						(genericObject->getCurrentPosition().x < 0) || 
-						(genericObject->getCurrentPosition().y > (this->getMapMaxSize().y - 32)) || 
-						(genericObject->getCurrentPosition().y < 0)
-					)
-					genericObject->reverseMove();
-
 
 				//genericObject->setTargetPosition(0, 0);
 			}	 
