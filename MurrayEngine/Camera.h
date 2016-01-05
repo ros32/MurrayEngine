@@ -1,7 +1,11 @@
 #ifndef _CAMERA_H
 #define	_CAMERA_H
 
-#include	<SDL.h>
+#ifdef _WIN32
+#include <SDL.h>
+#elif __linux__
+#include <SDL2/SDL.h>
+#endif
 #include	"GenericObject.h"
 #include	"Position.h"
 

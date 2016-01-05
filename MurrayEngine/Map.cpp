@@ -156,7 +156,7 @@ void Map::move()
 				{
 					
 
-					if (otherObject->getId() != genericObject->getId())
+					if (otherObject->getId() != genericObject->getId() && otherObject->getIsCollidable())
 					{
 	//					SDL_Log(otherObject->getId().c_str());
 

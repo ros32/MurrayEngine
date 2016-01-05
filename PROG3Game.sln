@@ -22,11 +22,13 @@ Global
 		{0B410340-103B-4353-AE08-68F0C922FE2D}.Release|Win32.ActiveCfg = Release|Win32
 		{0B410340-103B-4353-AE08-68F0C922FE2D}.Release|Win32.Build.0 = Release|Win32
 		{9C4675BF-38F9-453F-9748-103CC582C0C8}.Debug|Win32.ActiveCfg = Debug|Win32
-		{9C4675BF-38F9-453F-9748-103CC582C0C8}.Debug|Win32.Build.0 = Debug|Win32
 		{9C4675BF-38F9-453F-9748-103CC582C0C8}.Release|Win32.ActiveCfg = Release|Win32
 		{9C4675BF-38F9-453F-9748-103CC582C0C8}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(Performance) = preSolution
+		HasPerformanceSessions = true
 	EndGlobalSection
 EndGlobal

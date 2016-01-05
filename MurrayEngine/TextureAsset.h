@@ -1,7 +1,11 @@
 #ifndef TEXTURE_ASSET_H
 #define TEXTURE_ASSET_H
 
+#ifdef _WIN32
 #include <SDL.h>
+#elif __linux__
+#include <SDL2/SDL.h>
+#endif
 #include <SDL_image.h>
 #include <vector>
 #include <map>

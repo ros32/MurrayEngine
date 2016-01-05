@@ -7,7 +7,11 @@
 #include "GenericObject.h"
 #include "Position.h"
 #include "Tile.h"
+#ifdef _WIN32
 #include <SDL.h>
+#elif __linux__
+#include <SDL2/SDL.h>
+#endif
 #include "Camera.h"
 #include "AnimatedObject.h"
 

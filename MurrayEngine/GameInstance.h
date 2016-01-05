@@ -10,7 +10,11 @@
 #include	"TextureAssetFactory.h"
 #include	"InvalidAsset.h"
 #include	"Map.h"
-#include	<SDL.h>
+#ifdef _WIN32
+#include <SDL.h>
+#elif __linux__
+#include <SDL2/SDL.h>
+#endif
 #include	"Action.h"
 #include    "ActionControl.h"
 #include	"JumpAction.h"
