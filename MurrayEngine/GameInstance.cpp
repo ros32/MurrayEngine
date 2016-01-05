@@ -291,11 +291,7 @@ bool GameInstance::run()
 		{
 
 			MoveAction *move = new MoveAction(this->map->getPlayerCharacter(), map, "EAST");
-			ActionControl *actionControl = new ActionControl();
-
-			actionControl->setAction(move);
-			actionControl->buttonPressed();
-			
+			ActionControl *actionControl = new ActionControl();			
 
 			if (this->map->getCamera() != nullptr)
 			{
