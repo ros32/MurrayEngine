@@ -31,7 +31,7 @@ Configuration::~Configuration()
 void Configuration::importConfig(std::string fileName)
 {
 	std::ifstream file;
-	file.open(fileName.c_str());
+	file.open(fileName.c_str(), std::ios::in|std::ios::out);
 
 	std::string line;
 	
