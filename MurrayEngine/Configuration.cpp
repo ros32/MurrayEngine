@@ -35,7 +35,7 @@ void Configuration::importConfig(std::string fileName)
 
 	std::string line;
 	
-	if (!file.is_open())
+	if (file.fail())
 	{
 		std::string errorMsg = "No file found with the name " + fileName;
 		SDL_Log(errorMsg.c_str());
@@ -92,6 +92,7 @@ void Configuration::importConfig(std::string fileName)
 	SDL_Log(outString.c_str());
 	
 	file.close();
+	file.clear();
 }
 
 //Creates a file with a specified filename and stores keys + values
