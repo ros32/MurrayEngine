@@ -40,7 +40,8 @@ bool GameInstance::initialize()
 		if (found != std::string::npos)
 		{
 			// keyIdentified = true;
-			Configuration newConfig = Configuration((std::string)key.second);
+			std::string fileName = key.second;
+			Configuration newConfig = Configuration(fileName);
 			if (newConfig.getProperty("NAME", "NOTFOUND") != "NOTFOUND")
 				this->configurations.insert(std::map<std::string, Configuration>::value_type(newConfig.getProperty("NAME", "NOTFOUND"), newConfig));
 
