@@ -40,7 +40,7 @@ bool GameInstance::initialize()
 		if (found != std::string::npos)
 		{
 			// keyIdentified = true;
-			Configuration newConfig = Configuration(key.second);
+			Configuration newConfig = Configuration((std::string)key.second);
 			if (newConfig.getProperty("NAME", "NOTFOUND") != "NOTFOUND")
 				this->configurations.insert(std::map<std::string, Configuration>::value_type(newConfig.getProperty("NAME", "NOTFOUND"), newConfig));
 
