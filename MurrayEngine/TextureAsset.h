@@ -44,16 +44,23 @@ private:
 	int						offset;
 	void					generateIndex();
 	SDL_Color				colorKey;
+
+	int						width;
+	int						height;
 	
 
 public:
 	TextureAsset(SDL_Renderer* renderer, const char* filePath, unsigned int cellSize, unsigned int offset, SDL_Color colorKey);
+	TextureAsset(SDL_Renderer* renderer, const char* filePath, unsigned int width, unsigned int height, unsigned int offset, SDL_Color colorKey);
 	~TextureAsset();
 
 
 	SDL_Texture*	getTexture();
 	SDL_Rect*		getSourceRect(unsigned int x, unsigned int y);
 	SDL_Rect*		getSourceRect(std::string name);
+
+	void			loadFile(const char* filePath);
+	void			loadText(const char* filePath, SDL_Color color);
 
 	void	load();
 	void	unload();
@@ -62,6 +69,9 @@ public:
 	std::string		getType();
 
 	int		getCellSize();
+
+	int		getWidth();
+	int		getHeight();
 
 	void	render(int x, int y, SDL_Rect* clip);
 

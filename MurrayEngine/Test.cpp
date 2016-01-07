@@ -14,6 +14,7 @@ int main(int, char** argv)
 	Configuration mainConfig = Configuration("main.cfg");
 
 	SDL_Init(SDL_INIT_EVERYTHING);
+	SDL_LogSetAllPriority(SDL_LOG_PRIORITY_VERBOSE);
 	SDL_Window* mainWindow = SDL_CreateWindow(
 		"MurrayEngine", 
 		100, 
