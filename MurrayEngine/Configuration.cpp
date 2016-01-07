@@ -38,12 +38,12 @@ void Configuration::importConfig(std::string fileName)
 	if (file.fail())
 	{
 		std::string errorMsg = "No file found with the name " + fileName;
-		SDL_Log(errorMsg.c_str());
+		SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, errorMsg.c_str());
 	}
 	else
 	{
 		std::string errorMsg = "Found the file " + fileName;
-		SDL_Log(errorMsg.c_str());
+		SDL_LogDebug(SDL_LOG_CATEGORY_APPLICATION, errorMsg.c_str());
 	}
 	
 
@@ -53,15 +53,15 @@ void Configuration::importConfig(std::string fileName)
 
 		if (tempLine.empty())
 		{
-			std::string errorMsg = "Current tempLine is empty and is disregarded";
-			SDL_Log(errorMsg.c_str());
+			std::string errorMsg = "Ignoring empty line";
+			SDL_LogVerbose(SDL_LOG_CATEGORY_APPLICATION, errorMsg.c_str());
 			continue;
 		}
 
 		if (tempLine.find(';') != tempLine.npos)
 		{
-			std::string errorMsg = "Current tempLine contains a comment and is disregarded";
-			SDL_Log(errorMsg.c_str());
+			std::string errorMsg = "Ignoring comment";
+			SDL_LogVerbose(SDL_LOG_CATEGORY_APPLICATION, errorMsg.c_str());
 			continue;
 		}
 
@@ -80,7 +80,7 @@ void Configuration::importConfig(std::string fileName)
 	}
 
 	// Prints the imported data in SDL_Log for testing purpose
-	std::string outString = "outString output \n";
+	std::string outString = "Imported Values: \n";
 	std::string tempString;
 
 	for (std::map <std::string, std::string>::iterator iter = configurationData.begin(); iter != configurationData.end(); ++iter)
@@ -89,7 +89,7 @@ void Configuration::importConfig(std::string fileName)
 		outString = tempString + iter->first + "=" + iter->second + '\n';
 	}
 
-	SDL_Log(outString.c_str());
+	SDL_LogVerbose(SDL_LOG_CATEGORY_APPLICATION, outString.c_str());
 	
 	file.close();
 	file.clear();
@@ -125,28 +125,12 @@ void Configuration::exportConfig(std::string fileName)
 	}
 	else
 	{
-		std::string msg = "A problem occured when exporting configuration, file could not open";
-		SDL_Log(msg.c_str());		
+		std::string msg = "Error exporting configuration, could not open file";
+		SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, msg.c_str());		
 	}
 
 	
 }
-/*
-//Returns the value for a given key
-std::string	Configuration :: getProperty(std::string keyName)
-{
-	std::string resultValue;	
-
-	for (std::map <std::string, std::string>::iterator iter = configurationData.begin(); iter != configurationData.end(); ++iter)
-	{
-		if (configurationData.find(keyName) != configurationData.end());
-		resultValue = iter->second;
-	}
-
-	return resultValue;
-
-}
-*/
 
 std::string Configuration::getProperty(std::string key)
 {
@@ -165,7 +149,7 @@ std::string Configuration::getProperty(std::string key, std::string defaultValue
 	if (output == "")
 	{
 		std::string errorMessage = "A value for key \"" + key + "\" does not exist! Using default value: (string) \"" + defaultValue + "\".";
-		SDL_Log(errorMessage.c_str());
+		SDL_LogWarn(SDL_LOG_CATEGORY_APPLICATION, errorMessage.c_str());
 		return defaultValue;
 	}
 	else
@@ -183,50 +167,12 @@ int	Configuration::getProperty(std::string key, int defaultValue)
 	catch (std::exception e)
 	{
 		std::string errorMessage = "A value for key \"" + key + "\" does not exist! Using default value: (int) \"" + std::to_string(defaultValue) + "\".";
-		SDL_Log(errorMessage.c_str());
+		SDL_LogWarn(SDL_LOG_CATEGORY_APPLICATION, errorMessage.c_str());
 		return defaultValue;
 	}
 
 	return returnValue;
 }
-
-// TODO: Cleanup commented out code
-/*
----Work in progress!---
-Will have this functionality:
-changes the value of a given key residing in the map
-adds the key + value to the map if it doesnt already exist
-*/
-/*
-void Configuration :: setProperty(std::string fileName, std::string keyName, std::string valueName)
-{
-	std::string tempString;
-	std::string lineString;
-
-	for (std::map <std::string, std::string>::iterator iter = configurationData.begin(); iter != configurationData.end(); ++iter)
-	{
-		//Should instead check if key exists and replace with a new value, or add the key and value name if the key doesnt already exists
-		lineString = (tempString + iter->first + "=" + iter->second + "\n");
-		tempString = lineString;
-	}
-	
-	//Ska nog köra in inputFileStream, frågan är hur man ändrar värden i en befintlig fil o.O
-
-	std::ofstream file(fileName);
-	
-	if (file.is_open())
-	{
-		file << "" + lineString;
-		file.close();
-	}
-	else
-	{
-		std::string msg = "A problem occured when setting Property, file could not open";
-		SDL_Log(msg.c_str());
-	}
-	
-}
-*/
 	
 void Configuration::setProperty(std::string key, std::string value)
 {
