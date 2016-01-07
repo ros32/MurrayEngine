@@ -28,6 +28,26 @@ TextureAsset::TextureAsset(SDL_Renderer* renderer, const char* filePath, unsigne
 	SDL_LogDebug(SDL_LOG_CATEGORY_VIDEO, output.c_str());
 }
 
+TextureAsset::TextureAsset(SDL_Renderer* renderer, const char* filePath, unsigned int fontSize, std::string text, SDL_Color color)
+{
+	this->renderer = renderer;
+	this->filePath = filePath;
+	this->cellSize = 0;
+	this->height = 0;
+	this->width = 0;
+	this->offset = 0;
+	this->colorKey = { 0, 240, 240, 240 };
+
+	this->index;
+	this->nameIndex;
+
+	this->loadText(filePath, fontSize, text, color);
+
+	std::string output = "TextureAsset created with font: \"" + std::string(filePath) + "\", size: " + std::to_string(fontSize) + ", text: \"" + text + "\", color: { " + 
+		std::to_string(color.a) + ", " + std::to_string(color.b) + ", " + std::to_string(color.g) + ", " + std::to_string(color.r) + " }.";
+	SDL_LogDebug(SDL_LOG_CATEGORY_VIDEO, output.c_str());
+}
+
 TextureAsset::~TextureAsset()
 {
 	//	Unload texture
@@ -50,9 +70,32 @@ void			TextureAsset::loadFile(const char* filePath)
 	this->generateIndex();
 }
 
-void			TextureAsset::loadText(const char* filePath, SDL_Color color)
+void			TextureAsset::loadText(const char* filePath, unsigned int fontSize, std::string text, SDL_Color color)
 {
+	TTF_Font*	font = TTF_OpenFont(filePath, fontSize);
+	SDL_Surface* textSurface = TTF_RenderText_Solid(font, text.c_str(), color);
+	if (textSurface == NULL)
+	{
+		std::string output = "Unable to render text, SDL_ttf error! " + std::string(TTF_GetError());
+		SDL_LogError(SDL_LOG_CATEGORY_RENDER, output.c_str());
+	}
+	else
+	{
+		this->texture = SDL_CreateTextureFromSurface(this->renderer, textSurface);
+		if (this->texture == NULL)
+		{
+			std::string output = "Could not create texture from rendered text!" + std::string(SDL_GetError());
+			SDL_LogError(SDL_LOG_CATEGORY_RENDER, output.c_str());
+		}
+		else
+		{
+			this->width = textSurface->w;
+			this->height = textSurface->h;
+			this->cellSize = textSurface->w;
+		}
 
+		SDL_FreeSurface(textSurface);
+	}
 }
 
 void			TextureAsset::unload()

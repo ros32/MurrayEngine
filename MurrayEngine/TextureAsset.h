@@ -4,9 +4,11 @@
 #ifdef _WIN32
 #include <SDL.h>
 #include <SDL_image.h>
+#include <SDL_ttf.h>
 #elif __linux__
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
+#include <SDL2/SDL_ttf.h>
 #endif
 #include <vector>
 #include <map>
@@ -52,6 +54,7 @@ private:
 public:
 	TextureAsset(SDL_Renderer* renderer, const char* filePath, unsigned int cellSize, unsigned int offset, SDL_Color colorKey);
 	TextureAsset(SDL_Renderer* renderer, const char* filePath, unsigned int width, unsigned int height, unsigned int offset, SDL_Color colorKey);
+	TextureAsset(SDL_Renderer* renderer, const char* filePath, unsigned int fontSize, std::string text, SDL_Color color);
 	~TextureAsset();
 
 
@@ -60,7 +63,7 @@ public:
 	SDL_Rect*		getSourceRect(std::string name);
 
 	void			loadFile(const char* filePath);
-	void			loadText(const char* filePath, SDL_Color color);
+	void			loadText(const char* filePath, unsigned int fontSize, std::string text, SDL_Color color);
 
 	void	load();
 	void	unload();

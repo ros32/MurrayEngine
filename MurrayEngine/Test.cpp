@@ -14,6 +14,8 @@ int main(int, char** argv)
 	Configuration mainConfig = Configuration("main.cfg");
 
 	SDL_Init(SDL_INIT_EVERYTHING);
+	IMG_Init(IMG_INIT_PNG);
+	TTF_Init();
 	SDL_LogSetAllPriority(SDL_LOG_PRIORITY_VERBOSE);
 	SDL_Window* mainWindow = SDL_CreateWindow(
 		"MurrayEngine", 
@@ -54,6 +56,8 @@ int main(int, char** argv)
 
 	SDL_DestroyRenderer(mainRenderer);
 	SDL_DestroyWindow(mainWindow);
+	TTF_Quit();
+	IMG_Quit();
 	SDL_Quit();
 
 	return 0;
