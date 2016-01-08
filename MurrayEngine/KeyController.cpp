@@ -138,7 +138,10 @@ KeyController::KeyController()
 
 KeyController::~KeyController()
 {
-
+	for (auto key : this->actions)
+	{
+		delete key.second;
+	}
 }
 
 void	KeyController::checkState()
