@@ -62,20 +62,6 @@
     <ClCompile Include="Timer.cpp" />
     <ClCompile Include="Camera.cpp" />
   </ItemGroup>
-  <ItemGroup>
-    <Image Include="spritesheet.png" />
-    <Image Include="tileset.png" />
-    <Image Include="WitchSpritesheet.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="GenericObject.cfg" />
-    <None Include="main.cfg" />
-    <None Include="map.cfg" />
-    <None Include="spritesheet.cfg" />
-    <None Include="tileset.cfg" />
-    <None Include="UML.vsd" />
-    <None Include="WitchSpritesheet.cfg" />
-  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{0B410340-103B-4353-AE08-68F0C922FE2D}</ProjectGuid>
     <RootNamespace>MurrayEngine</RootNamespace>

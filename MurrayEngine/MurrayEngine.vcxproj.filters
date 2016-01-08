@@ -162,38 +162,4 @@
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
-  <ItemGroup>
-    <Image Include="spritesheet.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="tileset.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="WitchSpritesheet.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="main.cfg">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="tileset.cfg">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="GenericObject.cfg">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="UML.vsd">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="map.cfg">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="spritesheet.cfg">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="WitchSpritesheet.cfg">
-      <Filter>Resource Files</Filter>
-    </None>
-  </ItemGroup>
 </Project>
