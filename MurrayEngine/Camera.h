@@ -8,6 +8,7 @@
 #endif
 #include	"GenericObject.h"
 #include	"Position.h"
+#include	"GUI.h"
 
 ///	<summary>
 ///	Controls the focus type the Camera should use.
@@ -107,6 +108,10 @@ public:
 	///	</summary>
 	void				center(Position pos);
 
+	GUI*				getGUI();
+
+	void				setGUI(GUI* gui);
+
 
 
 private:
@@ -128,6 +133,8 @@ private:
 
 	//	Focus type of Camera
 	CameraFocus			focusType;
+
+	GUI*				gui;
 
 };
 

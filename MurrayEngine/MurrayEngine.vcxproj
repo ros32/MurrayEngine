@@ -21,6 +21,8 @@
     <ClInclude Include="GenericObject.h" />
     <ClInclude Include="GenericObjectFactory.h" />
     <ClInclude Include="ActionControl.h" />
+    <ClInclude Include="GUI.h" />
+    <ClInclude Include="GUIObject.h" />
     <ClInclude Include="InvalidAsset.h" />
     <ClInclude Include="JumpAction.h" />
     <ClInclude Include="Map.h" />
@@ -43,6 +45,8 @@
     <ClCompile Include="GenericObject.cpp" />
     <ClCompile Include="Asset.cpp" />
     <ClCompile Include="ActionControl.cpp" />
+    <ClCompile Include="GUI.cpp" />
+    <ClCompile Include="GUIObject.cpp" />
     <ClCompile Include="InvalidAsset.cpp" />
     <ClCompile Include="JumpAction.cpp" />
     <ClCompile Include="Map.cpp" />
