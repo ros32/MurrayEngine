@@ -1,5 +1,4 @@
 #include	<SDL.h>
-#include	<Configuration.h>
 #include	<GameInstance.h>
 
 #define		DEFAULT_WINDOW_WIDTH	640

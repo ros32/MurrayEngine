@@ -6,6 +6,9 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MurrayEngine", "MurrayEngine\MurrayEngine.vcxproj", "{0B410340-103B-4353-AE08-68F0C922FE2D}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Implementation", "Implementation\Implementation.vcxproj", "{4EC7FF3B-5ACC-40B6-BEB9-B7E5893F0214}"
+	ProjectSection(ProjectDependencies) = postProject
+		{0B410340-103B-4353-AE08-68F0C922FE2D} = {0B410340-103B-4353-AE08-68F0C922FE2D}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SubversionScc) = preSolution

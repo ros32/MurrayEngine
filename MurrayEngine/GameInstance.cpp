@@ -20,6 +20,7 @@ GameInstance::GameInstance(SDL_Window* window, SDL_Renderer* renderer, Configura
 	this->map;
 	this->keyState;
 	this->factory = nullptr;
+	this->keyController = nullptr;
 }
 
 GameInstance::~GameInstance()
@@ -30,6 +31,7 @@ GameInstance::~GameInstance()
 bool GameInstance::initialize()
 {
 	bool tempFactory = false;
+	bool tempKeyController = false;
 
 	if (this->factory == nullptr)
 	{
@@ -43,6 +45,20 @@ bool GameInstance::initialize()
 	else
 	{
 		std::string output = "Using defined factory";
+		SDL_LogDebug(SDL_LOG_CATEGORY_APPLICATION, output.c_str());
+	}
+
+	if (this->keyController == nullptr)
+	{
+		tempKeyController = true;
+		this->keyController = new KeyController();
+
+		std::string output = "No Key Controller defined, creating default.";
+		SDL_LogInfo(SDL_LOG_CATEGORY_APPLICATION, output.c_str());
+	}
+	else
+	{
+		std::string output = "Using defined key controller";
 		SDL_LogDebug(SDL_LOG_CATEGORY_APPLICATION, output.c_str());
 	}
 
@@ -174,7 +190,11 @@ bool GameInstance::initialize()
 
 	//	Test map
 
+	//	Everything initialized below this point
 
+	//	Set game instance on key controller. If we do this before things might be missing from GameInstance, causing
+	//	strange behaviour
+	this->keyController->setGameInstance(this);
 
 	if (tempFactory)
 	{
@@ -205,7 +225,7 @@ bool GameInstance::run()
 			if (e.type == SDL_QUIT)
 				break;
 		}
-
+		/*
 		//	Handle keys
 		const Uint8*	currentKeyState = SDL_GetKeyboardState(NULL);
 
@@ -356,11 +376,14 @@ bool GameInstance::run()
 
 
 		}
+		*/
 
 		//	const Uint8* keyState = SDL_GetKeyboardState(NULL);
 	//	if (keyState[SDLK_w])
 	//		this->map.getCamera()->move(0, -1);
 		
+		this->keyController->checkState();
+
 		//	Clear renderer
 		SDL_RenderClear(this->instanceRenderer);
 		this->moveObjects();
@@ -385,6 +408,13 @@ bool GameInstance::exit()
 
 	//	Delete map
 	delete this->map;
+
+	//	Delete key controller
+	delete this->keyController;
+
+	//	Delete factory
+	if (this->factory != nullptr)
+		delete this->factory;
 
 	this->exited = true;
 	return true;
@@ -445,4 +475,9 @@ Factory*		GameInstance::getFactory()
 void			GameInstance::setFactory(Factory* factory)
 {
 	this->factory = factory;
+}
+
+Map*			GameInstance::getMap()
+{
+	return this->map;
 }

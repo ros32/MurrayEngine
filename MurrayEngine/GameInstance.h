@@ -20,8 +20,10 @@
 #include	"JumpAction.h"
 #include	"MoveAction.h"
 #include	"Factory.h"
+#include	"KeyController.h"
 
 class Factory;
+class KeyController;
 
 struct KeyState
 {
@@ -76,12 +78,16 @@ public:
 	bool			isRun();
 	bool			isExited();
 
+	Map*			getMap();
 	void			setMap(Map* map);
 
-	TextureAsset*				getTextureAsset(std::string name);
+	TextureAsset*		getTextureAsset(std::string name);
 
-	void			setFactory(Factory* factory);
-	Factory*		getFactory();
+	void				setFactory(Factory* factory);
+	Factory*			getFactory();
+
+	KeyController*		getKeyController();
+	void				setKeyController(KeyController* keyController);
 
 private:
 
@@ -115,6 +121,8 @@ private:
 	KeyState		keyState;
 
 	Factory*		factory;
+
+	KeyController*	keyController;
 
 };
 

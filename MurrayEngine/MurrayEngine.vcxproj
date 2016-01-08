@@ -26,6 +26,7 @@
     <ClInclude Include="GUIObject.h" />
     <ClInclude Include="InvalidAsset.h" />
     <ClInclude Include="JumpAction.h" />
+    <ClInclude Include="KeyController.h" />
     <ClInclude Include="Map.h" />
     <ClInclude Include="MapFactory.h" />
     <ClInclude Include="MoveAction.h" />
@@ -51,6 +52,7 @@
     <ClCompile Include="GUIObject.cpp" />
     <ClCompile Include="InvalidAsset.cpp" />
     <ClCompile Include="JumpAction.cpp" />
+    <ClCompile Include="KeyController.cpp" />
     <ClCompile Include="Map.cpp" />
     <ClCompile Include="MapFactory.cpp" />
     <ClCompile Include="MoveAction.cpp" />
