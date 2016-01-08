@@ -110,7 +110,7 @@ public:
 
 	GUI*				getGUI();
 
-	void				setGUI(GUI* gui);
+	//void				setGUI(GUI* gui);
 
 
 
@@ -134,7 +134,7 @@ private:
 	//	Focus type of Camera
 	CameraFocus			focusType;
 
-	GUI*				gui;
+	GUI					gui;
 
 };
 

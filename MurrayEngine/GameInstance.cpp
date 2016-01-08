@@ -392,6 +392,7 @@ void GameInstance::moveObjects()
 void GameInstance::renderObjects()
 {
 	this->map->render();
+	this->map->getCamera()->getGUI()->render();
 }
 
 TextureAsset*	GameInstance::getTextureAsset(std::string name)

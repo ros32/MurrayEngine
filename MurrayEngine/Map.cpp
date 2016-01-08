@@ -4,7 +4,7 @@
 Map::Map()
 {
 	this->tileSize;
-	this->camera;
+	this->camera = new Camera();
 	this->tiles;
 	this->objects;
 

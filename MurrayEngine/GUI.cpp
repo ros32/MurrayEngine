@@ -17,7 +17,7 @@ std::vector<GUIObject*>	GUI::getGUIObjects()
 
 void	GUI::addObject(GUIObject* object)
 {
-	if (std::find(this->guiObjects.begin(), this->guiObjects.end(), object) != this->guiObjects.end())
+	if (std::find(this->guiObjects.begin(), this->guiObjects.end(), object) == this->guiObjects.end())
 	{
 		this->guiObjects.push_back(object);
 
@@ -51,9 +51,12 @@ void	GUI::removeObject(GUIObject* object)
 
 void	GUI::render()
 {
-	for (auto object : this->guiObjects)
+	if (this->guiObjects.size() != 0)
 	{
-		if (object != nullptr)
-			object->getTexture()->render(object->getPosition().x, object->getPosition().x, NULL);
+		for (GUIObject* object : this->guiObjects)
+		{
+			if (object != nullptr)
+				object->getTexture()->render(object->getPosition().x, object->getPosition().x, NULL);
+		}
 	}
 }

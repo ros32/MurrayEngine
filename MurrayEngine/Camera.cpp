@@ -6,7 +6,7 @@ Camera::Camera()
 	this->height = 0;
 	this->width = 0;
 	this->focusType = OBJECT_FOCUS;
-	this->gui = nullptr;
+	this->gui;
 }
 
 Camera::Camera(SDL_Window* window)
@@ -63,10 +63,5 @@ CameraFocus	Camera::getFocusType()
 
 GUI*		Camera::getGUI()
 {
-	return this->gui;
-}
-
-void		Camera::setGUI(GUI* gui)
-{
-	this->gui = gui;
+	return &this->gui;
 }
