@@ -9,7 +9,7 @@
 #define	_DEBUG_FRAME_LIMIT		100
 #define	_DEBUG_START_POS	=	{121, 333};
 
-int main(int, char** argv)
+int main66(int, char** argv)
 {
 	Configuration mainConfig = Configuration("main.cfg");
 
