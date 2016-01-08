@@ -35,6 +35,9 @@
     <None Include="WitchSpritesheet.cfg">
       <Filter>Resource Files</Filter>
     </None>
+    <None Include="keys.cfg">
+      <Filter>Resource Files</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Image Include="spritesheet.bmp">

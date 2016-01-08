@@ -15,6 +15,7 @@
 #include	"GameInstance.h"
 
 class GameInstance;
+class KeyController;
 
 class Factory
 {
@@ -28,6 +29,7 @@ public:
 	GenericObject*		createObject(Configuration config);
 	Map*				createMap(Configuration config);
 	TextureAsset*		createAsset(Configuration configuration);
+	KeyController*		createKeyController(Configuration configuration);
 
 private:
 

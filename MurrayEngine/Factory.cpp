@@ -126,3 +126,18 @@ TextureAsset*	Factory::createAsset(Configuration configuration)
 	returnAsset->setTextureNameIndex(nameIndex);
 	return returnAsset;
 }
+
+KeyController*	Factory::createKeyController(Configuration configuration)
+{
+	//	Error reading configuration, return empty controller
+	if (configuration.getProperty("NAME", "UNKNOWN") == "UNKNOWN")
+	{
+		return new KeyController();
+
+		std::string output = "Invalid configuration file for key controller. Returning empty key controller.";
+		SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, output.c_str());
+	}
+
+	return new KeyController();
+
+}
