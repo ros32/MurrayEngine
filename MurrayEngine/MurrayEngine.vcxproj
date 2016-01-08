@@ -16,6 +16,7 @@
     <ClInclude Include="Asset.h" />
     <ClInclude Include="Configuration.h" />
     <ClInclude Include="DamageAction.h" />
+    <ClInclude Include="Factory.h" />
     <ClInclude Include="FrameLimiter.h" />
     <ClInclude Include="GameInstance.h" />
     <ClInclude Include="GenericObject.h" />
@@ -40,6 +41,7 @@
     <ClCompile Include="AnimatedObject.cpp" />
     <ClCompile Include="Configuration.cpp" />
     <ClCompile Include="DamageAction.cpp" />
+    <ClCompile Include="Factory.cpp" />
     <ClCompile Include="FrameLimiter.cpp" />
     <ClCompile Include="GameInstance.cpp" />
     <ClCompile Include="GenericObject.cpp" />

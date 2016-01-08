@@ -19,6 +19,7 @@ GameInstance::GameInstance(SDL_Window* window, SDL_Renderer* renderer, Configura
 	this->configurations;
 	this->map;
 	this->keyState;
+	this->factory = nullptr;
 }
 
 GameInstance::~GameInstance()
@@ -28,6 +29,24 @@ GameInstance::~GameInstance()
 
 bool GameInstance::initialize()
 {
+	bool tempFactory = false;
+
+	if (this->factory == nullptr)
+	{
+		tempFactory = true;
+		this->factory = new Factory();
+		this->factory->setWindow(this->instanceWindow);
+
+		std::string output = "No Factory defined, creating default temporary.";
+		SDL_LogInfo(SDL_LOG_CATEGORY_APPLICATION, output.c_str());
+	}
+	else
+	{
+		std::string output = "Using defined factory";
+		SDL_LogDebug(SDL_LOG_CATEGORY_APPLICATION, output.c_str());
+	}
+
+	this->factory->setGameInstance(this);
 
 	std::vector<Configuration>	configurations;
 	bool	mapLoaded = false;
@@ -60,8 +79,8 @@ bool GameInstance::initialize()
 
 		if (type == "TextureAsset")
 		{
-			TextureAssetFactory assetFactory = TextureAssetFactory(this->instanceRenderer);
-			TextureAsset* tempAsset = assetFactory.createAsset(config);
+			//TextureAssetFactory assetFactory = TextureAssetFactory(this->instanceRenderer);
+			TextureAsset* tempAsset = this->factory->createAsset(config);
 			//	HACK: Create class InvalidAsset and use for invalid assets
 			//if (tempAsset.getType() != "InvalidAsset")
 			//{
@@ -84,10 +103,10 @@ bool GameInstance::initialize()
 	{
 		if (key.second.getProperty("TYPE", "UNKNOWN") == "Map")
 		{
-			MapFactory mapFactory = MapFactory(this->instanceWindow, this->instanceRenderer, this);
+			//MapFactory mapFactory = MapFactory(this->instanceWindow, this->instanceRenderer, this);
 			if (!mapLoaded)
 			{
-				this->setMap(mapFactory.createMap(key.second));
+				this->setMap(this->factory->createMap(key.second));
 				GenericObject* tempObject = new GenericObject("test001", { 100, 100 }, Texture(this->getTextureAsset("tileset"), "TreeM"), 1.0, 1.0, 5, NORTH, true);
 				this->map->addObject(tempObject);
 				this->map->setPlayerCharacter(tempObject);
@@ -157,9 +176,18 @@ bool GameInstance::initialize()
 
 
 
+	if (tempFactory)
+	{
+		delete this->factory;
+		this->factory = nullptr;
+
+		std::string output = "Removing temporary factory";
+		SDL_LogInfo(SDL_LOG_CATEGORY_APPLICATION, output.c_str());
+	}
 
 	this->initialized = true;
 	return true;
+
 }
 
 bool GameInstance::run()
@@ -407,4 +435,14 @@ TextureAsset*	GameInstance::getTextureAsset(std::string name)
 void			GameInstance::setMap(Map* map)
 {
 	this->map = map;
+}
+
+Factory*		GameInstance::getFactory()
+{
+	return this->factory;
+}
+
+void			GameInstance::setFactory(Factory* factory)
+{
+	this->factory = factory;
 }

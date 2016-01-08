@@ -19,6 +19,9 @@
 #include    "ActionControl.h"
 #include	"JumpAction.h"
 #include	"MoveAction.h"
+#include	"Factory.h"
+
+class Factory;
 
 struct KeyState
 {
@@ -77,6 +80,9 @@ public:
 
 	TextureAsset*				getTextureAsset(std::string name);
 
+	void			setFactory(Factory* factory);
+	Factory*		getFactory();
+
 private:
 
 	///	<summary>
@@ -107,6 +113,8 @@ private:
 	Map*			map;
 
 	KeyState		keyState;
+
+	Factory*		factory;
 
 };
 
