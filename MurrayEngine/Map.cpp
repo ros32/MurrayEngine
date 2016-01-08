@@ -13,7 +13,7 @@ Map::Map()
 Map::Map(SDL_Window* window, SDL_Renderer* renderer)
 {
 	this->tileSize;
-	this->camera = Camera(window);
+	this->camera = new Camera(window);
 	this->tiles;
 	this->objects;
 	
@@ -21,7 +21,7 @@ Map::Map(SDL_Window* window, SDL_Renderer* renderer)
 
 Map::~Map()
 {
-
+	delete this->camera;
 }
 
 
@@ -81,13 +81,13 @@ void Map::render()
 		for (auto object : vectorX)
 		{
 
-			if ((object.getCurrentPosition().x >= (this->camera.getPosition().x - object.getTexture().asset->getCellSize()) && object.getCurrentPosition().x <= (this->camera.getPosition().x + this->camera.getWidth() + object.getTexture().asset->getCellSize())) &&
-				(object.getCurrentPosition().y >= (this->camera.getPosition().y - object.getTexture().asset->getCellSize()) && object.getCurrentPosition().y <= (this->camera.getPosition().y + this->camera.getHeight() + object.getTexture().asset->getCellSize())))
+			if ((object.getCurrentPosition().x >= (this->camera->getPosition().x - object.getTexture().asset->getCellSize()) && object.getCurrentPosition().x <= (this->camera->getPosition().x + this->camera->getWidth() + object.getTexture().asset->getCellSize())) &&
+				(object.getCurrentPosition().y >= (this->camera->getPosition().y - object.getTexture().asset->getCellSize()) && object.getCurrentPosition().y <= (this->camera->getPosition().y + this->camera->getHeight() + object.getTexture().asset->getCellSize())))
 			{
 				//	Object is within camera view
 
 				//	Render object with camera offset
-				object.render(object.getCurrentPosition().x - this->camera.getPosition().x, object.getCurrentPosition().y - this->camera.getPosition().y);
+				object.render(object.getCurrentPosition().x - this->camera->getPosition().x, object.getCurrentPosition().y - this->camera->getPosition().y);
 			}
 
 		}
@@ -97,13 +97,13 @@ void Map::render()
 	for (auto object : this->objects)
 	{
 		//	TODO: Optimize this
-		if ((object->getCurrentPosition().x >= (this->camera.getPosition().x - object->getTexture().asset->getCellSize()) && object->getCurrentPosition().x <= (this->camera.getPosition().x + this->camera.getWidth() + object->getTexture().asset->getCellSize())) &&
-			(object->getCurrentPosition().y >= (this->camera.getPosition().y - object->getTexture().asset->getCellSize()) && object->getCurrentPosition().y <= (this->camera.getPosition().y + this->camera.getHeight() + object->getTexture().asset->getCellSize())))
+		if ((object->getCurrentPosition().x >= (this->camera->getPosition().x - object->getTexture().asset->getCellSize()) && object->getCurrentPosition().x <= (this->camera->getPosition().x + this->camera->getWidth() + object->getTexture().asset->getCellSize())) &&
+			(object->getCurrentPosition().y >= (this->camera->getPosition().y - object->getTexture().asset->getCellSize()) && object->getCurrentPosition().y <= (this->camera->getPosition().y + this->camera->getHeight() + object->getTexture().asset->getCellSize())))
 		{
 			//	Object is within camera view
 
 			//	Render object with camera offset
-			object->render(object->getCurrentPosition().x - this->camera.getPosition().x, object->getCurrentPosition().y - this->camera.getPosition().y);
+			object->render(object->getCurrentPosition().x - this->camera->getPosition().x, object->getCurrentPosition().y - this->camera->getPosition().y);
 		}
 	}
 
@@ -188,7 +188,7 @@ void Map::move()
 	
 Camera*		Map::getCamera()
 {
-	return &this->camera;
+	return this->camera;
 }
 
 GenericObject*	Map::getPlayerCharacter()

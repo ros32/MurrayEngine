@@ -61,6 +61,8 @@ public:
 
 	Camera*						getCamera();
 
+	void						setCamera(Camera* camera);
+
 	GenericObject*				getPlayerCharacter();
 	void						setPlayerCharacter(GenericObject* playerCharacter);
 
@@ -74,7 +76,7 @@ private:
 
 	int tileSize;
 
-	Camera camera;
+	Camera*											camera;
 
 	std::vector<std::vector<Tile>>					tiles;
 	std::vector<GenericObject*>						objects;
