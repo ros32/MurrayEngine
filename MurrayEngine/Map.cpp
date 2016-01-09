@@ -160,16 +160,16 @@ void Map::move()
 					{
 	//					SDL_Log(otherObject->getId().c_str());
 
-						if (genericObject->collideBox(otherObject)){
-							while (genericObject->collideBox(otherObject))
+						//if (genericObject->collideBox(otherObject))
+						//{
+							while (genericObject->collidePixel(otherObject))
 							{
-
+							//	SDL_Log("leaving collidePixel-Check, calling reverseMove");
 								genericObject->reverseMove();
 
 							}
-							// genericObject.do (new CollisionAction (otherObject));
-							// genericObject.bounce (otherObject);
-						}
+						
+						//}
 
 						
 					}

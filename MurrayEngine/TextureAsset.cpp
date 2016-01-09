@@ -13,7 +13,7 @@ TextureAsset::TextureAsset(SDL_Renderer* renderer, const char* filePath, unsigne
 	this->width = width;
 	this->offset = offset;
 	this->colorKey = colorKey;
-
+	this->surface;
 	//	Initialize indices
 	this->index;
 	this->nameIndex;
@@ -57,7 +57,10 @@ TextureAsset::~TextureAsset()
 void			TextureAsset::loadFile(const char* filePath)
 {
 	//	Load texture using SDL_image
-	this->texture = IMG_LoadTexture(this->renderer, filePath);
+	this->surface = IMG_Load(this->filePath);
+	this->texture = SDL_CreateTextureFromSurface(this->renderer, surface);
+
+//	this->texture = IMG_LoadTexture(this->renderer, filePath);
 	if (this->texture == nullptr)
 		SDL_LogError(SDL_LOG_CATEGORY_VIDEO, SDL_GetError());
 	else
@@ -94,7 +97,7 @@ void			TextureAsset::loadText(const char* filePath, unsigned int fontSize, std::
 			this->cellSize = textSurface->w;
 		}
 
-		SDL_FreeSurface(textSurface);
+//		SDL_FreeSurface(textSurface);
 	}
 }
 
@@ -188,7 +191,7 @@ SDL_Rect*	TextureAsset::getSourceRect(std::string name)
 		std::string output = "Source SDL_Rect was not found for name \"" + name + "\", returning default (0,0)";
 		SDL_LogWarn(SDL_LOG_CATEGORY_APPLICATION, output.c_str());
 		return this->getSourceRect(0, 0);
-	}
+}
 }
 
 void		TextureAsset::setTextureNameIndex(std::map<std::string, Position> map)
@@ -236,4 +239,9 @@ int		TextureAsset::getWidth()
 int		TextureAsset::getHeight()
 {
 	return this->height;
+}
+
+SDL_Surface* TextureAsset::getSurface()
+{
+	return this->surface;
 }

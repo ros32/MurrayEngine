@@ -78,6 +78,7 @@ bool GenericObject::getIsCollidable()
 
 void GenericObject::reverseMove()
 {
+	SDL_Log("Moving back through reverseMove");
 		//North 
 		if (this->orientation == 0){ this->currentPosition.y += 1; }
 		//East 
@@ -106,24 +107,18 @@ void GenericObject::move()
 
 bool GenericObject::collideBox(GenericObject* objectB)
 {
+	
 	bool hit = true;
 	
-	//TODO: Implement and use textureWidth and Size instead of cellSize
-	textureWidth = texture.asset->getCellSize();
-	textureHeight = texture.asset->getCellSize();
-
-	int otherTextureWidth = objectB->texture.asset->getCellSize();
-	int otherTextureHeight = objectB->texture.asset->getCellSize();
-
 	int left = currentPosition.x;
-	int right = currentPosition.x + textureWidth;
+	int right = currentPosition.x + this->texture.asset->getWidth();
 	int bottom = currentPosition.y;
-	int top = currentPosition.y + textureHeight;
+	int top = currentPosition.y + this->texture.asset->getHeight();
 
 	int otherLeft = objectB->currentPosition.x;
-	int otherRight = objectB->currentPosition.x + otherTextureWidth;
+	int otherRight = objectB->currentPosition.x + objectB->texture.asset->getWidth();
 	int otherBottom = objectB->currentPosition.y;
-	int otherTop = objectB->currentPosition.y + otherTextureHeight;
+	int otherTop = objectB->currentPosition.y + objectB->texture.asset->getHeight();
 
 	//Checks if there is a distance between the current object sides and the other object sides.
 	if (right < otherLeft){
@@ -138,22 +133,147 @@ bool GenericObject::collideBox(GenericObject* objectB)
 	if (bottom > otherTop){
 		hit = false;
 	} 
+
 	if (hit){
-//		SDL_Log("Hit is true");
-	}
-	else{
-//		SDL_Log("Hit is false");
+		SDL_Log("Hit in CollideBox is true");
 	}
 	
-		return hit;
+		return hit;	
+}
+
+bool GenericObject::readAlpha(SDL_Surface* surface, int x, int y)
+{	
+	//Nån annans kod, för testning
+	int bpp = surface->format->BytesPerPixel;
+    Uint8* p = (Uint8*)surface->pixels + y * surface->pitch + x ;
+    Uint32 pixelColor;
+     
+    switch(bpp)
+    {
+	case(1) :
+
+		SDL_Log("Bpp is 1");
+            pixelColor = *p;
+            break;
+        case(2):
+			SDL_Log("Bpp is 2");
+            pixelColor = *(Uint16*)p;
+            break;
+        case(3):
+			SDL_Log("Bpp is 3");
+            if(SDL_BYTEORDER == SDL_BIG_ENDIAN)
+                pixelColor = p[0] << 16 | p[1] << 8 | p[2];
+            else
+                pixelColor = p[0] | p[1] << 8 | p[2] << 16;
+            break;
+        case(4):
+			SDL_Log("Bpp is 4");
+            pixelColor = *(Uint32*)p;
+            break;
+		default:
+			break;
+    }
+     
+ //   Uint8 red, green, blue, alpha;
+    SDL_GetRGBA(pixelColor, surface->format, &red, &green, &blue, &alpha);
+ 
+	return alpha > 200;
+//	return alpha;
+
 	
+
+	//-------------------------------
+
+
+	/*
+	SDL_Log("Assering alpha");
+	
+	SDL_PixelFormat* pixelFormat = surface->format;
+	int pixelByte = pixelFormat->BytesPerPixel;
+
+	Uint8* pixel = (Uint8*)surface->pixels + y * surface->pitch + x * pixelByte;
+	
+	Uint32 pixelData = *pixel;
+
+	// get the values of RGBA
+	SDL_GetRGBA(pixelData, pixelFormat, &red, &green, &blue, &alpha);
+
+	if (alpha < 1){
+		SDL_Log("Pixel is transparent");
+	}
+	else {
+		SDL_Log("Pixel is not transparent");
+	}
+
+	return alpha;
+	
+	
+	*/
+
+
 }
 
 bool GenericObject::collidePixel(GenericObject* objectB)
 {
-	//	should only be run when collideBox is true
 
-	return false;
+	if (collideBox(objectB)){
+
+		SDL_Log("checking collision between:");
+		SDL_Log(this->getId().c_str());
+		SDL_Log(objectB->getId().c_str());
+
+		//Map positions of rectangles for this and comparing object
+		int axLeft = this->currentPosition.x;
+		int ayTop = this->currentPosition.y;
+		int axRight = this->currentPosition.x + this->texture.asset->getWidth() -1;
+		int ayBottom = this->currentPosition.y + this->texture.asset->getHeight() -1;
+
+		int bxLeft = objectB->currentPosition.x;
+		int byTop = objectB->currentPosition.y;
+		int bxRight = objectB->currentPosition.x + objectB->texture.asset->getWidth() -1;
+		int byBottom = objectB->currentPosition.y + objectB->texture.asset->getHeight() -1;
+
+		//Get the values of the intersected rectangle where our pixel collision check will occur
+		int left	= std::max(axLeft, bxLeft);
+		int right	= std::min(axRight, bxRight);
+		int top		= std::max(ayTop, byTop);
+		int bottom	= std::min(ayBottom, byBottom);
+
+		//Get the surfaces we need to pass to readAlpha
+		SDL_Surface* SurfaceA = this->texture.asset->getSurface();
+		SDL_Surface* SurfaceB = objectB->texture.asset->getSurface();
+
+
+		if (SurfaceA == nullptr || SurfaceB == nullptr)
+		{
+			SDL_Log(SDL_GetError());
+		}
+
+		//Loop through the pixels of the intersection
+		for (int yAxis = top; yAxis < bottom; yAxis++)
+		{
+			for (int xAxis = left; xAxis < right; xAxis++)
+			{
+				// Check if the current pixel contains color by calling readAlpha
+				bool alphaA = readAlpha(SurfaceA, xAxis - axLeft, yAxis - ayTop);
+				bool alphaB = readAlpha(SurfaceB, xAxis - bxLeft, yAxis - byTop);
+				/*
+					if (readAlpha(SurfaceA, xAxis - axLeft , yAxis - ayTop )  
+					&& readAlpha(SurfaceB, xAxis - bxLeft , yAxis  - byTop ) )
+				{
+				*/
+				if (alphaA && alphaB)
+				{					
+					SDL_Log("alpha-check returned True");
+					return true;
+				}
+				else{
+					SDL_Log("alpha-check returned False");
+					return false;
+				}
+			}			
+		}
+	}
 }
 
 Texture			GenericObject::getTexture()

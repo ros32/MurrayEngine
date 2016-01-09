@@ -81,7 +81,7 @@ bool GameInstance::initialize()
 				this->configurations.insert(std::map<std::string, Configuration>::value_type(newConfig.getProperty("NAME", "NOTFOUND"), newConfig));
 
 			if (newConfig.getProperty("NAME", "NOTFOUND") == "WitchSpritesheet"){
-				SDL_Log("WitchSpriteSheet is loaded");
+				SDL_Log("WitchSpriteSheet Loaded");
 			}
 		}
 
@@ -123,19 +123,40 @@ bool GameInstance::initialize()
 			if (!mapLoaded)
 			{
 				this->setMap(this->factory->createMap(key.second));
-				GenericObject* tempObject = new GenericObject("test001", { 100, 100 }, Texture(this->getTextureAsset("tileset"), "TreeM"), 1.0, 1.0, 5, NORTH, true);
-				this->map->addObject(tempObject);
-				this->map->setPlayerCharacter(tempObject);
+				
+//				GenericObject* tempObject = new GenericObject("test001", { 100, 100 }, Texture(this->getTextureAsset("tileset"), "TreeM"), 1.0, 1.0, 5, NORTH, true);
+//				this->map->addObject(tempObject);
+//				this->map->setPlayerCharacter(tempObject);	
+
+				std::vector<Texture> witchCraft;
+				witchCraft.push_back(Texture(this->getTextureAsset("WitchSpritesheet"), "WalkingFront0"));
+				witchCraft.push_back(Texture(this->getTextureAsset("WitchSpritesheet"), "WalkingFront1"));
+				witchCraft.push_back(Texture(this->getTextureAsset("WitchSpritesheet"), "WalkingFront2"));
+				witchCraft.push_back(Texture(this->getTextureAsset("WitchSpritesheet"), "WalkingFront3"));
+
+			
+				AnimatedObject* witchPlayerObject = new AnimatedObject("test006", { 100, 250 }, Animation(witchCraft, 200), 1.0, 1.0, 3, SOUTH, true);
+
+				this->map->addObject(witchPlayerObject);
+				this->map->setPlayerCharacter(witchPlayerObject);
+
+				
 				GenericObject* anotherObject = new GenericObject("test002", { 200, 200 }, Texture(this->getTextureAsset("tileset"), "Brick"), 1.0, 1.0, 0, NONE, true);
 				this->map->addObject(anotherObject);
+				
+				
+
 				std::vector<Texture> textures;
 				textures.push_back(Texture(this->getTextureAsset("tileset"), "TreeD"));
 				textures.push_back(Texture(this->getTextureAsset("tileset"), "TreeM"));
 				textures.push_back(Texture(this->getTextureAsset("tileset"), "TreeL"));
-				AnimatedObject* animatedObject = new AnimatedObject("test002", { 250, 250 }, Animation(textures, 200), 1.0, 1.0, 0, NONE, true);
+
+
+				AnimatedObject* animatedObject = new AnimatedObject("test003", { 250, 250 }, Animation(textures, 200), 1.0, 1.0, 0, NONE, true);
 
 				this->map->addObject(animatedObject);
 
+				
 				std::vector<Texture> witchTextures;
 				witchTextures.push_back(Texture(this->getTextureAsset("WitchSpritesheet"), "CauldronLeft0"));
 				witchTextures.push_back(Texture(this->getTextureAsset("WitchSpritesheet"), "CauldronLeft1"));
@@ -175,7 +196,8 @@ bool GameInstance::initialize()
 				witchTextures.push_back(Texture(this->getTextureAsset("WitchSpritesheet"), "CauldronLeft14"));
 				witchTextures.push_back(Texture(this->getTextureAsset("WitchSpritesheet"), "CauldronLeft0"));
 
-				AnimatedObject* witchObject = new AnimatedObject("test003", { 320, 120 }, Animation(witchTextures, 200),1.0, 1.0, 0, SOUTH, true);
+
+				AnimatedObject* witchObject = new AnimatedObject("test004", { 320, 320 }, Animation(witchTextures, 200),1.0, 1.0, 0, NONE, true);
 				this->map->addObject(witchObject);
 
 
@@ -340,7 +362,7 @@ bool GameInstance::run()
 		{
 
 			MoveAction *move = new MoveAction(this->map->getPlayerCharacter(), map, "EAST");
-			ActionControl *actionControl = new ActionControl();			
+			ActionControl *actionControl = new ActionControl();
 
 			if (this->map->getCamera() != nullptr)
 			{

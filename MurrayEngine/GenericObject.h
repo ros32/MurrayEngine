@@ -6,6 +6,9 @@
 #include	"TextureAsset.h"
 #include	"Timer.h"
 #include	"Physics.h"
+#include	<math.h>
+#include	"algorithm"
+#include	"assert.h"
 
 enum Orientation
 {
@@ -233,13 +236,15 @@ private:
 	//	Timestamp of last movement
 	Uint32			lastMove;
 
-	//	Height and witdth of texture
-	int				textureWidth, 
-					textureHeight;
+	//	Values of pixel color
+	Uint8 red, green, blue, alpha;
 
 	float			velocity;
 	float			force;
 	float			mass;
+
+	bool readAlpha(SDL_Surface* surface, int x, int y);
+	
 
 };
 

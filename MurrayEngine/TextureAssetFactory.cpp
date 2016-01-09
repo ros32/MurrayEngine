@@ -33,7 +33,8 @@ TextureAsset*	TextureAssetFactory::createAsset(Configuration configuration)
 		configuration.getProperty("COLOR_G", 255),
 		configuration.getProperty("COLOR_B", 255)
 	};
-
+	
+	
 	TextureAsset* returnAsset = new TextureAsset(this->instanceRenderer, filePath.c_str(), cellSize, offset, color);
 
 	//	Create texture name mapping from config

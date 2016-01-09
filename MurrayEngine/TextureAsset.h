@@ -36,7 +36,7 @@ struct Texture
 class TextureAsset : public Asset
 {
 private:
-//	SDL_Surface*			surface;
+	SDL_Surface*			surface;
 	SDL_Texture*			texture;
 	SDL_Renderer*			renderer;
 	const char*				filePath;
@@ -61,6 +61,7 @@ public:
 	SDL_Texture*	getTexture();
 	SDL_Rect*		getSourceRect(unsigned int x, unsigned int y);
 	SDL_Rect*		getSourceRect(std::string name);
+	SDL_Surface*	getSurface();
 
 	void			loadFile(const char* filePath);
 	void			loadText(const char* filePath, unsigned int fontSize, std::string text, SDL_Color color);
@@ -79,6 +80,7 @@ public:
 	void	render(int x, int y, SDL_Rect* clip);
 
 	void	render(int x, int y, SDL_Rect* clip, double angle, SDL_Point* center, SDL_RendererFlip flip);
+
 };
 
 #endif // !TEXTURE_ASSET_H
