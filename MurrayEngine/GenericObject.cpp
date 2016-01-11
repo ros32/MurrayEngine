@@ -147,6 +147,7 @@ bool GenericObject::readAlpha(SDL_Surface* surface, int x, int y)
 	SDL_Log(Output.c_str());
 
 	//Nån annans kod, för testning
+	
 	int bpp = surface->format->BytesPerPixel;
     Uint8* p = (Uint8*)surface->pixels + y * surface->pitch + x * bpp;
     Uint32 pixelColor;
@@ -187,63 +188,60 @@ bool GenericObject::readAlpha(SDL_Surface* surface, int x, int y)
 		SDL_Log("Alpha is false");
 	}
 
-	return alpha > 200;
+	return alpha > 1;
 //	return alpha;
-
+	
+	
+	
 	
 
 	//-------------------------------
 
-
-	/*
-	SDL_Log("Assering alpha");
+//	SDL_Log("Assering alpha");
 	
+	/*
 	SDL_PixelFormat* pixelFormat = surface->format;
 	int pixelByte = pixelFormat->BytesPerPixel;
 
 	Uint8* pixel = (Uint8*)surface->pixels + y * surface->pitch + x * pixelByte;
-	
+
 	Uint32 pixelData = *pixel;
 
 	// get the values of RGBA
 	SDL_GetRGBA(pixelData, pixelFormat, &red, &green, &blue, &alpha);
 
 	if (alpha < 1){
-		SDL_Log("Pixel is transparent");
+	SDL_Log("Pixel is transparent");
 	}
 	else {
-		SDL_Log("Pixel is not transparent");
+	SDL_Log("Pixel is not transparent");
 	}
 
 	return alpha;
 	
-	
 	*/
+
+	
+	
+	
 
 
 }
 
 bool GenericObject::collidePixel(GenericObject* objectB)
 {
-
 	if (!collideBox(objectB))
 	{
 		return false;
 	}
-	/*
-	SDL_Log("checking collision between:");
-	SDL_Log(this->getId().c_str());
-	SDL_Log(objectB->getId().c_str());
-	
-	*/
 
-
-	//Map positions of rectangles for this and comparing object
+	//Map positions of rectangles for objectA (this)
 	int axLeft = this->currentPosition.x;
 	int ayTop = this->currentPosition.y;
 	int axRight = this->currentPosition.x + this->texture.asset->getWidth() - 1;
 	int ayBottom = this->currentPosition.y + this->texture.asset->getHeight() - 1;
-
+	
+	//Map positions of rectangles for objectB
 	int bxLeft = objectB->currentPosition.x;
 	int byTop = objectB->currentPosition.y;
 	int bxRight = objectB->currentPosition.x + objectB->texture.asset->getWidth() - 1;
@@ -255,17 +253,52 @@ bool GenericObject::collidePixel(GenericObject* objectB)
 	int top = std::max(ayTop, byTop);
 	int bottom = std::min(ayBottom, byBottom);
 
-	//Get the surfaces we need to pass to readAlpha
-	SDL_Surface* SurfaceA = this->texture.asset->getSurface();
-	SDL_Surface* SurfaceB = objectB->texture.asset->getSurface();
+	SDL_Rect* aRect = this->texture.asset->getSourceRect(this->texture.name);
+	SDL_Rect* bRect = objectB->texture.asset->getSourceRect(objectB->texture.name);
 
-	bool alphaA;
-	bool alphaB;
+	SDL_Rect targetRectA;
+	SDL_Rect targetRectB;
+
+	targetRectA.x = 0;
+	targetRectA.y = 0;
+	targetRectB.x = 0;
+	targetRectB.y = 0;
+
+	//Get the surfaces we need to pass to readAlpha
+	SDL_Surface* orgSurfaceA = this->texture.asset->getSurface();
+	SDL_Surface* orgSurfaceB = objectB->texture.asset->getSurface();
+
+	//Create destination surfaces for the blit;
+	SDL_Surface* SurfaceA;
+	SDL_Surface* SurfaceB;
+
+	if (SDL_BYTEORDER == SDL_BIG_ENDIAN){
+		rmask = 0xff000000;
+		gmask = 0x00ff0000;
+		bmask = 0x0000ff00;
+		amask = 0x000000ff;
+	}
+	else{
+		rmask = 0x000000ff;
+		gmask = 0x0000ff00;
+		bmask = 0x00ff0000;
+		amask = 0xff000000;
+	}
+	
+	SurfaceA = SDL_CreateRGBSurface(NULL, this->texture.asset->getWidth(), this->texture.asset->getHeight(), 32, rmask, gmask, bmask, amask);
+	SurfaceB = SDL_CreateRGBSurface(NULL, objectB->texture.asset->getWidth(), objectB->texture.asset->getHeight(), 32, rmask, gmask, bmask, amask);
+
+	SDL_BlitSurface(orgSurfaceA, aRect, SurfaceA, &targetRectA);
+	SDL_BlitSurface(orgSurfaceB, bRect, SurfaceB, &targetRectB);
 
 	if (SurfaceA == nullptr || SurfaceB == nullptr)
 	{
 		SDL_Log(SDL_GetError());
 	}
+	
+
+	bool alphaA;
+	bool alphaB;
 
 	//Loop through the pixels of the intersection
 	for (int yAxis = top; yAxis <= bottom; yAxis++)
@@ -273,32 +306,39 @@ bool GenericObject::collidePixel(GenericObject* objectB)
 		for (int xAxis = left; xAxis <= right; xAxis++)
 		{
 
-			// Check if the current pixel contains color by calling readAlpha
+			/*
+			alphaA = readAlpha(SurfaceA, xAxis - axLeft, (yAxis + 400) - ayTop);
+			alphaB = readAlpha(SurfaceB, xAxis - bxLeft, yAxis - byTop);
+			
+			*/
 
+			//Test output strings
 			std::string output1 = "Checking alpha for: " + this->getId();
 			std::string output2 = "Checking alpha for: " + objectB->getId();
 
-			//Tests
-			SDL_Log(output1.c_str());
-			alphaA = readAlpha(SurfaceA, xAxis - axLeft, (yAxis + 400) - ayTop);
-			SDL_Log(output2.c_str());
+			// Check if the current pixel contains color by calling readAlpha
+//			SDL_Log(output1.c_str());
+			alphaA = readAlpha(SurfaceA, xAxis - axLeft, yAxis - ayTop);
+//			SDL_Log(output2.c_str());
 			alphaB = readAlpha(SurfaceB, xAxis - bxLeft, yAxis - byTop);
 
 			if (alphaA && alphaB)
 			{
-				SDL_Log("alpha-check returned True for both objects");
+//				SDL_Log("alpha-check returned True for both objects");
+				this->reverseMove();
 				return true;
 			}
 			if ((yAxis == bottom) && (xAxis == right))
 			{
 				if (!alphaA && !alphaB);
-				SDL_Log("No hit was registered");
-				return false;
-
+					return false;
+				
+					
+				//					SDL_Log("No hit was registered");
 			}
 
-			}	
-		}
+		}	
+	}
 		
 	
 }

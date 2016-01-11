@@ -239,6 +239,8 @@ private:
 	//	Values of pixel color
 	Uint8 red, green, blue, alpha;
 
+	Uint32 rmask, gmask, bmask, amask;
+
 	float			velocity;
 	float			force;
 	float			mass;

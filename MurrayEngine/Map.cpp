@@ -138,44 +138,29 @@ void Map::removeObject(GenericObject* object)
 }
 
 void Map::move()
-{
-	
+{	
 	for (auto genericObject : objects)
 	{
 		if ((genericObject->getTargetPosition().x != 0) || (genericObject->getTargetPosition().y != 0))
 		{
-
-			 genericObject->move();
-		//	 SDL_Log(genericObject->getId().c_str());
-			 
+			 genericObject->move();			 
 
 			 if (genericObject->getIsCollidable())
 			 {
-
 				for (auto otherObject : objects)
 				{
-					
-
 					if (otherObject->getId() != genericObject->getId() && otherObject->getIsCollidable())
 					{
-	//					SDL_Log(otherObject->getId().c_str());
-
 						//if (genericObject->collideBox(otherObject))
 						//{
-							while (genericObject->collidePixel(otherObject))
-							{
-							//	SDL_Log("leaving collidePixel-Check, calling reverseMove");
-								genericObject->reverseMove();
-
-							}
-						
-						//}
-
-						
+				
+						while (genericObject->collidePixel(otherObject))
+						{						
+							genericObject->reverseMove();
+						}
+						//}						
 					}
 				}
-
-
 				//genericObject->setTargetPosition(0, 0);
 			}	 
 		}
