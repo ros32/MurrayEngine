@@ -123,10 +123,10 @@ bool GameInstance::initialize()
 			if (!mapLoaded)
 			{
 				this->setMap(this->factory->createMap(key.second));
-				
-//				GenericObject* tempObject = new GenericObject("test001", { 100, 100 }, Texture(this->getTextureAsset("tileset"), "TreeM"), 1.0, 1.0, 5, NORTH, true);
-//				this->map->addObject(tempObject);
-//				this->map->setPlayerCharacter(tempObject);	
+
+				//				GenericObject* tempObject = new GenericObject("test001", { 100, 100 }, Texture(this->getTextureAsset("tileset"), "TreeM"), 1.0, 1.0, 5, NORTH, true);
+				//				this->map->addObject(tempObject);
+				//				this->map->setPlayerCharacter(tempObject);	
 
 				std::vector<Texture> witchCraft;
 				witchCraft.push_back(Texture(this->getTextureAsset("WitchSpritesheet"), "WalkingFront0"));
@@ -134,17 +134,17 @@ bool GameInstance::initialize()
 				witchCraft.push_back(Texture(this->getTextureAsset("WitchSpritesheet"), "WalkingFront2"));
 				witchCraft.push_back(Texture(this->getTextureAsset("WitchSpritesheet"), "WalkingFront3"));
 
-			
+
 				AnimatedObject* witchPlayerObject = new AnimatedObject("test006", { 100, 250 }, Animation(witchCraft, 200), 1.0, 1.0, 3, SOUTH, true);
 
 				this->map->addObject(witchPlayerObject);
 				this->map->setPlayerCharacter(witchPlayerObject);
 
-				
+
 				GenericObject* anotherObject = new GenericObject("test002", { 200, 200 }, Texture(this->getTextureAsset("tileset"), "Brick"), 1.0, 1.0, 0, NONE, true);
 				this->map->addObject(anotherObject);
-				
-				
+
+
 
 				std::vector<Texture> textures;
 				textures.push_back(Texture(this->getTextureAsset("tileset"), "TreeD"));
@@ -156,7 +156,7 @@ bool GameInstance::initialize()
 
 				this->map->addObject(animatedObject);
 
-				
+
 				std::vector<Texture> witchTextures;
 				witchTextures.push_back(Texture(this->getTextureAsset("WitchSpritesheet"), "CauldronLeft0"));
 				witchTextures.push_back(Texture(this->getTextureAsset("WitchSpritesheet"), "CauldronLeft1"));
@@ -197,8 +197,47 @@ bool GameInstance::initialize()
 				witchTextures.push_back(Texture(this->getTextureAsset("WitchSpritesheet"), "CauldronLeft0"));
 
 
-				AnimatedObject* witchObject = new AnimatedObject("test004", { 320, 320 }, Animation(witchTextures, 200),1.0, 1.0, 0, NONE, true);
+				AnimatedObject* witchObject = new AnimatedObject("test004", { 320, 320 }, Animation(witchTextures, 200), 1.0, 1.0, 0, NONE, true);
 				this->map->addObject(witchObject);
+
+
+
+				std::string testmess = "hejhopp";
+				int testI = 0;
+
+				for (auto c : testmess){
+					testI++;
+					SDL_Log(std::to_string(testI).c_str());
+				}
+
+				SDL_Rect messRect;
+				messRect.x = 10;
+				messRect.y = 10;
+				messRect.h = 100;
+				messRect.w = testI;
+				Position position = { 10, 10 };
+
+				SDL_Color White = { 255, 255, 255 };
+				/*
+
+				TTF_Font* Sans = TTF_OpenFont("8bitOperatorPlusSC-Bold.ttf", 24);
+
+
+
+				SDL_Surface* surfaceMessage = TTF_RenderText_Solid(Sans, testmess.c_str(), White);
+				if (surfaceMessage == NULL){
+				SDL_Log("surfaceMessage couldnt be rendered ", TTF_GetError());
+				}
+
+				SDL_Texture* Message = SDL_CreateTextureFromSurface(instanceRenderer, surfaceMessage);
+
+				SDL_RenderCopy(instanceRenderer, Message, NULL, &messRect);
+
+				*/
+				TextureAsset* txtAsset = new TextureAsset(this->instanceRenderer, "8bitOperatorPlusSC-Bold.ttf", 24, testmess.c_str(), White);
+
+				GUIObject* guiObject = new GUIObject(position, txtAsset);
+
 
 
 				

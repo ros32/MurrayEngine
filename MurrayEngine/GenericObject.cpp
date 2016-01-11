@@ -133,21 +133,12 @@ bool GenericObject::collideBox(GenericObject* objectB)
 	if (bottom > otherTop){
 		hit = false;
 	} 
-
-	if (hit)
-		SDL_Log("Hit in CollideBox is true");
-	
-	
 		return hit;	
 }
 
 bool GenericObject::readAlpha(SDL_Surface* surface, int x, int y)
 {	
-	std::string Output = "xAxis is: " + std::to_string(x) + " " + "yAxis is: " + std::to_string(y);
-	SDL_Log(Output.c_str());
-
 	//Nån annans kod, för testning
-	
 	int bpp = surface->format->BytesPerPixel;
     Uint8* p = (Uint8*)surface->pixels + y * surface->pitch + x * bpp;
     Uint32 pixelColor;
@@ -180,13 +171,6 @@ bool GenericObject::readAlpha(SDL_Surface* surface, int x, int y)
      
  //   Uint8 red, green, blue, alpha;
     SDL_GetRGBA(pixelColor, surface->format, &red, &green, &blue, &alpha);
- 
-	if (alpha > 200){
-		SDL_Log("Alpha is true");
-	}
-	else{
-		SDL_Log("Alpha is false");
-	}
 
 	return alpha > 1;
 //	return alpha;
@@ -305,26 +289,11 @@ bool GenericObject::collidePixel(GenericObject* objectB)
 	{
 		for (int xAxis = left; xAxis <= right; xAxis++)
 		{
-
-			/*
-			alphaA = readAlpha(SurfaceA, xAxis - axLeft, (yAxis + 400) - ayTop);
-			alphaB = readAlpha(SurfaceB, xAxis - bxLeft, yAxis - byTop);
-			
-			*/
-
-			//Test output strings
-			std::string output1 = "Checking alpha for: " + this->getId();
-			std::string output2 = "Checking alpha for: " + objectB->getId();
-
-			// Check if the current pixel contains color by calling readAlpha
-//			SDL_Log(output1.c_str());
 			alphaA = readAlpha(SurfaceA, xAxis - axLeft, yAxis - ayTop);
-//			SDL_Log(output2.c_str());
 			alphaB = readAlpha(SurfaceB, xAxis - bxLeft, yAxis - byTop);
 
 			if (alphaA && alphaB)
 			{
-//				SDL_Log("alpha-check returned True for both objects");
 				this->reverseMove();
 				return true;
 			}
@@ -332,9 +301,6 @@ bool GenericObject::collidePixel(GenericObject* objectB)
 			{
 				if (!alphaA && !alphaB);
 					return false;
-				
-					
-				//					SDL_Log("No hit was registered");
 			}
 
 		}	

@@ -100,6 +100,10 @@ xcopy /Y "$(SolutionDir)lib\SDL2_ttf-2.0.12\lib\x86\*.dll" "$(OutDir)*.dll"</Com
     <Image Include="tileset.png" />
     <Image Include="WitchSpritesheet.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Font Include="8bitOperatorPlus8-Bold.ttf" />
+    <Font Include="8bitOperatorPlusSC-Bold.ttf" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

@@ -55,8 +55,9 @@ void	GUI::render()
 	{
 		for (GUIObject* object : this->guiObjects)
 		{
+			
 			if (object != nullptr)
-				object->getTexture()->render(object->getPosition().x, object->getPosition().x, NULL);
+				object->getTexture()->render(object->getPosition().x, object->getPosition().y, NULL);
 		}
 	}
 }

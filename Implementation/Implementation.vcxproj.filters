@@ -53,4 +53,12 @@
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>
+  <ItemGroup>
+    <Font Include="8bitOperatorPlus8-Bold.ttf">
+      <Filter>Resource Files</Filter>
+    </Font>
+    <Font Include="8bitOperatorPlusSC-Bold.ttf">
+      <Filter>Resource Files</Filter>
+    </Font>
+  </ItemGroup>
 </Project>

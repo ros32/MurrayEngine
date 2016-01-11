@@ -33,8 +33,8 @@ TextureAsset::TextureAsset(SDL_Renderer* renderer, const char* filePath, unsigne
 	this->renderer = renderer;
 	this->filePath = filePath;
 	this->cellSize = 0;
-	this->height = 0;
-	this->width = 0;
+	this->height = 30;
+	this->width = 500;
 	this->offset = 0;
 	this->colorKey = { 0, 240, 240, 240 };
 
