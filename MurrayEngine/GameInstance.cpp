@@ -200,49 +200,6 @@ bool GameInstance::initialize()
 				AnimatedObject* witchObject = new AnimatedObject("test004", { 320, 320 }, Animation(witchTextures, 200), 1.0, 1.0, 0, NONE, true);
 				this->map->addObject(witchObject);
 
-
-
-				std::string testmess = "hejhopp";
-				int testI = 0;
-
-				for (auto c : testmess){
-					testI++;
-					SDL_Log(std::to_string(testI).c_str());
-				}
-
-				SDL_Rect messRect;
-				messRect.x = 10;
-				messRect.y = 10;
-				messRect.h = 100;
-				messRect.w = testI;
-				Position position = { 10, 10 };
-
-				SDL_Color White = { 255, 255, 255 };
-				/*
-
-				TTF_Font* Sans = TTF_OpenFont("8bitOperatorPlusSC-Bold.ttf", 24);
-
-
-
-				SDL_Surface* surfaceMessage = TTF_RenderText_Solid(Sans, testmess.c_str(), White);
-				if (surfaceMessage == NULL){
-				SDL_Log("surfaceMessage couldnt be rendered ", TTF_GetError());
-				}
-
-				SDL_Texture* Message = SDL_CreateTextureFromSurface(instanceRenderer, surfaceMessage);
-
-				SDL_RenderCopy(instanceRenderer, Message, NULL, &messRect);
-
-				*/
-				TextureAsset* txtAsset = new TextureAsset(this->instanceRenderer, "8bitOperatorPlusSC-Bold.ttf", 24, testmess.c_str(), White);
-
-				GUIObject* guiObject = new GUIObject(position, txtAsset);
-
-				this->getMap()->getCamera()->getGUI()->addObject(guiObject);
-
-
-
-				
 				mapLoaded = true;
 			}
 		}
@@ -268,6 +225,10 @@ bool GameInstance::initialize()
 		SDL_LogInfo(SDL_LOG_CATEGORY_APPLICATION, output.c_str());
 	}
 
+
+	this->frameRateGUIObject = new GUIObject({ 10, 10 }, nullptr);
+	this->getMap()->getCamera()->getGUI()->addObject(this->frameRateGUIObject);
+
 	this->initialized = true;
 	return true;
 
@@ -288,171 +249,18 @@ bool GameInstance::run()
 			if (e.type == SDL_QUIT)
 				break;
 		}
-		/*
-		//	Handle keys
-		const Uint8*	currentKeyState = SDL_GetKeyboardState(NULL);
-
-		if (currentKeyState[SDL_GetScancodeFromKey(SDLK_w)])
-			this->keyState.key_w = true;
-		else
-			this->keyState.key_w = false;
-		if (currentKeyState[SDL_GetScancodeFromKey(SDLK_s)])
-			this->keyState.key_s = true;
-		else
-			this->keyState.key_s = false;
-		if (currentKeyState[SDL_GetScancodeFromKey(SDLK_a)])
-			this->keyState.key_a = true;
-		else
-			this->keyState.key_a = false;
-		if (currentKeyState[SDL_GetScancodeFromKey(SDLK_d)])
-			this->keyState.key_d = true;
-		else
-			this->keyState.key_d = false;
-		if (currentKeyState[SDL_GetScancodeFromKey(SDLK_LEFT)])
-			this->keyState.key_left = true;
-		else
-			this->keyState.key_left = false;
-		if (currentKeyState[SDL_GetScancodeFromKey(SDLK_RIGHT)])
-			this->keyState.key_right = true;
-		else
-			this->keyState.key_right = false;
-		if (currentKeyState[SDL_GetScancodeFromKey(SDLK_UP)])
-			this->keyState.key_up = true;
-		else
-			this->keyState.key_up = false;
-		if (currentKeyState[SDL_GetScancodeFromKey(SDLK_DOWN)])
-			this->keyState.key_down = true;
-		else
-			this->keyState.key_down = false;
-		if (currentKeyState[SDL_GetScancodeFromKey(SDLK_SPACE)])
-			this->keyState.key_space = true;
-		else
-			this->keyState.key_space = false;
-
-
-
-		if (keyState.key_w)
-		{
-			MoveAction *move = new MoveAction(this->map->getPlayerCharacter(), map, "NORTH");
-			ActionControl *actionControl = new ActionControl();
-
-			if (this->map->getCamera() != nullptr)
-			{
-			if (this->map->getCamera()->getFocusType() == FREE_FOCUS)
-			this->map->getCamera()->move(0, -5);
-			else if (this->map->getCamera()->getFocusType() == OBJECT_FOCUS)
-
-				actionControl->setAction(move);
-				actionControl->buttonPressed();
-
-//				this->map->getPlayerCharacter()->setTargetPosition(this->map->getPlayerCharacter()->getTargetPosition().x + 0, this->map->getPlayerCharacter()->getTargetPosition().y - this->map->getPlayerCharacter()->getCurrentSpeed());
-//				this->map->getPlayerCharacter()->setOrientation(NORTH);
-			}
-			
-			
-			delete actionControl, move;
-		}
-		if (keyState.key_s)
-		{
-			MoveAction *move = new MoveAction(this->map->getPlayerCharacter(), map, "SOUTH");
-			ActionControl *actionControl = new ActionControl();
-
-		
-			if (this->map->getCamera() != nullptr)
-			{
-			if (this->map->getCamera()->getFocusType() == FREE_FOCUS)
-				this->map->getCamera()->move(0, 5);
-			else if (this->map->getCamera()->getFocusType() == OBJECT_FOCUS)
-
-				actionControl->setAction(move);
-				actionControl->buttonPressed();
-
-//				this->map->getPlayerCharacter()->setTargetPosition(this->map->getPlayerCharacter()->getTargetPosition().x + 0, this->map->getPlayerCharacter()->getTargetPosition().y + this->map->getPlayerCharacter()->getCurrentSpeed());
-//				this->map->getPlayerCharacter()->setOrientation(SOUTH);
-			}
-		
-			
-			delete actionControl, move;
-		}
-		if (keyState.key_a)
-		{
-
-			MoveAction *move = new MoveAction(this->map->getPlayerCharacter(), map, "WEST");
-			ActionControl *actionControl = new ActionControl();
-
-
-
-			
-			if (this->map->getCamera() != nullptr)
-			{
-			if (this->map->getCamera()->getFocusType() == FREE_FOCUS)
-				this->map->getCamera()->move(-5, 0);
-			else if (this->map->getCamera()->getFocusType() == OBJECT_FOCUS)
-
-				actionControl->setAction(move);
-				actionControl->buttonPressed();
-
-//				this->map->getPlayerCharacter()->setTargetPosition(this->map->getPlayerCharacter()->getTargetPosition().x - this->map->getPlayerCharacter()->getCurrentSpeed(), this->map->getPlayerCharacter()->getTargetPosition().y + 0);
-//				this->map->getPlayerCharacter()->setOrientation(WEST);
-			}
-			
-			
-			delete actionControl, move;
-		}
-		if (keyState.key_d)
-		{
-
-			MoveAction *move = new MoveAction(this->map->getPlayerCharacter(), map, "EAST");
-			ActionControl *actionControl = new ActionControl();
-
-			if (this->map->getCamera() != nullptr)
-			{
-				if (this->map->getCamera()->getFocusType() == FREE_FOCUS)
-					this->map->getCamera()->move(5, 0);
-				else if (this->map->getCamera()->getFocusType() == OBJECT_FOCUS)
-
-					actionControl->setAction(move);
-				    actionControl->buttonPressed();
-
-//					this->map->getPlayerCharacter()->setTargetPosition(this->map->getPlayerCharacter()->getTargetPosition().x + this->map->getPlayerCharacter()->getCurrentSpeed(), this->map->getPlayerCharacter()->getTargetPosition().y + 0);
-//					this->map->getPlayerCharacter()->setOrientation(EAST);
-			}
-					
-			delete actionControl, move;
-		}
-		if (keyState.key_space)
-		{
-			SDL_Log("Space is pressed");
-
-			//Concrete Action
-			JumpAction *jump = new JumpAction(this->map->getPlayerCharacter());
-
-			//Invoker
-			ActionControl *actionControl = new ActionControl();
-
-			//execute
-			actionControl->setAction(jump);
-			actionControl->buttonPressed();
-
-
-			delete actionControl, jump;
-
-
-		}
-		*/
-
-		//	const Uint8* keyState = SDL_GetKeyboardState(NULL);
-	//	if (keyState[SDLK_w])
-	//		this->map.getCamera()->move(0, -1);
 		
 		this->keyController->checkState();
 
 		//	Clear renderer
 		SDL_RenderClear(this->instanceRenderer);
+		TextureAsset*	tempTexture = new TextureAsset(this->instanceRenderer, "8bitOperatorPlusSC-Bold.ttf", 24, std::to_string(frameLimiter.getAvgFrames()), { 255, 255, 255 });
+		this->frameRateGUIObject->setTexture(tempTexture);
 		this->moveObjects();
 		this->renderObjects();
 		SDL_RenderPresent(this->instanceRenderer);
-
+		delete tempTexture;
+		this->frameRateGUIObject->setTexture(nullptr);
 		this->frameLimiter.limit();
 	}
 

@@ -125,6 +125,8 @@ private:
 
 	KeyController*	keyController;
 
+	GUIObject*		frameRateGUIObject;
+
 };
 
 #endif // !_GAME_INSTANCE_H

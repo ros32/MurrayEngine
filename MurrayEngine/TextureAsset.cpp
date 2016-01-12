@@ -33,8 +33,8 @@ TextureAsset::TextureAsset(SDL_Renderer* renderer, const char* filePath, unsigne
 	this->renderer = renderer;
 	this->filePath = filePath;
 	this->cellSize = 0;
-	this->height = 30;
-	this->width = 500;
+	this->height = 0;
+	this->width = 0;
 	this->offset = 0;
 	this->colorKey = { 0, 240, 240, 240 };
 
@@ -77,6 +77,7 @@ void			TextureAsset::loadText(const char* filePath, unsigned int fontSize, std::
 {
 	TTF_Font*	font = TTF_OpenFont(filePath, fontSize);
 	SDL_Surface* textSurface = TTF_RenderText_Solid(font, text.c_str(), color);
+	TTF_CloseFont(font);
 	if (textSurface == NULL)
 	{
 		std::string output = "Unable to render text, SDL_ttf error! " + std::string(TTF_GetError());
@@ -97,7 +98,8 @@ void			TextureAsset::loadText(const char* filePath, unsigned int fontSize, std::
 			this->cellSize = textSurface->w;
 		}
 
-//		SDL_FreeSurface(textSurface);
+		SDL_FreeSurface(textSurface);
+		this->surface = nullptr;
 	}
 }
 
@@ -105,7 +107,9 @@ void			TextureAsset::unload()
 {
 	//	Destroy texture and set texture to nullpointer
 	SDL_DestroyTexture(this->texture);
+	SDL_FreeSurface(this->surface);
 	this->texture = nullptr;
+	this->surface = nullptr;
 
 	//	Log to debuglog
 	std::string output = "TextureAsset \"" + std::string(this->filePath) + "\" was unloaded";

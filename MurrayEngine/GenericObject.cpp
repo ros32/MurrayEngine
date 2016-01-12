@@ -295,12 +295,18 @@ bool GenericObject::collidePixel(GenericObject* objectB)
 			if (alphaA && alphaB)
 			{
 				this->reverseMove();
+				SDL_FreeSurface(SurfaceA);
+				SDL_FreeSurface(SurfaceB);
 				return true;
 			}
 			if ((yAxis == bottom) && (xAxis == right))
 			{
 				if (!alphaA && !alphaB);
+				{
+					SDL_FreeSurface(SurfaceA);
+					SDL_FreeSurface(SurfaceB);
 					return false;
+				}
 			}
 
 		}	

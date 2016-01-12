@@ -22,6 +22,11 @@ Position	GUIObject::getPosition()
 	return this->position;
 }
 
+void		GUIObject::setTexture(TextureAsset* texture)
+{
+	this->texture = texture;
+}
+
 TextureAsset*	GUIObject::getTexture()
 {
 	return this->texture;
