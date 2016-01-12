@@ -93,6 +93,12 @@
     <ClInclude Include="KeyController.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="NonPlayerCharacter.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AI.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Test.cpp">

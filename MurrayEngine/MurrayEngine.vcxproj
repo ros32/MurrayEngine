@@ -12,6 +12,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Action.h" />
+    <ClInclude Include="AI.h" />
     <ClInclude Include="AnimatedObject.h" />
     <ClInclude Include="Asset.h" />
     <ClInclude Include="Configuration.h" />
@@ -30,6 +31,7 @@
     <ClInclude Include="Map.h" />
     <ClInclude Include="MapFactory.h" />
     <ClInclude Include="MoveAction.h" />
+    <ClInclude Include="NonPlayerCharacter.h" />
     <ClInclude Include="Physics.h" />
     <ClInclude Include="Position.h" />
     <ClInclude Include="TextureAsset.h" />

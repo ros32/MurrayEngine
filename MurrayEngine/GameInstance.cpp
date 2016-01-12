@@ -238,6 +238,8 @@ bool GameInstance::initialize()
 
 				GUIObject* guiObject = new GUIObject(position, txtAsset);
 
+				this->getMap()->getCamera()->getGUI()->addObject(guiObject);
+
 
 
 				
