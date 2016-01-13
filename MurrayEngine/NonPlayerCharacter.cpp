@@ -17,5 +17,21 @@ void		NonPlayerCharacter::addAction(Action* action)
 
 void		NonPlayerCharacter::doAction()
 {
+	Action*	tempAction = nullptr;
+
+	if (!this->actionQueue.empty())
+		tempAction = this->actionQueue.front();
+
+	if (tempAction != nullptr)
+	{
+		if (!tempAction->isCompleted())
+			tempAction->execute();
+		else
+		{
+			delete tempAction;
+			this->actionQueue.pop();
+			this->doAction();
+		}
+	}
 
 }
