@@ -5,9 +5,9 @@ The Action interface
 #ifndef _ACTION_H
 #define _ACTION_H
 
-#include "GenericObject.h"
+#include "Object.h"
 
-class GenericObject;
+class Object;
 
 class Action{
 
@@ -26,7 +26,7 @@ public:
 
 private:
 
-	GenericObject* source;
+	Object* source;
 
 	double progress;
 

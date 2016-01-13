@@ -15,7 +15,7 @@ void	Factory::setGameInstance(GameInstance*	instance)
 }
 
 //	FIXME
-GenericObject*		Factory::createObject(Configuration configuration)	{ return nullptr; }
+Object*		Factory::createObject(Configuration configuration)	{ return nullptr; }
 
 Map*				Factory::createMap(Configuration configuration)
 {

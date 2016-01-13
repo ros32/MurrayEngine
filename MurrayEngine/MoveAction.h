@@ -7,7 +7,7 @@ Triggers the movements of all movable objects
 #define _MOVEACTION_H
 
 #include "Action.h"
-#include "GenericObject.h"
+#include "Object.h"
 #include "Map.h"
 #ifdef _WIN32
 #include <SDL.h>
@@ -20,14 +20,14 @@ Triggers the movements of all movable objects
 class MoveAction : public Action{
 
 public:
-	MoveAction(GenericObject* source, Map* map, std::string direction);
+	MoveAction(Object* source, Map* map, std::string direction);
 	~MoveAction();
 
 	void execute();
 
 private:
 
-	GenericObject* source;
+	Object* source;
 	Map* map;
 	std::string direction = "";
 };

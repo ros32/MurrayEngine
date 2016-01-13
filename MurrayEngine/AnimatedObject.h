@@ -1,7 +1,7 @@
 #ifndef _ANIMATED_OBJECT_H
 #define _ANIMATED_OBJECT_H
 
-#include "GenericObject.h"
+#include "Object.h"
 #include "TextureAsset.h"
 #include <vector>
 #include <sstream>
@@ -27,7 +27,7 @@ struct Animation
 	}
 };
 
-class AnimatedObject: public GenericObject
+class AnimatedObject: public Object
 {
 public:
 	AnimatedObject();

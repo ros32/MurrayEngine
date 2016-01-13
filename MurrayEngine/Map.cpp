@@ -25,10 +25,10 @@ Map::~Map()
 }
 
 
-std::vector<GenericObject*>	Map::getObject(Position pos)
+std::vector<Object*>	Map::getObject(Position pos)
 {
 	
-	std::vector<GenericObject*> tempVector;
+	std::vector<Object*> tempVector;
 
 	for (auto object : objects){
 
@@ -114,17 +114,17 @@ void Map::setTiles(std::vector<std::vector<Tile>> tiles)
 		this->tiles = tiles;
 }
 
-void Map::setObjects(std::vector<GenericObject*> objects)
+void Map::setObjects(std::vector<Object*> objects)
 {
 		this->objects = objects;
 }
 
-void Map::addObject(GenericObject* object)
+void Map::addObject(Object* object)
 {	
 		objects.push_back(object);
 }
 
-void Map::removeObject(GenericObject* object)
+void Map::removeObject(Object* object)
 {
 
 //	objects.erase(std::remove(objects.begin(), objects.end(), object), objects.end());
@@ -139,33 +139,33 @@ void Map::removeObject(GenericObject* object)
 
 void Map::move()
 {	
-	for (auto genericObject : objects)
+	for (auto Object : objects)
 	{
-		if ((genericObject->getTargetPosition().x != 0) || (genericObject->getTargetPosition().y != 0))
+		if ((Object->getTargetPosition().x != 0) || (Object->getTargetPosition().y != 0))
 		{
-			 genericObject->move();			 
+			 Object->move();			 
 
-			 if (genericObject->getIsCollidable())
+			 if (Object->getIsCollidable())
 			 {
 				for (auto otherObject : objects)
 				{
-					if (otherObject->getId() != genericObject->getId() && otherObject->getIsCollidable())
+					if (otherObject->getId() != Object->getId() && otherObject->getIsCollidable())
 					{
-						//if (genericObject->collideBox(otherObject))
+						//if (Object->collideBox(otherObject))
 						//{
 				
-						while (genericObject->collidePixel(otherObject))
+						while (Object->collidePixel(otherObject))
 						{						
-							genericObject->reverseMove();
+							Object->reverseMove();
 						}
 						//}						
 					}
 				}
-				//genericObject->setTargetPosition(0, 0);
+				//Object->setTargetPosition(0, 0);
 			}	 
 		}
 
-//		genericObject->render(genericObject->getCurrentPosition().x, genericObject->getCurrentPosition().y);
+//		Object->render(Object->getCurrentPosition().x, Object->getCurrentPosition().y);
 	}
 	
 
@@ -176,12 +176,12 @@ Camera*		Map::getCamera()
 	return this->camera;
 }
 
-GenericObject*	Map::getPlayerCharacter()
+Object*	Map::getPlayerCharacter()
 {
 	return this->playerCharacter;
 }
 
-void			Map::setPlayerCharacter(GenericObject* playerCharacter)
+void			Map::setPlayerCharacter(Object* playerCharacter)
 {
 	this->playerCharacter = playerCharacter;
 }

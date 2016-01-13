@@ -8,7 +8,7 @@
 #endif
 
 #include	"Configuration.h"
-#include	"GenericObject.h"
+#include	"Object.h"
 #include	"Tile.h"
 #include	"Map.h"
 #include	"TextureAsset.h"
@@ -26,7 +26,7 @@ public:
 	void	setWindow(SDL_Window* window);
 	void	setGameInstance(GameInstance* instance);
 
-	GenericObject*		createObject(Configuration config);
+	Object*		createObject(Configuration config);
 	Map*				createMap(Configuration config);
 	TextureAsset*		createAsset(Configuration configuration);
 	KeyController*		createKeyController(Configuration configuration);

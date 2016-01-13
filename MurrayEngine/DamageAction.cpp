@@ -1,6 +1,6 @@
 #include "DamageAction.h"
 
-DamageAction::DamageAction(GameInstance* instance, GenericObject* source, std::vector<GenericObject*> targets) {
+DamageAction::DamageAction(GameInstance* instance, Object* source, std::vector<Object*> targets) {
 	this->instance = instance;
 	this->source = source;
 	this->targets = targets;

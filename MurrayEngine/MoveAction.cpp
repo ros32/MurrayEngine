@@ -1,6 +1,6 @@
 #include "MoveAction.h"
 
-MoveAction::MoveAction(GenericObject* source, Map* map, std::string direction){
+MoveAction::MoveAction(Object* source, Map* map, std::string direction){
 	this->source = source;
 	this->map = map;
 	this->direction = direction;

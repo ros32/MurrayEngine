@@ -1,7 +1,7 @@
 #ifndef _TILE_H
 #define _TILE_H
 
-#include	"GenericObject.h"
+#include	"Object.h"
 #include	"Position.h"
 #ifdef _WIN32
 #include <SDL.h>
@@ -9,7 +9,7 @@
 #include <SDL2/SDL.h>
 #endif
 
-class Tile: public GenericObject
+class Tile: public Object
 {
 public:
 	Tile();

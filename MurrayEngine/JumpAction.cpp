@@ -1,6 +1,6 @@
 #include "JumpAction.h"
 
-JumpAction::JumpAction(GenericObject* source){
+JumpAction::JumpAction(Object* source){
 	this->source = source;
 }
 JumpAction::~JumpAction(){

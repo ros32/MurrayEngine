@@ -1,11 +1,11 @@
-#include "GenericObject.h"
+#include "Object.h"
 
-GenericObject::GenericObject()
+Object::Object()
 {
 
 }
 
-GenericObject::GenericObject(std::string id, Position currentPosition, Texture texture, double maxSpeed, double acceleration, int currentSpeed, Orientation orientation, bool isCollidable)
+Object::Object(std::string id, Position currentPosition, Texture texture, double maxSpeed, double acceleration, int currentSpeed, Orientation orientation, bool isCollidable)
 {
 	this->id = id;
 	this->currentPosition = currentPosition;
@@ -26,57 +26,77 @@ GenericObject::GenericObject(std::string id, Position currentPosition, Texture t
 
 }
 
-GenericObject::~GenericObject()
+Object::~Object()
 {
 
 }
 
-std::string GenericObject::getId()
+std::string Object::getId()
 {
 	return id;
 }
 
-Position GenericObject::getCurrentPosition()
+void	Object::setId(std::string id)
+{
+	this->id = id;
+}
+
+Position Object::getCurrentPosition()
 {
 	return currentPosition;
 }
 
-void GenericObject::setCurrentPosition(int x, int y)
+void Object::setCurrentPosition(int x, int y)
 {
 	this->currentPosition = { x, y };
 }
 
-Position GenericObject::getTargetPosition(){
+void	Object::setCurrentPosition(Position pos)
+{
+	this->currentPosition = pos;
+}
+
+Position Object::getTargetPosition(){
 
 	return targetPosition;
 }
 
-void GenericObject::setTargetPosition(int x, int y)
+void Object::setTargetPosition(int x, int y)
 {
 	this->targetPosition = { x, y };
 }
 
-void GenericObject::setOrientation(Orientation orientation)
+void	Object::setTargetPosition(Position pos)
+{
+	this->targetPosition = pos;
+}
+
+void Object::setOrientation(Orientation orientation)
 {
 	this->orientation = orientation;
 }
 
-Orientation GenericObject::getOrientation()
+Orientation Object::getOrientation()
 {
 	return orientation;
 }
 
-double GenericObject::getMaxSpeed()
+double Object::getMaxSpeed()
 {
 	return maxSpeed;
 }
 
-bool GenericObject::getIsCollidable()
+void	Object::setMaxSpeed(double speed)
+{
+	this->maxSpeed = speed;
+}
+
+bool Object::getIsCollidable()
 {
 	return isCollidable;
 }
 
-void GenericObject::reverseMove()
+void Object::reverseMove()
 {
 	SDL_Log("Moving back through reverseMove");
 		//North 
@@ -90,7 +110,7 @@ void GenericObject::reverseMove()
 
 }
 
-void GenericObject::move()
+void Object::move()
 {
 	//Save the currentposition before we move
 	
@@ -105,7 +125,7 @@ void GenericObject::move()
 	
 }
 
-bool GenericObject::collideBox(GenericObject* objectB)
+bool Object::collideBox(Object* objectB)
 {
 	
 	bool hit = true;
@@ -136,7 +156,7 @@ bool GenericObject::collideBox(GenericObject* objectB)
 		return hit;	
 }
 
-bool GenericObject::readAlpha(SDL_Surface* surface, int x, int y)
+bool Object::readAlpha(SDL_Surface* surface, int x, int y)
 {	
 	//Nån annans kod, för testning
 	int bpp = surface->format->BytesPerPixel;
@@ -212,7 +232,7 @@ bool GenericObject::readAlpha(SDL_Surface* surface, int x, int y)
 
 }
 
-bool GenericObject::collidePixel(GenericObject* objectB)
+bool Object::collidePixel(Object* objectB)
 {
 	if (!collideBox(objectB))
 	{
@@ -315,12 +335,12 @@ bool GenericObject::collidePixel(GenericObject* objectB)
 	return false;
 }
 
-Texture			GenericObject::getTexture()
+Texture			Object::getTexture()
 {
 	return this->texture;
 }
 
-void GenericObject::render(int x, int y)
+void Object::render(int x, int y)
 {
 	if (this->texture.asset != nullptr && this->texture.name != "")
 	{
@@ -329,45 +349,55 @@ void GenericObject::render(int x, int y)
 }
 }
 
-int		GenericObject::getCurrentSpeed()
+int		Object::getCurrentSpeed()
 {
 	return this->currentSpeed;
 }
 
-void   GenericObject::jump()
+void   Object::jump()
 {
 	SDL_Log("Jumping");
 }
-void   GenericObject::doDamage()
+void   Object::doDamage()
 {
 	SDL_Log("doing some damage");
 }
-void  GenericObject::takeDamage()
+void  Object::takeDamage()
 {
 	SDL_Log("Taking some damage");
 }
 
-void	GenericObject::setTexture(Texture texture)
+void	Object::setTexture(Texture texture)
 {
 	this->texture = texture;
 }
 
-Uint32	GenericObject::getLastRender()
+Uint32	Object::getLastRender()
 {
 	return this->lastRender;
 }
 
-void	GenericObject::setLastRender(Uint32 lastRender)
+Uint32	Object::getLastMove()
+{
+	return this->lastMove;
+}
+
+void	Object::setLastMove(Uint32 lastMove)
+{
+	this->lastMove = lastMove;
+}
+
+void	Object::setLastRender(Uint32 lastRender)
 {
 	this->lastRender = lastRender;
 }
 
-void	GenericObject::addAction(Action* action)
+void	Object::addAction(Action* action)
 {
 
 }
 
-void	GenericObject::doAction()
+void	Object::doAction()
 {
 
 }

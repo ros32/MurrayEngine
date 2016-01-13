@@ -6,7 +6,7 @@
 #elif __linux__
 #include <SDL2/SDL.h>
 #endif
-#include	"GenericObject.h"
+#include	"Object.h"
 #include	"Position.h"
 #include	"GUI.h"
 
@@ -79,9 +79,9 @@ public:
 	void				setPosition(Position pos);
 
 	///	<summary>
-	///	Sets the position of the Camera to the specified GenericObject
+	///	Sets the position of the Camera to the specified Object
 	///	</summary>
-	void				setPosition(GenericObject object);
+	void				setPosition(Object object);
 
 	///	<summary>
 	///	Move the Camera the specified amount of x and y coordinates relative to its current position.

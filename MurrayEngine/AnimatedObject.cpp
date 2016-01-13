@@ -1,12 +1,12 @@
 #include "AnimatedObject.h"
 
-AnimatedObject::AnimatedObject() : GenericObject()
+AnimatedObject::AnimatedObject() : Object()
 {
 
 }
 
 AnimatedObject::AnimatedObject(std::string id, Position currentPosition, Animation animation, double maxSpeed, double acceleration, int currentSpeed, Orientation orientation, bool isCollidable) : 
-	GenericObject(id, currentPosition, Texture(), maxSpeed, acceleration, currentSpeed, orientation, isCollidable)
+	Object(id, currentPosition, Texture(), maxSpeed, acceleration, currentSpeed, orientation, isCollidable)
 {
 	this->animation = animation;
 	this->setTexture(this->animation.textures[0]);
@@ -31,11 +31,11 @@ void		AnimatedObject::render(int x, int y)
 			this->animation.lastTexture = 0;
 
 		this->setTexture(this->animation.textures[this->animation.lastTexture++]);
-		GenericObject::render(x, y);
+		Object::render(x, y);
 	}
 	else
 	{
-		GenericObject::render(x, y);
+		Object::render(x, y);
 		this->setLastRender(lastRender);
 	}
 

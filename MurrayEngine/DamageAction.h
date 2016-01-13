@@ -6,20 +6,20 @@ The concrete action DamageAction
 #define _DAMAGEACTION_H
 
 #include "GameInstance.h"
-#include "GenericObject.h"
+#include "Object.h"
 #include "Action.h"
 
 class DamageAction : public Action{
 
 public:
-	DamageAction(GameInstance* instance, GenericObject* source, std::vector<GenericObject*> targets);
+	DamageAction(GameInstance* instance, Object* source, std::vector<Object*> targets);
 	~DamageAction();
 	void execute();
 
 private:
 	GameInstance* instance;
-	GenericObject* source;
-	std::vector<GenericObject*> targets;
+	Object* source;
+	std::vector<Object*> targets;
 };
 
 

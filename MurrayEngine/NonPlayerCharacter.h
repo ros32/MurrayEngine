@@ -2,10 +2,10 @@
 #define	_NON_PLAYER_CHARACTER_H
 
 #include	<queue>
-#include	"GenericObject.h"
+#include	"Object.h"
 #include	"AI.h"
 
-class NonPlayerCharacter : public GenericObject
+class NonPlayerCharacter : public Object
 {
 public:
 	NonPlayerCharacter();
@@ -17,7 +17,7 @@ public:
 
 private:
 
-	GenericObject*		wrapperObject;
+	Object*		wrapperObject;
 	AI*					ai;
 
 	std::queue<Action*>	actionQueue;

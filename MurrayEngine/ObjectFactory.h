@@ -1,20 +1,20 @@
 #ifndef _GENERIC_OBJECT_FACTORY_H
 #define	_GENERIC_OBJECT_FACTORY_H
 
-#include	"GenericObject.h"
+#include	"Object.h"
 #include	"Configuration.h"
 #include	<vector>
 
-class GenericObjectFactory
+class ObjectFactory
 {
 public:
-	GenericObjectFactory();
-	GenericObjectFactory(Configuration config);
-	~GenericObjectFactory();
+	ObjectFactory();
+	ObjectFactory(Configuration config);
+	~ObjectFactory();
 
 	bool						loadConfiguration(Configuration config);
 
-	std::vector<GenericObject>	createObjects();
+	std::vector<Object>	createObjects();
 
 private:
 

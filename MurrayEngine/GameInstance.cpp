@@ -124,7 +124,7 @@ bool GameInstance::initialize()
 			{
 				this->setMap(this->factory->createMap(key.second));
 
-				//				GenericObject* tempObject = new GenericObject("test001", { 100, 100 }, Texture(this->getTextureAsset("tileset"), "TreeM"), 1.0, 1.0, 5, NORTH, true);
+				//				Object* tempObject = new Object("test001", { 100, 100 }, Texture(this->getTextureAsset("tileset"), "TreeM"), 1.0, 1.0, 5, NORTH, true);
 				//				this->map->addObject(tempObject);
 				//				this->map->setPlayerCharacter(tempObject);	
 
@@ -141,7 +141,7 @@ bool GameInstance::initialize()
 				this->map->setPlayerCharacter(witchPlayerObject);
 
 
-				GenericObject* anotherObject = new GenericObject("test002", { 200, 200 }, Texture(this->getTextureAsset("tileset"), "Brick"), 1.0, 1.0, 0, NONE, true);
+				Object* anotherObject = new Object("test002", { 200, 200 }, Texture(this->getTextureAsset("tileset"), "Brick"), 1.0, 1.0, 0, NONE, true);
 				this->map->addObject(anotherObject);
 
 
