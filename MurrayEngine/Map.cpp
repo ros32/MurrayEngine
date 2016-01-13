@@ -32,10 +32,49 @@ std::vector<Object*>	Map::getObject(Position pos)
 
 	for (auto object : objects){
 
+		int height = object->getTexture().asset->getHeight();
+		int width = object->getTexture().asset->getWidth();
 
-	//	if (object->getCurrentPosition() == pos);
-	//	tempVector.push_back(object);
+		int axLeft = object->getCurrentPosition().x;
+		int ayTop = object->getCurrentPosition().y;
+		int axRight = object->getCurrentPosition().x + width - 1;
+		int ayBottom = object->getCurrentPosition().y + height - 1;
+
+		if (pos.x >= axLeft && pos.x <= axRight)
+		{
+			if (pos.y >= ayTop && pos.y <= ayBottom)
+			{
+				tempVector.push_back(object);
+			}
+		}
 	}
+
+	return tempVector;
+}
+
+std::vector<Object*>	Map::getObject(Position posA, Position posB)
+{
+	std::vector < Object* >	tempVector;
+
+	int posX = posA.x;
+	int posY = posA.y;
+
+	do
+	{
+		do
+		{
+			std::vector < Object* >	tempVector2 = this->getObject({ posX, posY });
+			if (!tempVector2.empty())
+			{
+				for (auto object : tempVector2)
+				{
+					tempVector.push_back(object);
+				}
+			}
+			posY++;
+		} while (posY < posB.y);
+		posX++;
+	} while (posX < posB.x);
 
 	return tempVector;
 }

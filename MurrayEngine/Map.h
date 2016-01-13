@@ -26,6 +26,7 @@ public:
 	///	Return all objects on a given position
 	///	</summary>
 	std::vector<Object*>	getObject(Position pos);
+	std::vector<Object*>	getObject(Position posa, Position posB);
 
 	///	<summary>
 	///	Return the Tile on a given position
