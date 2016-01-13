@@ -9,6 +9,9 @@
 #include	<math.h>
 #include	"algorithm"
 #include	"assert.h"
+#include	"Action.h"
+
+class Action;
 
 enum Orientation
 {
@@ -195,6 +198,12 @@ public:
 	///	Takes damage from enemy entity
 	///	<summary>
 	void					takeDamage();
+
+	//void					setQueue(std::queue<Action*> queue);
+
+	virtual void			addAction(Action* action);
+
+	virtual void			doAction();
 
 protected:
 

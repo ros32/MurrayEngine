@@ -41,6 +41,7 @@
     <ClInclude Include="Camera.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Action.cpp" />
     <ClCompile Include="AnimatedObject.cpp" />
     <ClCompile Include="Configuration.cpp" />
     <ClCompile Include="DamageAction.cpp" />
@@ -58,6 +59,7 @@
     <ClCompile Include="Map.cpp" />
     <ClCompile Include="MapFactory.cpp" />
     <ClCompile Include="MoveAction.cpp" />
+    <ClCompile Include="NonPlayerCharacter.cpp" />
     <ClCompile Include="Physics.cpp" />
     <ClCompile Include="TextureAsset.cpp" />
     <ClCompile Include="Test.cpp" />

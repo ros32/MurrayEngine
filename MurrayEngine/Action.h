@@ -5,20 +5,31 @@ The Action interface
 #ifndef _ACTION_H
 #define _ACTION_H
 
-//#include "GameInstance.h"
 #include "GenericObject.h"
+
+class GenericObject;
 
 class Action{
 
 public:
-//	virtual ~Action();
+	Action();
+	~Action();
 
 	virtual void execute() = 0;
-//	virtual void execute(GenericObject* source) = 0;
-//  virtual void execute(GameInstance* instance, GenericObject* sourceObject, std::vector<GenericObject*> targetObjects) = 0;
+
+	bool	isCompleted();
+
+	double	getProgress();
+	void	setProgress(double progress);
+	void	updateProgress(double progress);
+
 
 private:
+
 	GenericObject* source;
+
+	double progress;
+
 };
 
  #endif // !_ACTION_H

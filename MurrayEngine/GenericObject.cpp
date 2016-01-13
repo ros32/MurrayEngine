@@ -312,7 +312,7 @@ bool GenericObject::collidePixel(GenericObject* objectB)
 		}	
 	}
 		
-	
+	return false;
 }
 
 Texture			GenericObject::getTexture()
@@ -360,4 +360,14 @@ Uint32	GenericObject::getLastRender()
 void	GenericObject::setLastRender(Uint32 lastRender)
 {
 	this->lastRender = lastRender;
+}
+
+void	GenericObject::addAction(Action* action)
+{
+
+}
+
+void	GenericObject::doAction()
+{
+
 }
