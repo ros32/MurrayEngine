@@ -83,9 +83,13 @@ public:
 	virtual void					addAction(Action* action);
 	virtual void					doAction();
 
+	virtual bool					readAlpha(SDL_Surface* surface, int x, int y);
+
 protected:
 
 	Timer			timer;
+
+	
 
 private:
 
@@ -131,7 +135,7 @@ private:
 	float			force;
 	float			mass;
 
-	bool readAlpha(SDL_Surface* surface, int x, int y);
+	
 	
 
 };

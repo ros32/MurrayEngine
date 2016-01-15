@@ -321,7 +321,7 @@ bool Object::collidePixel(Object* objectB)
 			}
 			if ((yAxis == bottom) && (xAxis == right))
 			{
-				if (!alphaA && !alphaB);
+				if (!alphaA && !alphaB)
 				{
 					SDL_FreeSurface(SurfaceA);
 					SDL_FreeSurface(SurfaceB);
@@ -394,7 +394,7 @@ void	Object::setLastRender(Uint32 lastRender)
 
 void	Object::addAction(Action* action)
 {
-
+	delete action;
 }
 
 void	Object::doAction()
