@@ -18,7 +18,7 @@ MapFactory::~MapFactory()
 }
 
 Map*	MapFactory::createMap(Configuration configuration)
-{
+{/*
 	int cellSize = configuration.getProperty("CELL_SIZE", 32);
 	std::vector<std::vector<Tile>> tiles;
 	std::vector<Tile> tileMap;
@@ -88,5 +88,6 @@ Map*	MapFactory::createMap(Configuration configuration)
 
 	map->setTiles(tiles);
 
-	return map;
+	return map;*/
+	return new Map();
 }

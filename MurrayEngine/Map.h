@@ -41,7 +41,7 @@ public:
 	///	<summary>
 	///	Set matrix of tiles in Map
 	///	</summary>
-	void						setTiles(std::vector<std::vector<Tile>> tiles);
+	void						setTiles(std::vector<Tile*> tiles);
 
 	///	<summary>
 	///	Set array of objects in Map
@@ -64,7 +64,7 @@ public:
 
 	void						setCamera(Camera* camera);
 
-	Object*				getPlayerCharacter();
+	Object*						getPlayerCharacter();
 	void						setPlayerCharacter(Object* playerCharacter);
 
 	Position					getMapMaxSize();
@@ -79,7 +79,7 @@ private:
 
 	Camera*											camera;
 
-	std::vector<std::vector<Tile>>					tiles;
+	std::vector<Tile*>							tiles;
 	std::vector<Object*>						objects;
 	std::vector <Object>						tempVector;
 

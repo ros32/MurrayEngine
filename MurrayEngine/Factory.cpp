@@ -20,8 +20,8 @@ Object*		Factory::createObject(Configuration configuration)	{ return nullptr; }
 Map*				Factory::createMap(Configuration configuration)
 {
 	int cellSize = configuration.getProperty("CELL_SIZE", 32);
-	std::vector<std::vector<Tile>> tiles;
-	std::vector<Tile> tileMap;
+	std::vector<Tile*> tiles;
+//	std::vector<Tile> tileMap;
 	Map* map = new Map(this->window, this->renderer);
 	map->setTileSize(cellSize);
 	// bool	keyIdentified = false;
@@ -54,11 +54,14 @@ Map*				Factory::createMap(Configuration configuration)
 
 			}
 			if (gameInstance != nullptr)
-				tileMap.push_back(Tile(pos, Texture(gameInstance->getTextureAsset(tileset), texture), NORTH));
+			{
+				Tile*	tempTile = new Tile(pos, Texture(gameInstance->getTextureAsset(tileset), texture), NORTH);
+				tiles.push_back(tempTile);
+			}
 		}
 	}
 
-	while (tileMap.size() != 0)
+	/*while (tileMap.size() != 0)
 	{
 		Tile key = tileMap.back();
 		tileMap.pop_back();
@@ -84,7 +87,7 @@ Map*				Factory::createMap(Configuration configuration)
 		}
 
 		tiles[i][j] = key;
-	}
+	}*/
 
 	map->setTiles(tiles);
 

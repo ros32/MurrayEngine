@@ -115,20 +115,15 @@ void Map::render()
 	//	Render tiles
 
 	//	Render objects
-	for (auto vectorX : this->tiles)
+	for (auto object : this->tiles)
 	{
-		for (auto object : vectorX)
+		if ((object->getCurrentPosition().x >= (this->camera->getPosition().x - object->getTexture().asset->getCellSize()) && object->getCurrentPosition().x <= (this->camera->getPosition().x + this->camera->getWidth() + object->getTexture().asset->getCellSize())) &&
+			(object->getCurrentPosition().y >= (this->camera->getPosition().y - object->getTexture().asset->getCellSize()) && object->getCurrentPosition().y <= (this->camera->getPosition().y + this->camera->getHeight() + object->getTexture().asset->getCellSize())))
 		{
+			//	Object is within camera view
 
-			if ((object.getCurrentPosition().x >= (this->camera->getPosition().x - object.getTexture().asset->getCellSize()) && object.getCurrentPosition().x <= (this->camera->getPosition().x + this->camera->getWidth() + object.getTexture().asset->getCellSize())) &&
-				(object.getCurrentPosition().y >= (this->camera->getPosition().y - object.getTexture().asset->getCellSize()) && object.getCurrentPosition().y <= (this->camera->getPosition().y + this->camera->getHeight() + object.getTexture().asset->getCellSize())))
-			{
-				//	Object is within camera view
-
-				//	Render object with camera offset
-				object.render(object.getCurrentPosition().x - this->camera->getPosition().x, object.getCurrentPosition().y - this->camera->getPosition().y);
-			}
-
+			//	Render object with camera offset
+			object->render(object->getCurrentPosition().x - this->camera->getPosition().x, object->getCurrentPosition().y - this->camera->getPosition().y);
 		}
 	}
 
@@ -148,7 +143,7 @@ void Map::render()
 
 }
 
-void Map::setTiles(std::vector<std::vector<Tile>> tiles)
+void Map::setTiles(std::vector<Tile*> tiles)
 {
 		this->tiles = tiles;
 }
@@ -237,14 +232,16 @@ void			Map::setTileSize(int tileSize)
 
 Position		Map::getMapMaxSize()
 {
-	if (this->tiles.size() > 0)
+	int maxX = 0;
+	int maxY = 0;
+	for (Tile* tile : this->tiles)
 	{
-		auto i = this->tiles.size() - 1;
-		auto j = this->tiles[i].size() - 1;
-		if (j >= 0)
-			return{ this->tiles[i][j].getCurrentPosition().x + this->tileSize, this->tiles[i][j].getCurrentPosition().y + this->tileSize };
+		if (maxX < (tile->getTexture().asset->getWidth() + tile->getCurrentPosition().x))
+			maxX = (tile->getTexture().asset->getWidth() + tile->getCurrentPosition().x);
+		if (maxY < (tile->getTexture().asset->getHeight() + tile->getCurrentPosition().y))
+			maxX = (tile->getTexture().asset->getHeight() + tile->getCurrentPosition().y);
 	}
-	return { 0, 0 };
+	return { maxX, maxY };
 }
 
 
