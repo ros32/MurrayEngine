@@ -113,8 +113,6 @@ void Map::render()
 {
 
 	//	Render tiles
-
-	//	Render objects
 	for (auto object : this->tiles)
 	{
 		if ((object->getCurrentPosition().x >= (this->camera->getPosition().x - object->getTexture().asset->getCellSize()) && object->getCurrentPosition().x <= (this->camera->getPosition().x + this->camera->getWidth() + object->getTexture().asset->getCellSize())) &&

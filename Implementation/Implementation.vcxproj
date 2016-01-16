@@ -87,11 +87,14 @@ xcopy /Y "$(SolutionDir)lib\SDL2_ttf-2.0.12\lib\x86\*.dll" "$(OutDir)*.dll"</Com
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="gamemap.cfg" />
     <None Include="keys.cfg" />
     <None Include="main.cfg" />
     <None Include="map.cfg" />
+    <None Include="placeHolder.cfg" />
     <None Include="spritesheet.cfg" />
     <None Include="tileset.cfg" />
+    <None Include="wallmap.cfg" />
     <None Include="WitchSpritesheet.cfg" />
   </ItemGroup>
   <ItemGroup>

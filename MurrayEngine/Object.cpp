@@ -98,6 +98,7 @@ bool Object::getIsCollidable()
 
 void Object::reverseMove()
 {
+
 	SDL_Log("Moving back through reverseMove");
 		//North 
 		if (this->orientation == 0){ this->currentPosition.y += 1; }
