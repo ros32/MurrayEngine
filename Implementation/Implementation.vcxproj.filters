@@ -44,6 +44,15 @@
     <None Include="wallmap.cfg">
       <Filter>Resource Files</Filter>
     </None>
+    <None Include="HeroSpriteSheet.cfg">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="ProjectilesSpriteSheet.cfg">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="ReinBearSpriteSheet.cfg">
+      <Filter>Resource Files</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Image Include="spritesheet.bmp">
@@ -56,6 +65,15 @@
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="WitchSpritesheet.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="HeroSpriteSheet.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="ProjectilesSpriteSheet.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="ReinBearSpriteSheet.png">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>

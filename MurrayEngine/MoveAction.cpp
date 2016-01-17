@@ -25,7 +25,6 @@ void MoveAction::execute()
 
 	if (direction == "EAST")
 	{
-
 		source->setTargetPosition(source->getTargetPosition().x + source->getCurrentSpeed(), source->getTargetPosition().y);
 		source->setOrientation(EAST);
 		//Call appropriate animation

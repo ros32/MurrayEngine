@@ -185,11 +185,18 @@ void Map::move()
 					{
 						//if (Object->collideBox(otherObject))
 						//{
-				
+						// new MoveAction(this->gameInstance->getMap()->getPlayerCharacter(), this->gameInstance->getMap(), "NORTH");
+					
+											
 						while (Object->collidePixel(otherObject))
-						{						
-							Object->reverseMove();
+						{
+							
+							//if (collisionEvent->collidePixel(Object, otherObject));
+								Object->reverseMove();
 						}
+						
+						
+
 						//}						
 					}
 				}

@@ -140,7 +140,7 @@ bool GameInstance::initialize()
 				this->map->addObject(witchPlayerObject);
 				this->map->setPlayerCharacter(witchPlayerObject);
 
-
+				SDL_Log("Testutskrift");
 
 
 

@@ -15,6 +15,7 @@
     <ClInclude Include="AI.h" />
     <ClInclude Include="AnimatedObject.h" />
     <ClInclude Include="Asset.h" />
+    <ClInclude Include="CollisionEvent.h" />
     <ClInclude Include="Configuration.h" />
     <ClInclude Include="DamageAction.h" />
     <ClInclude Include="Factory.h" />
@@ -43,6 +44,7 @@
   <ItemGroup>
     <ClCompile Include="Action.cpp" />
     <ClCompile Include="AnimatedObject.cpp" />
+    <ClCompile Include="CollisionEvent.cpp" />
     <ClCompile Include="Configuration.cpp" />
     <ClCompile Include="DamageAction.cpp" />
     <ClCompile Include="Factory.cpp" />

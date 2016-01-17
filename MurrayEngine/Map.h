@@ -15,6 +15,8 @@
 #include "Camera.h"
 #include "AnimatedObject.h"
 
+#include "CollisionEvent.h"
+
 class Map
 {
 public:
@@ -85,6 +87,7 @@ private:
 
 	Object*									playerCharacter;
 
+	CollisionEvent*						CollisionEvent;
 
 };
 
