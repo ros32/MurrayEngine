@@ -38,10 +38,13 @@ public:
 
 	Animation	getAnimation();
 	void		setAnimation(Animation animation);
+	void		addAnimation(std::string key, Animation animation);
+	void		changeAnimation(std::string key);
 
 private:
-
+	std::map<std::string, Animation> animationMap;
 	Animation	animation;
+	typedef std::map<std::string, Animation>::iterator iterator;
 
 };
 

@@ -115,7 +115,6 @@ void Object::move()
 {
 	//Save the currentposition before we move
 	
-	
 	this->lastPosition = this->currentPosition;
 
 	//Add the velocity to the current position
@@ -161,13 +160,9 @@ return hit;
 
 
 
-
-
-
-
 bool Object::readAlpha(SDL_Surface* surface, int x, int y)
 {
-//Nån annans kod, för testning
+
 int bpp = surface->format->BytesPerPixel;
 Uint8* p = (Uint8*)surface->pixels + y * surface->pitch + x * bpp;
 Uint32 pixelColor;
@@ -204,13 +199,6 @@ SDL_GetRGBA(pixelColor, surface->format, &red, &green, &blue, &alpha);
 return alpha > 1;
 
 }
-
-
-
-
-
-
-
 
 
 bool Object::collidePixel(Object* objectB)
@@ -386,6 +374,10 @@ void	Object::setLastRender(Uint32 lastRender)
 void	Object::addAction(Action* action)
 {
 	delete action;
+}
+
+void	Object::changeAnimation(std::string key){
+
 }
 
 void	Object::doAction()

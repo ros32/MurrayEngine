@@ -22,6 +22,37 @@ void		AnimatedObject::setAnimation(Animation animation)
 	this->animation = animation;
 }
 
+void		AnimatedObject::addAnimation(std::string key, Animation animation){
+	//Check if animation already exists, otherwise add to map.
+	iterator iterator;
+	iterator = this->animationMap.find(key);
+
+	if (iterator != this->animationMap.end()){
+		std::string errorMessage = "A value for key \"" + key + "\" already exist";
+		SDL_LogWarn(SDL_LOG_CATEGORY_APPLICATION, errorMessage.c_str());
+
+	}
+	else{
+		animationMap.insert(std::pair<std::string, Animation>(key, animation));
+	}
+
+}
+
+void		AnimatedObject::changeAnimation(std::string key){
+	//Check if key exists, if it does, change to requested animation
+	iterator iterator;
+	iterator = this->animationMap.find(key);
+
+	if (iterator != this->animationMap.end()){
+		Animation tempAnimation = iterator->second;
+		this->setAnimation(tempAnimation);
+	}
+	else{
+		std::string errorMessage = "A value for key \"" + key + "\" does not exist";
+		SDL_LogWarn(SDL_LOG_CATEGORY_APPLICATION, errorMessage.c_str());
+	}
+}
+
 void		AnimatedObject::render(int x, int y)
 {
 	Uint32 lastRender = this->getLastRender();

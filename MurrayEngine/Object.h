@@ -85,6 +85,8 @@ public:
 
 	virtual bool					readAlpha(SDL_Surface* surface, int x, int y);
 
+	virtual	void					changeAnimation(std::string key);
+
 protected:
 
 	Timer			timer;
