@@ -183,11 +183,7 @@ void Map::move()
 				{
 					if (otherObject->getId() != Object->getId() && otherObject->getIsCollidable())
 					{
-						//if (Object->collideBox(otherObject))
-						//{
-						// new MoveAction(this->gameInstance->getMap()->getPlayerCharacter(), this->gameInstance->getMap(), "NORTH");
 					
-											
 						while (Object->collidePixel(otherObject))
 						{
 							

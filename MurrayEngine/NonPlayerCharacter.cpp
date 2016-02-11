@@ -2,6 +2,13 @@
 
 NonPlayerCharacter::NonPlayerCharacter()
 {
+	this->baseObject = nullptr;
+	this->actionQueue;
+}
+
+NonPlayerCharacter::NonPlayerCharacter(AnimatedObject* object)
+{
+	this->baseObject = object;
 	this->actionQueue;
 }
 
@@ -156,6 +163,46 @@ void	NonPlayerCharacter::setLastRender(Uint32 lastRender)
 void		NonPlayerCharacter::addAction(Action* action)
 {
 	this->actionQueue.push(action);
+}
+
+Animation	NonPlayerCharacter::getAnimation()
+{
+	return this->baseObject->getAnimation();
+}
+
+void		NonPlayerCharacter::setAnimation(Animation animation)
+{
+	this->baseObject->setAnimation(animation);
+}
+
+void		NonPlayerCharacter::addAnimation(std::string key, Animation animation)
+{
+	this->baseObject->addAnimation(key, animation);
+}
+
+void		NonPlayerCharacter::changeAnimation(std::string key)
+{
+	this->baseObject->changeAnimation(key);
+}
+
+AnimatedObject*		NonPlayerCharacter::getBaseObject()
+{
+	return this->baseObject;
+}
+
+void				NonPlayerCharacter::setBaseObject(AnimatedObject* object)
+{
+	this->baseObject = object;
+}
+
+AI*					NonPlayerCharacter::getAI()
+{
+	return this->ai;
+}
+
+void				NonPlayerCharacter::setAI(AI* ai)
+{
+	this->ai = ai;
 }
 
 void		NonPlayerCharacter::doAction()

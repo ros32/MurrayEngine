@@ -22,6 +22,7 @@
 #include	"Factory.h"
 #include	"KeyController.h"
 #include	<SDL_ttf.h>
+#include	"NonPlayerCharacter.h"
 
 class Factory;
 class KeyController;

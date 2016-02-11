@@ -168,7 +168,7 @@ bool GameInstance::initialize()
 				playerRight.push_back(Texture(this->getTextureAsset("HeroSpriteSheet"), "HeroRight3"));
 				playerRight.push_back(Texture(this->getTextureAsset("HeroSpriteSheet"), "HeroRight2"));
 		
-				AnimatedObject* HeroPlayer = new AnimatedObject("test006", { 100, 250 }, Animation(playerSouth, 200), 1.0, 1.0, 3, SOUTH, true);
+				NonPlayerCharacter* HeroPlayer = new NonPlayerCharacter(new AnimatedObject("test006", { 100, 250 }, Animation(playerSouth, 200), 1.0, 1.0, 3, SOUTH, true));
 				
 				HeroPlayer->addAnimation("North", Animation(playerNorth, 200));
 				HeroPlayer->addAnimation("South", Animation(playerSouth, 200));

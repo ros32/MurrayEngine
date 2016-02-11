@@ -12,6 +12,11 @@ AnimatedObject::AnimatedObject(std::string id, Position currentPosition, Animati
 	this->setTexture(this->animation.textures[0]);
 }
 
+AnimatedObject::~AnimatedObject()
+{
+
+}
+
 Animation	AnimatedObject::getAnimation()
 {
 	return this->animation;

@@ -2,20 +2,20 @@
 #define	_NON_PLAYER_CHARACTER_H
 
 #include	<queue>
-#include	"Object.h"
+#include	"AnimatedObject.h"
 #include	"AI.h"
 
 class AI;
 
-class NonPlayerCharacter : public Object
+class NonPlayerCharacter : public AnimatedObject
 {
 public:
 	NonPlayerCharacter();
-	NonPlayerCharacter(Object* base);
+	NonPlayerCharacter(AnimatedObject* base);
 	~NonPlayerCharacter();
 
-	virtual Object*					getBaseObject();
-	virtual void					setBaseObject(Object* base);
+	virtual AnimatedObject*			getBaseObject();
+	virtual void					setBaseObject(AnimatedObject* base);
 
 	virtual AI*						getAI();
 	virtual void					setAI(AI* ai);
@@ -68,6 +68,13 @@ public:
 	virtual void					addAction(Action* action);
 	virtual void					doAction();
 
+	virtual Animation				getAnimation();
+
+
+	virtual void					setAnimation(Animation animation);
+	virtual void					addAnimation(std::string key, Animation animation);
+	virtual void					changeAnimation(std::string key);
+
 	virtual bool readAlpha(SDL_Surface* surface, int x, int y);
 
 protected:
@@ -76,7 +83,7 @@ protected:
 
 private:
 
-	Object*							baseObject;
+	AnimatedObject*					baseObject;
 	AI*								ai;
 
 	std::queue<Action*>	actionQueue;
