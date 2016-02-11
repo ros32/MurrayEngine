@@ -74,6 +74,8 @@ public:
 	int							getTileSize();
 	void						setTileSize(int tileSize);
 
+	void						doActionQueue();
+
 
 private:
 

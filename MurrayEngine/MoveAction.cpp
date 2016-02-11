@@ -60,3 +60,8 @@ void MoveAction::execute()
 
 	}
 }
+
+Action*	MoveAction::copy()
+{
+	return new MoveAction(this->source, this->map, this->direction);
+}

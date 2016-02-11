@@ -249,4 +249,16 @@ Position		Map::getMapMaxSize()
 	return { maxX, maxY };
 }
 
+void			Map::doActionQueue()
+{
+
+	for (auto object : this->objects)
+	{
+		if (object != nullptr)
+			object->doAction();
+	}
+
+
+}
+
 

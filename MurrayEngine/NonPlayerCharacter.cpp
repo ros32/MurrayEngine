@@ -173,7 +173,6 @@ void		NonPlayerCharacter::doAction()
 		{
 			delete tempAction;
 			this->actionQueue.pop();
-			this->doAction();
 		}
 	}
 

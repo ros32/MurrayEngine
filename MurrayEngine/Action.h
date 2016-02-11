@@ -23,6 +23,8 @@ public:
 	void	setProgress(double progress);
 	void	updateProgress(double progress);
 
+	virtual Action*	copy() = 0;
+
 
 private:
 

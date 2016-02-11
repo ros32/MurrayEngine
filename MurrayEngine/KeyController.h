@@ -22,6 +22,8 @@ private:
 
 	GameInstance*					gameInstance;
 
+	Object*							playerCharacter;
+
 	std::map<SDL_Scancode, bool>	keys;
 	std::map<SDL_Scancode, Action*>	actions;
 

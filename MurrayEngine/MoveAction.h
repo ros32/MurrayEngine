@@ -25,6 +25,8 @@ public:
 
 	void execute();
 
+	Action*	copy();
+
 private:
 
 	Object* source;

@@ -37,6 +37,8 @@ public:
 	void	render(int x, int y);
 
 	Animation	getAnimation();
+
+
 	void		setAnimation(Animation animation);
 	void		addAnimation(std::string key, Animation animation);
 	void		changeAnimation(std::string key);
