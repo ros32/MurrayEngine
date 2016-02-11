@@ -170,6 +170,7 @@ void Map::removeObject(Object* object)
 }
 
 void Map::move()
+
 {	
 	for (auto Object : objects)
 	{
@@ -184,23 +185,19 @@ void Map::move()
 					if (otherObject->getId() != Object->getId() && otherObject->getIsCollidable())
 					{
 					
-						while (Object->collidePixel(otherObject))
-						{
-							
-							//if (collisionEvent->collidePixel(Object, otherObject));
+						collisionEvent = new CollisionEvent(Object, otherObject);
+
+						while (collisionEvent->collidePixel()){
 								Object->reverseMove();
 						}
 						
-						
+						delete(collisionEvent);
 
-						//}						
 					}
 				}
-				//Object->setTargetPosition(0, 0);
 			}	 
 		}
 
-//		Object->render(Object->getCurrentPosition().x, Object->getCurrentPosition().y);
 	}
 	
 

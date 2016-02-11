@@ -87,6 +87,9 @@ public:
 
 	virtual	void					changeAnimation(std::string key);
 
+	//	Texture asset used by object
+	Texture			texture;
+
 protected:
 
 	Timer			timer;
@@ -107,8 +110,7 @@ private:
 	//	Last position of object
 	Position		lastPosition;
 
-	//	Texture asset used by object
-	Texture			texture;
+
 
 	//	The maximum speed the Object can travel, or 0 for static
 	double			maxSpeed;

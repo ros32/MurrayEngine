@@ -1,6 +1,12 @@
 #include "CollisionEvent.h"
 
-CollisionEvent::CollisionEvent(){
+CollisionEvent::CollisionEvent(Object* objectA, Object* objectB){
+	this->objectA = objectA;
+	this->objectB = objectB;
+
+}
+
+CollisionEvent::~CollisionEvent(){
 
 }
 
@@ -8,7 +14,7 @@ CollisionEvent::CollisionEvent(){
 void CollisionEvent::execute(Object* objectA, Object* objectB){
 	
 	if (collideBox(objectA, objectB)){
-		collidePixel(objectA, objectB);
+		
 	}		
 }
 
@@ -17,17 +23,20 @@ bool CollisionEvent::collideBox(Object* objectA, Object* objectB)
 {
 	bool hit = true;
 
+	Texture aTexture = objectA->getTexture();
+	Texture bTexture = objectB->getTexture();
+
 	//x/y corners for object A
 	int Aleft = objectA->getCurrentPosition().x;
-	int Aright = objectA->getCurrentPosition().x + objectA->getTexture().asset->getWidth();
+	int Aright = objectA->getCurrentPosition().x + aTexture.asset->getWidth();
 	int Abottom = objectA->getCurrentPosition().y;
-	int Atop = objectA->getCurrentPosition().y + objectA->getTexture().asset->getHeight();
+	int Atop = objectA->getCurrentPosition().y + aTexture.asset->getHeight();
 
 	//x/y corners for object B
 	int BLeft = objectB->getCurrentPosition().x;
-	int BRight = objectB->getCurrentPosition().x + objectB->getTexture().asset->getWidth();
+	int BRight = objectB->getCurrentPosition().x + bTexture.asset->getWidth();
 	int BBottom = objectB->getCurrentPosition().y;
-	int BTop = objectB->getCurrentPosition().y + objectB->getTexture().asset->getHeight();
+	int BTop = objectB->getCurrentPosition().y + bTexture.asset->getHeight();
 
 	//Checks if there is a distance between the current object sides and the other object sides.
 	if (Aright < BLeft){
@@ -45,18 +54,21 @@ bool CollisionEvent::collideBox(Object* objectA, Object* objectB)
 	return hit;
 }
 
-bool CollisionEvent::collidePixel(Object* objectA, Object* objectB)
+bool CollisionEvent::collidePixel()
 {
-	SDL_Log("Inside CollidePixel");
 
-	/*
+	this->objectA;
+	this->objectB;
+
+	
 	if (!collideBox(objectA, objectB))
 	{
 		return false;
 	}
-	*/
-	Texture	aTexture = objectA->getTexture();
-	Texture	bTexture = objectB->getTexture();
+	
+
+	this->aTexture = objectA->getTexture();
+	this->bTexture = objectB->getTexture();
 
 	//Map positions of rectangles for objectA (this)
 	int axLeft = objectA->getCurrentPosition().x;
@@ -76,27 +88,16 @@ bool CollisionEvent::collidePixel(Object* objectA, Object* objectB)
 	int top = std::max(ayTop, byTop);
 	int bottom = std::min(ayBottom, byBottom);
 
-	SDL_Rect*	aRect = objectA->getTexture().asset->getSourceRect(aTexture.name);
-	SDL_Rect*	bRect = objectB->getTexture().asset->getSourceRect(bTexture.name);
+	this->aRect = aTexture.asset->getSourceRect(objectA->texture.name);
+	this->bRect = bTexture.asset->getSourceRect(objectB->texture.name);
 
-	SDL_Rect targetRectA;
-	SDL_Rect targetRectB;
-
-	targetRectA.x = 0;
-	targetRectA.y = 0;
-	targetRectB.x = 0;
-	targetRectB.y = 0;
-
-	//Get the surfaces we need to pass to readAlpha
-	SDL_Surface* orgSurfaceA = aTexture.asset->getSurface();
-	SDL_Surface* orgSurfaceB = bTexture.asset->getSurface();
-
-	//Create destination surfaces for the blit;	
-	SDL_Surface* SurfaceA;
-	SDL_Surface* SurfaceB;
+	this->targetRectA.x = 0;
+	this->targetRectA.y = 0;
+	this->targetRectB.x = 0;
+	this->targetRectB.y = 0;
 	
-	Uint8 red, green, blue, alpha;
-	Uint32 rmask, gmask, bmask, amask;
+	//Uint8 red, green, blue, alpha;
+	//Uint32 rmask, gmask, bmask, amask;
 
 	if (SDL_BYTEORDER == SDL_BIG_ENDIAN){
 		rmask = 0xff000000;
@@ -111,6 +112,12 @@ bool CollisionEvent::collidePixel(Object* objectA, Object* objectB)
 		amask = 0xff000000;
 	}
 
+	//Get the surfaces we need to pass to readAlpha
+	orgSurfaceA = aTexture.asset->getSurface();
+	orgSurfaceB = bTexture.asset->getSurface();
+
+	//Create destination surfaces for the blit;	
+
 	SurfaceA = SDL_CreateRGBSurface(NULL, aTexture.asset->getWidth(), aTexture.asset->getHeight(), 32, rmask, gmask, bmask, amask);
 	SurfaceB = SDL_CreateRGBSurface(NULL, bTexture.asset->getWidth(), bTexture.asset->getHeight(), 32, rmask, gmask, bmask, amask);
 
@@ -119,7 +126,7 @@ bool CollisionEvent::collidePixel(Object* objectA, Object* objectB)
 
 	if (SurfaceA == nullptr || SurfaceB == nullptr)
 	{
-		SDL_Log(SDL_GetError());
+		SDL_Log("Surfaces is nullptr!! ", SDL_GetError());
 	}
 
 	bool alphaA;
@@ -135,7 +142,6 @@ bool CollisionEvent::collidePixel(Object* objectA, Object* objectB)
 
 			if (alphaA && alphaB)
 			{
-			//	reverseMove(objectA);
 				SDL_FreeSurface(SurfaceA);
 				SDL_FreeSurface(SurfaceB);
 				return true;
@@ -158,7 +164,6 @@ bool CollisionEvent::collidePixel(Object* objectA, Object* objectB)
 
 bool CollisionEvent::readAlpha(SDL_Surface* surface, int x, int y)
 {
-	SDL_Log("reading alpha");
 	int bpp = surface->format->BytesPerPixel;
 	Uint8* p = (Uint8*)surface->pixels + y * surface->pitch + x * bpp;
 	Uint32 pixelColor;
@@ -166,23 +171,18 @@ bool CollisionEvent::readAlpha(SDL_Surface* surface, int x, int y)
 	switch (bpp)
 	{
 	case(1) :
-
-		//	SDL_Log("Bpp is 1");
 		pixelColor = *p;
 		break;
 	case(2) :
-		//		SDL_Log("Bpp is 2");
 		pixelColor = *(Uint16*)p;
 		break;
 	case(3) :
-		//		SDL_Log("Bpp is 3");
 		if (SDL_BYTEORDER == SDL_BIG_ENDIAN)
 			pixelColor = p[0] << 16 | p[1] << 8 | p[2];
 		else
 			pixelColor = p[0] | p[1] << 8 | p[2] << 16;
 		break;
 	case(4) :
-		//		SDL_Log("Bpp is 4");
 		pixelColor = *(Uint32*)p;
 		break;
 	default:
@@ -198,8 +198,6 @@ bool CollisionEvent::readAlpha(SDL_Surface* surface, int x, int y)
 
 void CollisionEvent::reverseMove(Object* object)
 {
-
-	SDL_Log("Moving back through reverseMove");
 	//North 
 	if (object->getOrientation() == 0){ object->setCurrentPosition(object->getCurrentPosition().x, object->getCurrentPosition().y + 1); }
 	//East 

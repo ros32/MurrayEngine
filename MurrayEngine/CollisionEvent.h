@@ -5,21 +5,21 @@
 #include "Object.h"
 #include "TextureAsset.h"
 #include "Position.h"
-#include "TextureAsset.h"
 #include <SDL.h>
 
 
 class CollisionEvent {
 
 public:
-	CollisionEvent();
+	CollisionEvent(Object* objectA, Object* objectB);
 	~CollisionEvent();
 
 	void execute(Object* objectA, Object* objectB);
-	bool collidePixel(Object* objectA, Object* objectB);
+	bool collidePixel();
+	bool collideBox(Object* objectA, Object* objectB);
 
 private:
-	bool collideBox(Object* objectA, Object* objectB);
+
 	bool readAlpha(SDL_Surface* surface, int x, int y);
 
 

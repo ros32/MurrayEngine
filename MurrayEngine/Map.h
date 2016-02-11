@@ -81,15 +81,15 @@ private:
 
 	int tileSize;
 
-	Camera*											camera;
+	Camera*						camera;
 
-	std::vector<Tile*>							tiles;
-	std::vector<Object*>						objects;
-	std::vector <Object>						tempVector;
+	std::vector<Tile*>			tiles;
+	std::vector<Object*>		objects;
+	std::vector <Object>		tempVector;
 
-	Object*									playerCharacter;
+	Object*						playerCharacter;
 
-	CollisionEvent*						CollisionEvent;
+	CollisionEvent*				collisionEvent;
 
 };
 
