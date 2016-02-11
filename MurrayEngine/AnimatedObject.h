@@ -1,10 +1,10 @@
 #ifndef _ANIMATED_OBJECT_H
 #define _ANIMATED_OBJECT_H
 
-#include "Object.h"
-#include "TextureAsset.h"
 #include <vector>
 #include <sstream>
+#include "Object.h"
+
 
 struct Animation
 {

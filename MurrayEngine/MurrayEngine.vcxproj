@@ -43,6 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Action.cpp" />
+    <ClCompile Include="AI.cpp" />
     <ClCompile Include="AnimatedObject.cpp" />
     <ClCompile Include="CollisionEvent.cpp" />
     <ClCompile Include="Configuration.cpp" />
@@ -107,6 +108,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
+      <ShowIncludes>false</ShowIncludes>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>

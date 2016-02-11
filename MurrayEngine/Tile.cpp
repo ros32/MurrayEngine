@@ -5,7 +5,8 @@ Tile::Tile() : Object()
 
 }
 
-Tile::Tile(Position currentPosition, Texture texture, Orientation orientation) : Object("tile", currentPosition, texture, 0.0, 0.0, 0, orientation, false)
+Tile::Tile(Position currentPosition, Texture texture, Orientation orientation, bool isCollidable, bool isPassable) : 
+	Object("tile", currentPosition, texture, 0.0, 0.0, 0, orientation, isCollidable)
 {
 
 }

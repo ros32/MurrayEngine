@@ -6,7 +6,6 @@ The concrete action DamageAction
 #define _DAMAGEACTION_H
 
 #include "GameInstance.h"
-#include "Object.h"
 #include "Action.h"
 
 class DamageAction : public Action{

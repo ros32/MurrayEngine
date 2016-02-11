@@ -13,7 +13,7 @@ class Tile: public Object
 {
 public:
 	Tile();
-	Tile(Position currentPosition, Texture texture, Orientation orientation);
+	Tile(Position currentPosition, Texture texture, Orientation orientation, bool collidable, bool passable);
 	~Tile();
 
 	Position	getCurrentPosition();

@@ -5,6 +5,8 @@
 #include	"Object.h"
 #include	"AI.h"
 
+class AI;
+
 class NonPlayerCharacter : public Object
 {
 public:

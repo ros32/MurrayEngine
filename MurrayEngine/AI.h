@@ -2,8 +2,6 @@
 #define	_AI_H
 
 #include	<vector>
-#include	"NonPlayerCharacter.h"
-#include	"GameInstance.h"
 
 class AI
 {

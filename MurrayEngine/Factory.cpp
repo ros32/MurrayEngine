@@ -30,8 +30,30 @@ Map*				Factory::createMap(Configuration configuration)
 		std::size_t found = key.first.find("TILE_");
 		if (found != std::string::npos)
 		{
+			bool collidable = false;
+			bool passable = true;
 			int posX = atoi(key.first.substr(5, 2).c_str());
 			int posY = atoi(key.first.substr(8, 2).c_str());
+			const std::string type = key.first.substr(11, 1).c_str();
+			switch (type.at(0))
+			{
+			case 'W':
+				collidable = true;
+				passable = false;
+				break;
+			case 'F':
+				collidable = false;
+				passable = true;
+				break;
+			case 'I':
+				collidable = true;
+				passable = true;
+				break;
+			default:
+				collidable = false;
+				passable = true;
+				break;
+			}
 			Position	pos = { posX * (cellSize), posY * (cellSize) };
 			std::stringstream ss(key.second);
 			std::string segment;
@@ -55,7 +77,7 @@ Map*				Factory::createMap(Configuration configuration)
 			}
 			if (gameInstance != nullptr)
 			{
-				Tile*	tempTile = new Tile(pos, Texture(gameInstance->getTextureAsset(tileset), texture), NORTH);
+				Tile*	tempTile = new Tile(pos, Texture(gameInstance->getTextureAsset(tileset), texture), NORTH, collidable, passable);
 				tiles.push_back(tempTile);
 			}
 		}

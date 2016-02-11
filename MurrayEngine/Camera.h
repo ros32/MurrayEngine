@@ -7,7 +7,7 @@
 #include <SDL2/SDL.h>
 #endif
 #include	"Object.h"
-#include	"Position.h"
+
 #include	"GUI.h"
 
 ///	<summary>

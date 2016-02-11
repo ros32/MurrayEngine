@@ -1,6 +1,7 @@
 #ifndef _CONFIGURATION_H
 #define	_CONFIGURATION_H
 
+#include	<sstream>
 #include	<iostream>
 #include	<fstream>
 #include	<string>
@@ -10,7 +11,7 @@
 #elif __linux__
 #include <SDL2/SDL.h>
 #endif
-#include	<sstream>
+
 
 
 ///	<summary>
