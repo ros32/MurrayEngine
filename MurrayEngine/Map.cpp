@@ -7,6 +7,8 @@ Map::Map()
 	this->camera = new Camera();
 	this->tiles;
 	this->objects;
+	this->collisionMap;
+	this->passableMap;
 
 }
 
@@ -16,6 +18,8 @@ Map::Map(SDL_Window* window, SDL_Renderer* renderer)
 	this->camera = new Camera(window);
 	this->tiles;
 	this->objects;
+	this->collisionMap;
+	this->passableMap;
 	
 }
 
@@ -79,36 +83,22 @@ std::vector<Object*>	Map::getObject(Position posA, Position posB)
 	return tempVector;
 }
 
-Tile Map::getTile(Position pos)
+Tile* Map::getTile(Position pos)
 {
 //	std::vector <std::vector<Tile>>::iterator row;
 //	std::vector<Tile>::iterator column;
 
-	int posX = pos.x;
-	int posY = pos.y;
+	for (auto tile : this->tiles)
+	{
 
-	return tiles[posX][posY];
-
-	/*
-	for (int row = 0; row <= tiles.size() - 1; row++){
-		if (row == posX){
-			for (int column = 0; column <= tiles.size() - 1; column++){
-				if (column == posY);
-				return tiles[row][column];
+		if (tile != nullptr && tile->getTexture().asset != nullptr &&
+			tile->getCurrentPosition().x >= pos.x && tile->getCurrentPosition().x <= pos.x + tile->getTexture().asset->getWidth() &&
+			tile->getCurrentPosition().y >= pos.y && tile->getCurrentPosition().y <= pos.y + tile->getTexture().asset->getHeight())
+			return tile;
 			}
-		}		
-	}
-	*/
 
-	/*
-	for (row = tiles.begin(); row != tiles.end(); row++){
-		 for (column = row->begin(); column != row->end(); column++){
 		}
-	}
-	*/
 	
-}
-
 void Map::render()
 {
 
@@ -144,6 +134,7 @@ void Map::render()
 void Map::setTiles(std::vector<Tile*> tiles)
 {
 		this->tiles = tiles;
+		this->generateMaps();
 }
 
 void Map::setObjects(std::vector<Object*> objects)
@@ -171,36 +162,44 @@ void Map::removeObject(Object* object)
 
 void Map::move()
 
-{	
-	for (auto Object : objects)
+{
+	for (auto object : objects)
 	{
-		if ((Object->getTargetPosition().x != 0) || (Object->getTargetPosition().y != 0))
+		if ((object->getTargetPosition().x != 0) || (object->getTargetPosition().y != 0))
 		{
-			 Object->move();			 
+			object->move();
 
-			 if (Object->getIsCollidable())
-			 {
-				for (auto otherObject : objects)
+			if (object->getIsCollidable())
+			{
+				if (this->getCollision(object->getCurrentPosition(), { object->getCurrentPosition().x + object->getTexture().asset->getWidth(), object->getCurrentPosition().y + object->getTexture().asset->getHeight() }))
 				{
-					if (otherObject->getId() != Object->getId() && otherObject->getIsCollidable())
+					while (this->getCollision(object->getCurrentPosition(), { object->getCurrentPosition().x + object->getTexture().asset->getWidth(), object->getCurrentPosition().y + object->getTexture().asset->getHeight() }))
 					{
-					
-						collisionEvent = new CollisionEvent(Object, otherObject);
-
-						while (collisionEvent->collidePixel()){
-								Object->reverseMove();
-						}
-						
-						delete(collisionEvent);
-
+						object->reverseMove();
 					}
 				}
-			}	 
+				else
+				{
+					for (auto otherObject : objects)
+					{
+						if (otherObject->getId() != object->getId() && otherObject->getIsCollidable())
+						{
+
+							collisionEvent = new CollisionEvent(object, otherObject);
+
+							while (collisionEvent->collidePixel()){
+								object->reverseMove();
+							}
+
+							delete(collisionEvent);
+
+						}
+					}
+				}
+			}
+
 		}
-
 	}
-	
-
 }
 	
 Camera*		Map::getCamera()
@@ -237,7 +236,7 @@ Position		Map::getMapMaxSize()
 		if (maxX < (tile->getTexture().asset->getWidth() + tile->getCurrentPosition().x))
 			maxX = (tile->getTexture().asset->getWidth() + tile->getCurrentPosition().x);
 		if (maxY < (tile->getTexture().asset->getHeight() + tile->getCurrentPosition().y))
-			maxX = (tile->getTexture().asset->getHeight() + tile->getCurrentPosition().y);
+			maxY = (tile->getTexture().asset->getHeight() + tile->getCurrentPosition().y);
 	}
 	return { maxX, maxY };
 }
@@ -254,4 +253,58 @@ void			Map::doActionQueue()
 
 }
 
+void			Map::generateMaps()
+{
+	Position maxSize = this->getMapMaxSize();
+	int sizeX = this->getTileSize();
+	int sizeY = this->getTileSize();
+	this->collisionMap = std::vector<std::vector<bool>>(maxSize.x/sizeX);
+	for (int i = 0; i < maxSize.x/sizeX; i++)
+	{
+		std::string out = "Processing line " + std::to_string(i);
+		SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, out.c_str());
+		this->collisionMap[i] = std::vector<bool>(maxSize.y/sizeY);
+		for (int j = 0; j < maxSize.y/sizeY; j++)
+		{
+			this->collisionMap[i][j] = this->getTile({ i, j })->getIsCollidable();
+		}
+	}
+}
 
+bool			Map::getCollision(Position posA, Position posB)
+{
+	Position maxSize = this->getMapMaxSize();
+	int		tileSize = this->getTileSize();
+	if (posA.x < 0 || posA.x > maxSize.x || posA.y < 0 || posA.y > maxSize.y || posB.x < 0 || posB.x > maxSize.x || posB.y < 0 || posB.y > maxSize.y)
+		return true;
+	if (posA.x == posB.x && posA.y == posB.y)
+		return this->collisionMap[posA.x][posA.y];
+	else
+	{
+		Position posX;
+		Position posY;
+		if (posB.x < posA.x)
+		{
+			posX = posB;
+			posY = posA;
+		}
+		else
+		{
+			posX = posA;
+			posY = posB;
+}
+
+		for (; posX.x < posY.x; posX.x++)
+		{
+			for (; posX.y < posY.y; posX.y++)
+				if (this->collisionMap[posX.x / tileSize][posX.y / tileSize])
+				{
+					std::string out = "Found a collision in tile" + std::to_string(posX.x / tileSize) + ", " + std::to_string(posX.y / tileSize);
+					SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, out.c_str());
+					return true;
+				}
+		}
+
+		return false;
+	}
+}

@@ -33,7 +33,7 @@ public:
 	///	<summary>
 	///	Return the Tile on a given position
 	///	</summary>
-	Tile						getTile(Position pos);
+	Tile*						getTile(Position pos);
 
 	///	<summary>
 	///	Render all visible components in the Map
@@ -76,6 +76,9 @@ public:
 
 	void						doActionQueue();
 
+	bool						getCollision(Position posA, Position posB);
+	void						getPassable(Position posA, Position posB);
+
 
 private:
 
@@ -90,6 +93,11 @@ private:
 	Object*						playerCharacter;
 
 	CollisionEvent*				collisionEvent;
+
+	std::vector<std::vector<bool>>		collisionMap;
+	std::vector<std::vector<bool>>		passableMap;
+
+	void								generateMaps();
 
 };
 

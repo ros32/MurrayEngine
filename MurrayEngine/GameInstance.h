@@ -113,6 +113,7 @@ private:
 	void			loadConfigurations();
 	void			renderObjects();
 	void			moveObjects();
+	void			doActions();
 
 	bool			initialized;
 	bool			runned;

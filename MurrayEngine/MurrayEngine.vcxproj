@@ -35,6 +35,7 @@
     <ClInclude Include="NonPlayerCharacter.h" />
     <ClInclude Include="Physics.h" />
     <ClInclude Include="Position.h" />
+    <ClInclude Include="ProjectileObject.h" />
     <ClInclude Include="TextureAsset.h" />
     <ClInclude Include="TextureAssetFactory.h" />
     <ClInclude Include="Tile.h" />

@@ -59,6 +59,8 @@ void MoveAction::execute()
 		source->setOrientation(SOUTH);
 
 	}
+
+	this->updateProgress(1);
 }
 
 Action*	MoveAction::copy()

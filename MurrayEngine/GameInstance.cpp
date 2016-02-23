@@ -304,11 +304,12 @@ bool GameInstance::run()
 		}
 		
 		this->keyController->checkState();
-
+		this->doActions();
 		//	Clear renderer
 		SDL_RenderClear(this->instanceRenderer);
 		TextureAsset*	tempTexture = new TextureAsset(this->instanceRenderer, "8bitOperatorPlusSC-Bold.ttf", 24, std::to_string(frameLimiter.getAvgFrames()), { 255, 255, 255 });
 		this->frameRateGUIObject->setTexture(tempTexture);
+		
 		this->moveObjects();
 		this->renderObjects();
 		SDL_RenderPresent(this->instanceRenderer);
@@ -404,4 +405,10 @@ void			GameInstance::setFactory(Factory* factory)
 Map*			GameInstance::getMap()
 {
 	return this->map;
+}
+
+void			GameInstance::doActions()
+{
+	if (this->map != nullptr)
+		this->map->doActionQueue();
 }
