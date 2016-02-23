@@ -22,7 +22,7 @@ Object::Object(std::string id, Position currentPosition, Texture texture, double
 	this->timer.start();
 	this->lastRender = 0;
 	this->lastMove = 0;
-	
+	this->collisionEvent;
 
 }
 
@@ -302,8 +302,14 @@ bool Object::collidePixel(Object* objectB)
 return false;
 }
 
+CollisionEvent* Object::getCollisionEvent(){
 
+	return this->collisionEvent;
+}
 
+void Object::setCollisionEvent(CollisionEvent* collisionEvent){
+	this->collisionEvent = collisionEvent;
+}
 
 
 Texture			Object::getTexture()

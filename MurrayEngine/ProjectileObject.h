@@ -2,6 +2,7 @@
 #define	_PROJECTILE_OBJECT_H
 
 #include "AnimatedObject.h"
+#include "Object.h"
 
 class ProjectileObject: public AnimatedObject
 {
@@ -13,6 +14,8 @@ public:
 	void	setTargetPosition(Position pos);
 
 private:
+
+	Position targetPosition;
 
 };
 

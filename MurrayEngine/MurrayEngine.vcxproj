@@ -65,6 +65,7 @@
     <ClCompile Include="MoveAction.cpp" />
     <ClCompile Include="NonPlayerCharacter.cpp" />
     <ClCompile Include="Physics.cpp" />
+    <ClCompile Include="ProjectileObject.cpp" />
     <ClCompile Include="TextureAsset.cpp" />
     <ClCompile Include="Test.cpp" />
     <ClCompile Include="TextureAssetFactory.cpp" />

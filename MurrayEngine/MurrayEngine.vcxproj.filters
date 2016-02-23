@@ -179,6 +179,9 @@
     <ClCompile Include="CollisionEvent.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="ProjectileObject.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GUI.cpp">

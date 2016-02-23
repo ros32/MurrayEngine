@@ -11,6 +11,8 @@
 #include	"Physics.h"
 #include	"Action.h"
 
+class CollisionEvent;
+
 class Action;
 
 enum Orientation
@@ -87,6 +89,10 @@ public:
 
 	virtual	void					changeAnimation(std::string key);
 
+	virtual void					setCollisionEvent(CollisionEvent* event);
+
+	virtual CollisionEvent*			getCollisionEvent();
+
 	//	Texture asset used by object
 	Texture			texture;
 
@@ -139,7 +145,7 @@ private:
 	float			force;
 	float			mass;
 
-	
+	CollisionEvent* collisionEvent;
 	
 
 };
