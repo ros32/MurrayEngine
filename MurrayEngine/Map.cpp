@@ -85,19 +85,23 @@ std::vector<Object*>	Map::getObject(Position posA, Position posB)
 
 Tile* Map::getTile(Position pos)
 {
-//	std::vector <std::vector<Tile>>::iterator row;
-//	std::vector<Tile>::iterator column;
+	//	std::vector <std::vector<Tile>>::iterator row;
+	//	std::vector<Tile>::iterator column;
 
 	for (auto tile : this->tiles)
 	{
+		Position currentPosition = tile->getCurrentPosition();
+		int height = tile->getTexture().asset->getHeight();
+		int width = tile->getTexture().asset->getWidth();
 
-		if (tile != nullptr && tile->getTexture().asset != nullptr &&
-			tile->getCurrentPosition().x >= pos.x && tile->getCurrentPosition().x <= pos.x + tile->getTexture().asset->getWidth() &&
-			tile->getCurrentPosition().y >= pos.y && tile->getCurrentPosition().y <= pos.y + tile->getTexture().asset->getHeight())
+		if (pos.x >= currentPosition.x && pos.x < currentPosition.x + height && //	X coordinate is within x of the tile
+			pos.y >= currentPosition.y && pos.y < currentPosition.y + height)	//	Y coordinate is within y of the tile
 			return tile;
-			}
 
-		}
+	}
+
+	return nullptr;
+}
 	
 void Map::render()
 {
@@ -134,7 +138,7 @@ void Map::render()
 void Map::setTiles(std::vector<Tile*> tiles)
 {
 		this->tiles = tiles;
-		this->generateMaps();
+		//this->generateMaps();
 }
 
 void Map::setObjects(std::vector<Object*> objects)
@@ -163,41 +167,151 @@ void Map::removeObject(Object* object)
 void Map::move()
 
 {
-	for (auto object : objects)
+	//	Loop for all objects in vector
+	for (auto object : this->objects)
 	{
-		if ((object->getTargetPosition().x != 0) || (object->getTargetPosition().y != 0))
+		//	If object is to be moved
+		if (object != nullptr && (object->getTargetPosition().x != 0 || object->getTargetPosition().y != 0))
 		{
-			object->move();
+			//	Store objects current position (const)
+			const Position currentPosition = object->getCurrentPosition();
 
+			//	Store objects target position (const)
+			const Position targetPosition = object->getTargetPosition();
+
+			//	Store current position with target position applied
+			Position finalPosition = { currentPosition.x + targetPosition.x, currentPosition.y + targetPosition.y };
+
+			//	If final position is negative, return and do not move
+			if (finalPosition.x < 0 || finalPosition.y < 0)
+			{
+				object->setTargetPosition({ 0, 0 });
+				break;
+			}
+			
+			//	If object has collision
+			bool collision = false;
+
+			//	If object has no collision, set current position to final position and return
 			if (object->getIsCollidable())
 			{
-				if (this->getCollision(object->getCurrentPosition(), { object->getCurrentPosition().x + object->getTexture().asset->getWidth(), object->getCurrentPosition().y + object->getTexture().asset->getHeight() }))
+
+				//	Check which axes to move
+				const bool moveX = (targetPosition.x != 0);
+				const bool moveY = (targetPosition.y != 0);
+
+				//	Check if move is negative on axis
+				const bool negX = (targetPosition.x < 0);
+				const bool negY = (targetPosition.y < 0);
+
+				//	Store object height and width
+				const int height = object->getTexture().asset->getHeight();
+				const int width = object->getTexture().asset->getWidth();
+
+				//	Store the iterators current position
+				Position iterationPosition = currentPosition;
+
+				//	Store numbers of iterations needed
+				const int iterations = std::max(std::abs(targetPosition.x), std::abs(targetPosition.y));
+
+				//	Process iterations
+				for (int i = 0; i < iterations; i++)
 				{
-					while (this->getCollision(object->getCurrentPosition(), { object->getCurrentPosition().x + object->getTexture().asset->getWidth(), object->getCurrentPosition().y + object->getTexture().asset->getHeight() }))
+					//	Store last position where no collision was detected
+					Position	lastGoodPosition = iterationPosition;
+
+					//	Adjust x axis depending on positive or negative value
+					if (moveX)
 					{
-						object->reverseMove();
+						if (negX)
+							iterationPosition = { iterationPosition.x - 1, iterationPosition.y };
+						else
+							iterationPosition = { iterationPosition.x + 1, iterationPosition.y };
 					}
-				}
-				else
-				{
-					for (auto otherObject : objects)
+
+					//	Adjust y axis depending on positive or negative value
+					if (moveY)
 					{
-						if (otherObject->getId() != object->getId() && otherObject->getIsCollidable())
+
+						if (negY)
+							iterationPosition = { iterationPosition.x, iterationPosition.y - 1 };
+						else
+							iterationPosition = { iterationPosition.x, iterationPosition.y + 1 };
+					}
+
+					object->setCurrentPosition(iterationPosition);
+
+					//	Declare vector for tiles to be checked
+					std::vector<Tile*>	tiles;
+
+					//	Create vector with tiles from all corners of object
+					tiles.push_back(this->getTile(iterationPosition));	//	Top left
+					tiles.push_back(this->getTile({ iterationPosition.x + width-1, iterationPosition.y })); // Top right
+					tiles.push_back(this->getTile({ iterationPosition.x, iterationPosition.y + height-1 })); // Bottom left
+					tiles.push_back(this->getTile({ iterationPosition.x + width-1, iterationPosition.y + height-1 })); // Bottom right
+
+					//	Check tiles that touches objects corners for collision
+					for (Object* tile : tiles)
+					{
+						if (tile == nullptr)
 						{
-
-							collisionEvent = new CollisionEvent(object, otherObject);
-
-							while (collisionEvent->collidePixel()){
-								object->reverseMove();
-							}
-
-							delete(collisionEvent);
-
+							collision = true;
+							break;
+						}
+						if (tile->getIsCollidable() && object->collidePixel(tile))
+						{
+							collision = true;
+							break;
 						}
 					}
+
+					//	If collision is found, set current position to last known good position and break
+					if (collision)
+					{
+						object->setCurrentPosition(lastGoodPosition);
+						object->setTargetPosition({ 0, 0 });
+						break;
+					}
+					else
+					{
+						//	Check all objects
+						for (auto otherObject : this->objects)
+						{
+							//	If object is not null, not self and has collision and collides with pixel
+							if (otherObject != nullptr && otherObject->getId() != object->getId() && 
+								otherObject->getIsCollidable() && object->collidePixel(otherObject))
+							{
+								collision = true;
+								break;
+							}
+						}
+
+						//	If collision is found, set current position to last known good position and break
+						if (collision)
+						{
+							object->setCurrentPosition(lastGoodPosition);
+							object->setTargetPosition({ 0, 0 });
+							break;
+						}
+					}
+
 				}
+
 			}
 
+			//	Either object has no collision or no collision
+			//	were detected. Set current position to final position
+			//	and return
+
+			if (!collision)
+			{
+				object->setCurrentPosition(finalPosition);
+				object->setTargetPosition({ 0, 0 });
+			}
+			else
+			{
+				object->setTargetPosition({ 0, 0 });
+			}
 		}
 	}
 }
