@@ -212,17 +212,30 @@ bool Object::collidePixel(Object* objectB)
 		return false;
 	}
 
+	//	Store Textures
+	const Texture textureA = this->getTexture();
+	const Texture textureB = objectB->getTexture();
+
+	const Position currentPositionA = this->getCurrentPosition();
+	const Position currentPositionB = objectB->getCurrentPosition();
+
+	const int widthA = textureA.asset->getWidth();
+	const int heightA = textureA.asset->getHeight();
+
+	const int widthB = textureB.asset->getWidth();
+	const int heightB = textureB.asset->getHeight();
+
 	//Map positions of rectangles for objectA (this)
-	int axLeft = this->getCurrentPosition().x;
-	int ayTop = this->getCurrentPosition().y;
-	int axRight = this->getCurrentPosition().x + this->getTexture().asset->getWidth() - 1;
-	int ayBottom = this->getCurrentPosition().y + this->getTexture().asset->getHeight() - 1;
+	int axLeft = currentPositionA.x;
+	int ayTop = currentPositionA.y;
+	int axRight = currentPositionA.x + widthA - 1;
+	int ayBottom = currentPositionA.y + heightA - 1;
 
 	//Map positions of rectangles for objectB
-	int bxLeft = objectB->getCurrentPosition().x;
-	int byTop = objectB->getCurrentPosition().y;
-	int bxRight = objectB->getCurrentPosition().x + objectB->getTexture().asset->getWidth() - 1;
-	int byBottom = objectB->getCurrentPosition().y + objectB->getTexture().asset->getHeight() - 1;
+	int bxLeft = currentPositionB.x;
+	int byTop = currentPositionB.y;
+	int bxRight = currentPositionB.x + widthB - 1;
+	int byBottom = currentPositionB.y + heightB - 1;
 
 	//Get the values of the intersected rectangle where our pixel collision check will occur
 	int left = std::max(axLeft, bxLeft);
@@ -230,8 +243,8 @@ bool Object::collidePixel(Object* objectB)
 	int top = std::max(ayTop, byTop);
 	int bottom = std::min(ayBottom, byBottom);
 
-	SDL_Rect* aRect = this->getTexture().asset->getSourceRect(this->getTexture().name);
-	SDL_Rect* bRect = objectB->getTexture().asset->getSourceRect(objectB->getTexture().name);
+	SDL_Rect* aRect = textureA.asset->getSourceRect(textureA.name);
+	SDL_Rect* bRect = textureB.asset->getSourceRect(textureB.name);
 
 	SDL_Rect targetRectA;
 	SDL_Rect targetRectB;
@@ -242,8 +255,8 @@ bool Object::collidePixel(Object* objectB)
 	targetRectB.y = 0;
 
 	//Get the surfaces we need to pass to readAlpha
-	SDL_Surface* orgSurfaceA = this->getTexture().asset->getSurface();
-	SDL_Surface* orgSurfaceB = objectB->getTexture().asset->getSurface();
+	SDL_Surface* orgSurfaceA = textureA.asset->getSurface();
+	SDL_Surface* orgSurfaceB = textureB.asset->getSurface();
 
 	//Create destination surfaces for the blit;
 	SDL_Surface* SurfaceA;
@@ -260,10 +273,10 @@ bool Object::collidePixel(Object* objectB)
 		gmask = 0x0000ff00;
 		bmask = 0x00ff0000;
 		amask = 0xff000000;
-		}
+	}
 
-	SurfaceA = SDL_CreateRGBSurface(NULL, this->getTexture().asset->getWidth(), this->getTexture().asset->getHeight(), 32, rmask, gmask, bmask, amask);
-	SurfaceB = SDL_CreateRGBSurface(NULL, objectB->getTexture().asset->getWidth(), objectB->getTexture().asset->getHeight(), 32, rmask, gmask, bmask, amask);
+	SurfaceA = SDL_CreateRGBSurface(NULL, widthA, heightA, 32, rmask, gmask, bmask, amask);
+	SurfaceB = SDL_CreateRGBSurface(NULL, widthB, heightB, 32, rmask, gmask, bmask, amask);
 
 	SDL_BlitSurface(orgSurfaceA, aRect, SurfaceA, &targetRectA);
 	SDL_BlitSurface(orgSurfaceB, bRect, SurfaceB, &targetRectB);
@@ -281,7 +294,7 @@ bool Object::collidePixel(Object* objectB)
 	for (int yAxis = top; yAxis <= bottom; yAxis++)
 	{
 		for (int xAxis = left; xAxis <= right; xAxis++)
-		{	
+		{
 			alphaA = readAlpha(SurfaceA, xAxis - axLeft, yAxis - ayTop);
 			alphaB = readAlpha(SurfaceB, xAxis - bxLeft, yAxis - byTop);
 
@@ -305,7 +318,7 @@ bool Object::collidePixel(Object* objectB)
 		}
 	}
 
-return false;
+	return false;
 }
 
 CollisionEvent* Object::getCollisionEvent(){
