@@ -25,3 +25,8 @@ void	Tile::render(int x, int y)
 {
 	this->Object::render(x, y);
 }
+
+bool	Tile::getIsCollidable()
+{
+	return Object::getIsCollidable();
+}

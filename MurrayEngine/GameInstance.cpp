@@ -204,9 +204,11 @@ bool GameInstance::initialize()
 				textures.push_back(Texture(this->getTextureAsset("tileset"), "TreeL"));
 
 
-				AnimatedObject* animatedObject = new AnimatedObject("test003", { 250, 250 }, Animation(textures, 200), 1.0, 1.0, 0, NONE, true);
+				AnimatedObject* animatedObject = new AnimatedObject("test003", { 160, 350 }, Animation(textures, 200), 1.0, 1.0, 2, NORTH, true);
+				NonPlayerCharacter* granges = new NonPlayerCharacter(animatedObject);
+				granges->setAI(new DefaultAI(granges, this->map));
 
-				this->map->addObject(animatedObject);
+				this->map->addObject(granges);
 
 
 				std::vector<Texture> witchTextures;

@@ -139,6 +139,7 @@ void Map::setTiles(std::vector<Tile*> tiles)
 {
 		this->tiles = tiles;
 		//this->generateMaps();
+		this->calculateMapMaxSize();
 }
 
 void Map::setObjects(std::vector<Object*> objects)
@@ -220,7 +221,7 @@ void			Map::setTileSize(int tileSize)
 	this->tileSize = tileSize;
 }
 
-Position		Map::getMapMaxSize()
+void		Map::calculateMapMaxSize()
 {
 	int maxX = 0;
 	int maxY = 0;
@@ -231,7 +232,7 @@ Position		Map::getMapMaxSize()
 		if (maxY < (tile->getTexture().asset->getHeight() + tile->getCurrentPosition().y))
 			maxY = (tile->getTexture().asset->getHeight() + tile->getCurrentPosition().y);
 	}
-	return { maxX, maxY };
+	this->mapMaxSize = { maxX, maxY };
 }
 
 void			Map::doActionQueue()
@@ -388,6 +389,7 @@ Position	Map::tryMove(Object* object, Position targetPosition)
 			//	If collision is found, set current position to last known good position and break
 			if (collision)
 			{
+				object->setCurrentPosition(currentPosition);
 				return lastGoodPosition;
 			}
 			else
@@ -407,6 +409,7 @@ Position	Map::tryMove(Object* object, Position targetPosition)
 				//	If collision is found, set current position to last known good position and break
 				if (collision)
 				{
+					object->setCurrentPosition(currentPosition);
 					return lastGoodPosition;
 				}
 			}
@@ -414,7 +417,12 @@ Position	Map::tryMove(Object* object, Position targetPosition)
 		}
 
 	}
-
+	object->setCurrentPosition(currentPosition);
 	return { currentPosition.x + targetPosition.x, currentPosition.y + targetPosition.y };
 
+}
+
+Position		Map::getMapMaxSize()
+{
+	return this->mapMaxSize;
 }

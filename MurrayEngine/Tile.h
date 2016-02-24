@@ -17,7 +17,7 @@ public:
 	~Tile();
 
 	Position	getCurrentPosition();
-
+	bool		getIsCollidable();
 	void render(int x, int y);
 
 private:

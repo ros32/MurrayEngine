@@ -80,6 +80,7 @@ public:
 	void						getPassable(Position posA, Position posB);
 
 	Position					tryMove(Object* object, Position targetPosition);
+	void						calculateMapMaxSize();
 
 
 private:
@@ -100,6 +101,7 @@ private:
 	std::vector<std::vector<bool>>		passableMap;
 
 	void								generateMaps();
+	Position							mapMaxSize;
 
 };
 

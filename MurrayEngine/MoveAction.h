@@ -21,6 +21,7 @@ class MoveAction : public Action{
 
 public:
 	MoveAction(Object* source, Map* map, std::string direction);
+	MoveAction(Object* source, Map* map, std::string direction, int repeat);
 	~MoveAction();
 
 	void execute();
@@ -29,6 +30,8 @@ public:
 
 private:
 
+	int repeat;
+	int currentRepeat;
 	Object* source;
 	Map* map;
 	std::string direction = "";

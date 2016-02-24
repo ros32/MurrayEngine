@@ -2,6 +2,7 @@
 #define	_DEFAULT_AI_H
 
 #include "AI.h"
+#include "MoveAction.h"
 
 class DefaultAI: public AI
 {
@@ -12,10 +13,14 @@ public:
 
 	void	doNext();
 
+	void	move();
+
 private:
 
 	Position	lastMovePosition;
 	bool		lastMoveSuccess;
+
+	Action*		currentAction;
 
 };
 

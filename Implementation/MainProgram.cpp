@@ -14,7 +14,7 @@ int main(int, char** argv)
 	SDL_Init(SDL_INIT_EVERYTHING);
 	IMG_Init(IMG_INIT_PNG);
 	TTF_Init();
-	SDL_LogSetAllPriority(SDL_LOG_PRIORITY_DEBUG);
+	SDL_LogSetAllPriority(SDL_LOG_PRIORITY_CRITICAL);
 	SDL_Window* mainWindow = SDL_CreateWindow(
 		"MurrayEngine",
 		100,

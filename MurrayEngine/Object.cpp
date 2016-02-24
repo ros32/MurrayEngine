@@ -230,8 +230,8 @@ bool Object::collidePixel(Object* objectB)
 	int top = std::max(ayTop, byTop);
 	int bottom = std::min(ayBottom, byBottom);
 
-	SDL_Rect* aRect = this->getTexture().asset->getSourceRect(this->texture.name);
-	SDL_Rect* bRect = objectB->getTexture().asset->getSourceRect(objectB->texture.name);
+	SDL_Rect* aRect = this->getTexture().asset->getSourceRect(this->getTexture().name);
+	SDL_Rect* bRect = objectB->getTexture().asset->getSourceRect(objectB->getTexture().name);
 
 	SDL_Rect targetRectA;
 	SDL_Rect targetRectB;

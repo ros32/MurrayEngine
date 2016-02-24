@@ -23,6 +23,8 @@
 #include	"KeyController.h"
 #include	<SDL_ttf.h>
 #include	"NonPlayerCharacter.h"
+#include	"AI.h"
+#include	"DefaultAI.h"
 
 class Factory;
 class KeyController;

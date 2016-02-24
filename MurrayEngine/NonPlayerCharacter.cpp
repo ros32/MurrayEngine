@@ -207,6 +207,9 @@ void				NonPlayerCharacter::setAI(AI* ai)
 
 void		NonPlayerCharacter::doAction()
 {
+	if (this->ai != nullptr)
+		this->ai->doNext();
+
 	Action*	tempAction = nullptr;
 
 	if (!this->actionQueue.empty())
