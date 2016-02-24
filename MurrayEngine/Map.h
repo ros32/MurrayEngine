@@ -79,6 +79,8 @@ public:
 	bool						getCollision(Position posA, Position posB);
 	void						getPassable(Position posA, Position posB);
 
+	Position					tryMove(Object* object, Position targetPosition);
+
 
 private:
 

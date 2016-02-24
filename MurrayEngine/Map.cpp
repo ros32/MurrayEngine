@@ -189,129 +189,8 @@ void Map::move()
 				break;
 			}
 			
-			//	If object has collision
-			bool collision = false;
-
-			//	If object has no collision, set current position to final position and return
-			if (object->getIsCollidable())
-			{
-
-				//	Check which axes to move
-				const bool moveX = (targetPosition.x != 0);
-				const bool moveY = (targetPosition.y != 0);
-
-				//	Check if move is negative on axis
-				const bool negX = (targetPosition.x < 0);
-				const bool negY = (targetPosition.y < 0);
-
-				//	Store object height and width
-				const int height = object->getTexture().asset->getHeight();
-				const int width = object->getTexture().asset->getWidth();
-
-				//	Store the iterators current position
-				Position iterationPosition = currentPosition;
-
-				//	Store numbers of iterations needed
-				const int iterations = std::max(std::abs(targetPosition.x), std::abs(targetPosition.y));
-
-				//	Process iterations
-				for (int i = 0; i < iterations; i++)
-				{
-					//	Store last position where no collision was detected
-					Position	lastGoodPosition = iterationPosition;
-
-					//	Adjust x axis depending on positive or negative value
-					if (moveX)
-					{
-						if (negX)
-							iterationPosition = { iterationPosition.x - 1, iterationPosition.y };
-						else
-							iterationPosition = { iterationPosition.x + 1, iterationPosition.y };
-					}
-
-					//	Adjust y axis depending on positive or negative value
-					if (moveY)
-					{
-
-						if (negY)
-							iterationPosition = { iterationPosition.x, iterationPosition.y - 1 };
-						else
-							iterationPosition = { iterationPosition.x, iterationPosition.y + 1 };
-					}
-
-					object->setCurrentPosition(iterationPosition);
-
-					//	Declare vector for tiles to be checked
-					std::vector<Tile*>	tiles;
-
-					//	Create vector with tiles from all corners of object
-					tiles.push_back(this->getTile(iterationPosition));	//	Top left
-					tiles.push_back(this->getTile({ iterationPosition.x + width-1, iterationPosition.y })); // Top right
-					tiles.push_back(this->getTile({ iterationPosition.x, iterationPosition.y + height-1 })); // Bottom left
-					tiles.push_back(this->getTile({ iterationPosition.x + width-1, iterationPosition.y + height-1 })); // Bottom right
-
-					//	Check tiles that touches objects corners for collision
-					for (Object* tile : tiles)
-					{
-						if (tile == nullptr)
-						{
-							collision = true;
-							break;
-						}
-						if (tile->getIsCollidable() && object->collidePixel(tile))
-						{
-							collision = true;
-							break;
-						}
-					}
-
-					//	If collision is found, set current position to last known good position and break
-					if (collision)
-					{
-						object->setCurrentPosition(lastGoodPosition);
-						object->setTargetPosition({ 0, 0 });
-						break;
-					}
-					else
-					{
-						//	Check all objects
-						for (auto otherObject : this->objects)
-						{
-							//	If object is not null, not self and has collision and collides with pixel
-							if (otherObject != nullptr && otherObject->getId() != object->getId() && 
-								otherObject->getIsCollidable() && object->collidePixel(otherObject))
-							{
-								collision = true;
-								break;
-							}
-						}
-
-						//	If collision is found, set current position to last known good position and break
-						if (collision)
-						{
-							object->setCurrentPosition(lastGoodPosition);
-							object->setTargetPosition({ 0, 0 });
-							break;
-						}
-					}
-
-				}
-
-			}
-
-			//	Either object has no collision or no collision
-			//	were detected. Set current position to final position
-			//	and return
-
-			if (!collision)
-			{
-				object->setCurrentPosition(finalPosition);
-				object->setTargetPosition({ 0, 0 });
-			}
-			else
-			{
-				object->setTargetPosition({ 0, 0 });
-			}
+			object->setCurrentPosition(this->tryMove(object, targetPosition));
+			object->setTargetPosition({ 0, 0 });
 		}
 	}
 }
@@ -421,4 +300,121 @@ bool			Map::getCollision(Position posA, Position posB)
 
 		return false;
 	}
+}
+
+Position	Map::tryMove(Object* object, Position targetPosition)
+{
+
+	//	Store current position from object
+	const Position currentPosition = object->getCurrentPosition();
+
+	//	If object has no collision, set current position to final position and return
+	if (object->getIsCollidable())
+	{
+
+
+		//	Set collision bool to false
+		bool collision = false;
+
+		//	Check which axes to move
+		const bool moveX = (targetPosition.x != 0);
+		const bool moveY = (targetPosition.y != 0);
+
+		//	Check if move is negative on axis
+		const bool negX = (targetPosition.x < 0);
+		const bool negY = (targetPosition.y < 0);
+
+		//	Store object height and width
+		const int height = object->getTexture().asset->getHeight();
+		const int width = object->getTexture().asset->getWidth();
+
+		//	Store the iterators current position
+		Position iterationPosition = currentPosition;
+
+		//	Store numbers of iterations needed
+		const int iterations = std::max(std::abs(targetPosition.x), std::abs(targetPosition.y));
+
+		//	Process iterations
+		for (int i = 0; i < iterations; i++)
+		{
+			//	Store last position where no collision was detected
+			Position	lastGoodPosition = iterationPosition;
+
+			//	Adjust x axis depending on positive or negative value
+			if (moveX)
+			{
+				if (negX)
+					iterationPosition = { iterationPosition.x - 1, iterationPosition.y };
+				else
+					iterationPosition = { iterationPosition.x + 1, iterationPosition.y };
+			}
+
+			//	Adjust y axis depending on positive or negative value
+			if (moveY)
+			{
+
+				if (negY)
+					iterationPosition = { iterationPosition.x, iterationPosition.y - 1 };
+				else
+					iterationPosition = { iterationPosition.x, iterationPosition.y + 1 };
+			}
+
+			object->setCurrentPosition(iterationPosition);
+
+			//	Declare vector for tiles to be checked
+			std::vector<Tile*>	tiles;
+
+			//	Create vector with tiles from all corners of object
+			tiles.push_back(this->getTile(iterationPosition));	//	Top left
+			tiles.push_back(this->getTile({ iterationPosition.x + width - 1, iterationPosition.y })); // Top right
+			tiles.push_back(this->getTile({ iterationPosition.x, iterationPosition.y + height - 1 })); // Bottom left
+			tiles.push_back(this->getTile({ iterationPosition.x + width - 1, iterationPosition.y + height - 1 })); // Bottom right
+
+			//	Check tiles that touches objects corners for collision
+			for (Object* tile : tiles)
+			{
+				if (tile == nullptr)
+				{
+					collision = true;
+					break;
+				}
+				if (tile->getIsCollidable() && object->collidePixel(tile))
+				{
+					collision = true;
+					break;
+				}
+			}
+
+			//	If collision is found, set current position to last known good position and break
+			if (collision)
+			{
+				return lastGoodPosition;
+			}
+			else
+			{
+				//	Check all objects
+				for (auto otherObject : this->objects)
+				{
+					//	If object is not null, not self and has collision and collides with pixel
+					if (otherObject != nullptr && otherObject->getId() != object->getId() &&
+						otherObject->getIsCollidable() && object->collidePixel(otherObject))
+					{
+						collision = true;
+						break;
+					}
+				}
+
+				//	If collision is found, set current position to last known good position and break
+				if (collision)
+				{
+					return lastGoodPosition;
+				}
+			}
+
+		}
+
+	}
+
+	return { currentPosition.x + targetPosition.x, currentPosition.y + targetPosition.y };
+
 }
