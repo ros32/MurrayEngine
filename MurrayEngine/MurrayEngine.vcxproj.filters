@@ -105,6 +105,9 @@
     <ClInclude Include="ProjectileObject.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="DefaultAI.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Test.cpp">
@@ -180,6 +183,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="ProjectileObject.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DefaultAI.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

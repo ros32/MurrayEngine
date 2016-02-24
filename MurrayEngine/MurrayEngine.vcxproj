@@ -18,6 +18,7 @@
     <ClInclude Include="CollisionEvent.h" />
     <ClInclude Include="Configuration.h" />
     <ClInclude Include="DamageAction.h" />
+    <ClInclude Include="DefaultAI.h" />
     <ClInclude Include="Factory.h" />
     <ClInclude Include="FrameLimiter.h" />
     <ClInclude Include="GameInstance.h" />
@@ -49,6 +50,7 @@
     <ClCompile Include="CollisionEvent.cpp" />
     <ClCompile Include="Configuration.cpp" />
     <ClCompile Include="DamageAction.cpp" />
+    <ClCompile Include="DefaultAI.cpp" />
     <ClCompile Include="Factory.cpp" />
     <ClCompile Include="FrameLimiter.cpp" />
     <ClCompile Include="GameInstance.cpp" />

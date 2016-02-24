@@ -2,7 +2,14 @@
 
 AI::AI()
 {
+	npc = nullptr;
+	map = nullptr;
+}
 
+AI::AI(NonPlayerCharacter* npc, Map* map)
+{
+	this->npc = npc;
+	this->map = map;
 }
 
 AI::~AI()
@@ -12,25 +19,28 @@ AI::~AI()
 
 void	AI::doNext()
 {
-
+	if (npc != nullptr)
+	{
+		//	Let implementation handle this logic
+	}
 }
 
-void	AI::attack()
+NonPlayerCharacter*	AI::getSourceNPC()
 {
-
+	return this->npc;
 }
 
-void	AI::cancel()
+void	AI::setSourceNPC(NonPlayerCharacter* npc)
 {
-
+	this->npc = npc;
 }
 
-void	AI::flee()
+void	AI::setMap(Map* map)
 {
-
+	this->map = map;
 }
 
-void	AI::patrol()
+Map*	AI::getMap()
 {
-
+	return this->map;
 }

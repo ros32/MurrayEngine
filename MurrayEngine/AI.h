@@ -2,26 +2,31 @@
 #define	_AI_H
 
 #include	<vector>
+#include	"NonPlayerCharacter.h"
+#include	"Map.h"
+
+class NonPlayerCharacter;
+class Map;
 
 class AI
 {
 public:
 	AI();
+	AI(NonPlayerCharacter* npc, Map* map);
 	~AI();
 
-	void	doNext();
-	void	cancel();
+	virtual void		doNext();
 
-	void	attack();
-	void	flee();
+	void				setSourceNPC(NonPlayerCharacter* npc);
+	NonPlayerCharacter*	getSourceNPC();
 
-	void	patrol();
-
-
-
-
+	void				setMap(Map* map);
+	Map*				getMap();
 
 private:
+
+	NonPlayerCharacter*	npc;
+	Map*				map;
 
 };
 
