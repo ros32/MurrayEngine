@@ -388,3 +388,8 @@ void	Object::doAction()
 {
 
 }
+
+Action*	Object::getAction()
+{
+	return nullptr;
+}

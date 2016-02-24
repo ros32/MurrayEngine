@@ -83,6 +83,7 @@ public:
 
 	//	Action queue
 	virtual void					addAction(Action* action);
+	virtual Action*					getAction();
 	virtual void					doAction();
 
 	virtual bool					readAlpha(SDL_Surface* surface, int x, int y);

@@ -224,3 +224,10 @@ void		NonPlayerCharacter::doAction()
 	}
 
 }
+
+Action* NonPlayerCharacter::getAction()
+{
+	if (!this->actionQueue.empty())
+		return this->actionQueue.front();
+	return nullptr;
+}
