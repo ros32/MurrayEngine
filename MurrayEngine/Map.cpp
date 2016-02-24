@@ -341,7 +341,7 @@ Position	Map::tryMove(Object* object, Position targetPosition)
 			Position	lastGoodPosition = iterationPosition;
 
 			//	Adjust x axis depending on positive or negative value
-			if (moveX)
+			if (moveX && ((!negX && i < targetPosition.x) || (negX && i > targetPosition.x)))
 			{
 				if (negX)
 					iterationPosition = { iterationPosition.x - 1, iterationPosition.y };
@@ -350,7 +350,7 @@ Position	Map::tryMove(Object* object, Position targetPosition)
 			}
 
 			//	Adjust y axis depending on positive or negative value
-			if (moveY)
+			if (moveY && ((!negY && i < targetPosition.y) || (negY && i > targetPosition.y)))
 			{
 
 				if (negY)
