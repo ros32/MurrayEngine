@@ -39,9 +39,11 @@ public:
 	Animation	getAnimation();
 
 
-	void		setAnimation(Animation animation);
-	void		addAnimation(std::string key, Animation animation);
-	void		changeAnimation(std::string key);
+	void						setAnimation(Animation animation);
+	void						addAnimation(std::string key, Animation animation);
+	void						changeAnimation(std::string key);
+	std::vector<Texture>		getAnimationVector(std::string key);
+	int							getAnimationTime(std::string key);
 
 private:
 	std::map<std::string, Animation> animationMap;

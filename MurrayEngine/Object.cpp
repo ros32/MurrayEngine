@@ -327,6 +327,7 @@ CollisionEvent* Object::getCollisionEvent(){
 }
 
 void Object::setCollisionEvent(CollisionEvent* collisionEvent){
+
 	this->collisionEvent = collisionEvent;
 }
 
@@ -405,4 +406,13 @@ void	Object::doAction()
 Action*	Object::getAction()
 {
 	return nullptr;
+}
+//std::vector<Texture>
+std::vector<Texture> Object::getAnimationVector(std::string key){
+	std::vector<Texture> temp;
+	return temp;
+}
+int Object::getAnimationTime(std::string key){
+	
+	return 0;
 }

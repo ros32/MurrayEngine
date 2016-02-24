@@ -12,10 +12,12 @@ public:
 
 	void	setTargetPosition(int x, int y);
 	void	setTargetPosition(Position pos);
+	
 
 private:
 
 	Position targetPosition;
+	Animation animation;
 
 };
 

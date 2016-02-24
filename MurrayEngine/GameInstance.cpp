@@ -80,8 +80,8 @@ bool GameInstance::initialize()
 			if (newConfig.getProperty("NAME", "NOTFOUND") != "NOTFOUND")
 				this->configurations.insert(std::map<std::string, Configuration>::value_type(newConfig.getProperty("NAME", "NOTFOUND"), newConfig));
 
-			if (newConfig.getProperty("NAME", "NOTFOUND") == "WitchSpritesheet"){
-				SDL_Log("WitchSpriteSheet Loaded");
+			if (newConfig.getProperty("NAME", "NOTFOUND") == "ProjectileSheet"){
+				SDL_Log("ProjectileSheet Loaded");
 			}
 		}
 
@@ -131,86 +131,80 @@ bool GameInstance::initialize()
 
 				//Set up player animations for north, south, east and west
 				std::vector<Texture> playerNorth;
-				playerNorth.push_back(Texture(this->getTextureAsset("HeroSpriteSheet"), "HeroBack1"));
-				playerNorth.push_back(Texture(this->getTextureAsset("HeroSpriteSheet"), "HeroBack2"));
-				playerNorth.push_back(Texture(this->getTextureAsset("HeroSpriteSheet"), "HeroBack3"));
-				playerNorth.push_back(Texture(this->getTextureAsset("HeroSpriteSheet"), "HeroBack2"));
-				playerNorth.push_back(Texture(this->getTextureAsset("HeroSpriteSheet"), "HeroBack1"));
-				playerNorth.push_back(Texture(this->getTextureAsset("HeroSpriteSheet"), "HeroBack4"));
-				playerNorth.push_back(Texture(this->getTextureAsset("HeroSpriteSheet"), "HeroBack5"));
-				playerNorth.push_back(Texture(this->getTextureAsset("HeroSpriteSheet"), "HeroBack4"));
+				playerNorth.push_back(Texture(this->getTextureAsset("EpicSpriteSheet"), "HeroBack1"));
+				playerNorth.push_back(Texture(this->getTextureAsset("EpicSpriteSheet"), "HeroBack2"));
+				playerNorth.push_back(Texture(this->getTextureAsset("EpicSpriteSheet"), "HeroBack1"));
+				playerNorth.push_back(Texture(this->getTextureAsset("EpicSpriteSheet"), "HeroBack3"));
+
 
 
 				std::vector<Texture> playerSouth;
-				playerSouth.push_back(Texture(this->getTextureAsset("HeroSpriteSheet"), "HeroFront1"));
-				playerSouth.push_back(Texture(this->getTextureAsset("HeroSpriteSheet"), "HeroFront2"));
-				playerSouth.push_back(Texture(this->getTextureAsset("HeroSpriteSheet"), "HeroFront3"));
-				playerSouth.push_back(Texture(this->getTextureAsset("HeroSpriteSheet"), "HeroFront2"));
-				playerSouth.push_back(Texture(this->getTextureAsset("HeroSpriteSheet"), "HeroFront1"));
-				playerSouth.push_back(Texture(this->getTextureAsset("HeroSpriteSheet"), "HeroFront4"));
-				playerSouth.push_back(Texture(this->getTextureAsset("HeroSpriteSheet"), "HeroFront5"));
-				playerSouth.push_back(Texture(this->getTextureAsset("HeroSpriteSheet"), "HeroFront4"));
+				playerSouth.push_back(Texture(this->getTextureAsset("EpicSpriteSheet"), "HeroFront1"));
+				playerSouth.push_back(Texture(this->getTextureAsset("EpicSpriteSheet"), "HeroFront2"));
+				playerSouth.push_back(Texture(this->getTextureAsset("EpicSpriteSheet"), "HeroFront1"));
+				playerSouth.push_back(Texture(this->getTextureAsset("EpicSpriteSheet"), "HeroFront3"));
+
 
 
 				std::vector<Texture> playerLeft;
-				playerLeft.push_back(Texture(this->getTextureAsset("HeroSpriteSheet"), "HeroLeft1"));
-				playerLeft.push_back(Texture(this->getTextureAsset("HeroSpriteSheet"), "HeroLeft2"));
-				playerLeft.push_back(Texture(this->getTextureAsset("HeroSpriteSheet"), "HeroLeft3"));
-				playerLeft.push_back(Texture(this->getTextureAsset("HeroSpriteSheet"), "HeroLeft4"));
-				playerLeft.push_back(Texture(this->getTextureAsset("HeroSpriteSheet"), "HeroLeft3"));
-				playerLeft.push_back(Texture(this->getTextureAsset("HeroSpriteSheet"), "HeroLeft2"));
+				playerLeft.push_back(Texture(this->getTextureAsset("EpicSpriteSheet"), "HeroLeft1"));
+				playerLeft.push_back(Texture(this->getTextureAsset("EpicSpriteSheet"), "HeroLeft2"));
+				playerLeft.push_back(Texture(this->getTextureAsset("EpicSpriteSheet"), "HeroLeft1"));
+				playerLeft.push_back(Texture(this->getTextureAsset("EpicSpriteSheet"), "HeroLeft3"));
+
 
 				std::vector<Texture> playerRight;
-				playerRight.push_back(Texture(this->getTextureAsset("HeroSpriteSheet"), "HeroRight1"));
-				playerRight.push_back(Texture(this->getTextureAsset("HeroSpriteSheet"), "HeroRight2"));
-				playerRight.push_back(Texture(this->getTextureAsset("HeroSpriteSheet"), "HeroRight3"));
-				playerRight.push_back(Texture(this->getTextureAsset("HeroSpriteSheet"), "HeroRight4"));
-				playerRight.push_back(Texture(this->getTextureAsset("HeroSpriteSheet"), "HeroRight3"));
-				playerRight.push_back(Texture(this->getTextureAsset("HeroSpriteSheet"), "HeroRight2"));
+				playerRight.push_back(Texture(this->getTextureAsset("EpicSpriteSheet"), "HeroRight1"));
+				playerRight.push_back(Texture(this->getTextureAsset("EpicSpriteSheet"), "HeroRight2"));
+				playerRight.push_back(Texture(this->getTextureAsset("EpicSpriteSheet"), "HeroRight1"));
+				playerRight.push_back(Texture(this->getTextureAsset("EpicSpriteSheet"), "HeroRight3"));
+
+
+				std::vector<Texture> playerProjectile;
+				playerProjectile.push_back(Texture(this->getTextureAsset("ProjectileSheet"), "RedBall"));
+				playerProjectile.push_back(Texture(this->getTextureAsset("ProjectileSheet"), "BlueBall"));
+				playerProjectile.push_back(Texture(this->getTextureAsset("ProjectileSheet"), "GreenBall"));
 		
-				NonPlayerCharacter* HeroPlayer = new NonPlayerCharacter(new AnimatedObject("test006", { 120, 250 }, Animation(playerSouth, 200), 1.0, 1.0, 3, SOUTH, true));
+				NonPlayerCharacter* HeroPlayer = new NonPlayerCharacter(new AnimatedObject("test006", { 33, 33 }, Animation(playerSouth, 200), 1.0, 1.0, 3, SOUTH, true));
 				
 				HeroPlayer->addAnimation("North", Animation(playerNorth, 200));
 				HeroPlayer->addAnimation("South", Animation(playerSouth, 200));
 				HeroPlayer->addAnimation("East", Animation(playerRight, 200));
 				HeroPlayer->addAnimation("West", Animation(playerLeft, 200));
+				HeroPlayer->addAnimation("Projectile", Animation(playerProjectile, 200));
 				
 
 
 				this->map->addObject(HeroPlayer);
 				this->map->setPlayerCharacter(HeroPlayer);
 				
-
+				/*
 				std::vector<Texture> witchCraft;
 				witchCraft.push_back(Texture(this->getTextureAsset("WitchSpritesheet"), "WalkingFront0"));
 				witchCraft.push_back(Texture(this->getTextureAsset("WitchSpritesheet"), "WalkingFront1"));
 				witchCraft.push_back(Texture(this->getTextureAsset("WitchSpritesheet"), "WalkingFront2"));
 				witchCraft.push_back(Texture(this->getTextureAsset("WitchSpritesheet"), "WalkingFront3"));
-
+				*/
 
 				//AnimatedObject* witchPlayerObject = new AnimatedObject("test006", { 100, 250 }, Animation(witchCraft, 200), 1.0, 1.0, 3, SOUTH, true);
 
 				//this->map->addObject(witchPlayerObject);
 				//this->map->setPlayerCharacter(witchPlayerObject);
 
-				SDL_Log("Testutskrift");
-
-
-
 
 				std::vector<Texture> textures;
-				textures.push_back(Texture(this->getTextureAsset("tileset"), "TreeD"));
-				textures.push_back(Texture(this->getTextureAsset("tileset"), "TreeM"));
-				textures.push_back(Texture(this->getTextureAsset("tileset"), "TreeL"));
+				textures.push_back(Texture(this->getTextureAsset("EpicSpriteSheet"), "GhostFront1"));
+				textures.push_back(Texture(this->getTextureAsset("EpicSpriteSheet"), "GhostFront2"));
+				textures.push_back(Texture(this->getTextureAsset("EpicSpriteSheet"), "GhostFront3"));
 
 
-				AnimatedObject* animatedObject = new AnimatedObject("test003", { 160, 350 }, Animation(textures, 200), 1.0, 1.0, 2, NORTH, true);
+				AnimatedObject* animatedObject = new AnimatedObject("test003", { 33, 200 }, Animation(textures, 200), 1.0, 1.0, 2, NORTH, true);
 				NonPlayerCharacter* granges = new NonPlayerCharacter(animatedObject);
 				granges->setAI(new DefaultAI(granges, this->map));
 
 				this->map->addObject(granges);
 
-
+				/*
 				std::vector<Texture> witchTextures;
 				witchTextures.push_back(Texture(this->getTextureAsset("WitchSpritesheet"), "CauldronLeft0"));
 				witchTextures.push_back(Texture(this->getTextureAsset("WitchSpritesheet"), "CauldronLeft1"));
@@ -254,7 +248,7 @@ bool GameInstance::initialize()
 				AnimatedObject* witchObject = new AnimatedObject("test004", { 1095, 1095 }, Animation(witchTextures, 200), 1.0, 1.0, 0, NONE, true);
 				this->map->addObject(witchObject);
 
-
+				*/
 				mapLoaded = true;
 			}
 		}

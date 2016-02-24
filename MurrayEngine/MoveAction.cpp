@@ -24,52 +24,53 @@ void MoveAction::execute()
 {
 	if (this->currentRepeat > 0 || repeat == -1)
 	{
-		if (direction == "EAST")
-		{
-			source->setTargetPosition(source->getTargetPosition().x + source->getCurrentSpeed(), source->getTargetPosition().y);
+	if (direction == "EAST")
+	{
+		source->setTargetPosition(source->getTargetPosition().x + source->getCurrentSpeed(), source->getTargetPosition().y);
 
-			if (source->getOrientation() != EAST)
-				source->changeAnimation("East");
+		if (source->getOrientation() != EAST)
+			source->changeAnimation("East");
 		
-			source->setOrientation(EAST);
+		source->setOrientation(EAST);
 		
 
-		}
+	}
 
-		if (direction == "WEST")
-		{
+	if (direction == "WEST")
+	{
 
-			source->setTargetPosition(source->getTargetPosition().x - source->getCurrentSpeed(), source->getTargetPosition().y);
-			if (source->getOrientation() != WEST)
-				source->changeAnimation("West");
+		source->setTargetPosition(source->getTargetPosition().x - source->getCurrentSpeed(), source->getTargetPosition().y);
+		if (source->getOrientation() != WEST)
+			source->changeAnimation("West");
 
-			source->setOrientation(WEST);
+		source->setOrientation(WEST);
 		
 		
-		}
+	}
 
-		if (direction == "NORTH")
-		{
+	if (direction == "NORTH")
+	{
 
-			source->setTargetPosition(source->getTargetPosition().x, source->getTargetPosition().y - source->getCurrentSpeed());
+		source->setTargetPosition(source->getTargetPosition().x, source->getTargetPosition().y - source->getCurrentSpeed());
 		
-			if (source->getOrientation() != NORTH)
-				source->changeAnimation("North");
+		if (source->getOrientation() != NORTH)
+			source->changeAnimation("North");
 				
-			source->setOrientation(NORTH);
+		source->setOrientation(NORTH);
 	
-		}
+	}
 
-		if (direction == "SOUTH")
-		{
+	if (direction == "SOUTH")
+	{
 
-			source->setTargetPosition(source->getTargetPosition().x, source->getTargetPosition().y + source->getCurrentSpeed());
+		source->setTargetPosition(source->getTargetPosition().x, source->getTargetPosition().y + source->getCurrentSpeed());
 
-			if (source->getOrientation() != SOUTH)
-				source->changeAnimation("South");
+		if (source->getOrientation() != SOUTH)
+			source->changeAnimation("South");
 		
 
-			source->setOrientation(SOUTH);
+
+		source->setOrientation(SOUTH);
 
 		}
 

@@ -27,6 +27,38 @@ void		AnimatedObject::setAnimation(Animation animation)
 	this->animation = animation;
 }
 
+//std::vector<Texture>
+std::vector<Texture> AnimatedObject::getAnimationVector(std::string key)
+{
+	SDL_Log("inside getAnimationVector");
+	iterator iterator;
+	iterator = this->animationMap.find(key);
+
+	if (iterator != this->animationMap.end()){
+		SDL_Log("Key in getAnimationVector was found");
+		Animation tempAnimation = iterator->second;
+		return tempAnimation.textures;
+	}
+	else{
+		SDL_Log("Key in getAnimationVector was NOT found");
+	}
+}
+
+int	AnimatedObject::getAnimationTime(std::string key)
+{
+	iterator iterator;
+	iterator = this->animationMap.find(key);
+
+	if (iterator != this->animationMap.end()){
+		SDL_Log("Key in getAnimationTime was found");
+		Animation tempAnimation = iterator->second;
+		return tempAnimation.time;
+	}
+	else{
+		SDL_Log("Key in getAnimationTime was NOT found");
+	}
+}
+
 void		AnimatedObject::addAnimation(std::string key, Animation animation){
 	//Check if animation already exists, otherwise add to map.
 	iterator iterator;

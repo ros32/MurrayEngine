@@ -53,6 +53,15 @@
     <None Include="ReinBearSpriteSheet.cfg">
       <Filter>Resource Files</Filter>
     </None>
+    <None Include="EpicSpriteSheet.cfg">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="ProjectileSheet.cfg">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="SmallMap.cfg">
+      <Filter>Resource Files</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Image Include="spritesheet.bmp">
@@ -74,6 +83,12 @@
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="ReinBearSpriteSheet.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="EpicSpriteSheet.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="ProjectileSheet.png">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>

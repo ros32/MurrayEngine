@@ -1,14 +1,15 @@
-
 #include "ProjectileObject.h"
 
 ProjectileObject::ProjectileObject(std::string id, Position currentPosition, Position targetPosition, Animation animation, double maxSpeed, double acceleration, int currentSpeed, Orientation orientation, bool isCollidable): 
 	AnimatedObject(id, currentPosition, animation, maxSpeed, acceleration, currentSpeed, orientation, isCollidable){
 
 	this->targetPosition = targetPosition;
+	this->animation = animation;
+
 }
 
 ProjectileObject::~ProjectileObject(){
-
+	delete(this);
 }
 
 void	ProjectileObject::setTargetPosition(int x, int y){
@@ -17,6 +18,10 @@ void	ProjectileObject::setTargetPosition(int x, int y){
 void	ProjectileObject::setTargetPosition(Position pos){
 	this->targetPosition = pos;
 }
+
+
+
+
 
 
 

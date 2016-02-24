@@ -94,6 +94,12 @@ public:
 
 	virtual CollisionEvent*			getCollisionEvent();
 
+	//virtual std::vector<Texture>	getAnimationVector(std::string key);
+	//virtual int						getAnimationTime(std::string key);
+
+	virtual std::vector<Texture> getAnimationVector(std::string key);
+	virtual int getAnimationTime(std::string key);
+
 	//	Texture asset used by object
 	Texture			texture;
 
