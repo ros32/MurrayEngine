@@ -35,6 +35,8 @@ public:
 	///	</summary>
 	Tile*						getTile(Position pos);
 
+	std::vector<Tile*>			getTiles(Position posA, Position posB);
+
 	///	<summary>
 	///	Render all visible components in the Map
 	///	</summary>

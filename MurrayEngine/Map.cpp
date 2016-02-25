@@ -83,6 +83,27 @@ std::vector<Object*>	Map::getObject(Position posA, Position posB)
 	return tempVector;
 }
 
+std::vector<Tile*>	Map::getTiles(Position posA, Position posB)
+{
+	std::vector < Tile* >	tempVector;
+
+	int minX = std::min(posA.x, posB.x);
+	int maxX = std::max(posA.x, posB.x);
+	int minY = std::min(posA.y, posB.y);
+	int maxY = std::max(posA.y, posB.y);
+
+	for (auto tile : tiles)
+	{
+		Position currentPosition = tile->getCurrentPosition();
+
+		if ((currentPosition.x >= minX && currentPosition.x <= maxX) &&
+			(currentPosition.y >= minY && currentPosition.y <= maxY))
+			tempVector.push_back(tile);
+	}
+
+	return tempVector;
+}
+
 Tile* Map::getTile(Position pos)
 {
 	//	std::vector <std::vector<Tile>>::iterator row;
@@ -363,7 +384,7 @@ Position	Map::tryMove(Object* object, Position targetPosition)
 			object->setCurrentPosition(iterationPosition);
 
 			//	Declare vector for tiles to be checked
-			std::vector<Tile*>	tiles;
+			std::vector<Tile*>	tiles; // = this->getTiles(iterationPosition, { iterationPosition.x + width - 1, iterationPosition.y + height - 1 });
 
 			//	Create vector with tiles from all corners of object
 			tiles.push_back(this->getTile(iterationPosition));	//	Top left
