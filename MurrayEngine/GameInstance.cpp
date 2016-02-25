@@ -198,11 +198,27 @@ bool GameInstance::initialize()
 				textures.push_back(std::make_shared<Texture>(this->getTextureAsset("EpicSpriteSheet"), "GhostFront3"));
 
 
-				AnimatedObject* animatedObject = new AnimatedObject("test003", { 35, 200 }, std::make_shared<Animation>(textures, 200), 1.0, 1.0, 2, NORTH, true);
+				AnimatedObject* animatedObject = new AnimatedObject("granges", { 35, 200 }, std::make_shared<Animation>(textures, 200), 1.0, 1.0, 2, NORTH, true);
+				AnimatedObject* animatedObject2 = new AnimatedObject("evert", { 35, 240 }, std::make_shared<Animation>(textures, 200), 1.0, 1.0, 2, NORTH, true);
+				AnimatedObject* animatedObject3 = new AnimatedObject("hakan", { 360, 520 }, std::make_shared<Animation>(textures, 200), 1.0, 1.0, 2, NORTH, true);
+				AnimatedObject* animatedObject4 = new AnimatedObject("lisa", { 35, 400 }, std::make_shared<Animation>(textures, 200), 1.0, 1.0, 2, NORTH, true);
+				AnimatedObject* animatedObject5 = new AnimatedObject("ulf", { 180, 360 }, std::make_shared<Animation>(textures, 200), 1.0, 1.0, 2, NORTH, true);
 				NonPlayerCharacter* granges = new NonPlayerCharacter(animatedObject);
+				NonPlayerCharacter* granges2 = new NonPlayerCharacter(animatedObject2);
+				NonPlayerCharacter* granges3 = new NonPlayerCharacter(animatedObject3);
+				NonPlayerCharacter* granges4 = new NonPlayerCharacter(animatedObject4);
+				NonPlayerCharacter* granges5 = new NonPlayerCharacter(animatedObject5);
 				granges->setAI(new DefaultAI(granges, this->map));
+				granges2->setAI(new DefaultAI(granges2, this->map));
+				granges3->setAI(new DefaultAI(granges3, this->map));
+				granges4->setAI(new DefaultAI(granges4, this->map));
+				granges5->setAI(new DefaultAI(granges5, this->map));
 
 				this->map->addObject(granges);
+				this->map->addObject(granges2);
+				this->map->addObject(granges3);
+				this->map->addObject(granges4);
+				this->map->addObject(granges5);
 
 				/*
 				std::vector<Texture> witchTextures;

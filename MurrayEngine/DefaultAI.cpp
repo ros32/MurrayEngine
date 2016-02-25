@@ -63,7 +63,7 @@ void	DefaultAI::move()
 		//	Did we just see the player in this direction and did we manage to go this way, or does the player
 		//	exist in this direction?
 		//	(bool && bool) is faster than findPlayer()
-		if ((this->playerRecentlySeen && this->lastMoveSuccess) || this->findPlayer(npc->getOrientation()))
+		if ((this->playerRecentlySeen && this->lastMoveSuccess) || this->findPlayer(currentDirection))
 		{
 			//	Did we just see the player, or can we see the player now?
 			if (this->playerRecentlySeen || this->canSeePlayer())
@@ -80,84 +80,87 @@ void	DefaultAI::move()
 			}
 
 		}
-		//	If last move was unsuccessful, try moving one step in any direction but the one you are facing
-		else if (!this->lastMoveSuccess)
+		//	If player was not seen but last move was successful, evaluate if there are different paths, but never go backwards
+		else if (!this->playerRecentlySeen && this->lastMoveSuccess)
 		{
-			std::vector<Orientation> directions;
-			std::vector<Position> moveTargets;
-
-			if (currentDirection != NORTH)
+			std::vector<Orientation> validDirections = this->getValidDirections();
+			std::vector<Orientation> filteredDirections;
+			for (Orientation direction : validDirections)
 			{
-				directions.push_back(NORTH);
-				moveTargets.push_back({ 0, 0 - height });
-			}
-			if (currentDirection != SOUTH)
-			{
-				directions.push_back(SOUTH);
-				moveTargets.push_back({ 0, 0 + height });
-			}
-			if (currentDirection != EAST)
-			{
-				directions.push_back(EAST);
-				moveTargets.push_back({ 0 + width, 0 });
-			}
-			if (currentDirection != WEST)
-			{
-				directions.push_back(WEST);
-				moveTargets.push_back({ 0 - width, 0 });
+				if (direction != currentDirection && direction != this->getOppositeDirection(currentDirection))
+					filteredDirections.push_back(direction);
 			}
 
-			std::vector<Orientation> validDirections;
+			bool actionTaken = false;
 
-			for (int i = 0; i < directions.size(); i++)
+			if (filteredDirections.size() > 0 && (std::rand() % 100 > 67))
 			{
-				Position	testedPosition = map->tryMove(npc, moveTargets[i]);
-				if (testedPosition.x == (moveTargets[i].x + currentPosition.x) && testedPosition.y == (moveTargets[i].y + currentPosition.y))
-					validDirections.push_back(directions[i]);
-			}
-
-
-			if (validDirections.size() > 0)
-			{
-				Orientation oppositeDirection;
-				switch (currentDirection)
+				bool playerSeen = false;
+				
+				for (Orientation direction : filteredDirections)
 				{
-				case NORTH:
-					oppositeDirection = SOUTH;
-					break;
-				case SOUTH:
-					oppositeDirection = NORTH;
-					break;
-				case EAST:
-					oppositeDirection = WEST;
-					break;
-				case WEST:
-					oppositeDirection = EAST;
-					break;
-				default:
-					oppositeDirection = NONE;
-					break;
+					playerSeen = this->findPlayer(direction);
+					if (playerSeen && this->canSeePlayer())
+					{
+						npc->addAction(new MoveAction(npc, map, direction, 2));
+						this->playerRecentlySeen = true;
+						this->lastMovePosition = currentPosition;
+						actionTaken = true;
+						break;
+					}
+					else if (playerSeen && std::rand() % 100 > 50)
+					{
+						npc->addAction(new MoveAction(npc, map, direction, 2));
+						this->lastMovePosition = currentPosition;
+						actionTaken = true;
+						break;
+					}
+					else if (std::rand() % 100 > 67)
+					{
+						npc->addAction(new MoveAction(npc, map, direction, 2));
+						this->lastMovePosition = currentPosition;
+						actionTaken = true;
+						break;
+					}
 				}
 
-
-				int randomDirection = std::rand() % validDirections.size();
-				if (randomDirection == oppositeDirection)
-					randomDirection = std::rand() % validDirections.size();
-				if (randomDirection == oppositeDirection)
-					randomDirection = std::rand() % validDirections.size();
-				if (randomDirection == oppositeDirection)
-					randomDirection = std::rand() % validDirections.size();
-
-				npc->addAction(new MoveAction(npc, map, validDirections[randomDirection], 2));
-
-				//	Set current position as last move position
-				this->lastMovePosition = npc->getCurrentPosition();
 			}
-			//	Object is stuck!
-			else
+
+			if (!actionTaken);
 			{
-
+				npc->addAction(new MoveAction(npc, map, currentDirection, 2));
+				this->lastMovePosition = currentPosition;
 			}
+		}
+		//	If last move was not successful, evaluate different paths, but avoid going backwards unless you have to
+		else if (!this->lastMoveSuccess)
+		{
+			//	We failed to move last time, if we cannot see the player its gone.
+			if (!this->canSeePlayer())
+				this->playerRecentlySeen = false;
+
+			std::vector<Orientation> validDirections = this->getValidDirections();
+			std::vector<Orientation> filteredDirections;
+
+			for (Orientation direction : validDirections)
+			{
+				if (direction != this->getOppositeDirection(currentDirection))
+					filteredDirections.push_back(direction);
+			}
+
+			//	If backwards was the only valid option, then add it to the filtered list
+			if (filteredDirections.size() == 0 && validDirections.size() > 0)
+				filteredDirections.push_back(validDirections[0]);
+
+			if (filteredDirections.size() > 0)
+			{
+				npc->addAction(new MoveAction(npc, map, filteredDirections[std::rand() % filteredDirections.size()], 2));
+				this->lastMovePosition = currentPosition;
+			}
+
+
+
+
 		}
 	}
 }
@@ -293,5 +296,76 @@ bool		DefaultAI::canSeePlayer()
 
 		//	Move back NPC to original position
 		npc->setCurrentPosition(currentPosition);
+	}
+}
+
+std::vector<Orientation>	DefaultAI::getValidDirections()
+{
+	NonPlayerCharacter*		npc = this->getSourceNPC();
+	Map*					map = this->getMap();
+
+	if (npc == nullptr || map == nullptr)
+		return std::vector<Orientation>();
+
+	const Position		currentPosition = npc->getCurrentPosition();
+	const Position		playerPosition = map->getPlayerCharacter()->getCurrentPosition();
+	const Orientation	currentDirection = npc->getOrientation();
+
+	//	Store width and height of npc
+	const int width = npc->getTexture()->asset->getWidth();
+	const int height = npc->getTexture()->asset->getHeight();
+
+	std::vector<Orientation> directions;
+	std::vector<Position> moveTargets;
+
+	if (currentDirection != NORTH)
+	{
+		directions.push_back(NORTH);
+		moveTargets.push_back({ 0, 0 - height });
+	}
+	if (currentDirection != SOUTH)
+	{
+		directions.push_back(SOUTH);
+		moveTargets.push_back({ 0, 0 + height });
+	}
+	if (currentDirection != EAST)
+	{
+		directions.push_back(EAST);
+		moveTargets.push_back({ 0 + width, 0 });
+	}
+	if (currentDirection != WEST)
+	{
+		directions.push_back(WEST);
+		moveTargets.push_back({ 0 - width, 0 });
+	}
+
+	std::vector<Orientation> validDirections;
+
+	for (int i = 0; i < directions.size(); i++)
+	{
+		Position	testedPosition = map->tryMove(npc, moveTargets[i]);
+		if (testedPosition.x == (moveTargets[i].x + currentPosition.x) && testedPosition.y == (moveTargets[i].y + currentPosition.y))
+			validDirections.push_back(directions[i]);
+	}
+
+	return validDirections;
+
+}
+
+Orientation		DefaultAI::getOppositeDirection(Orientation direction)
+{
+	switch (direction)
+	{
+	case NORTH:
+		return SOUTH;
+	case SOUTH:
+		return NORTH;
+	case EAST:
+		return WEST;
+	case WEST:
+		return EAST;
+	case NONE:
+	default:
+		return NONE;
 	}
 }

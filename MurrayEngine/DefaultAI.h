@@ -25,6 +25,9 @@ private:
 	Orientation	playerLastSeenDirection;
 	bool		playerRecentlySeen;
 
+	std::vector<Orientation>	getValidDirections();
+	Orientation					getOppositeDirection(Orientation direction);
+
 	Action*		currentAction;
 
 	void	move();
