@@ -134,14 +134,14 @@ bool Object::collideBox(Object* objectB)
 	bool hit = true;
 
 	int left = this->getCurrentPosition().x;
-	int right = this->getCurrentPosition().x + this->getTexture()->asset->getWidth();
+	int right = this->getCurrentPosition().x + this->getCollisionTexture()->asset->getWidth();
 	int bottom = this->getCurrentPosition().y;
-	int top = this->getCurrentPosition().y + this->getTexture()->asset->getHeight();
+	int top = this->getCurrentPosition().y + this->getCollisionTexture()->asset->getHeight();
 
 	int otherLeft = objectB->getCurrentPosition().x;
-	int otherRight = objectB->getCurrentPosition().x + objectB->getTexture()->asset->getWidth();
+	int otherRight = objectB->getCurrentPosition().x + objectB->getCollisionTexture()->asset->getWidth();
 	int otherBottom = objectB->getCurrentPosition().y;
-	int otherTop = objectB->getCurrentPosition().y + objectB->getTexture()->asset->getHeight();
+	int otherTop = objectB->getCurrentPosition().y + objectB->getCollisionTexture()->asset->getHeight();
 
 	//Checks if there is a distance between the current object sides and the other object sides.
 	if (right < otherLeft){
@@ -213,8 +213,8 @@ bool Object::collidePixel(Object* objectB)
 	}
 
 	//	Store Textures
-	const std::shared_ptr<Texture> textureA = this->getTexture();
-	const std::shared_ptr<Texture> textureB = objectB->getTexture();
+	const std::shared_ptr<Texture> textureA = this->getCollisionTexture();
+	const std::shared_ptr<Texture> textureB = objectB->getCollisionTexture();
 
 	const Position currentPositionA = this->getCurrentPosition();
 	const Position currentPositionB = objectB->getCurrentPosition();
