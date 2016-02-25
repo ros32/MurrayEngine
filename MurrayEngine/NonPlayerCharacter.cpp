@@ -107,7 +107,7 @@ bool NonPlayerCharacter::collidePixel(Object* objectB)
 	return this->baseObject->collidePixel(objectB);
 }
 
-Texture			NonPlayerCharacter::getTexture()
+std::shared_ptr<Texture>		NonPlayerCharacter::getTexture()
 {
 	return this->baseObject->getTexture();
 }
@@ -135,7 +135,7 @@ void  NonPlayerCharacter::takeDamage()
 	this->baseObject->takeDamage();
 }
 
-void	NonPlayerCharacter::setTexture(Texture texture)
+void	NonPlayerCharacter::setTexture(std::shared_ptr<Texture> texture)
 {
 	this->baseObject->setTexture(texture);
 }
@@ -165,17 +165,17 @@ void		NonPlayerCharacter::addAction(Action* action)
 	this->actionQueue.push(action);
 }
 
-Animation	NonPlayerCharacter::getAnimation()
+std::shared_ptr<Animation>	NonPlayerCharacter::getAnimation()
 {
 	return this->baseObject->getAnimation();
 }
 
-void		NonPlayerCharacter::setAnimation(Animation animation)
+void		NonPlayerCharacter::setAnimation(std::shared_ptr<Animation> animation)
 {
 	this->baseObject->setAnimation(animation);
 }
 
-void		NonPlayerCharacter::addAnimation(std::string key, Animation animation)
+void		NonPlayerCharacter::addAnimation(std::string key, std::shared_ptr<Animation> animation)
 {
 	this->baseObject->addAnimation(key, animation);
 }

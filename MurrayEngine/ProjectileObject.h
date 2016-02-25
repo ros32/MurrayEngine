@@ -7,7 +7,7 @@
 class ProjectileObject: public AnimatedObject
 {
 public:
-	ProjectileObject(std::string id, Position currentPosition, Position targetPosition, Animation animation, double maxSpeed, double acceleration, int currentSpeed, Orientation orientation, bool isCollidable);
+	ProjectileObject(std::string id, Position currentPosition, Position targetPosition, std::shared_ptr<Animation> animation, double maxSpeed, double acceleration, int currentSpeed, Orientation orientation, bool isCollidable);
 	~ProjectileObject();
 
 	void	setTargetPosition(int x, int y);
@@ -17,7 +17,7 @@ public:
 private:
 
 	Position targetPosition;
-	Animation animation;
+	std::shared_ptr<Animation> animation;
 
 };
 

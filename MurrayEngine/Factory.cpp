@@ -77,7 +77,8 @@ Map*				Factory::createMap(Configuration configuration)
 			}
 			if (gameInstance != nullptr)
 			{
-				Tile*	tempTile = new Tile(pos, Texture(gameInstance->getTextureAsset(tileset), texture), NORTH, collidable, passable);
+				auto texture2 = std::make_shared<Texture>(gameInstance->getTextureAsset(tileset), texture);
+				Tile*	tempTile = new Tile(pos, texture2, NORTH, collidable, passable);
 				tiles.push_back(tempTile);
 			}
 		}

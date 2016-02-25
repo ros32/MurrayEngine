@@ -18,21 +18,6 @@
 //	Inform about TextureAsset so Texture knows what it is.
 class TextureAsset;
 
-struct Texture
-{
-	TextureAsset*	asset;
-	std::string		name;
-
-	Texture(TextureAsset* texture, std::string textureName)
-	{
-		asset = texture;
-		name = textureName;
-	}
-
-	Texture() : Texture(nullptr, "")
-	{ }
-};
-
 class TextureAsset : public Asset
 {
 private:
@@ -81,6 +66,21 @@ public:
 
 	void	render(int x, int y, SDL_Rect* clip, double angle, SDL_Point* center, SDL_RendererFlip flip);
 
+};
+
+struct Texture
+{
+	TextureAsset*	asset;
+	SDL_Rect*		name;
+
+	Texture(TextureAsset* texture, std::string textureName)
+	{
+		asset = texture;
+		if (asset != nullptr)
+			name = texture->getSourceRect(textureName);
+		else
+			name = nullptr;
+	}
 };
 
 #endif // !TEXTURE_ASSET_H

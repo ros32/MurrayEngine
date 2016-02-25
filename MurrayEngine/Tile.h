@@ -13,7 +13,7 @@ class Tile: public Object
 {
 public:
 	Tile();
-	Tile(Position currentPosition, Texture texture, Orientation orientation, bool collidable, bool passable);
+	Tile(Position currentPosition, std::shared_ptr<Texture> texture, Orientation orientation, bool collidable, bool passable);
 	~Tile();
 
 	Position	getCurrentPosition();

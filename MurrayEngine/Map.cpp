@@ -36,8 +36,8 @@ std::vector<Object*>	Map::getObject(Position pos)
 
 	for (auto object : objects){
 
-		int height = object->getTexture().asset->getHeight();
-		int width = object->getTexture().asset->getWidth();
+		int height = object->getTexture()->asset->getHeight();
+		int width = object->getTexture()->asset->getWidth();
 
 		int axLeft = object->getCurrentPosition().x;
 		int ayTop = object->getCurrentPosition().y;
@@ -91,8 +91,8 @@ Tile* Map::getTile(Position pos)
 	for (auto tile : this->tiles)
 	{
 		Position currentPosition = tile->getCurrentPosition();
-		int height = tile->getTexture().asset->getHeight();
-		int width = tile->getTexture().asset->getWidth();
+		int height = tile->getTexture()->asset->getHeight();
+		int width = tile->getTexture()->asset->getWidth();
 
 		if (pos.x >= currentPosition.x && pos.x < currentPosition.x + height && //	X coordinate is within x of the tile
 			pos.y >= currentPosition.y && pos.y < currentPosition.y + height)	//	Y coordinate is within y of the tile
@@ -109,8 +109,8 @@ void Map::render()
 	//	Render tiles
 	for (auto object : this->tiles)
 	{
-		if ((object->getCurrentPosition().x >= (this->camera->getPosition().x - object->getTexture().asset->getCellSize()) && object->getCurrentPosition().x <= (this->camera->getPosition().x + this->camera->getWidth() + object->getTexture().asset->getCellSize())) &&
-			(object->getCurrentPosition().y >= (this->camera->getPosition().y - object->getTexture().asset->getCellSize()) && object->getCurrentPosition().y <= (this->camera->getPosition().y + this->camera->getHeight() + object->getTexture().asset->getCellSize())))
+		if ((object->getCurrentPosition().x >= (this->camera->getPosition().x - object->getTexture()->asset->getCellSize()) && object->getCurrentPosition().x <= (this->camera->getPosition().x + this->camera->getWidth() + object->getTexture()->asset->getCellSize())) &&
+			(object->getCurrentPosition().y >= (this->camera->getPosition().y - object->getTexture()->asset->getCellSize()) && object->getCurrentPosition().y <= (this->camera->getPosition().y + this->camera->getHeight() + object->getTexture()->asset->getCellSize())))
 		{
 			//	Object is within camera view
 
@@ -123,8 +123,8 @@ void Map::render()
 	for (auto object : this->objects)
 	{
 		//	TODO: Optimize this
-		if ((object->getCurrentPosition().x >= (this->camera->getPosition().x - object->getTexture().asset->getCellSize()) && object->getCurrentPosition().x <= (this->camera->getPosition().x + this->camera->getWidth() + object->getTexture().asset->getCellSize())) &&
-			(object->getCurrentPosition().y >= (this->camera->getPosition().y - object->getTexture().asset->getCellSize()) && object->getCurrentPosition().y <= (this->camera->getPosition().y + this->camera->getHeight() + object->getTexture().asset->getCellSize())))
+		if ((object->getCurrentPosition().x >= (this->camera->getPosition().x - object->getTexture()->asset->getCellSize()) && object->getCurrentPosition().x <= (this->camera->getPosition().x + this->camera->getWidth() + object->getTexture()->asset->getCellSize())) &&
+			(object->getCurrentPosition().y >= (this->camera->getPosition().y - object->getTexture()->asset->getCellSize()) && object->getCurrentPosition().y <= (this->camera->getPosition().y + this->camera->getHeight() + object->getTexture()->asset->getCellSize())))
 		{
 			//	Object is within camera view
 
@@ -227,10 +227,10 @@ void		Map::calculateMapMaxSize()
 	int maxY = 0;
 	for (Tile* tile : this->tiles)
 	{
-		if (maxX < (tile->getTexture().asset->getWidth() + tile->getCurrentPosition().x))
-			maxX = (tile->getTexture().asset->getWidth() + tile->getCurrentPosition().x);
-		if (maxY < (tile->getTexture().asset->getHeight() + tile->getCurrentPosition().y))
-			maxY = (tile->getTexture().asset->getHeight() + tile->getCurrentPosition().y);
+		if (maxX < (tile->getTexture()->asset->getWidth() + tile->getCurrentPosition().x))
+			maxX = (tile->getTexture()->asset->getWidth() + tile->getCurrentPosition().x);
+		if (maxY < (tile->getTexture()->asset->getHeight() + tile->getCurrentPosition().y))
+			maxY = (tile->getTexture()->asset->getHeight() + tile->getCurrentPosition().y);
 	}
 	this->mapMaxSize = { maxX, maxY };
 }
@@ -326,8 +326,8 @@ Position	Map::tryMove(Object* object, Position targetPosition)
 		const bool negY = (targetPosition.y < 0);
 
 		//	Store object height and width
-		const int height = object->getTexture().asset->getHeight();
-		const int width = object->getTexture().asset->getWidth();
+		const int height = object->getTexture()->asset->getHeight();
+		const int width = object->getTexture()->asset->getWidth();
 
 		//	Store the iterators current position
 		Position iterationPosition = currentPosition;

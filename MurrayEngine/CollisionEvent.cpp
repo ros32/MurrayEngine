@@ -23,20 +23,20 @@ bool CollisionEvent::collideBox(Object* objectA, Object* objectB)
 {
 	bool hit = true;
 
-	Texture aTexture = objectA->getTexture();
-	Texture bTexture = objectB->getTexture();
+	std::shared_ptr<Texture> aTexture = objectA->getTexture();
+	std::shared_ptr<Texture> bTexture = objectB->getTexture();
 
 	//x/y corners for object A
 	int Aleft = objectA->getCurrentPosition().x;
-	int Aright = objectA->getCurrentPosition().x + aTexture.asset->getWidth();
+	int Aright = objectA->getCurrentPosition().x + aTexture->asset->getWidth();
 	int Abottom = objectA->getCurrentPosition().y;
-	int Atop = objectA->getCurrentPosition().y + aTexture.asset->getHeight();
+	int Atop = objectA->getCurrentPosition().y + aTexture->asset->getHeight();
 
 	//x/y corners for object B
 	int BLeft = objectB->getCurrentPosition().x;
-	int BRight = objectB->getCurrentPosition().x + bTexture.asset->getWidth();
+	int BRight = objectB->getCurrentPosition().x + bTexture->asset->getWidth();
 	int BBottom = objectB->getCurrentPosition().y;
-	int BTop = objectB->getCurrentPosition().y + bTexture.asset->getHeight();
+	int BTop = objectB->getCurrentPosition().y + bTexture->asset->getHeight();
 
 	//Checks if there is a distance between the current object sides and the other object sides.
 	if (Aright < BLeft){
@@ -73,14 +73,14 @@ bool CollisionEvent::collidePixel()
 	//Map positions of rectangles for objectA (this)
 	int axLeft = objectA->getCurrentPosition().x;
 	int ayTop = objectA->getCurrentPosition().y;
-	int axRight = objectA->getCurrentPosition().x + aTexture.asset->getWidth() - 1;
-	int ayBottom = objectA->getCurrentPosition().y + aTexture.asset->getHeight() - 1;
+	int axRight = objectA->getCurrentPosition().x + aTexture->asset->getWidth() - 1;
+	int ayBottom = objectA->getCurrentPosition().y + aTexture->asset->getHeight() - 1;
 
 	//Map positions of rectangles for objectB
 	int bxLeft = objectB->getCurrentPosition().x;
 	int byTop = objectB->getCurrentPosition().y;
-	int bxRight = objectB->getCurrentPosition().x + bTexture.asset->getWidth() - 1;
-	int byBottom = objectB->getCurrentPosition().y + bTexture.asset->getHeight() - 1;
+	int bxRight = objectB->getCurrentPosition().x + bTexture->asset->getWidth() - 1;
+	int byBottom = objectB->getCurrentPosition().y + bTexture->asset->getHeight() - 1;
 
 	//Get the values of the intersected rectangle where our pixel collision check will occur
 	int left = std::max(axLeft, bxLeft);
@@ -88,8 +88,8 @@ bool CollisionEvent::collidePixel()
 	int top = std::max(ayTop, byTop);
 	int bottom = std::min(ayBottom, byBottom);
 
-	this->aRect = aTexture.asset->getSourceRect(objectA->texture.name);
-	this->bRect = bTexture.asset->getSourceRect(objectB->texture.name);
+	this->aRect = aTexture->name;
+	this->bRect = bTexture->name;
 
 	this->targetRectA.x = 0;
 	this->targetRectA.y = 0;
@@ -113,13 +113,13 @@ bool CollisionEvent::collidePixel()
 	}
 
 	//Get the surfaces we need to pass to readAlpha
-	orgSurfaceA = aTexture.asset->getSurface();
-	orgSurfaceB = bTexture.asset->getSurface();
+	orgSurfaceA = aTexture->asset->getSurface();
+	orgSurfaceB = bTexture->asset->getSurface();
 
 	//Create destination surfaces for the blit;	
 
-	SurfaceA = SDL_CreateRGBSurface(NULL, aTexture.asset->getWidth(), aTexture.asset->getHeight(), 32, rmask, gmask, bmask, amask);
-	SurfaceB = SDL_CreateRGBSurface(NULL, bTexture.asset->getWidth(), bTexture.asset->getHeight(), 32, rmask, gmask, bmask, amask);
+	SurfaceA = SDL_CreateRGBSurface(NULL, aTexture->asset->getWidth(), aTexture->asset->getHeight(), 32, rmask, gmask, bmask, amask);
+	SurfaceB = SDL_CreateRGBSurface(NULL, bTexture->asset->getWidth(), bTexture->asset->getHeight(), 32, rmask, gmask, bmask, amask);
 
 	SDL_BlitSurface(orgSurfaceA, aRect, SurfaceA, &targetRectA);
 	SDL_BlitSurface(orgSurfaceB, bRect, SurfaceB, &targetRectB);

@@ -16,19 +16,19 @@ void JumpAction::execute(){
 	Position targetPos;
 
 	if (orientation == NORTH){
-		startPos = {source->getCurrentPosition().x, source->getCurrentPosition().y - source->getTexture().asset->getHeight()};
+		startPos = {source->getCurrentPosition().x, source->getCurrentPosition().y - source->getTexture()->asset->getHeight()};
 		targetPos = { startPos.x, startPos.y - source->getCurrentSpeed() };
 	}
 	if (orientation == SOUTH){
-		startPos = { source->getCurrentPosition().x, source->getCurrentPosition().y + source->getTexture().asset->getHeight() };
+		startPos = { source->getCurrentPosition().x, source->getCurrentPosition().y + source->getTexture()->asset->getHeight() };
 		targetPos = { startPos.x, startPos.y + source->getCurrentSpeed() };
 	}
 	if (orientation == WEST){
-		startPos = { source->getCurrentPosition().x - source->getTexture().asset->getWidth(), source->getCurrentPosition().y };
+		startPos = { source->getCurrentPosition().x - source->getTexture()->asset->getWidth(), source->getCurrentPosition().y };
 		targetPos = { startPos.x - source->getCurrentSpeed(), startPos.y };
 	}
 	if (orientation == EAST){
-		startPos = { source->getCurrentPosition().x + source->getTexture().asset->getWidth(), source->getCurrentPosition().y};
+		startPos = { source->getCurrentPosition().x + source->getTexture()->asset->getWidth(), source->getCurrentPosition().y};
 		targetPos = { startPos.x + source->getCurrentSpeed(), startPos.y };
 	}
 	

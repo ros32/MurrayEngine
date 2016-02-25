@@ -44,8 +44,8 @@ void	DefaultAI::move()
 
 		const Position currentPosition = npc->getCurrentPosition();
 		const Position maxSize = map->getMapMaxSize();
-		const int width = npc->getTexture().asset->getWidth();
-		const int height = npc->getTexture().asset->getHeight();
+		const int width = npc->getTexture()->asset->getWidth();
+		const int height = npc->getTexture()->asset->getHeight();
 
 		std::string moveDirection = "NONE";
 

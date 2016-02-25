@@ -1,6 +1,6 @@
 #include "ProjectileObject.h"
 
-ProjectileObject::ProjectileObject(std::string id, Position currentPosition, Position targetPosition, Animation animation, double maxSpeed, double acceleration, int currentSpeed, Orientation orientation, bool isCollidable): 
+ProjectileObject::ProjectileObject(std::string id, Position currentPosition, Position targetPosition, std::shared_ptr<Animation> animation, double maxSpeed, double acceleration, int currentSpeed, Orientation orientation, bool isCollidable): 
 	AnimatedObject(id, currentPosition, animation, maxSpeed, acceleration, currentSpeed, orientation, isCollidable){
 
 	this->targetPosition = targetPosition;

@@ -5,7 +5,7 @@ Object::Object()
 
 }
 
-Object::Object(std::string id, Position currentPosition, Texture texture, double maxSpeed, double acceleration, int currentSpeed, Orientation orientation, bool isCollidable)
+Object::Object(std::string id, Position currentPosition, std::shared_ptr<Texture> texture, double maxSpeed, double acceleration, int currentSpeed, Orientation orientation, bool isCollidable)
 {
 	this->id = id;
 	this->currentPosition = currentPosition;
@@ -134,14 +134,14 @@ bool Object::collideBox(Object* objectB)
 	bool hit = true;
 
 	int left = this->getCurrentPosition().x;
-	int right = this->getCurrentPosition().x + this->getTexture().asset->getWidth();
+	int right = this->getCurrentPosition().x + this->getTexture()->asset->getWidth();
 	int bottom = this->getCurrentPosition().y;
-	int top = this->getCurrentPosition().y + this->getTexture().asset->getHeight();
+	int top = this->getCurrentPosition().y + this->getTexture()->asset->getHeight();
 
 	int otherLeft = objectB->getCurrentPosition().x;
-	int otherRight = objectB->getCurrentPosition().x + objectB->getTexture().asset->getWidth();
+	int otherRight = objectB->getCurrentPosition().x + objectB->getTexture()->asset->getWidth();
 	int otherBottom = objectB->getCurrentPosition().y;
-	int otherTop = objectB->getCurrentPosition().y + objectB->getTexture().asset->getHeight();
+	int otherTop = objectB->getCurrentPosition().y + objectB->getTexture()->asset->getHeight();
 
 	//Checks if there is a distance between the current object sides and the other object sides.
 	if (right < otherLeft){
@@ -213,17 +213,17 @@ bool Object::collidePixel(Object* objectB)
 	}
 
 	//	Store Textures
-	const Texture textureA = this->getTexture();
-	const Texture textureB = objectB->getTexture();
+	const std::shared_ptr<Texture> textureA = this->getTexture();
+	const std::shared_ptr<Texture> textureB = objectB->getTexture();
 
 	const Position currentPositionA = this->getCurrentPosition();
 	const Position currentPositionB = objectB->getCurrentPosition();
 
-	const int widthA = textureA.asset->getWidth();
-	const int heightA = textureA.asset->getHeight();
+	const int widthA = textureA->asset->getWidth();
+	const int heightA = textureA->asset->getHeight();
 
-	const int widthB = textureB.asset->getWidth();
-	const int heightB = textureB.asset->getHeight();
+	const int widthB = textureB->asset->getWidth();
+	const int heightB = textureB->asset->getHeight();
 
 	//Map positions of rectangles for objectA (this)
 	int axLeft = currentPositionA.x;
@@ -243,8 +243,8 @@ bool Object::collidePixel(Object* objectB)
 	int top = std::max(ayTop, byTop);
 	int bottom = std::min(ayBottom, byBottom);
 
-	SDL_Rect* aRect = textureA.asset->getSourceRect(textureA.name);
-	SDL_Rect* bRect = textureB.asset->getSourceRect(textureB.name);
+	SDL_Rect* aRect = textureA->name;
+	SDL_Rect* bRect = textureB->name;
 
 	SDL_Rect targetRectA;
 	SDL_Rect targetRectB;
@@ -255,8 +255,8 @@ bool Object::collidePixel(Object* objectB)
 	targetRectB.y = 0;
 
 	//Get the surfaces we need to pass to readAlpha
-	SDL_Surface* orgSurfaceA = textureA.asset->getSurface();
-	SDL_Surface* orgSurfaceB = textureB.asset->getSurface();
+	SDL_Surface* orgSurfaceA = textureA->asset->getSurface();
+	SDL_Surface* orgSurfaceB = textureB->asset->getSurface();
 
 	//Create destination surfaces for the blit;
 	SDL_Surface* SurfaceA;
@@ -332,16 +332,16 @@ void Object::setCollisionEvent(CollisionEvent* collisionEvent){
 }
 
 
-Texture			Object::getTexture()
+std::shared_ptr<Texture>			Object::getTexture()
 {
 	return this->texture;
 }
 
 void Object::render(int x, int y)
 {
-	if (this->texture.asset != nullptr && this->texture.name != "")
+	if (this->texture->asset != nullptr && this->texture->name != nullptr)
 	{
-		this->texture.asset->render(x, y, this->texture.asset->getSourceRect(this->texture.name));
+		this->texture->asset->render(x, y, this->texture->name);
 		this->lastRender = this->timer.getTicks();
 }
 }
@@ -364,7 +364,7 @@ void  Object::takeDamage()
 	SDL_Log("Taking some damage");
 }
 
-void	Object::setTexture(Texture texture)
+void	Object::setTexture(std::shared_ptr<Texture> texture)
 {
 	this->texture = texture;
 }
@@ -408,8 +408,8 @@ Action*	Object::getAction()
 	return nullptr;
 }
 //std::vector<Texture>
-std::vector<Texture> Object::getAnimationVector(std::string key){
-	std::vector<Texture> temp;
+std::vector<std::shared_ptr<Texture>> Object::getAnimationVector(std::string key){
+	std::vector<std::shared_ptr<Texture>> temp;
 	return temp;
 }
 int Object::getAnimationTime(std::string key){

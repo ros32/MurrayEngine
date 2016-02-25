@@ -30,8 +30,8 @@ private:
 	Object* objectB;
 
 	
-	Texture aTexture;
-	Texture bTexture;
+	std::shared_ptr<Texture> aTexture;
+	std::shared_ptr<Texture> bTexture;
 	//The original surfaces we need to pass to readAlpha
 	SDL_Surface* orgSurfaceA;
 	SDL_Surface* orgSurfaceB;

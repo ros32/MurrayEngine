@@ -42,8 +42,8 @@ public:
 	virtual void					setOrientation(Orientation orientation);
 
 	//	Texture & Rendering
-	virtual Texture					getTexture();
-	virtual void					setTexture(Texture texture);
+	virtual std::shared_ptr<Texture>				getTexture();
+	virtual void					setTexture(std::shared_ptr<Texture> texture);
 	virtual void					render(int x, int y);
 
 	//	Collision
@@ -69,11 +69,11 @@ public:
 	virtual Action*					getAction();
 	virtual void					doAction();
 
-	virtual Animation				getAnimation();
+	virtual std::shared_ptr<Animation>				getAnimation();
 
 
-	virtual void					setAnimation(Animation animation);
-	virtual void					addAnimation(std::string key, Animation animation);
+	virtual void					setAnimation(std::shared_ptr<Animation> animation);
+	virtual void					addAnimation(std::string key, std::shared_ptr<Animation> animation);
 	virtual void					changeAnimation(std::string key);
 
 	virtual bool readAlpha(SDL_Surface* surface, int x, int y);

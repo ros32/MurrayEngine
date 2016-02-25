@@ -5,7 +5,7 @@ Tile::Tile() : Object()
 
 }
 
-Tile::Tile(Position currentPosition, Texture texture, Orientation orientation, bool isCollidable, bool isPassable) : 
+Tile::Tile(Position currentPosition, std::shared_ptr<Texture> texture, Orientation orientation, bool isCollidable, bool isPassable) : 
 	Object("tile", currentPosition, texture, 0.0, 0.0, 0, orientation, isCollidable)
 {
 

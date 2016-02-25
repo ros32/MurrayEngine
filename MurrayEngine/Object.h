@@ -1,6 +1,7 @@
 #ifndef _GENERIC_OBJECT_H
 #define _GENERIC_OBJECT_H
 
+#include	<memory>
 #include	<math.h>
 #include	<algorithm>
 #include	<assert.h>
@@ -33,7 +34,7 @@ class Object
 public:
 
 	Object();
-	Object(std::string id, Position currentPosition, Texture texture, double maxSpeed, double acceleration, int currentSpeed, Orientation orientation, bool isCollidable);
+	Object(std::string id, Position currentPosition, std::shared_ptr<Texture> texture, double maxSpeed, double acceleration, int currentSpeed, Orientation orientation, bool isCollidable);
 
 	~Object();
 
@@ -59,8 +60,8 @@ public:
 	virtual void					setOrientation(Orientation orientation);
 
 	//	Texture & Rendering
-	virtual Texture					getTexture();
-	virtual void					setTexture(Texture texture);
+	virtual std::shared_ptr<Texture>				getTexture();
+	virtual void					setTexture(std::shared_ptr<Texture> texture);
 	virtual void					render(int x, int y);
 
 	//	Collision
@@ -97,11 +98,11 @@ public:
 	//virtual std::vector<Texture>	getAnimationVector(std::string key);
 	//virtual int						getAnimationTime(std::string key);
 
-	virtual std::vector<Texture> getAnimationVector(std::string key);
+	virtual std::vector<std::shared_ptr<Texture>> getAnimationVector(std::string key);
 	virtual int getAnimationTime(std::string key);
 
 	//	Texture asset used by object
-	Texture			texture;
+	std::shared_ptr<Texture>			texture;
 
 protected:
 

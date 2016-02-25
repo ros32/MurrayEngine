@@ -130,48 +130,48 @@ bool GameInstance::initialize()
 
 
 				//Set up player animations for north, south, east and west
-				std::vector<Texture> playerNorth;
-				playerNorth.push_back(Texture(this->getTextureAsset("EpicSpriteSheet"), "HeroBack1"));
-				playerNorth.push_back(Texture(this->getTextureAsset("EpicSpriteSheet"), "HeroBack2"));
-				playerNorth.push_back(Texture(this->getTextureAsset("EpicSpriteSheet"), "HeroBack1"));
-				playerNorth.push_back(Texture(this->getTextureAsset("EpicSpriteSheet"), "HeroBack3"));
+				std::vector<std::shared_ptr<Texture>> playerNorth;
+				playerNorth.push_back(std::make_shared<Texture>(this->getTextureAsset("EpicSpriteSheet"), "HeroBack1"));
+				playerNorth.push_back(std::make_shared<Texture>(this->getTextureAsset("EpicSpriteSheet"), "HeroBack2"));
+				playerNorth.push_back(std::make_shared<Texture>(this->getTextureAsset("EpicSpriteSheet"), "HeroBack1"));
+				playerNorth.push_back(std::make_shared<Texture>(this->getTextureAsset("EpicSpriteSheet"), "HeroBack3"));
 
 
 
-				std::vector<Texture> playerSouth;
-				playerSouth.push_back(Texture(this->getTextureAsset("EpicSpriteSheet"), "HeroFront1"));
-				playerSouth.push_back(Texture(this->getTextureAsset("EpicSpriteSheet"), "HeroFront2"));
-				playerSouth.push_back(Texture(this->getTextureAsset("EpicSpriteSheet"), "HeroFront1"));
-				playerSouth.push_back(Texture(this->getTextureAsset("EpicSpriteSheet"), "HeroFront3"));
+				std::vector<std::shared_ptr<Texture>> playerSouth;
+				playerSouth.push_back(std::make_shared<Texture>(this->getTextureAsset("EpicSpriteSheet"), "HeroFront1"));
+				playerSouth.push_back(std::make_shared<Texture>(this->getTextureAsset("EpicSpriteSheet"), "HeroFront2"));
+				playerSouth.push_back(std::make_shared<Texture>(this->getTextureAsset("EpicSpriteSheet"), "HeroFront1"));
+				playerSouth.push_back(std::make_shared<Texture>(this->getTextureAsset("EpicSpriteSheet"), "HeroFront3"));
 
 
 
-				std::vector<Texture> playerLeft;
-				playerLeft.push_back(Texture(this->getTextureAsset("EpicSpriteSheet"), "HeroLeft1"));
-				playerLeft.push_back(Texture(this->getTextureAsset("EpicSpriteSheet"), "HeroLeft2"));
-				playerLeft.push_back(Texture(this->getTextureAsset("EpicSpriteSheet"), "HeroLeft1"));
-				playerLeft.push_back(Texture(this->getTextureAsset("EpicSpriteSheet"), "HeroLeft3"));
+				std::vector<std::shared_ptr<Texture>> playerLeft;
+				playerLeft.push_back(std::make_shared<Texture>(this->getTextureAsset("EpicSpriteSheet"), "HeroLeft1"));
+				playerLeft.push_back(std::make_shared<Texture>(this->getTextureAsset("EpicSpriteSheet"), "HeroLeft2"));
+				playerLeft.push_back(std::make_shared<Texture>(this->getTextureAsset("EpicSpriteSheet"), "HeroLeft1"));
+				playerLeft.push_back(std::make_shared<Texture>(this->getTextureAsset("EpicSpriteSheet"), "HeroLeft3"));
 
 
-				std::vector<Texture> playerRight;
-				playerRight.push_back(Texture(this->getTextureAsset("EpicSpriteSheet"), "HeroRight1"));
-				playerRight.push_back(Texture(this->getTextureAsset("EpicSpriteSheet"), "HeroRight2"));
-				playerRight.push_back(Texture(this->getTextureAsset("EpicSpriteSheet"), "HeroRight1"));
-				playerRight.push_back(Texture(this->getTextureAsset("EpicSpriteSheet"), "HeroRight3"));
+				std::vector<std::shared_ptr<Texture>> playerRight;
+				playerRight.push_back(std::make_shared<Texture>(this->getTextureAsset("EpicSpriteSheet"), "HeroRight1"));
+				playerRight.push_back(std::make_shared<Texture>(this->getTextureAsset("EpicSpriteSheet"), "HeroRight2"));
+				playerRight.push_back(std::make_shared<Texture>(this->getTextureAsset("EpicSpriteSheet"), "HeroRight1"));
+				playerRight.push_back(std::make_shared<Texture>(this->getTextureAsset("EpicSpriteSheet"), "HeroRight3"));
 
 
-				std::vector<Texture> playerProjectile;
-				playerProjectile.push_back(Texture(this->getTextureAsset("ProjectileSheet"), "RedBall"));
-				playerProjectile.push_back(Texture(this->getTextureAsset("ProjectileSheet"), "BlueBall"));
-				playerProjectile.push_back(Texture(this->getTextureAsset("ProjectileSheet"), "GreenBall"));
+				std::vector<std::shared_ptr<Texture>> playerProjectile;
+				playerProjectile.push_back(std::make_shared<Texture>(this->getTextureAsset("ProjectileSheet"), "RedBall"));
+				playerProjectile.push_back(std::make_shared<Texture>(this->getTextureAsset("ProjectileSheet"), "BlueBall"));
+				playerProjectile.push_back(std::make_shared<Texture>(this->getTextureAsset("ProjectileSheet"), "GreenBall"));
 		
-				NonPlayerCharacter* HeroPlayer = new NonPlayerCharacter(new AnimatedObject("test006", { 33, 33 }, Animation(playerSouth, 200), 1.0, 1.0, 3, SOUTH, true));
+				NonPlayerCharacter* HeroPlayer = new NonPlayerCharacter(new AnimatedObject("test006", { 33, 33 }, std::make_shared<Animation>(playerSouth, 200), 1.0, 1.0, 3, SOUTH, true));
 				
-				HeroPlayer->addAnimation("North", Animation(playerNorth, 200));
-				HeroPlayer->addAnimation("South", Animation(playerSouth, 200));
-				HeroPlayer->addAnimation("East", Animation(playerRight, 200));
-				HeroPlayer->addAnimation("West", Animation(playerLeft, 200));
-				HeroPlayer->addAnimation("Projectile", Animation(playerProjectile, 200));
+				HeroPlayer->addAnimation("North", std::make_shared<Animation>(playerNorth, 200));
+				HeroPlayer->addAnimation("South", std::make_shared<Animation>(playerSouth, 200));
+				HeroPlayer->addAnimation("East", std::make_shared<Animation>(playerRight, 200));
+				HeroPlayer->addAnimation("West", std::make_shared<Animation>(playerLeft, 200));
+				HeroPlayer->addAnimation("Projectile", std::make_shared<Animation>(playerProjectile, 200));
 				
 
 
@@ -192,13 +192,13 @@ bool GameInstance::initialize()
 				//this->map->setPlayerCharacter(witchPlayerObject);
 
 
-				std::vector<Texture> textures;
-				textures.push_back(Texture(this->getTextureAsset("EpicSpriteSheet"), "GhostFront1"));
-				textures.push_back(Texture(this->getTextureAsset("EpicSpriteSheet"), "GhostFront2"));
-				textures.push_back(Texture(this->getTextureAsset("EpicSpriteSheet"), "GhostFront3"));
+				std::vector<std::shared_ptr<Texture>> textures;
+				textures.push_back(std::make_shared<Texture>(this->getTextureAsset("EpicSpriteSheet"), "GhostFront1"));
+				textures.push_back(std::make_shared<Texture>(this->getTextureAsset("EpicSpriteSheet"), "GhostFront2"));
+				textures.push_back(std::make_shared<Texture>(this->getTextureAsset("EpicSpriteSheet"), "GhostFront3"));
 
 
-				AnimatedObject* animatedObject = new AnimatedObject("test003", { 33, 200 }, Animation(textures, 200), 1.0, 1.0, 2, NORTH, true);
+				AnimatedObject* animatedObject = new AnimatedObject("test003", { 33, 200 }, std::make_shared<Animation>(textures, 200), 1.0, 1.0, 2, NORTH, true);
 				NonPlayerCharacter* granges = new NonPlayerCharacter(animatedObject);
 				granges->setAI(new DefaultAI(granges, this->map));
 

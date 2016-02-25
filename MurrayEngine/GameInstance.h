@@ -1,6 +1,7 @@
 #ifndef _GAME_INSTANCE_H
 #define	_GAME_INSTANCE_H
 
+#include	<memory>
 #include	"MapFactory.h"
 #include	"Asset.h"
 #include	"Configuration.h"
