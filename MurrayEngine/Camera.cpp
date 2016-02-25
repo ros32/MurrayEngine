@@ -5,7 +5,7 @@ Camera::Camera()
 	this->position = { 0, 0 };
 	this->height = 0;
 	this->width = 0;
-	this->focusType = OBJECT_FOCUS;
+	this->focusType = FREE_FOCUS;
 	this->gui;
 }
 
@@ -18,7 +18,7 @@ Camera::Camera(SDL_Window* window)
 	this->setWindow(window);
 
 	//	Use OBJECT_FOCUS as standard
-	this->focusType = OBJECT_FOCUS;
+	this->focusType = FREE_FOCUS;
 }
 
 Camera::~Camera()
@@ -64,4 +64,9 @@ CameraFocus	Camera::getFocusType()
 GUI*		Camera::getGUI()
 {
 	return &this->gui;
+}
+
+void		Camera::setFocusType(CameraFocus focusType)
+{
+	this->focusType = focusType;
 }
