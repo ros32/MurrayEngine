@@ -111,7 +111,7 @@ void	DefaultAI::move()
 			for (int i = 0; i < directions.size(); i++)
 			{
 				Position	testedPosition = map->tryMove(npc, moveTargets[i]);
-				if (testedPosition.x == moveTargets[i].x && testedPosition.y == moveTargets[i].y)
+				if (testedPosition.x == (moveTargets[i].x + currentPosition.x) && testedPosition.y == (moveTargets[i].y + currentPosition.y))
 					validDirections.push_back(directions[i]);
 			}
 

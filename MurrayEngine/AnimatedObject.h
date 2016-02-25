@@ -56,6 +56,7 @@ private:
 	std::map<std::string, std::shared_ptr<Animation>> animationMap;
 	std::shared_ptr<Animation>	animation;
 	typedef std::map<std::string, std::shared_ptr<Animation>>::iterator iterator;
+	std::shared_ptr<Texture>	collisionTexture = nullptr;
 
 };
 
