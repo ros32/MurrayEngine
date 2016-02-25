@@ -193,9 +193,9 @@ void	KeyController::addAction(SDL_Scancode key, Action* action)
 
 void	KeyController::debugSetup()
 {
-	this->actions[SDL_SCANCODE_W] = new MoveAction(this->gameInstance->getMap()->getPlayerCharacter(), this->gameInstance->getMap(), "NORTH");
-	this->actions[SDL_SCANCODE_S] = new MoveAction(this->gameInstance->getMap()->getPlayerCharacter(), this->gameInstance->getMap(), "SOUTH");
-	this->actions[SDL_SCANCODE_D] = new MoveAction(this->gameInstance->getMap()->getPlayerCharacter(), this->gameInstance->getMap(), "EAST");
-	this->actions[SDL_SCANCODE_A] = new MoveAction(this->gameInstance->getMap()->getPlayerCharacter(), this->gameInstance->getMap(), "WEST");
+	this->actions[SDL_SCANCODE_W] = new MoveAction(this->gameInstance->getMap()->getPlayerCharacter(), this->gameInstance->getMap(), NORTH);
+	this->actions[SDL_SCANCODE_S] = new MoveAction(this->gameInstance->getMap()->getPlayerCharacter(), this->gameInstance->getMap(), SOUTH);
+	this->actions[SDL_SCANCODE_D] = new MoveAction(this->gameInstance->getMap()->getPlayerCharacter(), this->gameInstance->getMap(), EAST);
+	this->actions[SDL_SCANCODE_A] = new MoveAction(this->gameInstance->getMap()->getPlayerCharacter(), this->gameInstance->getMap(), WEST);
 	this->actions[SDL_SCANCODE_SPACE] = new JumpAction(this->gameInstance->getMap(), this->gameInstance->getMap()->getPlayerCharacter(), this->gameInstance->getMap()->getPlayerCharacter()->getOrientation());
 }

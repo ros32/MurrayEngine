@@ -1,6 +1,6 @@
 #include "MoveAction.h"
 
-MoveAction::MoveAction(Object* source, Map* map, std::string direction){
+MoveAction::MoveAction(Object* source, Map* map, Orientation direction){
 	this->source = source;
 	this->map = map;
 	this->direction = direction;
@@ -8,7 +8,7 @@ MoveAction::MoveAction(Object* source, Map* map, std::string direction){
 	this->currentRepeat = 1;
 }
 
-MoveAction::MoveAction(Object* source, Map* map, std::string direction, int repeat)
+MoveAction::MoveAction(Object* source, Map* map, Orientation direction, int repeat)
 {
 	this->source = source;
 	this->map = map;
@@ -24,54 +24,43 @@ void MoveAction::execute()
 {
 	if (this->currentRepeat > 0 || repeat == -1)
 	{
-	if (direction == "EAST")
-	{
-		source->setTargetPosition(source->getTargetPosition().x + source->getCurrentSpeed(), source->getTargetPosition().y);
 
-		if (source->getOrientation() != EAST)
-			source->changeAnimation("East");
-		
-		source->setOrientation(EAST);
-		
+		switch (direction)
+		{
+		case NORTH:
+			source->setTargetPosition(source->getTargetPosition().x, source->getTargetPosition().y - source->getCurrentSpeed());
 
-	}
+			if (source->getOrientation() != NORTH)
+				source->changeAnimation("North");
 
-	if (direction == "WEST")
-	{
+			source->setOrientation(NORTH);
+			break;
+		case SOUTH:
+			source->setTargetPosition(source->getTargetPosition().x, source->getTargetPosition().y + source->getCurrentSpeed());
 
-		source->setTargetPosition(source->getTargetPosition().x - source->getCurrentSpeed(), source->getTargetPosition().y);
-		if (source->getOrientation() != WEST)
-			source->changeAnimation("West");
+			if (source->getOrientation() != SOUTH)
+				source->changeAnimation("South");
 
-		source->setOrientation(WEST);
-		
-		
-	}
+			source->setOrientation(SOUTH);
+			break;
+		case EAST:
+			source->setTargetPosition(source->getTargetPosition().x + source->getCurrentSpeed(), source->getTargetPosition().y);
 
-	if (direction == "NORTH")
-	{
+			if (source->getOrientation() != EAST)
+				source->changeAnimation("East");
 
-		source->setTargetPosition(source->getTargetPosition().x, source->getTargetPosition().y - source->getCurrentSpeed());
-		
-		if (source->getOrientation() != NORTH)
-			source->changeAnimation("North");
-				
-		source->setOrientation(NORTH);
-	
-	}
+			source->setOrientation(EAST);
+			break;
+		case WEST:
+			source->setTargetPosition(source->getTargetPosition().x - source->getCurrentSpeed(), source->getTargetPosition().y);
+			if (source->getOrientation() != WEST)
+				source->changeAnimation("West");
 
-	if (direction == "SOUTH")
-	{
-
-		source->setTargetPosition(source->getTargetPosition().x, source->getTargetPosition().y + source->getCurrentSpeed());
-
-		if (source->getOrientation() != SOUTH)
-			source->changeAnimation("South");
-		
-
-
-		source->setOrientation(SOUTH);
-
+			source->setOrientation(WEST);
+			break;
+		case NONE:
+		default:
+			break;
 		}
 
 		if (this->repeat != -1)
@@ -81,7 +70,6 @@ void MoveAction::execute()
 
 	if (currentRepeat == 0)
 		this->setProgress(1);
-
 
 }
 

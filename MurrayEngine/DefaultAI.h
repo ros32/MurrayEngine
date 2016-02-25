@@ -13,14 +13,26 @@ public:
 
 	void	doNext();
 
-	void	move();
+	
 
 private:
 
 	Position	lastMovePosition;
 	bool		lastMoveSuccess;
 
+	Orientation	playerLastSeenDirection;
+	bool		playerRecentlySeen;
+
 	Action*		currentAction;
+
+	void	move();
+
+	//	Return relative position to player from NPC
+	bool	findPlayer(Orientation orientation);
+
+	//	Return true if there is a clear path to player from NPC
+	bool	canSeePlayer();
+
 
 };
 

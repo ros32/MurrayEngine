@@ -198,7 +198,7 @@ bool GameInstance::initialize()
 				textures.push_back(std::make_shared<Texture>(this->getTextureAsset("EpicSpriteSheet"), "GhostFront3"));
 
 
-				AnimatedObject* animatedObject = new AnimatedObject("test003", { 33, 200 }, std::make_shared<Animation>(textures, 200), 1.0, 1.0, 2, NORTH, true);
+				AnimatedObject* animatedObject = new AnimatedObject("test003", { 35, 200 }, std::make_shared<Animation>(textures, 200), 1.0, 1.0, 2, NORTH, true);
 				NonPlayerCharacter* granges = new NonPlayerCharacter(animatedObject);
 				granges->setAI(new DefaultAI(granges, this->map));
 

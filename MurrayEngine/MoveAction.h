@@ -20,8 +20,8 @@ Triggers the movements of all movable objects
 class MoveAction : public Action{
 
 public:
-	MoveAction(Object* source, Map* map, std::string direction);
-	MoveAction(Object* source, Map* map, std::string direction, int repeat);
+	MoveAction(Object* source, Map* map, Orientation direction);
+	MoveAction(Object* source, Map* map, Orientation direction, int repeat);
 	~MoveAction();
 
 	void execute();
@@ -34,7 +34,7 @@ private:
 	int currentRepeat;
 	Object* source;
 	Map* map;
-	std::string direction = "";
+	Orientation direction = NONE;
 };
 
 
