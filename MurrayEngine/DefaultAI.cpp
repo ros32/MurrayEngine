@@ -273,7 +273,9 @@ bool		DefaultAI::canSeePlayer()
 	{
 		Position relativeMovePosition = { -(currentPosition.x - playerPosition.x), -(currentPosition.y - playerPosition.y) };
 
-		Position maxTravelRange = map->tryMove(npc, relativeMovePosition);
+		int moveAxis = (std::abs(relativeMovePosition.x) > std::abs(relativeMovePosition.y)) ? width : height;
+
+		Position maxTravelRange = map->tryMove(npc, relativeMovePosition, true, moveAxis, 1, false);
 
 		//	Move NPC to target
 		npc->setCurrentPosition(maxTravelRange);

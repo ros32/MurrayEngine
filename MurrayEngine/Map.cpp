@@ -228,7 +228,7 @@ void Map::move()
 				break;
 			}
 			
-			object->setCurrentPosition(this->tryMove(object, targetPosition));
+			object->setCurrentPosition(this->tryMove(object, targetPosition, true, 2, 0, false));
 			object->setTargetPosition({ 0, 0 });
 		}
 	}
@@ -463,4 +463,112 @@ Position	Map::tryMove(Object* object, Position targetPosition)
 Position		Map::getMapMaxSize()
 {
 	return this->mapMaxSize;
+}
+
+Position				Map::tryMove(Object* object, Position targetPosition, bool relativePosition, int movement, int padding, bool multiAxis)
+{
+	//	Store current position
+	const Position	currentPosition = object->getCurrentPosition();
+
+	//	Store final position
+	Position		finalPosition;
+
+	//	If target position is a relative position, make it absolute
+	if (relativePosition)
+		finalPosition = { currentPosition.x + targetPosition.x, currentPosition.y + targetPosition.y };
+	else
+		finalPosition = targetPosition;
+
+	//	Store width and height of object
+	const int width = object->getTexture()->asset->getWidth();
+	const int height = object->getTexture()->asset->getHeight();
+
+	//	Determine if X and Y should be moved; if multiAxis is false, only move the largest of the two
+	bool moveX = (((relativePosition && std::abs(targetPosition.x) > 0) || (!relativePosition && targetPosition.x != currentPosition.x) && multiAxis) || (std::abs(targetPosition.x) > std::abs(targetPosition.y) && !multiAxis));
+	bool moveY = (((relativePosition && std::abs(targetPosition.y) > 0) || (!relativePosition && targetPosition.y != currentPosition.y) && multiAxis) || (std::abs(targetPosition.y) > std::abs(targetPosition.x) && !multiAxis));
+
+	//	If both X and Y are to be moved but multiAxis is false, set Y to false
+	moveY = (moveX && moveY && !multiAxis) ? false : moveY;
+
+
+	//	If current posiiton is higher than final position, use negative values (we are going north/west)
+	bool negX = (currentPosition.x > finalPosition.x);
+	bool negY = (currentPosition.y > finalPosition.y);
+
+	//	If movement is larger than width/height, set movement to width/height
+	int movementX = (movement <= width) ? movement : width;
+	int movementY = (movement <= height) ? movement : height;
+
+	//	If movement should be negative, set movement to negative
+	movementX = (negX) ? -movementX : movementX;
+	movementY = (negY) ? -movementY : movementY;
+
+	//	Store last position that worked
+	Position lastGoodPosition = currentPosition;
+
+	//	Store found collitions on each axis
+	bool collisionFoundX = false;
+	bool collisionFoundY = false;
+
+	//	Set positionA to current position, and positionB to the lower right corner of the object
+	Position positionA = currentPosition;
+	Position positionB = { currentPosition.x + width -1, currentPosition.y + height -1 };
+
+	//	Enter the loop
+	while (true)
+	{
+		
+		//	If the difference between finalPosition and positionA is smaller than the movement
+		//	distance, set the movement distance to the difference between the two.
+		if (finalPosition.x - positionA.x < movementX)
+			movementX = finalPosition.x - positionA.x;
+
+		if (finalPosition.y - positionA.y < movementY)
+			movementY = finalPosition.y - positionA.y;
+
+		//	If axis is to be moved and no collision has been detected, move axis the distance of movement
+		positionA.x = (moveX && !collisionFoundX) ? positionA.x + movementX : positionA.x;
+		positionA.y = (moveY && !collisionFoundY) ? positionA.y + movementY : positionA.y;
+
+		positionB.x = (moveX && !collisionFoundX) ? positionB.x + movementX : positionB.x;
+		positionB.y = (moveY && !collisionFoundY) ? positionB.y + movementY : positionB.y;
+
+		std::vector<Tile*> tiles = this->getTiles(positionA, positionB);
+
+		object->setCurrentPosition(positionA);
+
+		for (Tile* tile : tiles)
+		{
+			if (tile->getIsCollidable() && tile->collidePixel(object))
+			{
+				collisionFoundX = true;
+				collisionFoundY = true;
+			}
+		}
+
+		if ((collisionFoundX || collisionFoundY) ||(moveX && positionA.x == finalPosition.x) || (moveY && positionA.y == finalPosition.y))
+		{
+			lastGoodPosition = positionA;
+			break;
+		}
+		else if ((moveX && positionA.x > finalPosition.x) || (moveY && positionA.y > finalPosition.y))
+			break;
+
+		lastGoodPosition = positionA;
+
+	}
+	/*
+	if (moveX && !negX && (padding < currentPosition.x - lastGoodPosition.x))
+		lastGoodPosition.x = -padding;
+	else if (moveX && negX && (padding > currentPosition.x - lastGoodPosition.x))
+		lastGoodPosition.x = +padding;
+
+	if (moveY && !negY && (padding < currentPosition.y - lastGoodPosition.y))
+		lastGoodPosition.y = -padding;
+	else if (moveY && negY && (padding > currentPosition.y - lastGoodPosition.y))
+		lastGoodPosition.y = +padding;
+		*/
+	object->setCurrentPosition(currentPosition);
+
+	return lastGoodPosition;
 }

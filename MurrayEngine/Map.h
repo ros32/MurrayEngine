@@ -84,6 +84,9 @@ public:
 	Position					tryMove(Object* object, Position targetPosition);
 	void						calculateMapMaxSize();
 
+	//	Return the closest position the targetPosition that the object can travel to without collision
+	Position					tryMove(Object* object, Position targetPosition, bool relativePosition, int movement, int padding, bool multiAxis);
+
 
 private:
 
