@@ -48,7 +48,7 @@ void	DefaultAI::move()
 		const Position maxSize = map->getMapMaxSize();
 		const int width = npc->getTexture()->asset->getWidth();
 		const int height = npc->getTexture()->asset->getHeight();
-		Orientation moveDirection = npc->getOrientation();
+		Orientation currentDirection = npc->getOrientation();
 
 		//int scopeWidth = 0;
 
@@ -72,7 +72,7 @@ void	DefaultAI::move()
 					this->playerRecentlySeen = true;
 
 				//	Add move action for 2 turns
-				npc->addAction(new MoveAction(npc, map, moveDirection, 2));
+				npc->addAction(new MoveAction(npc, map, currentDirection, 2));
 
 				//	Set current position as last move position
 				this->lastMovePosition = npc->getCurrentPosition();
@@ -82,7 +82,53 @@ void	DefaultAI::move()
 		//	If last move was unsuccessful, try moving one step in any direction but the one you are facing
 		else if (!this->lastMoveSuccess)
 		{
+			std::vector<Orientation> directions;
+			std::vector<Position> moveTargets;
 
+			if (currentDirection != NORTH)
+			{
+				directions.push_back(NORTH);
+				moveTargets.push_back({ 0, 0 - height });
+			}
+			if (currentDirection != SOUTH)
+			{
+				directions.push_back(SOUTH);
+				moveTargets.push_back({ 0, 0 + height });
+			}
+			if (currentDirection != EAST)
+			{
+				directions.push_back(EAST);
+				moveTargets.push_back({ 0 + width, 0 });
+			}
+			if (currentDirection != WEST)
+			{
+				directions.push_back(WEST);
+				moveTargets.push_back({ 0 - width, 0 });
+			}
+
+			std::vector<Orientation> validDirections;
+
+			for (int i = 0; i < directions.size(); i++)
+			{
+				Position	testedPosition = map->tryMove(npc, moveTargets[i]);
+				if (testedPosition.x == moveTargets[i].x && testedPosition.y == moveTargets[i].y)
+					validDirections.push_back(directions[i]);
+			}
+
+
+			if (validDirections.size() > 0)
+			{
+				int randomDirection = std::rand() % (int)validDirections.size();
+				npc->addAction(new MoveAction(npc, map, validDirections[randomDirection], 2));
+
+				//	Set current position as last move position
+				this->lastMovePosition = npc->getCurrentPosition();
+			}
+			//	Object is stuck!
+			else
+			{
+
+			}
 		}
 	}
 }
@@ -116,7 +162,7 @@ bool	DefaultAI::findPlayer(Orientation orientation)
 	Position	positionB = { 0, 0 };
 
 	//	Store move direction as string
-	std::string moveDirection = "NONE";
+	std::string currentDirection = "NONE";
 
 	//	Depending on NPC orientation, the rectangle will vary
 	switch (orientation)
@@ -124,33 +170,33 @@ bool	DefaultAI::findPlayer(Orientation orientation)
 	case NORTH:
 		positionA = { currentPosition.x, 0 };
 		positionB = { currentPosition.x + width - 1, currentPosition.y };
-		moveDirection = "NORTH";
+		currentDirection = "NORTH";
 		break;
 	case SOUTH:
 		positionA = { currentPosition.x, currentPosition.y };
 		positionB = { currentPosition.x + width - 1, maxSize.y };
-		moveDirection = "SOUTH";
+		currentDirection = "SOUTH";
 		break;
 	case WEST:
 		positionA = { 0, currentPosition.y };
 		positionB = { currentPosition.x, currentPosition.y + height - 1 };
-		moveDirection = "WEST";
+		currentDirection = "WEST";
 		break;
 	case EAST:
 		positionA = { currentPosition.x, currentPosition.y };
 		positionB = { maxSize.x, currentPosition.y + height - 1 };
-		moveDirection = "EAST";
+		currentDirection = "EAST";
 		break;
 	default:
 		positionA = { 0, 0 };
 		positionB = { 0, 0 };
-		moveDirection = "NONE";
+		currentDirection = "NONE";
 		break;
 	}
 
 	//	(debug) Player was found message
 	std::string playerFoundMsg = "Player was found in area (" + std::to_string(positionA.x) + ", " + std::to_string(positionA.x) + "; " + 
-		std::to_string(positionB.x) + ", " + std::to_string(positionB.y) + "), when facing " + moveDirection;
+		std::to_string(positionB.x) + ", " + std::to_string(positionB.y) + "), when facing " + currentDirection;
 
 	//	Have we found the player?
 	bool playerFound = false;

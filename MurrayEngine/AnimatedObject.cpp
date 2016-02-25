@@ -112,3 +112,8 @@ void		AnimatedObject::render(int x, int y)
 
 	
 }
+
+std::shared_ptr<Texture>	AnimatedObject::getCollisionTexture()
+{
+	return this->animation->textures[0];
+}

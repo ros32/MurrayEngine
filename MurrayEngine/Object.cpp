@@ -416,3 +416,8 @@ int Object::getAnimationTime(std::string key){
 	
 	return 0;
 }
+
+std::shared_ptr<Texture>	Object::getCollisionTexture()
+{
+	return this->texture;
+}

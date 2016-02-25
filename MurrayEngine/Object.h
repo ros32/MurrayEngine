@@ -60,7 +60,8 @@ public:
 	virtual void					setOrientation(Orientation orientation);
 
 	//	Texture & Rendering
-	virtual std::shared_ptr<Texture>				getTexture();
+	virtual std::shared_ptr<Texture>	getTexture();
+	virtual std::shared_ptr<Texture>	getCollisionTexture();
 	virtual void					setTexture(std::shared_ptr<Texture> texture);
 	virtual void					render(int x, int y);
 

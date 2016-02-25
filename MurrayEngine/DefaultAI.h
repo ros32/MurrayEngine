@@ -1,6 +1,7 @@
 #ifndef _DEFAULT_AI_H
 #define	_DEFAULT_AI_H
 
+#include <stdlib.h>
 #include "AI.h"
 #include "MoveAction.h"
 

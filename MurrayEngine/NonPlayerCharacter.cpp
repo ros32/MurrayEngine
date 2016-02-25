@@ -112,6 +112,11 @@ std::shared_ptr<Texture>		NonPlayerCharacter::getTexture()
 	return this->baseObject->getTexture();
 }
 
+std::shared_ptr<Texture>		NonPlayerCharacter::getCollisionTexture()
+{
+	return this->baseObject->getCollisionTexture();
+}
+
 void NonPlayerCharacter::render(int x, int y)
 {
 	this->baseObject->render(x, y);

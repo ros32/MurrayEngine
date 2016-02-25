@@ -50,6 +50,7 @@ public:
 	void						changeAnimation(std::string key);
 	std::vector<std::shared_ptr<Texture>>		getAnimationVector(std::string key);
 	int							getAnimationTime(std::string key);
+	std::shared_ptr<Texture>	getCollisionTexture();
 
 private:
 	std::map<std::string, std::shared_ptr<Animation>> animationMap;
