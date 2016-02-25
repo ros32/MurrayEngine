@@ -87,17 +87,34 @@ std::vector<Tile*>	Map::getTiles(Position posA, Position posB)
 {
 	std::vector < Tile* >	tempVector;
 
-	int minX = std::min(posA.x, posB.x);
-	int maxX = std::max(posA.x, posB.x);
-	int minY = std::min(posA.y, posB.y);
-	int maxY = std::max(posA.y, posB.y);
+	int left = std::min(posA.x, posB.x);
+	int right = std::max(posA.x, posB.x);
+	int bottom = std::min(posA.y, posB.y);
+	int top = std::max(posA.y, posB.y);
 
-	for (auto tile : tiles)
+	for (auto tile : this->tiles)
 	{
-		Position currentPosition = tile->getCurrentPosition();
+		bool hit = true;
+		Position pos = tile->getCurrentPosition();
+		int otherLeft = pos.x;
+		int otherRight = pos.x + tile->getCollisionTexture()->asset->getWidth();
+		int otherBottom = pos.y;
+		int otherTop = pos.y + tile->getCollisionTexture()->asset->getHeight();
 
-		if ((currentPosition.x >= minX && currentPosition.x <= maxX) &&
-			(currentPosition.y >= minY && currentPosition.y <= maxY))
+		if (right < otherLeft){
+			hit = false;
+		}
+		else if (left > otherRight){
+			hit = false;
+		}
+		else if (top < otherBottom){
+			hit = false;
+		}
+		else if (bottom > otherTop){
+			hit = false;
+		}
+
+		if (hit)
 			tempVector.push_back(tile);
 	}
 
@@ -384,13 +401,13 @@ Position	Map::tryMove(Object* object, Position targetPosition)
 			object->setCurrentPosition(iterationPosition);
 
 			//	Declare vector for tiles to be checked
-			std::vector<Tile*>	tiles; // = this->getTiles(iterationPosition, { iterationPosition.x + width - 1, iterationPosition.y + height - 1 });
+			std::vector<Tile*>	tiles = this->getTiles(iterationPosition, { iterationPosition.x + width - 1, iterationPosition.y + height - 1 });
 
 			//	Create vector with tiles from all corners of object
-			tiles.push_back(this->getTile(iterationPosition));	//	Top left
-			tiles.push_back(this->getTile({ iterationPosition.x + width - 1, iterationPosition.y })); // Top right
-			tiles.push_back(this->getTile({ iterationPosition.x, iterationPosition.y + height - 1 })); // Bottom left
-			tiles.push_back(this->getTile({ iterationPosition.x + width - 1, iterationPosition.y + height - 1 })); // Bottom right
+			//tiles.push_back(this->getTile(iterationPosition));	//	Top left
+			//tiles.push_back(this->getTile({ iterationPosition.x + width - 1, iterationPosition.y })); // Top right
+			//tiles.push_back(this->getTile({ iterationPosition.x, iterationPosition.y + height - 1 })); // Bottom left
+			//tiles.push_back(this->getTile({ iterationPosition.x + width - 1, iterationPosition.y + height - 1 })); // Bottom right
 
 			//	Check tiles that touches objects corners for collision
 			for (Object* tile : tiles)
