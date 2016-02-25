@@ -40,6 +40,7 @@ void	DefaultAI::move()
 {
 	NonPlayerCharacter* npc = AI::getSourceNPC();
 	Map*				map = AI::getMap();
+	std::srand(std::time(NULL));
 
 	if (npc != nullptr && map != nullptr)
 	{
@@ -118,7 +119,35 @@ void	DefaultAI::move()
 
 			if (validDirections.size() > 0)
 			{
-				int randomDirection = std::rand() % (int)validDirections.size();
+				Orientation oppositeDirection;
+				switch (currentDirection)
+				{
+				case NORTH:
+					oppositeDirection = SOUTH;
+					break;
+				case SOUTH:
+					oppositeDirection = NORTH;
+					break;
+				case EAST:
+					oppositeDirection = WEST;
+					break;
+				case WEST:
+					oppositeDirection = EAST;
+					break;
+				default:
+					oppositeDirection = NONE;
+					break;
+				}
+
+
+				int randomDirection = std::rand() % validDirections.size();
+				if (randomDirection == oppositeDirection)
+					randomDirection = std::rand() % validDirections.size();
+				if (randomDirection == oppositeDirection)
+					randomDirection = std::rand() % validDirections.size();
+				if (randomDirection == oppositeDirection)
+					randomDirection = std::rand() % validDirections.size();
+
 				npc->addAction(new MoveAction(npc, map, validDirections[randomDirection], 2));
 
 				//	Set current position as last move position

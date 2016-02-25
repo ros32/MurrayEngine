@@ -2,6 +2,7 @@
 #define	_DEFAULT_AI_H
 
 #include <stdlib.h>
+#include <ctime>
 #include "AI.h"
 #include "MoveAction.h"
 
