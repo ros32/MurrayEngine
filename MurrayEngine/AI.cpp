@@ -1,3 +1,4 @@
+#define _CRTDBG_MAP_ALLOC
 #include	"AI.h"
 
 AI::AI()

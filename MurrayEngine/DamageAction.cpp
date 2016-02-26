@@ -1,3 +1,4 @@
+#define _CRTDBG_MAP_ALLOC
 #include "DamageAction.h"
 /*
 DamageAction::DamageAction(GameInstance* instance, Object* source, std::vector<Object*> targets) 

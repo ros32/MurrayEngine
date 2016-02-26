@@ -1,3 +1,4 @@
+#define _CRTDBG_MAP_ALLOC
 #include "MoveAction.h"
 
 MoveAction::MoveAction(Object* source, Map* map, Orientation direction){

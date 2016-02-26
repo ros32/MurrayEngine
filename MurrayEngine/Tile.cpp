@@ -1,3 +1,4 @@
+#define _CRTDBG_MAP_ALLOC
 #include	"Tile.h"
 
 Tile::Tile() : Object()

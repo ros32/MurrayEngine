@@ -1,3 +1,4 @@
+#define _CRTDBG_MAP_ALLOC
 #include "Physics.h"
 
 float Physics::acceleration(const State &state, float t)

@@ -1,3 +1,4 @@
+#define _CRTDBG_MAP_ALLOC
 #include "JumpAction.h"
 
 JumpAction::JumpAction(Map* map, Object* source, Orientation orientation){

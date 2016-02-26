@@ -1,3 +1,4 @@
+#define _CRTDBG_MAP_ALLOC
 #include	"FrameLimiter.h"
 
 FrameLimiter::FrameLimiter() : FrameLimiter(Timer(), 30) { }

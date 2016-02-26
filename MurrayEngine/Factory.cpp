@@ -1,3 +1,4 @@
+#define _CRTDBG_MAP_ALLOC
 #include	"Factory.h"
 
 Factory::Factory() { }
