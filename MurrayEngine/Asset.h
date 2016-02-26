@@ -10,7 +10,7 @@ class Asset
 {
 public:
 	Asset();
-	~Asset();
+	virtual ~Asset();
 
 	std::string		getType();
 };

@@ -38,7 +38,7 @@ class AnimatedObject: public Object
 public:
 	AnimatedObject();
 	AnimatedObject(std::string id, Position currentPosition, std::shared_ptr<Animation> animation, double maxSpeed, double acceleration, int currentSpeed, Orientation orientation, bool isCollidable);
-	~AnimatedObject();
+	virtual ~AnimatedObject();
 
 	void	render(int x, int y);
 

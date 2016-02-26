@@ -1,3 +1,4 @@
+#define _CRTDBG_MAP_ALLOC
 #include	"GameInstance.h"
 
 #define		DEFAULT_FRAME_LIMIT		30
@@ -342,6 +343,8 @@ bool GameInstance::exit()
 	{
 		delete asset.second;
 	}
+
+	this->textureAssets.clear();
 
 	//	Delete map
 	delete this->map;
