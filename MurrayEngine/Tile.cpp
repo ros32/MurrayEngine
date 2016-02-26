@@ -22,6 +22,11 @@ Position	Tile::getCurrentPosition()
 	return this->Object::getCurrentPosition();
 }
 
+void		Tile::setCurrentPosition(Position pos)
+{
+
+}
+
 void	Tile::render(int x, int y)
 {
 	this->Object::render(x, y);

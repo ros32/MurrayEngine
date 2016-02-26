@@ -1,3 +1,4 @@
+#define _CRTDBG_MAP_ALLOC
 #include	"Configuration.h"
 
 //	Set iterator and const_iterator to be iterators of std::map
@@ -23,7 +24,7 @@ Configuration::Configuration(std::string fileName)
 
 Configuration::~Configuration()
 {
-
+	this->configurationData.clear();
 }
 
 

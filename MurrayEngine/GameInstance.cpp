@@ -26,6 +26,32 @@ GameInstance::GameInstance(SDL_Window* window, SDL_Renderer* renderer, Configura
 
 GameInstance::~GameInstance()
 {
+	delete this->frameRateGUIObject;
+
+	//	Delete texture assets
+	for (auto asset : this->textureAssets)
+	{
+		delete asset.second;
+	}
+
+	this->textureAssets.clear();
+
+	for (auto asset : this->assets)
+	{
+		delete asset.second;
+	}
+
+	this->assets.clear();
+
+	//	Delete map
+	delete this->map;
+
+	//	Delete key controller
+	delete this->keyController;
+
+	//	Delete factory
+	if (this->factory != nullptr)
+		delete this->factory;
 
 }
 
@@ -337,24 +363,6 @@ bool GameInstance::run()
 
 bool GameInstance::exit()
 {
-
-	//	Delete texture assets
-	for (auto asset : this->textureAssets)
-	{
-		delete asset.second;
-	}
-
-	this->textureAssets.clear();
-
-	//	Delete map
-	delete this->map;
-
-	//	Delete key controller
-	delete this->keyController;
-
-	//	Delete factory
-	if (this->factory != nullptr)
-		delete this->factory;
 
 	this->exited = true;
 	return true;

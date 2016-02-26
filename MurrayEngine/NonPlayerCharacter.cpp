@@ -1,3 +1,4 @@
+#define _CRTDBG_MAP_ALLOC
 #include	"NonPlayerCharacter.h"
 
 NonPlayerCharacter::NonPlayerCharacter()
@@ -10,11 +11,19 @@ NonPlayerCharacter::NonPlayerCharacter(AnimatedObject* object)
 {
 	this->baseObject = object;
 	this->actionQueue;
+
 }
 
 NonPlayerCharacter::~NonPlayerCharacter()
 {
 	delete this->baseObject;
+	delete this->ai;
+
+	while (!this->actionQueue.empty())
+	{
+		delete this->actionQueue.front();
+		this->actionQueue.pop();
+	}
 }
 
 std::string NonPlayerCharacter::getId()
