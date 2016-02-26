@@ -319,6 +319,8 @@ bool Object::collidePixel(Object* objectB)
 		}
 	}
 
+	SDL_FreeSurface(SurfaceA);
+	SDL_FreeSurface(SurfaceB);
 	return false;
 }
 
