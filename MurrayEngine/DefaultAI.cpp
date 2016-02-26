@@ -1,3 +1,4 @@
+#define _CRTDBG_MAP_ALLOC
 #include "DefaultAI.h"
 
 DefaultAI::DefaultAI() : AI()
@@ -24,15 +25,9 @@ void	DefaultAI::doNext()
 		(map->getPlayerCharacter() == nullptr || (map->getPlayerCharacter() != nullptr && map->getPlayerCharacter()->getId() != npc->getId())) &&
 		(npc->getAction() == nullptr || (npc->getAction() != nullptr && npc->getAction()->isCompleted() == true)))
 	{
-		std::string out = "Object " + npc->getId() + " has launched a Move AI command";
-		SDL_LogInfo(SDL_LOG_CATEGORY_APPLICATION, out.c_str());
 		this->move();
 	}
-	else
-	{
-		std::string out2 = "The queue already contains actions, doing nothing...";
-		SDL_LogInfo(SDL_LOG_CATEGORY_APPLICATION, out2.c_str());
-	}
+
 
 }
 
@@ -51,6 +46,8 @@ void	DefaultAI::move()
 		const int height = npc->getTexture()->asset->getHeight();
 		Orientation currentDirection = npc->getOrientation();
 
+		int moveTimes = 2;
+
 		//int scopeWidth = 0;
 
 		//	Check if last move was successful
@@ -59,110 +56,38 @@ void	DefaultAI::move()
 		else
 			lastMoveSuccess = true;
 
+		//	This is a default implementation of a "dumb" ai that will wander aimlessly around the map in a seemingly random fashion.
+		//	This AI follows these principles:
+		//	1:	If last move was successful, repeat
+		//	2:	If last move was unsuccessful, evaluate new direction except backwards
+		//	3:	If last move was unsuccessful and only valid direction is backwards, go backwards
 
-		//	Did we just see the player in this direction and did we manage to go this way, or does the player
-		//	exist in this direction?
-		//	(bool && bool) is faster than findPlayer()
-		if ((this->playerRecentlySeen && this->lastMoveSuccess) || this->findPlayer(currentDirection))
+		if (lastMoveSuccess)
 		{
-			//	Did we just see the player, or can we see the player now?
-			if (this->playerRecentlySeen || this->canSeePlayer())
-			{
-				//	If we did not see the player before, we can do now.
-				if (!this->playerRecentlySeen)
-					this->playerRecentlySeen = true;
-
-				//	Add move action for 2 turns
-				npc->addAction(new MoveAction(npc, map, currentDirection, 2));
-
-				//	Set current position as last move position
-				this->lastMovePosition = npc->getCurrentPosition();
-			}
-
+			npc->addAction(new MoveAction(npc, map, currentDirection, moveTimes));
+			this->lastMovePosition = currentPosition;
 		}
-		//	If player was not seen but last move was successful, evaluate if there are different paths, but never go backwards
-		else if (!this->playerRecentlySeen && this->lastMoveSuccess)
+		else
 		{
-			std::vector<Orientation> validDirections = this->getValidDirections();
+			std::vector<Orientation> directions = this->getValidDirections();
 			std::vector<Orientation> filteredDirections;
-			for (Orientation direction : validDirections)
+			for (auto direction : directions)
 			{
 				if (direction != currentDirection && direction != this->getOppositeDirection(currentDirection))
 					filteredDirections.push_back(direction);
 			}
 
-			bool actionTaken = false;
+			if (filteredDirections.size() == 0)
+				filteredDirections.push_back(this->getOppositeDirection(currentDirection));
 
-			if (filteredDirections.size() > 0 && (std::rand() % 100 > 67))
-			{
-				bool playerSeen = false;
-				
-				for (Orientation direction : filteredDirections)
-				{
-					playerSeen = this->findPlayer(direction);
-					if (playerSeen && this->canSeePlayer())
-					{
-						npc->addAction(new MoveAction(npc, map, direction, 2));
-						this->playerRecentlySeen = true;
-						this->lastMovePosition = currentPosition;
-						actionTaken = true;
-						break;
-					}
-					else if (playerSeen && std::rand() % 100 > 50)
-					{
-						npc->addAction(new MoveAction(npc, map, direction, 2));
-						this->lastMovePosition = currentPosition;
-						actionTaken = true;
-						break;
-					}
-					else if (std::rand() % 100 > 67)
-					{
-						npc->addAction(new MoveAction(npc, map, direction, 2));
-						this->lastMovePosition = currentPosition;
-						actionTaken = true;
-						break;
-					}
-				}
+			int randomChance = std::rand() % filteredDirections.size();
 
-			}
-
-			if (!actionTaken);
-			{
-				npc->addAction(new MoveAction(npc, map, currentDirection, 2));
-				this->lastMovePosition = currentPosition;
-			}
+			npc->addAction(new MoveAction(npc, map, filteredDirections[randomChance], moveTimes));
+			this->lastMovePosition = currentPosition;
 		}
-		//	If last move was not successful, evaluate different paths, but avoid going backwards unless you have to
-		else if (!this->lastMoveSuccess)
-		{
-			//	We failed to move last time, if we cannot see the player its gone.
-			if (!this->canSeePlayer())
-				this->playerRecentlySeen = false;
 
-			std::vector<Orientation> validDirections = this->getValidDirections();
-			std::vector<Orientation> filteredDirections;
-
-			for (Orientation direction : validDirections)
-			{
-				if (direction != this->getOppositeDirection(currentDirection))
-					filteredDirections.push_back(direction);
-			}
-
-			//	If backwards was the only valid option, then add it to the filtered list
-			if (filteredDirections.size() == 0 && validDirections.size() > 0)
-				filteredDirections.push_back(validDirections[0]);
-
-			if (filteredDirections.size() > 0)
-			{
-				npc->addAction(new MoveAction(npc, map, filteredDirections[std::rand() % filteredDirections.size()], 2));
-				this->lastMovePosition = currentPosition;
-			}
-
-
-
-
-		}
 	}
+	
 }
 
 bool	DefaultAI::findPlayer(Orientation orientation)
@@ -267,15 +192,15 @@ bool		DefaultAI::canSeePlayer()
 	const int width =	npc->getTexture()->asset->getWidth();
 	const int height =	npc->getTexture()->asset->getHeight();
 
-	//If player is within a third of the map range
-	if ((std::abs(playerPosition.x - currentPosition.x) < map->getMapMaxSize().x / 3) ||
-		(std::abs(playerPosition.y - currentPosition.y) < map->getMapMaxSize().y / 3))
+	//If player is within three times the npcs size
+	if ((std::abs(playerPosition.x - currentPosition.x) < width * 3) ||
+		(std::abs(playerPosition.y - currentPosition.y) < height * 3))
 	{
 		Position relativeMovePosition = { -(currentPosition.x - playerPosition.x), -(currentPosition.y - playerPosition.y) };
 
 		int moveAxis = (std::abs(relativeMovePosition.x) > std::abs(relativeMovePosition.y)) ? width : height;
 
-		Position maxTravelRange = map->tryMove(npc, relativeMovePosition, true, moveAxis, 1, false);
+		Position maxTravelRange = map->tryMove(npc, relativeMovePosition, true);
 
 		//	Move NPC to target
 		npc->setCurrentPosition(maxTravelRange);
@@ -309,44 +234,18 @@ std::vector<Orientation>	DefaultAI::getValidDirections()
 	if (npc == nullptr || map == nullptr)
 		return std::vector<Orientation>();
 
-	const Position		currentPosition = npc->getCurrentPosition();
-	const Position		playerPosition = map->getPlayerCharacter()->getCurrentPosition();
-	const Orientation	currentDirection = npc->getOrientation();
-
-	//	Store width and height of npc
-	const int width = npc->getTexture()->asset->getWidth();
-	const int height = npc->getTexture()->asset->getHeight();
-
 	std::vector<Orientation> directions;
-	std::vector<Position> moveTargets;
 
-	if (currentDirection != NORTH)
-	{
-		directions.push_back(NORTH);
-		moveTargets.push_back({ 0, 0 - height });
-	}
-	if (currentDirection != SOUTH)
-	{
-		directions.push_back(SOUTH);
-		moveTargets.push_back({ 0, 0 + height });
-	}
-	if (currentDirection != EAST)
-	{
-		directions.push_back(EAST);
-		moveTargets.push_back({ 0 + width, 0 });
-	}
-	if (currentDirection != WEST)
-	{
-		directions.push_back(WEST);
-		moveTargets.push_back({ 0 - width, 0 });
-	}
+	directions.push_back(NORTH);
+	directions.push_back(SOUTH);
+	directions.push_back(EAST);
+	directions.push_back(WEST);
 
 	std::vector<Orientation> validDirections;
 
 	for (int i = 0; i < directions.size(); i++)
 	{
-		Position	testedPosition = map->tryMove(npc, moveTargets[i]);
-		if (testedPosition.x == (moveTargets[i].x + currentPosition.x) && testedPosition.y == (moveTargets[i].y + currentPosition.y))
+		if (map->canMove(npc, directions[i]))
 			validDirections.push_back(directions[i]);
 	}
 

@@ -1,7 +1,10 @@
 #ifndef _MAP_H
 #define _MAP_H
 
+#define	DEFAULT_GRID_SIZE	256
+
 #include <vector>
+#include <map>
 #include <map>
 #include "Configuration.h"
 #include "Object.h"
@@ -81,11 +84,12 @@ public:
 	bool						getCollision(Position posA, Position posB);
 	void						getPassable(Position posA, Position posB);
 
-	Position					tryMove(Object* object, Position targetPosition);
-	void						calculateMapMaxSize();
+	Position					tryMove(Object* object, Position targetPosition, bool onlyCheckCollision);
+	void						calculateMapMaxSize(std::vector<Tile*> tiles);
 
 	//	Return the closest position the targetPosition that the object can travel to without collision
 	Position					tryMove(Object* object, Position targetPosition, bool relativePosition, int movement, int padding, bool multiAxis);
+	bool						canMove(Object* object, Orientation direction);
 
 
 private:
@@ -107,6 +111,10 @@ private:
 
 	void								generateMaps();
 	Position							mapMaxSize;
+	std::map<Position, std::map<Position, Tile*> >	tileGrid;
+	int									gridSize;
+
+	void								createGrid(std::vector<Tile*>);
 
 };
 

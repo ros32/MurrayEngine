@@ -1,6 +1,7 @@
 #define _CRTDBG_MAP_ALLOC
 #include <stdlib.h>
 #include <crtdbg.h>
+#include	<vld.h>
 #include	<SDL.h>
 #include	<GameInstance.h>
 
@@ -34,19 +35,20 @@ int main(int, char** argv)
 	if (mainRenderer == nullptr)
 		return 0;
 
-	GameInstance gameInstance = GameInstance(mainWindow, mainRenderer, mainConfig);
+	GameInstance* gameInstance = new GameInstance(mainWindow, mainRenderer, mainConfig);
 
 	bool quitGame = false;
 	while (!quitGame)
 	{
-		if (!gameInstance.isInitialized())
-			gameInstance.initialize();
+		if (!gameInstance->isInitialized())
+			gameInstance->initialize();
 
-		gameInstance.run();
+		gameInstance->run();
 
-		if (!gameInstance.isExited())
+		if (!gameInstance->isExited())
 		{
-			gameInstance.exit();
+			gameInstance->exit();
+			delete gameInstance;
 			_CrtDumpMemoryLeaks();
 			quitGame = true;
 		}
