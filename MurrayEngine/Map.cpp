@@ -700,16 +700,16 @@ bool	Map::canMove(Object* object, Orientation direction)
 	switch (direction)
 	{
 	case NORTH:
-		targetPosition = { currentPosition.x - width, currentPosition.y };
+		targetPosition = { currentPosition.x, currentPosition.y -height };
 		break;
 	case SOUTH:
-		targetPosition = { currentPosition.x + width, currentPosition.y };
+		targetPosition = { currentPosition.x, currentPosition.y + height};
 		break;
 	case EAST:
-		targetPosition = { currentPosition.x, currentPosition.y + height };
+		targetPosition = { currentPosition.x + width, currentPosition.y };
 		break;
 	case WEST:
-		targetPosition = { currentPosition.x, currentPosition.y - height };
+		targetPosition = { currentPosition.x - width, currentPosition.y  };
 		break;
 	}
 
