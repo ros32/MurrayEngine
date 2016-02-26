@@ -1,3 +1,6 @@
+#define _CRTDBG_MAP_ALLOC
+#include <stdlib.h>
+#include <crtdbg.h>
 #include	<SDL.h>
 #include	<GameInstance.h>
 
@@ -44,6 +47,7 @@ int main(int, char** argv)
 		if (!gameInstance.isExited())
 		{
 			gameInstance.exit();
+			_CrtDumpMemoryLeaks();
 			quitGame = true;
 		}
 	}
