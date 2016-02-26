@@ -15,8 +15,28 @@ void	Factory::setGameInstance(GameInstance*	instance)
 	this->gameInstance = instance;
 }
 
+std::shared_ptr<Animation> Factory::createAnimation(Configuration configuration)
+{
+	unsigned int time = configuration.getProperty("TIME", 200);
+	std::map < std::string, std::vector<std::string, std::string>> returnMap;
+
+	for (auto key : configuration)
+	{
+		std::size_t found = key.first.find("IMAGE_");
+		if (found != std::string::npos)
+		{
+			//std::string
+		}
+	}
+
+	return nullptr;
+}
+
 //	FIXME
-Object*		Factory::createObject(Configuration configuration)	{ return nullptr; }
+Object*		Factory::createObject(Configuration configuration)	
+{ 
+	return nullptr;
+}
 
 Map*				Factory::createMap(Configuration configuration)
 {

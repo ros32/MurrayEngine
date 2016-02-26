@@ -5,6 +5,7 @@
 #include	"Configuration.h"
 #include	<vector>
 
+class GameInstance;
 class ObjectFactory
 {
 public:

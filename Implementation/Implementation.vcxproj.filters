@@ -18,6 +18,9 @@
     <ClCompile Include="MainProgram.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="ObjectFactory.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="main.cfg">
@@ -62,6 +65,27 @@
     <None Include="SmallMap.cfg">
       <Filter>Resource Files</Filter>
     </None>
+    <None Include="Objects.cfg">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="HeroAnimation.cfg">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Player.cfg">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Enemy.cfg">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="BossAnimation.cfg">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Boss.cfg">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="EnemyAnimation">
+      <Filter>Resource Files</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Image Include="spritesheet.bmp">
@@ -99,5 +123,10 @@
     <Font Include="8bitOperatorPlusSC-Bold.ttf">
       <Filter>Resource Files</Filter>
     </Font>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="ObjectFactory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

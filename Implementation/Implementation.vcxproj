@@ -80,6 +80,7 @@ xcopy /Y "$(SolutionDir)lib\SDL2_ttf-2.0.12\lib\x86\*.dll" "$(OutDir)*.dll"</Com
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="MainProgram.cpp" />
+    <ClCompile Include="ObjectFactory.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MurrayEngine\MurrayEngine.vcxproj">
@@ -87,12 +88,19 @@ xcopy /Y "$(SolutionDir)lib\SDL2_ttf-2.0.12\lib\x86\*.dll" "$(OutDir)*.dll"</Com
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Boss.cfg" />
+    <None Include="BossAnimation.cfg" />
+    <None Include="Enemy.cfg" />
+    <None Include="EnemyAnimation" />
+    <None Include="HeroAnimation.cfg" />
     <None Include="EpicSpriteSheet.cfg" />
     <None Include="gamemap.cfg" />
     <None Include="HeroSpriteSheet.cfg" />
     <None Include="keys.cfg" />
     <None Include="main.cfg" />
     <None Include="map.cfg" />
+    <None Include="Objects.cfg" />
+    <None Include="Player.cfg" />
     <None Include="ProjectileSheet.cfg" />
     <None Include="ProjectilesSpriteSheet.cfg" />
     <None Include="ReinBearSpriteSheet.cfg" />
@@ -116,6 +124,9 @@ xcopy /Y "$(SolutionDir)lib\SDL2_ttf-2.0.12\lib\x86\*.dll" "$(OutDir)*.dll"</Com
   <ItemGroup>
     <Font Include="8bitOperatorPlus8-Bold.ttf" />
     <Font Include="8bitOperatorPlusSC-Bold.ttf" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="ObjectFactory.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

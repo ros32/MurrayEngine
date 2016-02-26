@@ -1,0 +1,28 @@
+TYPE=Animation
+NAME=GhostAnimation
+
+TIME=200
+
+;Front Animation
+IMAGE_S=EpicSpriteSheet.GhostFront1
+IMAGE_S=EpicSpriteSheet.GhostFront2
+IMAGE_S=EpicSpriteSheet.GhostFront1
+IMAGE_S=EpicSpriteSheet.GhostFront3
+
+;Back Animation
+IMAGE_N=EpicSpriteSheet.GhostBack1
+IMAGE_N=EpicSpriteSheet.GhostBack2
+IMAGE_N=EpicSpriteSheet.GhostBack1
+IMAGE_N=EpicSpriteSheet.GhostBack3
+
+;Left Animation
+IMAGE_W=EpicSpriteSheet.GhostLeft1
+IMAGE_W=EpicSpriteSheet.GhostLeft2
+IMAGE_W=EpicSpriteSheet.GhostLeft1
+IMAGE_W=EpicSpriteSheet.GhostLeft3
+
+;Right Animation
+IMAGE_E=EpicSpriteSheet.GhostRight1
+IMAGE_E=EpicSpriteSheet.GhostRight2
+IMAGE_E=EpicSpriteSheet.GhostRight1
+IMAGE_E=EpicSpriteSheet.GhostRight3
