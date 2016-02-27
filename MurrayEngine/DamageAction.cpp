@@ -9,9 +9,10 @@ DamageAction::DamageAction(GameInstance* instance, Object* source, std::vector<O
 }
 */
 
-DamageAction::DamageAction(Object* source)
+DamageAction::DamageAction(Object* source, Map* map)
 {
 	this->source = source;
+	this->map = map;
 }
 
 DamageAction::~DamageAction()
@@ -21,22 +22,14 @@ DamageAction::~DamageAction()
 
 void DamageAction::execute()
 {
-	source->doDamage();
+	source->changeAnimation("projectile");
 
-	/*
-	for (auto target : targets)
-	{
-	target->takeDamage();
 
-	//get target HP
-	//If target HP <=0, call map->removeObject(target)
-	}
-	*/
 }
 
 Action*	DamageAction::copy()
 {
-	return new DamageAction(this->source);
+	return new DamageAction(this->source, this->map);
 }
 
 

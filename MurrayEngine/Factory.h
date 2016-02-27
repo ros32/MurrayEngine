@@ -20,7 +20,7 @@ class KeyController;
 class Factory
 {
 public:
-	virtual	Factory();
+		Factory();
 	virtual ~Factory();
 
 	void	setWindow(SDL_Window* window);

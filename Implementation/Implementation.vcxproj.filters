@@ -65,9 +65,6 @@
     <None Include="SmallMap.cfg">
       <Filter>Resource Files</Filter>
     </None>
-    <None Include="Objects.cfg">
-      <Filter>Resource Files</Filter>
-    </None>
     <None Include="HeroAnimation.cfg">
       <Filter>Resource Files</Filter>
     </None>

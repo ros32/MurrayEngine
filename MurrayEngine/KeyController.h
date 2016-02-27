@@ -5,6 +5,7 @@
 #include	<SDL.h>
 #include	"Action.h"
 #include	"GameInstance.h"
+#include	"DamageAction.h"
 
 class KeyController
 {

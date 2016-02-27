@@ -19,7 +19,7 @@ class DamageAction : public Action{
 
 public:
 //	DamageAction(GameInstance* instance, Object* source, std::vector<Object*> targets);
-	DamageAction(Object* source);
+	DamageAction(Object* source, Map* map);
 	~DamageAction();
 
 	void execute();
@@ -31,6 +31,7 @@ private:
 //	GameInstance* instance;
 	Object* source;
 	std::vector<Object*> targets;
+	Map* map;
 };
 
 
