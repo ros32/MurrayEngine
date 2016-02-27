@@ -22,8 +22,28 @@ DamageAction::~DamageAction()
 
 void DamageAction::execute()
 {
-	source->changeAnimation("projectile");
+	Orientation orientation;
+	orientation = source->getOrientation();
 
+	std::shared_ptr<Animation> animation;
+
+	Position startPosition;
+	switch (orientation){
+	case NORTH:
+		startPosition = { source->getCurrentPosition().x, source->getCurrentPosition().y - source->getTexture()->asset->getWidth() };
+		break;
+	case SOUTH:
+		startPosition = { source->getCurrentPosition().x, source->getCurrentPosition().y + source->getTexture()->asset->getWidth() };
+		break;
+	case WEST:
+		startPosition = { source->getCurrentPosition().x - source->getTexture()->asset->getHeight(), source->getCurrentPosition().y };
+		break;
+	case EAST:
+		startPosition = { source->getCurrentPosition().x + source->getTexture()->asset->getHeight(), source->getCurrentPosition().y };
+		break;
+	}
+
+		animation = source->getAnimation("Projectile");
 
 }
 

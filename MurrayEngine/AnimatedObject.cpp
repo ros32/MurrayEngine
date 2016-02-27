@@ -22,45 +22,27 @@ std::shared_ptr<Animation>	AnimatedObject::getAnimation()
 {
 	return this->animation;
 }
+std::shared_ptr<Animation> AnimatedObject::getAnimation(std::string key)
+{
+	iterator iterator;
+	iterator = this->animationMap.find(key);
+
+	if (iterator != this->animationMap.end()){
+		SDL_Log("YES");
+		std::shared_ptr<Animation> tempAnimation = iterator->second;
+		return tempAnimation;
+	}
+	else{
+		SDL_Log("NO");
+		return nullptr;
+	}
+
+	
+}
 
 void		AnimatedObject::setAnimation(std::shared_ptr<Animation> animation)
 {
 	this->animation = animation;
-}
-
-//std::vector<Texture>
-std::vector<std::shared_ptr<Texture>> AnimatedObject::getAnimationVector(std::string key)
-{
-	SDL_Log("inside getAnimationVector");
-	iterator iterator;
-	iterator = this->animationMap.find(key);
-
-	if (iterator != this->animationMap.end()){
-		SDL_Log("Key in getAnimationVector was found");
-		std::shared_ptr<Animation> tempAnimation = iterator->second;
-		return tempAnimation->textures;
-	}
-	else{
-		SDL_Log("Key in getAnimationVector was NOT found");
-		std::vector<std::shared_ptr<Texture>> out;
-		return out;
-	}
-}
-
-int	AnimatedObject::getAnimationTime(std::string key)
-{
-	iterator iterator;
-	iterator = this->animationMap.find(key);
-
-	if (iterator != this->animationMap.end()){
-		SDL_Log("Key in getAnimationTime was found");
-		std::shared_ptr<Animation> tempAnimation = iterator->second;
-		return tempAnimation->time;
-	}
-	else{
-		SDL_Log("Key in getAnimationTime was NOT found");
-		return -1;
-	}
 }
 
 void		AnimatedObject::addAnimation(std::string key, std::shared_ptr<Animation> animation){

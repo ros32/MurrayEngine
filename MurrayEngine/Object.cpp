@@ -410,17 +410,14 @@ Action*	Object::getAction()
 {
 	return nullptr;
 }
-//std::vector<Texture>
-std::vector<std::shared_ptr<Texture>> Object::getAnimationVector(std::string key){
-	std::vector<std::shared_ptr<Texture>> temp;
-	return temp;
-}
-int Object::getAnimationTime(std::string key){
-	
-	return 0;
-}
+
 
 std::shared_ptr<Texture>	Object::getCollisionTexture()
 {
 	return this->texture;
+}
+
+std::shared_ptr<Animation> Object::getAnimation(std::string key){
+
+	return nullptr;
 }

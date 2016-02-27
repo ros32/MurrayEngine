@@ -43,13 +43,13 @@ public:
 	void	render(int x, int y);
 
 	std::shared_ptr<Animation>	getAnimation();
+	std::shared_ptr<Animation>  getAnimation(std::string key);
 
 
 	void						setAnimation(std::shared_ptr<Animation> animation);
 	void						addAnimation(std::string key, std::shared_ptr<Animation> animation);
 	void						changeAnimation(std::string key);
-	std::vector<std::shared_ptr<Texture>>		getAnimationVector(std::string key);
-	int							getAnimationTime(std::string key);
+
 	std::shared_ptr<Texture>	getCollisionTexture();
 
 private:

@@ -13,6 +13,7 @@
 #include	"Action.h"
 
 class CollisionEvent;
+struct Animation;
 
 class Action;
 
@@ -99,11 +100,12 @@ public:
 	//virtual std::vector<Texture>	getAnimationVector(std::string key);
 	//virtual int						getAnimationTime(std::string key);
 
-	virtual std::vector<std::shared_ptr<Texture>> getAnimationVector(std::string key);
-	virtual int getAnimationTime(std::string key);
+
 
 	//	Texture asset used by object
 	std::shared_ptr<Texture>			texture;
+
+	virtual std::shared_ptr<Animation> getAnimation(std::string key);
 
 protected:
 
