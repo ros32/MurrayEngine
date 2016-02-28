@@ -6,134 +6,174 @@
 #elif __linux__
 #include <SDL2/SDL.h>
 #endif
-#include	"Object.h"
 
 #include	"GUI.h"
 
-///	<summary>
-///	Controls the focus type the Camera should use.
-///	</summary>
+///-------------------------------------------------------------------------------------------------
+/// <summary>	Values that represent camera focus. </summary>
+///
+/// <remarks>	Rosen, 2016-02-28. </remarks>
+///-------------------------------------------------------------------------------------------------
 enum CameraFocus
 {
-	///	<summary>
-	///	Sets camera to follow playerCharacter
-	///	</summary>
 	OBJECT_FOCUS = 0,
-	///	<summary>
-	///	Sets camera to not follow an object
-	///	</summary>
 	FREE_FOCUS = 1
 };
 
-///	<summary>
-///	The Camera class is a representation of the viewport the User views the
-///	game through. Only the portion of the Map visible in the Camera will be
-///	rendered.
-///	</summary>
+///-------------------------------------------------------------------------------------------------
+/// <summary>	A camera. </summary>
+///
+/// <remarks>	Rosen, 2016-02-28. </remarks>
+///-------------------------------------------------------------------------------------------------
 class Camera
 {
 public:
 
-	///	<summary>
-	///	The Camera class is a representation of the viewport the User views the
-	///	game through. Only the portion of the Map visible in the Camera will be
-	///	rendered.
-	///	</summary>
+	///-------------------------------------------------------------------------------------------------
+	/// <summary>	Default constructor. </summary>
+	///
+	/// <remarks>	Rosen, 2016-02-28. </remarks>
+	///-------------------------------------------------------------------------------------------------
 	Camera();
 
-	///	<summary>
-	///	The Camera class is a representation of the viewport the User views the
-	///	game through. Only the portion of the Map visible in the Camera will be
-	///	rendered.
-	///	</summary>
+	///-------------------------------------------------------------------------------------------------
+	/// <summary>	Constructor. </summary>
+	///
+	/// <remarks>	Rosen, 2016-02-28. </remarks>
+	///
+	/// <param name="window">	[in,out] If non-null, the window. </param>
+	///-------------------------------------------------------------------------------------------------
 	Camera(SDL_Window* window);
 
+	///-------------------------------------------------------------------------------------------------
+	/// <summary>	Destructor. </summary>
+	///
+	/// <remarks>	Rosen, 2016-02-28. </remarks>
+	///-------------------------------------------------------------------------------------------------
 	~Camera();
 
-	///	<summary>
-	///	Return a copy of the SDL_Rect representing the Camera
-	///	</summary>
+	///-------------------------------------------------------------------------------------------------
+	/// <summary>	Gets camera rectangle. </summary>
+	///
+	/// <remarks>	Rosen, 2016-02-28. </remarks>
+	///
+	/// <returns>	The camera rectangle. </returns>
+	///-------------------------------------------------------------------------------------------------
 	SDL_Rect			getCameraRect();
 
-	///	<summary>
-	///	Return the height of the Camera. Unless specified otherwise in implementation, 
-	///	should be equal to window height.
-	///	</summary>
+	///-------------------------------------------------------------------------------------------------
+	/// <summary>	Gets the height. </summary>
+	///
+	/// <remarks>	Rosen, 2016-02-28. </remarks>
+	///
+	/// <returns>	The height. </returns>
+	///-------------------------------------------------------------------------------------------------
 	int					getHeight();
 
-	///	<summary>
-	///	Return the width of the Camera. Unless specified otherwise in implementation, 
-	///	should be equal to window width.
-	///	</summary>
+	///-------------------------------------------------------------------------------------------------
+	/// <summary>	Gets the width. </summary>
+	///
+	/// <remarks>	Rosen, 2016-02-28. </remarks>
+	///
+	/// <returns>	The width. </returns>
+	///-------------------------------------------------------------------------------------------------
 	int					getWidth();
 
-	///	<summary>
-	///	Return a copy of the Position of the Camera object, measured from the 
-	///	top left corner of the Cameras SDL_Rect
-	///	</summary>
+	///-------------------------------------------------------------------------------------------------
+	/// <summary>	Gets the position. </summary>
+	///
+	/// <remarks>	Rosen, 2016-02-28. </remarks>
+	///
+	/// <returns>	The position. </returns>
+	///-------------------------------------------------------------------------------------------------
 	Position			getPosition();
 
-	///	<summary>
-	///	Sets the position of the Camera to the specified Position
-	///	</summary>
+	///-------------------------------------------------------------------------------------------------
+	/// <summary>	Sets a position. </summary>
+	///
+	/// <remarks>	Rosen, 2016-02-28. </remarks>
+	///
+	/// <param name="pos">	The position. </param>
+	///-------------------------------------------------------------------------------------------------
 	void				setPosition(Position pos);
 
-	///	<summary>
-	///	Sets the position of the Camera to the specified Object
-	///	</summary>
-	void				setPosition(Object object);
-
-	///	<summary>
-	///	Move the Camera the specified amount of x and y coordinates relative to its current position.
-	///	</summary>
+	///-------------------------------------------------------------------------------------------------
+	/// <summary>	Moves. </summary>
+	///
+	/// <remarks>	Rosen, 2016-02-28. </remarks>
+	///
+	/// <param name="x">	The x coordinate. </param>
+	/// <param name="y">	The y coordinate. </param>
+	///-------------------------------------------------------------------------------------------------
 	void				move(int x, int y);
 
-	///	<summary>
-	///	Return the focus type of the Camera.
-	///	</summary>
+	///-------------------------------------------------------------------------------------------------
+	/// <summary>	Gets focus type. </summary>
+	///
+	/// <remarks>	Rosen, 2016-02-28. </remarks>
+	///
+	/// <returns>	The focus type. </returns>
+	///-------------------------------------------------------------------------------------------------
 	CameraFocus			getFocusType();
 
-	///	<summary>
-	///	Sets the focus type of the camera
-	/// </summary>
+	///-------------------------------------------------------------------------------------------------
+	/// <summary>	Sets focus type. </summary>
+	///
+	/// <remarks>	Rosen, 2016-02-28. </remarks>
+	///
+	/// <param name="focusType">	Type of the focus. </param>
+	///-------------------------------------------------------------------------------------------------
 	void				setFocusType(CameraFocus focusType);
 
-	///	<summary>
-	///	Sets the window of the Camera
-	///	</summary>
+	///-------------------------------------------------------------------------------------------------
+	/// <summary>	Sets a window. </summary>
+	///
+	/// <remarks>	Rosen, 2016-02-28. </remarks>
+	///
+	/// <param name="window">	[in,out] If non-null, the window. </param>
+	///-------------------------------------------------------------------------------------------------
 	void				setWindow(SDL_Window* window);
 
-	///	<summary>
-	///	Center the Camera on the specified Position
-	///	</summary>
+	///-------------------------------------------------------------------------------------------------
+	/// <summary>	Centers the given position. </summary>
+	///
+	/// <remarks>	Rosen, 2016-02-28. </remarks>
+	///
+	/// <param name="pos">	The position. </param>
+	///-------------------------------------------------------------------------------------------------
 	void				center(Position pos);
 
+	///-------------------------------------------------------------------------------------------------
+	/// <summary>	Gets the graphical user interface. </summary>
+	///
+	/// <remarks>	Rosen, 2016-02-28. </remarks>
+	///
+	/// <returns>	null if it fails, else the graphical user interface. </returns>
+	///-------------------------------------------------------------------------------------------------
 	GUI*				getGUI();
-
-	//void				setGUI(GUI* gui);
-
-
 
 private:
 
-	//	Height of Camera
+
+	/// <summary>	The height. </summary>
 	int					height;
 
-	//	Width of Camera
+	/// <summary>	The width. </summary>
 	int					width;
 
-	//	Position of Camera
+	/// <summary>	The position. </summary>
 	Position			position;
 
-	//	Pointer to SDL_Renderer
+	/// <summary>	The renderer. </summary>
 	SDL_Renderer*		renderer;
 
-	//	The Cameras SDL_Rect
+	/// <summary>	The camera rectangle. </summary>
 	SDL_Rect			cameraRect;
 
-	//	Focus type of Camera
+	/// <summary>	Type of the focus. </summary>
 	CameraFocus			focusType;
 
+	/// <summary>	The graphical user interface. </summary>
 	GUI					gui;
 
 };
