@@ -17,7 +17,6 @@
 #include <SDL2/SDL.h>
 #endif
 #include	"Action.h"
-#include    "ActionControl.h"
 #include	"JumpAction.h"
 #include	"MoveAction.h"
 #include	"Factory.h"
