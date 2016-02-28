@@ -1,12 +1,8 @@
 #ifndef COLLISION_EVENT_H
 #define COLLISION_EVENT_H
 
-
-#include "Object.h"
-#include "TextureAsset.h"
-#include "Position.h"
-#include <SDL.h>
-
+#include	"Object.h"
+#include	"Texture.h"
 
 class CollisionEvent {
 
