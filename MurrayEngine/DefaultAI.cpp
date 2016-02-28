@@ -15,6 +15,11 @@ DefaultAI::DefaultAI(Object* npc, Map* map) : AI(npc, map)
 	this->playerRecentlySeen = false;
 }
 
+DefaultAI::~DefaultAI()
+{
+
+}
+
 void	DefaultAI::doNext()
 {
 	Object*				npc = AI::getSourceNPC();
