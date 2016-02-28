@@ -10,7 +10,7 @@ class DefaultAI: public AI
 {
 public:
 	DefaultAI();
-	DefaultAI(NonPlayerCharacter* npc, Map* map);
+	DefaultAI(Object* npc, Map* map);
 	~DefaultAI();
 
 	void	doNext();

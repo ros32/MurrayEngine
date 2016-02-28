@@ -7,7 +7,7 @@ AI::AI()
 	map = nullptr;
 }
 
-AI::AI(NonPlayerCharacter* npc, Map* map)
+AI::AI(Object* npc, Map* map)
 {
 	this->npc = npc;
 	this->map = map;
@@ -26,12 +26,12 @@ void	AI::doNext()
 	}
 }
 
-NonPlayerCharacter*	AI::getSourceNPC()
+Object*	AI::getSourceNPC()
 {
 	return this->npc;
 }
 
-void	AI::setSourceNPC(NonPlayerCharacter* npc)
+void	AI::setSourceNPC(Object* npc)
 {
 	this->npc = npc;
 }

@@ -2,7 +2,7 @@
 #define	_AI_H
 
 #include	<vector>
-#include	"NonPlayerCharacter.h"
+#include	"Object.h"
 #include	"Map.h"
 
 class NonPlayerCharacter;
@@ -12,20 +12,20 @@ class AI
 {
 public:
 	AI();
-	AI(NonPlayerCharacter* npc, Map* map);
+	AI(Object* npc, Map* map);
 	~AI();
 
 	virtual void		doNext();
 
-	void				setSourceNPC(NonPlayerCharacter* npc);
-	NonPlayerCharacter*	getSourceNPC();
+	void				setSourceNPC(Object* npc);
+	Object*				getSourceNPC();
 
 	void				setMap(Map* map);
 	Map*				getMap();
 
 private:
 
-	NonPlayerCharacter*	npc;
+	Object*	npc;
 	Map*				map;
 
 };

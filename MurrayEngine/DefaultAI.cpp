@@ -8,7 +8,7 @@ DefaultAI::DefaultAI() : AI()
 	this->playerRecentlySeen = false;
 }
 
-DefaultAI::DefaultAI(NonPlayerCharacter* npc, Map* map) : AI(npc, map)
+DefaultAI::DefaultAI(Object* npc, Map* map) : AI(npc, map)
 {
 	this->lastMovePosition = { 0, 0 };
 	this->lastMoveSuccess = true;
@@ -17,7 +17,7 @@ DefaultAI::DefaultAI(NonPlayerCharacter* npc, Map* map) : AI(npc, map)
 
 void	DefaultAI::doNext()
 {
-	NonPlayerCharacter* npc = AI::getSourceNPC();
+	Object*				npc = AI::getSourceNPC();
 	Map*				map = AI::getMap();
 
 	//	Run if there is no active action or active action is completed
@@ -33,7 +33,7 @@ void	DefaultAI::doNext()
 
 void	DefaultAI::move()
 {
-	NonPlayerCharacter* npc = AI::getSourceNPC();
+	Object*				npc = AI::getSourceNPC();
 	Map*				map = AI::getMap();
 	std::srand(std::time(NULL));
 
@@ -92,7 +92,7 @@ void	DefaultAI::move()
 
 bool	DefaultAI::findPlayer(Orientation orientation)
 {
-	NonPlayerCharacter*		npc = this->getSourceNPC();
+	Object*		npc = this->getSourceNPC();
 	Map*					map = this->getMap();
 
 	if (npc == nullptr || map == nullptr)
@@ -179,7 +179,7 @@ bool	DefaultAI::findPlayer(Orientation orientation)
 
 bool		DefaultAI::canSeePlayer()
 {
-	NonPlayerCharacter*		npc = this->getSourceNPC();
+	Object*		npc = this->getSourceNPC();
 	Map*					map = this->getMap();
 
 	if (npc == nullptr || map == nullptr)
@@ -228,7 +228,7 @@ bool		DefaultAI::canSeePlayer()
 
 std::vector<Orientation>	DefaultAI::getValidDirections()
 {
-	NonPlayerCharacter*		npc = this->getSourceNPC();
+	Object*		npc = this->getSourceNPC();
 	Map*					map = this->getMap();
 
 	if (npc == nullptr || map == nullptr)
