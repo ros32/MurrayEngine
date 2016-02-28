@@ -18,6 +18,7 @@
     <ClInclude Include="Asset.h" />
     <ClInclude Include="CollisionEvent.h" />
     <ClInclude Include="Configuration.h" />
+    <ClInclude Include="CopyAction.h" />
     <ClInclude Include="DamageAction.h" />
     <ClInclude Include="DefaultAI.h" />
     <ClInclude Include="Factory.h" />
