@@ -33,7 +33,7 @@ public:
 	///
 	/// <returns>	The type. </returns>
 	///-------------------------------------------------------------------------------------------------
-	std::string		getType();
+	virtual std::string		getType() = 0;
 };
 
 #endif // !_ASSET_H

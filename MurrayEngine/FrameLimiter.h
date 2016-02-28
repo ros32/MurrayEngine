@@ -1,11 +1,11 @@
 #ifndef _FRAME_LIMITER_H
 #define	_FRAME_LIMITER_H
 
-//			Define the frame rate history sample size.
-//				By limiting frame rate based on average frame rate,
-//				we get a smoother transition between normal operation (with added delay)
-//				and process intensive tasks (where the main loop takes longer than the limit
-//				to execute.
+///-------------------------------------------------------------------------------------------------
+/// <summary>	A macro that defines frame average history sample. </summary>
+///
+/// <remarks>	Rosen, 2016-02-28. </remarks>
+///-------------------------------------------------------------------------------------------------
 #define		FRAME_AVG_HISTORY_SAMPLE			2
 
 #ifdef _WIN32
@@ -16,61 +16,92 @@
 #include	<vector>
 #include	"Timer.h"
 
-///	<summary>
-///	The Frame Limiter class controls the processing speed of a main loop, 
-///	and ensures that each pass of the loop runs for at least n/1000 ms
-///	(n = frames per second).
-///	</summary>
+///-------------------------------------------------------------------------------------------------
+/// <summary>	A frame limiter. </summary>
+///
+/// <remarks>	Rosen, 2016-02-28. </remarks>
+///-------------------------------------------------------------------------------------------------
 class FrameLimiter
 {
 public:
 
-	///	<summary>
-	///	Create a new FrameLimiter with default values
-	///	</summary>
+	///-------------------------------------------------------------------------------------------------
+	/// <summary>	Default constructor. </summary>
+	///
+	/// <remarks>	Rosen, 2016-02-28. </remarks>
+	///-------------------------------------------------------------------------------------------------
 	FrameLimiter();
 
-	///	<summary>
-	///	Create a new FrameLimiter with a copy of the provided Timer
-	///	and the specified frame limit
-	///	</summary>
+	///-------------------------------------------------------------------------------------------------
+	/// <summary>	Constructor. </summary>
+	///
+	/// <remarks>	Rosen, 2016-02-28. </remarks>
+	///
+	/// <param name="timer">	The timer. </param>
+	/// <param name="limit">	The limit. </param>
+	///-------------------------------------------------------------------------------------------------
 	FrameLimiter(Timer timer, int limit);
 
-
+	///-------------------------------------------------------------------------------------------------
+	/// <summary>	Destructor. </summary>
+	///
+	/// <remarks>	Rosen, 2016-02-28. </remarks>
+	///-------------------------------------------------------------------------------------------------
 	~FrameLimiter();
 
-	///	<summary>
-	///	Return the average frame rate. Size of sample is determined by
-	///	the macro FRAME_AVG_HISTORY_SAMPLE
-	///	</summary>
+	///-------------------------------------------------------------------------------------------------
+	/// <summary>	Gets average frames. </summary>
+	///
+	/// <remarks>	Rosen, 2016-02-28. </remarks>
+	///
+	/// <returns>	The average frames. </returns>
+	///-------------------------------------------------------------------------------------------------
 	Uint32			getAvgFrames();
 
-	///	<summary>
-	///	Return the frame limit
-	///	</summary>
+	///-------------------------------------------------------------------------------------------------
+	/// <summary>	Gets the limit. </summary>
+	///
+	/// <remarks>	Rosen, 2016-02-28. </remarks>
+	///
+	/// <returns>	The limit. </returns>
+	///-------------------------------------------------------------------------------------------------
 	int				getLimit();
 
-	///	<summary>
-	///	Set the frame limit to the specified value
-	///	</summary>
+	///-------------------------------------------------------------------------------------------------
+	/// <summary>	Sets a limit. </summary>
+	///
+	/// <remarks>	Rosen, 2016-02-28. </remarks>
+	///
+	/// <param name="limit">	The limit. </param>
+	///-------------------------------------------------------------------------------------------------
 	void			setLimit(int limit);
 
-	///	<summary>
-	///	Start the frame limiter and begin to measure time
-	///	</summary>
+	///-------------------------------------------------------------------------------------------------
+	/// <summary>	Starts this object. </summary>
+	///
+	/// <remarks>	Rosen, 2016-02-28. </remarks>
+	///-------------------------------------------------------------------------------------------------
 	void			start();
 
-	///	<summary>
-	///	Calculate average frame time and execute delay
-	///	</summary>
+	///-------------------------------------------------------------------------------------------------
+	/// <summary>	Limits this object. </summary>
+	///
+	/// <remarks>	Rosen, 2016-02-28. </remarks>
+	///-------------------------------------------------------------------------------------------------
 	void			limit();
 
 private:
 
+	/// <summary>	The frame limit. </summary>
 	int				frameLimit;
+
+	/// <summary>	The timer. </summary>
 	Timer			timer;
 
+	/// <summary>	The frame history[ frame average history sample]. </summary>
 	Uint32			frameHistory[FRAME_AVG_HISTORY_SAMPLE];
+
+	/// <summary>	The next average element. </summary>
 	unsigned int	nextAvgElement;
 
 };

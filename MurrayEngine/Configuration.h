@@ -12,79 +12,158 @@
 #include <SDL2/SDL.h>
 #endif
 
-
-
-///	<summary>
-///	The Configuration stores key and value pairs that can be read from and written to file.
-///	Configuration (.cfg) files uses a similiar syntax to INI-files.
-///	</summary>
+///-------------------------------------------------------------------------------------------------
+/// <summary>	A configuration. </summary>
+///
+/// <remarks>	Rosen, 2016-02-28. </remarks>
+///-------------------------------------------------------------------------------------------------
 class Configuration
 {
 public:
 
-	///	<summary>
-	///	Create an empty Configuration object. 
-	///	</summary>
+	///-------------------------------------------------------------------------------------------------
+	/// <summary>	Default constructor. </summary>
+	///
+	/// <remarks>	Rosen, 2016-02-28. </remarks>
+	///-------------------------------------------------------------------------------------------------
 	Configuration();
 
-	///	<summary>
-	///	Create a Configuration from the specified file.
-	///	</summary>
+	///-------------------------------------------------------------------------------------------------
+	/// <summary>	Constructor. </summary>
+	///
+	/// <remarks>	Rosen, 2016-02-28. </remarks>
+	///
+	/// <param name="fileName">	Filename of the file. </param>
+	///-------------------------------------------------------------------------------------------------
 	Configuration(std::string fileName);
 
+	///-------------------------------------------------------------------------------------------------
+	/// <summary>	Destructor. </summary>
+	///
+	/// <remarks>	Rosen, 2016-02-28. </remarks>
+	///-------------------------------------------------------------------------------------------------
 	~Configuration();
 
-	//	Typedef iterators for simplification
+	///-------------------------------------------------------------------------------------------------
+	/// <summary>	Defines an alias representing the iterator. </summary>
+	///
+	/// <remarks>	Rosen, 2016-02-28. </remarks>
+	///-------------------------------------------------------------------------------------------------
 	typedef std::map<std::string, std::string>::iterator iterator;
+
+	///-------------------------------------------------------------------------------------------------
+	/// <summary>	Defines an alias representing the constant iterator. </summary>
+	///
+	/// <remarks>	Rosen, 2016-02-28. </remarks>
+	///-------------------------------------------------------------------------------------------------
 	typedef std::map<std::string, std::string>::const_iterator const_iterator;
 
-	///	<summary>
-	///	Get value of a Configuration key. Returns an empty string if value is not found.
-	///	</summary>
+	///-------------------------------------------------------------------------------------------------
+	/// <summary>	Gets a property. </summary>
+	///
+	/// <remarks>	Rosen, 2016-02-28. </remarks>
+	///
+	/// <param name="key">	The key. </param>
+	///
+	/// <returns>	The property. </returns>
+	///-------------------------------------------------------------------------------------------------
 	std::string		getProperty(std::string key);
 
-	///	<summary>
-	///	Get value of a Configuration key, or return defaultValue if key is not found.
-	///	</summary>
+	///-------------------------------------------------------------------------------------------------
+	/// <summary>	Gets a property. </summary>
+	///
+	/// <remarks>	Rosen, 2016-02-28. </remarks>
+	///
+	/// <param name="key">		   	The key. </param>
+	/// <param name="defaultValue">	The default value. </param>
+	///
+	/// <returns>	The property. </returns>
+	///-------------------------------------------------------------------------------------------------
 	std::string		getProperty(std::string key, std::string defaultValue);
 
-	///	<summary>
-	///	Get value of a Configuration key and try to parse as int. Return defaultValue
-	///	either if key is not found or parsing failed
-	///	</summary>
+	///-------------------------------------------------------------------------------------------------
+	/// <summary>	Gets a property. </summary>
+	///
+	/// <remarks>	Rosen, 2016-02-28. </remarks>
+	///
+	/// <param name="key">		   	The key. </param>
+	/// <param name="defaultValue">	The default value. </param>
+	///
+	/// <returns>	The property. </returns>
+	///-------------------------------------------------------------------------------------------------
 	int				getProperty(std::string key, int defaultValue);
 
-	///	<summary>
-	///	Set value of a Configuration key
-	///	</summary>
+	///-------------------------------------------------------------------------------------------------
+	/// <summary>	Sets a property. </summary>
+	///
+	/// <remarks>	Rosen, 2016-02-28. </remarks>
+	///
+	/// <param name="key">  	The key. </param>
+	/// <param name="value">	The value. </param>
+	///-------------------------------------------------------------------------------------------------
 	void			setProperty(std::string key, std::string value);
 
-	///	<summary>
-	///	Import Configuration from a file
-	///	</summary>
+	///-------------------------------------------------------------------------------------------------
+	/// <summary>	Import configuration. </summary>
+	///
+	/// <remarks>	Rosen, 2016-02-28. </remarks>
+	///
+	/// <param name="fileName">	Filename of the file. </param>
+	///-------------------------------------------------------------------------------------------------
 	void			importConfig(std::string fileName);
 
-	///	<summary>
-	///	Export Configuration to a file
-	///	</summary>
+	///-------------------------------------------------------------------------------------------------
+	/// <summary>	Export configuration. </summary>
+	///
+	/// <remarks>	Rosen, 2016-02-28. </remarks>
+	///
+	/// <param name="fileName">	Filename of the file. </param>
+	///-------------------------------------------------------------------------------------------------
 	void			exportConfig(std::string fileName);
 
-	//	Iterators
-
-	//	We need the iterators begin() and end() to be able to use for(auto key : configuration) on the Configuration object.
+	///-------------------------------------------------------------------------------------------------
+	/// <summary>	Gets the begin. </summary>
+	///
+	/// <remarks>	Rosen, 2016-02-28. </remarks>
+	///
+	/// <returns>	An iterator. </returns>
+	///-------------------------------------------------------------------------------------------------
 	iterator		begin();
+
+	///-------------------------------------------------------------------------------------------------
+	/// <summary>	Gets the begin. </summary>
+	///
+	/// <remarks>	Rosen, 2016-02-28. </remarks>
+	///
+	/// <returns>	A const_iterator. </returns>
+	///-------------------------------------------------------------------------------------------------
 	const_iterator	begin() const;
 
+	///-------------------------------------------------------------------------------------------------
+	/// <summary>	Gets the end. </summary>
+	///
+	/// <remarks>	Rosen, 2016-02-28. </remarks>
+	///
+	/// <returns>	An iterator. </returns>
+	///-------------------------------------------------------------------------------------------------
 	iterator		end();
+
+	///-------------------------------------------------------------------------------------------------
+	/// <summary>	Gets the end. </summary>
+	///
+	/// <remarks>	Rosen, 2016-02-28. </remarks>
+	///
+	/// <returns>	A const_iterator. </returns>
+	///-------------------------------------------------------------------------------------------------
 	const_iterator	end() const;
 
 private:
 
-	//	map<string, string> where data is stored
+	/// <summary>	Information describing the configuration. </summary>
 	std::map<std::string, std::string>		configurationData;
 
-	//	Name of imported file
-	std::string		fileName;
+	/// <summary>	Filename of the file. </summary>
+	std::string								fileName;
 
 };
 
