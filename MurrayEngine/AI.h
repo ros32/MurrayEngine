@@ -1,7 +1,6 @@
 #ifndef _AI_H
 #define	_AI_H
 
-#include	<vector>
 #include	"Object.h"
 #include	"Map.h"
 
