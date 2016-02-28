@@ -4,7 +4,6 @@
 Action::Action()
 {
 	this->progress = 0;
-	this->source = nullptr;
 }
 
 Action::~Action()
