@@ -9,6 +9,8 @@ The concrete action DamageAction
 #include "Action.h"
 #include "map.h"
 #include "AnimatedObject.h"
+#include "ProjectileObject.h"
+#include "NonPlayerCharacter.h"
 
 #ifdef _WIN32
 #include <SDL.h>

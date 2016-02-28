@@ -288,9 +288,11 @@ void Map::move()
 	//	Loop for all objects in vector
 	for (auto object : this->objects)
 	{
+		
 		//	If object is to be moved
 		if (object != nullptr && (object->getTargetPosition().x != 0 || object->getTargetPosition().y != 0))
 		{
+
 			//	Store objects current position (const)
 			const Position currentPosition = object->getCurrentPosition();
 
@@ -423,14 +425,13 @@ bool			Map::getCollision(Position posA, Position posB)
 Position	Map::tryMove(Object* object, Position targetPosition, bool onlyCheckCollision)
 {
 
+
 	//	Store current position from object
 	const Position currentPosition = object->getCurrentPosition();
 
 	//	If object has no collision, set current position to final position and return
 	if (object->getIsCollidable())
 	{
-
-		
 
 		//	Set collision bool to false
 		bool collision = false;

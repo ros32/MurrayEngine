@@ -324,10 +324,6 @@ bool Object::collidePixel(Object* objectB)
 	return false;
 }
 
-CollisionEvent* Object::getCollisionEvent(){
-
-	return this->collisionEvent;
-}
 
 void Object::setCollisionEvent(CollisionEvent* collisionEvent){
 

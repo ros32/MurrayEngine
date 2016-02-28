@@ -76,6 +76,9 @@ public:
 	virtual void					changeAnimation(std::string key);
 
 	virtual bool readAlpha(SDL_Surface* surface, int x, int y);
+	virtual std::shared_ptr<Animation> getAnimation(std::string key);
+
+	virtual bool actionExists();
 
 protected:
 

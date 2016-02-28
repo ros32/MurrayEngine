@@ -28,23 +28,40 @@ void DamageAction::execute()
 	std::shared_ptr<Animation> animation;
 
 	Position startPosition;
+	Position targetPosition;
 	switch (orientation){
 	case NORTH:
 		startPosition = { source->getCurrentPosition().x, source->getCurrentPosition().y - source->getTexture()->asset->getWidth() };
+		targetPosition = { 0, -2 };
 		break;
 	case SOUTH:
 		startPosition = { source->getCurrentPosition().x, source->getCurrentPosition().y + source->getTexture()->asset->getWidth() };
+		targetPosition = {0, 2 };
 		break;
 	case WEST:
 		startPosition = { source->getCurrentPosition().x - source->getTexture()->asset->getHeight(), source->getCurrentPosition().y };
+		targetPosition = { -2, 0};
 		break;
 	case EAST:
 		startPosition = { source->getCurrentPosition().x + source->getTexture()->asset->getHeight(), source->getCurrentPosition().y };
+		targetPosition = { 2, 0 };
 		break;
 	}
 
+
+
 		animation = source->getAnimation("Projectile");
 
+		ProjectileObject* projectile = new ProjectileObject("projectile", startPosition, targetPosition, animation, 1.0, 1.0, 15, orientation, true);
+		NonPlayerCharacter* pr = new NonPlayerCharacter(projectile);
+		this->map->addObject(pr);
+		pr->addAction(new MoveAction(pr, map, orientation, 50));
+		pr->doAction();
+
+
+		//projectile->move();
+
+	
 }
 
 Action*	DamageAction::copy()

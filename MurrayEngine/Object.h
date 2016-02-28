@@ -88,13 +88,6 @@ public:
 
 	virtual void					setCollisionEvent(CollisionEvent* event);
 
-	virtual CollisionEvent*			getCollisionEvent();
-
-	//virtual std::vector<Texture>	getAnimationVector(std::string key);
-	//virtual int						getAnimationTime(std::string key);
-
-
-
 	//	Texture asset used by object
 	std::shared_ptr<Texture>			texture;
 
@@ -151,7 +144,6 @@ private:
 
 	CollisionEvent* collisionEvent;
 	
-
 };
 
 #endif // !_GENERIC_OBJECT_H

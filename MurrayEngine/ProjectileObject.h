@@ -3,6 +3,9 @@
 
 #include "AnimatedObject.h"
 #include "Object.h"
+#include "Action.h"
+#include "MoveAction.h"
+#include "Map.h"
 
 class ProjectileObject: public AnimatedObject
 {
@@ -12,12 +15,14 @@ public:
 
 	void	setTargetPosition(int x, int y);
 	void	setTargetPosition(Position pos);
-	
+	Position getTargetPosition();	
+//	void move();
 
 private:
 
 	Position targetPosition;
 	std::shared_ptr<Animation> animation;
+	Map* map;
 
 };
 

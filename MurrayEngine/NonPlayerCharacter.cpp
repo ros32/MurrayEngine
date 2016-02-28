@@ -41,6 +41,14 @@ Position NonPlayerCharacter::getCurrentPosition()
 	return this->baseObject->getCurrentPosition();
 }
 
+
+std::shared_ptr<Animation> NonPlayerCharacter::getAnimation(std::string key){
+return this->baseObject->getAnimation(key);
+}
+
+
+
+
 void NonPlayerCharacter::setCurrentPosition(int x, int y)
 {
 	this->baseObject->setCurrentPosition(x, y);
@@ -247,4 +255,11 @@ Action* NonPlayerCharacter::getAction()
 	if (!this->actionQueue.empty())
 		return this->actionQueue.front();
 	return nullptr;
+}
+
+bool NonPlayerCharacter::actionExists()
+{
+	if (!this->actionQueue.empty())
+		return true;
+	return false;
 }

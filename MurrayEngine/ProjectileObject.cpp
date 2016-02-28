@@ -6,11 +6,10 @@ ProjectileObject::ProjectileObject(std::string id, Position currentPosition, Pos
 
 	this->targetPosition = targetPosition;
 	this->animation = animation;
-
 }
 
 ProjectileObject::~ProjectileObject(){
-	delete(this);
+	
 }
 
 void	ProjectileObject::setTargetPosition(int x, int y){
@@ -19,6 +18,11 @@ void	ProjectileObject::setTargetPosition(int x, int y){
 void	ProjectileObject::setTargetPosition(Position pos){
 	this->targetPosition = pos;
 }
+Position   ProjectileObject::getTargetPosition(){
+	return this->targetPosition;
+}
+
+
 
 
 

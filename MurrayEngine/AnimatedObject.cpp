@@ -22,22 +22,21 @@ std::shared_ptr<Animation>	AnimatedObject::getAnimation()
 {
 	return this->animation;
 }
+
 std::shared_ptr<Animation> AnimatedObject::getAnimation(std::string key)
 {
 	iterator iterator;
 	iterator = this->animationMap.find(key);
 
 	if (iterator != this->animationMap.end()){
-		SDL_Log("YES");
 		std::shared_ptr<Animation> tempAnimation = iterator->second;
 		return tempAnimation;
 	}
 	else{
-		SDL_Log("NO");
-		return nullptr;
+		std::string errorMessage = "A value for key \"" + key + "\" does not exist";
+		SDL_LogWarn(SDL_LOG_CATEGORY_APPLICATION, errorMessage.c_str());
 	}
 
-	
 }
 
 void		AnimatedObject::setAnimation(std::shared_ptr<Animation> animation)
