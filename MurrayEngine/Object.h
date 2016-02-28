@@ -6,6 +6,7 @@
 #include	<algorithm>
 #include	<assert.h>
 #include	<string>
+#include	"Orientation.h"
 #include	"Position.h"
 #include	"TextureAsset.h"
 #include	"Timer.h"
@@ -16,15 +17,6 @@ class CollisionEvent;
 struct Animation;
 
 class Action;
-
-enum Orientation
-{
-	NORTH = 0,
-	EAST = 1,
-	SOUTH = 2,
-	WEST = 3,
-	NONE = 4
-};
 
 ///	<summary>
 ///	Object is the base class for objects in the game engine.

@@ -34,6 +34,7 @@
     <ClInclude Include="MapFactory.h" />
     <ClInclude Include="MoveAction.h" />
     <ClInclude Include="NonPlayerCharacter.h" />
+    <ClInclude Include="Orientation.h" />
     <ClInclude Include="Physics.h" />
     <ClInclude Include="Position.h" />
     <ClInclude Include="ProjectileObject.h" />
