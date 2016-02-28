@@ -12,6 +12,7 @@
 #include	"Timer.h"
 #include	"Physics.h"
 #include	"Action.h"
+#include	"Texture.h"
 
 class CollisionEvent;
 struct Animation;

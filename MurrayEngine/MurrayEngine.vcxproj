@@ -14,6 +14,7 @@
     <ClInclude Include="Action.h" />
     <ClInclude Include="AI.h" />
     <ClInclude Include="AnimatedObject.h" />
+    <ClInclude Include="Animation.h" />
     <ClInclude Include="Asset.h" />
     <ClInclude Include="CollisionEvent.h" />
     <ClInclude Include="Configuration.h" />
@@ -37,6 +38,7 @@
     <ClInclude Include="Physics.h" />
     <ClInclude Include="Position.h" />
     <ClInclude Include="ProjectileObject.h" />
+    <ClInclude Include="Texture.h" />
     <ClInclude Include="TextureAsset.h" />
     <ClInclude Include="TextureAssetFactory.h" />
     <ClInclude Include="Tile.h" />

@@ -68,19 +68,6 @@ public:
 
 };
 
-struct Texture
-{
-	TextureAsset*	asset;
-	SDL_Rect*		name;
 
-	Texture(TextureAsset* texture, std::string textureName)
-	{
-		asset = texture;
-		if (asset != nullptr)
-			name = texture->getSourceRect(textureName);
-		else
-			name = nullptr;
-	}
-};
 
 #endif // !TEXTURE_ASSET_H
