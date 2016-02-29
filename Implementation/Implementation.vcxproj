@@ -92,6 +92,7 @@ xcopy /Y "$(SolutionDir)lib\SDL2_ttf-2.0.12\lib\x86\*.dll" "$(OutDir)*.dll"</Com
     <None Include="BossAnimation.cfg" />
     <None Include="Enemy.cfg" />
     <None Include="EnemyAnimation" />
+    <None Include="HeartSheet.cfg" />
     <None Include="HeroAnimation.cfg" />
     <None Include="EpicSpriteSheet.cfg" />
     <None Include="gamemap.cfg" />
