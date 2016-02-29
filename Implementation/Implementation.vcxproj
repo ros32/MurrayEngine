@@ -111,6 +111,7 @@ xcopy /Y "$(SolutionDir)lib\SDL2_ttf-2.0.12\lib\x86\*.dll" "$(OutDir)*.dll"</Com
   </ItemGroup>
   <ItemGroup>
     <Image Include="EpicSpriteSheet.png" />
+    <Image Include="HeartSheet.png" />
     <Image Include="HeroSpriteSheet.png" />
     <Image Include="ProjectileSheet.png" />
     <Image Include="ProjectilesSpriteSheet.png" />

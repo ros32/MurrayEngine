@@ -112,6 +112,9 @@
     <Image Include="ProjectileSheet.png">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="HeartSheet.png">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <Font Include="8bitOperatorPlus8-Bold.ttf">

@@ -6,6 +6,7 @@
 #include	"Action.h"
 #include	"GameInstance.h"
 #include	"DamageAction.h"
+#include	"CopyAction.h"
 
 class KeyController
 {

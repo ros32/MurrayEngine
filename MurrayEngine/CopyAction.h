@@ -12,7 +12,6 @@
 class CopyAction: public Action
 {
 public:
-
 	///-------------------------------------------------------------------------------------------------
 	/// <summary>	Constructor. </summary>
 	///
@@ -21,7 +20,7 @@ public:
 	/// <param name="npc">   	[in,out] If non-null, the npc. </param>
 	/// <param name="action">	[in,out] If non-null, the action. </param>
 	///-------------------------------------------------------------------------------------------------
-	CopyAction(NonPlayerCharacter* npc, Action* action);
+	CopyAction(Object* npc, Action* action);
 
 	///-------------------------------------------------------------------------------------------------
 	/// <summary>	Destructor. </summary>
@@ -37,8 +36,11 @@ public:
 	///-------------------------------------------------------------------------------------------------
 	void	execute();
 
-private:
+	Action*	copy();
 
+private:
+	Object* npc;
+	Action* action;
 };
 
 #endif // !_COPY_ACTION_H

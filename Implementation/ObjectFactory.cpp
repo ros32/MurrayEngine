@@ -10,20 +10,6 @@ ObjectFactory::~ObjectFactory(){
 Object*	 ObjectFactory::createObject(Configuration config){
 	
 
-	/*
-TYPE=Object
-NAME=Player
-
-ID=Player
-OBJTYPE=Player
-POS=33_33
-ANIMATION=HeroAnimation
-mSPEED=1.0
-ACCELERATIIN=1.0
-CURRENTSPEED=3
-ORIENTATION=SOUTH
-ISCOLIDABLE=true
-*/
 
 	int id = 0;
 	std::string objType = "";

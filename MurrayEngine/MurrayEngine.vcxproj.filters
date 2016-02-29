@@ -200,6 +200,9 @@
     <ClCompile Include="DefaultAI.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="CopyAction.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GUI.cpp">

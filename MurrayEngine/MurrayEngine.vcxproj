@@ -52,6 +52,7 @@
     <ClCompile Include="AnimatedObject.cpp" />
     <ClCompile Include="CollisionEvent.cpp" />
     <ClCompile Include="Configuration.cpp" />
+    <ClCompile Include="CopyAction.cpp" />
     <ClCompile Include="DamageAction.cpp" />
     <ClCompile Include="DefaultAI.cpp" />
     <ClCompile Include="Factory.cpp" />

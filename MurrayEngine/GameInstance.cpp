@@ -201,22 +201,64 @@ bool GameInstance::initialize()
 				HeroPlayer->addAnimation("Projectile", std::make_shared<Animation>(playerProjectile, 200));
 				
 
-
 				this->map->addObject(HeroPlayer);
 				this->map->setPlayerCharacter(HeroPlayer);
 				
-				/*
-				std::vector<Texture> witchCraft;
-				witchCraft.push_back(Texture(this->getTextureAsset("WitchSpritesheet"), "WalkingFront0"));
-				witchCraft.push_back(Texture(this->getTextureAsset("WitchSpritesheet"), "WalkingFront1"));
-				witchCraft.push_back(Texture(this->getTextureAsset("WitchSpritesheet"), "WalkingFront2"));
-				witchCraft.push_back(Texture(this->getTextureAsset("WitchSpritesheet"), "WalkingFront3"));
-				*/
 
-				//AnimatedObject* witchPlayerObject = new AnimatedObject("test006", { 100, 250 }, Animation(witchCraft, 200), 1.0, 1.0, 3, SOUTH, true);
+				std::vector<std::shared_ptr<Texture>> murderFront;
+				murderFront.push_back(std::make_shared<Texture>(this->getTextureAsset("EpicSpriteSheet"), "MouthFront1"));
+				murderFront.push_back(std::make_shared<Texture>(this->getTextureAsset("EpicSpriteSheet"), "MouthFront2"));
+				murderFront.push_back(std::make_shared<Texture>(this->getTextureAsset("EpicSpriteSheet"), "MouthFront3"));
+				murderFront.push_back(std::make_shared<Texture>(this->getTextureAsset("EpicSpriteSheet"), "MouthFront4"));
+				murderFront.push_back(std::make_shared<Texture>(this->getTextureAsset("EpicSpriteSheet"), "MouthFront5"));
+				murderFront.push_back(std::make_shared<Texture>(this->getTextureAsset("EpicSpriteSheet"), "MouthFront6"));
+				murderFront.push_back(std::make_shared<Texture>(this->getTextureAsset("EpicSpriteSheet"), "MouthFront7"));
+				murderFront.push_back(std::make_shared<Texture>(this->getTextureAsset("EpicSpriteSheet"), "MouthFront4"));
+				murderFront.push_back(std::make_shared<Texture>(this->getTextureAsset("EpicSpriteSheet"), "MouthFront8"));
+				murderFront.push_back(std::make_shared<Texture>(this->getTextureAsset("EpicSpriteSheet"), "MouthFront2"));
 
-				//this->map->addObject(witchPlayerObject);
-				//this->map->setPlayerCharacter(witchPlayerObject);
+				std::vector<std::shared_ptr<Texture>> murderRight;
+				murderRight.push_back(std::make_shared<Texture>(this->getTextureAsset("EpicSpriteSheet"), "MouthRight1"));
+				murderRight.push_back(std::make_shared<Texture>(this->getTextureAsset("EpicSpriteSheet"), "MouthRight2"));
+				murderRight.push_back(std::make_shared<Texture>(this->getTextureAsset("EpicSpriteSheet"), "MouthRight3"));
+				murderRight.push_back(std::make_shared<Texture>(this->getTextureAsset("EpicSpriteSheet"), "MouthRight4"));
+				murderRight.push_back(std::make_shared<Texture>(this->getTextureAsset("EpicSpriteSheet"), "MouthRight5"));
+				murderRight.push_back(std::make_shared<Texture>(this->getTextureAsset("EpicSpriteSheet"), "MouthRight6"));
+				murderRight.push_back(std::make_shared<Texture>(this->getTextureAsset("EpicSpriteSheet"), "MouthRight7"));
+				murderRight.push_back(std::make_shared<Texture>(this->getTextureAsset("EpicSpriteSheet"), "MouthRight4"));
+				murderRight.push_back(std::make_shared<Texture>(this->getTextureAsset("EpicSpriteSheet"), "MouthRight8"));
+				murderRight.push_back(std::make_shared<Texture>(this->getTextureAsset("EpicSpriteSheet"), "MouthRight2"));
+
+				std::vector<std::shared_ptr<Texture>> murderLeft;
+				murderLeft.push_back(std::make_shared<Texture>(this->getTextureAsset("EpicSpriteSheet"), "MouthLeft1"));
+				murderLeft.push_back(std::make_shared<Texture>(this->getTextureAsset("EpicSpriteSheet"), "MouthLeft2"));
+				murderLeft.push_back(std::make_shared<Texture>(this->getTextureAsset("EpicSpriteSheet"), "MouthLeft3"));
+				murderLeft.push_back(std::make_shared<Texture>(this->getTextureAsset("EpicSpriteSheet"), "MouthLeft4"));
+				murderLeft.push_back(std::make_shared<Texture>(this->getTextureAsset("EpicSpriteSheet"), "MouthLeft5"));
+				murderLeft.push_back(std::make_shared<Texture>(this->getTextureAsset("EpicSpriteSheet"), "MouthLeft6"));
+				murderLeft.push_back(std::make_shared<Texture>(this->getTextureAsset("EpicSpriteSheet"), "MouthLeft7"));
+				murderLeft.push_back(std::make_shared<Texture>(this->getTextureAsset("EpicSpriteSheet"), "MouthLeft4"));
+				murderLeft.push_back(std::make_shared<Texture>(this->getTextureAsset("EpicSpriteSheet"), "MouthLeft8"));
+				murderLeft.push_back(std::make_shared<Texture>(this->getTextureAsset("EpicSpriteSheet"), "MouthLeft2"));
+
+				std::vector<std::shared_ptr<Texture>> murderBack;
+				murderBack.push_back(std::make_shared<Texture>(this->getTextureAsset("EpicSpriteSheet"), "GhostBack1"));
+				murderBack.push_back(std::make_shared<Texture>(this->getTextureAsset("EpicSpriteSheet"), "GhostBack2"));
+				murderBack.push_back(std::make_shared<Texture>(this->getTextureAsset("EpicSpriteSheet"), "GhostBack3"));
+				murderBack.push_back(std::make_shared<Texture>(this->getTextureAsset("EpicSpriteSheet"), "GhostBack2"));
+
+				AnimatedObject* murderGhost = new AnimatedObject("WorldEater", { 35, 490 }, std::make_shared<Animation>(murderFront, 200), 1.0, 1.0, 5, SOUTH, true);
+
+				NonPlayerCharacter* Eater = new NonPlayerCharacter(murderGhost);
+
+				Eater->addAnimation("East", std::make_shared<Animation>(murderRight, 200));
+				Eater->addAnimation("West", std::make_shared<Animation>(murderLeft, 200));
+				Eater->addAnimation("North", std::make_shared<Animation>(murderBack, 200));
+				Eater->addAnimation("South", std::make_shared<Animation>(murderFront, 200));
+
+				Eater->setAI(new DefaultAI(Eater, this->map));
+				this->map->addObject(Eater);
+
 
 
 				std::vector<std::shared_ptr<Texture>> textures;
@@ -247,51 +289,51 @@ bool GameInstance::initialize()
 				this->map->addObject(granges4);
 				this->map->addObject(granges5);
 
-				/*
-				std::vector<Texture> witchTextures;
-				witchTextures.push_back(Texture(this->getTextureAsset("WitchSpritesheet"), "CauldronLeft0"));
-				witchTextures.push_back(Texture(this->getTextureAsset("WitchSpritesheet"), "CauldronLeft1"));
-				witchTextures.push_back(Texture(this->getTextureAsset("WitchSpritesheet"), "CauldronLeft2"));
-				witchTextures.push_back(Texture(this->getTextureAsset("WitchSpritesheet"), "CauldronLeft3"));
-				witchTextures.push_back(Texture(this->getTextureAsset("WitchSpritesheet"), "CauldronLeft4"));
-				witchTextures.push_back(Texture(this->getTextureAsset("WitchSpritesheet"), "CauldronLeft5"));
-				witchTextures.push_back(Texture(this->getTextureAsset("WitchSpritesheet"), "CauldronLeft6"));
-				witchTextures.push_back(Texture(this->getTextureAsset("WitchSpritesheet"), "CauldronLeft7"));
-				witchTextures.push_back(Texture(this->getTextureAsset("WitchSpritesheet"), "CauldronLeft8"));
-				witchTextures.push_back(Texture(this->getTextureAsset("WitchSpritesheet"), "CauldronLeft9"));
-				witchTextures.push_back(Texture(this->getTextureAsset("WitchSpritesheet"), "CauldronLeft10"));
-				witchTextures.push_back(Texture(this->getTextureAsset("WitchSpritesheet"), "CauldronLeft11"));
-				witchTextures.push_back(Texture(this->getTextureAsset("WitchSpritesheet"), "CauldronLeft12"));
-				witchTextures.push_back(Texture(this->getTextureAsset("WitchSpritesheet"), "CauldronLeft13"));
-				witchTextures.push_back(Texture(this->getTextureAsset("WitchSpritesheet"), "CauldronLeft11"));
-				witchTextures.push_back(Texture(this->getTextureAsset("WitchSpritesheet"), "CauldronLeft12"));
-				witchTextures.push_back(Texture(this->getTextureAsset("WitchSpritesheet"), "CauldronLeft13"));
-				witchTextures.push_back(Texture(this->getTextureAsset("WitchSpritesheet"), "CauldronLeft11"));
-				witchTextures.push_back(Texture(this->getTextureAsset("WitchSpritesheet"), "CauldronLeft12"));
-				witchTextures.push_back(Texture(this->getTextureAsset("WitchSpritesheet"), "CauldronLeft13"));
-				witchTextures.push_back(Texture(this->getTextureAsset("WitchSpritesheet"), "CauldronLeft11"));
-				witchTextures.push_back(Texture(this->getTextureAsset("WitchSpritesheet"), "CauldronLeft12"));
-				witchTextures.push_back(Texture(this->getTextureAsset("WitchSpritesheet"), "CauldronLeft13"));
-				witchTextures.push_back(Texture(this->getTextureAsset("WitchSpritesheet"), "CauldronLeft14"));
-				witchTextures.push_back(Texture(this->getTextureAsset("WitchSpritesheet"), "CauldronLeft15"));
-				witchTextures.push_back(Texture(this->getTextureAsset("WitchSpritesheet"), "CauldronLeft16"));
-				witchTextures.push_back(Texture(this->getTextureAsset("WitchSpritesheet"), "CauldronLeft17"));
-				witchTextures.push_back(Texture(this->getTextureAsset("WitchSpritesheet"), "CauldronLeft18"));
-				witchTextures.push_back(Texture(this->getTextureAsset("WitchSpritesheet"), "CauldronLeft19"));
-				witchTextures.push_back(Texture(this->getTextureAsset("WitchSpritesheet"), "CauldronLeft20"));
-				witchTextures.push_back(Texture(this->getTextureAsset("WitchSpritesheet"), "CauldronLeft19"));
-				witchTextures.push_back(Texture(this->getTextureAsset("WitchSpritesheet"), "CauldronLeft18"));
-				witchTextures.push_back(Texture(this->getTextureAsset("WitchSpritesheet"), "CauldronLeft17"));
-				witchTextures.push_back(Texture(this->getTextureAsset("WitchSpritesheet"), "CauldronLeft16"));
-				witchTextures.push_back(Texture(this->getTextureAsset("WitchSpritesheet"), "CauldronLeft15"));
-				witchTextures.push_back(Texture(this->getTextureAsset("WitchSpritesheet"), "CauldronLeft14"));
-				witchTextures.push_back(Texture(this->getTextureAsset("WitchSpritesheet"), "CauldronLeft0"));
+				
+				std::vector<std::shared_ptr<Texture>> witchTextures;
+				witchTextures.push_back(std::make_shared<Texture>(this->getTextureAsset("WitchSpritesheet"), "CauldronLeft0"));
+				witchTextures.push_back(std::make_shared<Texture>(this->getTextureAsset("WitchSpritesheet"), "CauldronLeft1"));
+				witchTextures.push_back(std::make_shared<Texture>(this->getTextureAsset("WitchSpritesheet"), "CauldronLeft2"));
+				witchTextures.push_back(std::make_shared<Texture>(this->getTextureAsset("WitchSpritesheet"), "CauldronLeft3"));
+				witchTextures.push_back(std::make_shared<Texture>(this->getTextureAsset("WitchSpritesheet"), "CauldronLeft4"));
+				witchTextures.push_back(std::make_shared<Texture>(this->getTextureAsset("WitchSpritesheet"), "CauldronLeft5"));
+				witchTextures.push_back(std::make_shared<Texture>(this->getTextureAsset("WitchSpritesheet"), "CauldronLeft6"));
+				witchTextures.push_back(std::make_shared<Texture>(this->getTextureAsset("WitchSpritesheet"), "CauldronLeft7"));
+				witchTextures.push_back(std::make_shared<Texture>(this->getTextureAsset("WitchSpritesheet"), "CauldronLeft8"));
+				witchTextures.push_back(std::make_shared<Texture>(this->getTextureAsset("WitchSpritesheet"), "CauldronLeft9"));
+				witchTextures.push_back(std::make_shared<Texture>(this->getTextureAsset("WitchSpritesheet"), "CauldronLeft10"));
+				witchTextures.push_back(std::make_shared<Texture>(this->getTextureAsset("WitchSpritesheet"), "CauldronLeft11"));
+				witchTextures.push_back(std::make_shared<Texture>(this->getTextureAsset("WitchSpritesheet"), "CauldronLeft12"));
+				witchTextures.push_back(std::make_shared<Texture>(this->getTextureAsset("WitchSpritesheet"), "CauldronLeft13"));
+				witchTextures.push_back(std::make_shared<Texture>(this->getTextureAsset("WitchSpritesheet"), "CauldronLeft11"));
+				witchTextures.push_back(std::make_shared<Texture>(this->getTextureAsset("WitchSpritesheet"), "CauldronLeft12"));
+				witchTextures.push_back(std::make_shared<Texture>(this->getTextureAsset("WitchSpritesheet"), "CauldronLeft13"));
+				witchTextures.push_back(std::make_shared<Texture>(this->getTextureAsset("WitchSpritesheet"), "CauldronLeft11"));
+				witchTextures.push_back(std::make_shared<Texture>(this->getTextureAsset("WitchSpritesheet"), "CauldronLeft12"));
+				witchTextures.push_back(std::make_shared<Texture>(this->getTextureAsset("WitchSpritesheet"), "CauldronLeft13"));
+				witchTextures.push_back(std::make_shared<Texture>(this->getTextureAsset("WitchSpritesheet"), "CauldronLeft11"));
+				witchTextures.push_back(std::make_shared<Texture>(this->getTextureAsset("WitchSpritesheet"), "CauldronLeft12"));
+				witchTextures.push_back(std::make_shared<Texture>(this->getTextureAsset("WitchSpritesheet"), "CauldronLeft13"));
+				witchTextures.push_back(std::make_shared<Texture>(this->getTextureAsset("WitchSpritesheet"), "CauldronLeft14"));
+				witchTextures.push_back(std::make_shared<Texture>(this->getTextureAsset("WitchSpritesheet"), "CauldronLeft15"));
+				witchTextures.push_back(std::make_shared<Texture>(this->getTextureAsset("WitchSpritesheet"), "CauldronLeft16"));
+				witchTextures.push_back(std::make_shared<Texture>(this->getTextureAsset("WitchSpritesheet"), "CauldronLeft17"));
+				witchTextures.push_back(std::make_shared<Texture>(this->getTextureAsset("WitchSpritesheet"), "CauldronLeft18"));
+				witchTextures.push_back(std::make_shared<Texture>(this->getTextureAsset("WitchSpritesheet"), "CauldronLeft19"));
+				witchTextures.push_back(std::make_shared<Texture>(this->getTextureAsset("WitchSpritesheet"), "CauldronLeft20"));
+				witchTextures.push_back(std::make_shared<Texture>(this->getTextureAsset("WitchSpritesheet"), "CauldronLeft19"));
+				witchTextures.push_back(std::make_shared<Texture>(this->getTextureAsset("WitchSpritesheet"), "CauldronLeft18"));
+				witchTextures.push_back(std::make_shared<Texture>(this->getTextureAsset("WitchSpritesheet"), "CauldronLeft17"));
+				witchTextures.push_back(std::make_shared<Texture>(this->getTextureAsset("WitchSpritesheet"), "CauldronLeft16"));
+				witchTextures.push_back(std::make_shared<Texture>(this->getTextureAsset("WitchSpritesheet"), "CauldronLeft15"));
+				witchTextures.push_back(std::make_shared<Texture>(this->getTextureAsset("WitchSpritesheet"), "CauldronLeft14"));
+				witchTextures.push_back(std::make_shared<Texture>(this->getTextureAsset("WitchSpritesheet"), "CauldronLeft0"));
 
 
-				AnimatedObject* witchObject = new AnimatedObject("test004", { 1095, 1095 }, Animation(witchTextures, 200), 1.0, 1.0, 0, NONE, true);
+				AnimatedObject* witchObject = new AnimatedObject("test004", { 490, 360 }, std::make_shared<Animation>(witchTextures, 200), 1.0, 1.0, 0, NONE, true);
 				this->map->addObject(witchObject);
 
-				*/
+				
 				mapLoaded = true;
 			}
 		}
