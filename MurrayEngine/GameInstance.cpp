@@ -203,7 +203,6 @@ bool GameInstance::initialize()
 
 				this->map->addObject(HeroPlayer);
 				this->map->setPlayerCharacter(HeroPlayer);
-				
 
 				std::vector<std::shared_ptr<Texture>> murderFront;
 				murderFront.push_back(std::make_shared<Texture>(this->getTextureAsset("EpicSpriteSheet"), "MouthFront1"));
