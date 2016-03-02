@@ -25,7 +25,9 @@
 #include	"NonPlayerCharacter.h"
 #include	"AI.h"
 #include	"DefaultAI.h"
+#include	"ObjectFactory.h"
 
+class ObjectFactory;
 class Factory;
 class KeyController;
 
@@ -130,6 +132,12 @@ private:
 	KeyController*	keyController;
 
 	GUIObject*		frameRateGUIObject;
+
+	ObjectFactory* objectFactory;
+
+	std::vector<Object*>		tempHolder;
+
+	std::map <std::string, std::vector<std::shared_ptr<Texture>>> tempMap;
 
 };
 

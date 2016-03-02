@@ -1,26 +1,42 @@
-#ifndef _GENERIC_OBJECT_FACTORY_H
-#define	_GENERIC_OBJECT_FACTORY_H
+#ifndef _OBJECT_FACTORY_H
+#define	_OBJECT_FACTORY_H
 
-#include	"Object.h"
-#include	"Configuration.h"
-#include	<vector>
+#include	"GameInstance.h"
 
 class GameInstance;
-class ObjectFactory
+class ObjectFactory 
 {
 public:
-	ObjectFactory();
-	ObjectFactory(Configuration config);
+	ObjectFactory(GameInstance* gameInstance);
 	~ObjectFactory();
 
-	bool						loadConfiguration(Configuration config);
+	void createGhostGroup(std::string type);
+	void createGhost(std::string Id, Orientation orientation, Position pos);
+	void createWitch();
+	void createPlayer();
+	void init();
 
-	std::vector<Object>	createObjects();
+	bool witchCreated, playerCreated, ghostCreated;
 
 private:
+	GameInstance* gameInstance;
+	Orientation orientation;
 
-	Configuration	factoryConfiguration;
+	int counter;
+
+
+	void clearVectors();
+	void loadVectors(std::string type);
+
+	std::vector<std::shared_ptr<Texture>> spawnV;
+	std::vector<std::shared_ptr<Texture>> northV;
+	std::vector<std::shared_ptr<Texture>> southV;
+	std::vector<std::shared_ptr<Texture>> westV;
+	std::vector<std::shared_ptr<Texture>> eastV;
+	std::vector<std::shared_ptr<Texture>> inactiveV;
+	std::vector<std::shared_ptr<Texture>> deathV;
+	std::vector<std::shared_ptr<Texture>> projectileV;
 
 };
 
-#endif // !_GENERIC_OBJECT_FACTORY_H
+#endif // !_OBJECT_FACTORY_H

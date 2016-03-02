@@ -80,10 +80,10 @@
     <None Include="Boss.cfg">
       <Filter>Resource Files</Filter>
     </None>
-    <None Include="EnemyAnimation">
+    <None Include="HeartSheet.cfg">
       <Filter>Resource Files</Filter>
     </None>
-    <None Include="HeartSheet.cfg">
+    <None Include="EnemyAnimation.cfg">
       <Filter>Resource Files</Filter>
     </None>
   </ItemGroup>
@@ -130,6 +130,9 @@
   <ItemGroup>
     <ClInclude Include="ObjectFactory.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\MurrayEngine\ObjectFactory.h">
+      <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

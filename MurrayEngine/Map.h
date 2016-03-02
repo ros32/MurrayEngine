@@ -115,7 +115,7 @@ private:
 	int									gridSize;
 
 	void								createGrid(std::vector<Tile*>);
-
+	
 };
 
 #endif // !_MAP_H

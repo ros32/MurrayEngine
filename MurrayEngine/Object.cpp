@@ -417,3 +417,6 @@ std::shared_ptr<Animation> Object::getAnimation(std::string key){
 
 	return nullptr;
 }
+void Object::addAnimation(std::string key, std::shared_ptr<Animation> animation){
+
+}

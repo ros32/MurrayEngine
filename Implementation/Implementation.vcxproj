@@ -91,7 +91,7 @@ xcopy /Y "$(SolutionDir)lib\SDL2_ttf-2.0.12\lib\x86\*.dll" "$(OutDir)*.dll"</Com
     <None Include="Boss.cfg" />
     <None Include="BossAnimation.cfg" />
     <None Include="Enemy.cfg" />
-    <None Include="EnemyAnimation" />
+    <None Include="EnemyAnimation.cfg" />
     <None Include="HeartSheet.cfg" />
     <None Include="HeroAnimation.cfg" />
     <None Include="EpicSpriteSheet.cfg" />
@@ -127,6 +127,7 @@ xcopy /Y "$(SolutionDir)lib\SDL2_ttf-2.0.12\lib\x86\*.dll" "$(OutDir)*.dll"</Com
     <Font Include="8bitOperatorPlusSC-Bold.ttf" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\MurrayEngine\ObjectFactory.h" />
     <ClInclude Include="ObjectFactory.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

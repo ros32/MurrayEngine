@@ -93,6 +93,8 @@ public:
 
 	virtual std::shared_ptr<Animation> getAnimation(std::string key);
 
+	virtual void	addAnimation(std::string key, std::shared_ptr<Animation> animation);
+
 protected:
 
 	Timer			timer;
