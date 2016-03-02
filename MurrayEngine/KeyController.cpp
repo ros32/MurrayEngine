@@ -135,6 +135,8 @@ KeyController::KeyController()
 	this->actions.insert(std::map<SDL_Scancode, Action*>::value_type(SDL_SCANCODE_F11, nullptr));
 	this->actions.insert(std::map<SDL_Scancode, Action*>::value_type(SDL_SCANCODE_F12, nullptr));
 
+	this->wasPressed = false;
+	
 }
 
 KeyController::~KeyController()
@@ -147,21 +149,44 @@ KeyController::~KeyController()
 
 void	KeyController::checkState()
 {
+	
+	
 	const Uint8*	currentKeyState = SDL_GetKeyboardState(NULL);
+	std::string tempS;
+
 
 	for (auto key : this->keys)
 	{
-		if (currentKeyState[key.first])
+		if (currentKeyState[key.first]) {
 			this->keys[key.first] = true;
-		else
+			tempS = std::to_string(key.first);
+		}
+		else{
 			this->keys[key.first] = false;
+			
+			
+		}
+			
+	}
+
+	if (tempS != std::to_string(SDL_SCANCODE_SPACE) && wasPressed){
+		wasPressed = false;
 	}
 
 	for (auto key : this->actions)
 	{
-		if (this->keys[key.first] && key.second != nullptr)
+		if (this->keys[key.first] && key.second != nullptr && !wasPressed){
+
+			if (this->keys[key.first] = SDL_SCANCODE_SPACE){
+				wasPressed = true;
+			}
+				
 			key.second->execute();
+		}
+			
 	}
+	
+	
 }
 
 void	KeyController::setGameInstance(GameInstance* instance)

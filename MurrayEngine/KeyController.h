@@ -31,6 +31,9 @@ private:
 
 	void	debugSetup();
 
+	bool wasPressed;
+
+
 
 };
 
