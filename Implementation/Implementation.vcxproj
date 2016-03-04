@@ -81,6 +81,7 @@ xcopy /Y "$(SolutionDir)lib\SDL2_ttf-2.0.12\lib\x86\*.dll" "$(OutDir)*.dll"</Com
   <ItemGroup>
     <ClCompile Include="MainProgram.cpp" />
     <ClCompile Include="ObjectFactory.cpp" />
+    <ClCompile Include="WitchAI.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MurrayEngine\MurrayEngine.vcxproj">
@@ -128,6 +129,7 @@ xcopy /Y "$(SolutionDir)lib\SDL2_ttf-2.0.12\lib\x86\*.dll" "$(OutDir)*.dll"</Com
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\MurrayEngine\ObjectFactory.h" />
+    <ClInclude Include="WitchAI.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

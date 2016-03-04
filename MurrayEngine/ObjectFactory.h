@@ -4,6 +4,7 @@
 #include	"GameInstance.h"
 #include	"Factory.h"
 #include	"DefaultAI.h"
+#include	"WitchAI.h"
 
 class GameInstance;
 class ObjectFactory: public Factory

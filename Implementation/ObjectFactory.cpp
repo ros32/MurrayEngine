@@ -78,7 +78,6 @@ void ObjectFactory::createGhostGroup(Map* map, std::string type){
 
 void ObjectFactory::createGhost(Map* map, std::string type, Orientation orientation, Position pos){
 
-	NonPlayerCharacter* npc = nullptr;
 	//Position pos = { 0, 0 };
 	int speed = 0;
 	std::string id;
@@ -123,7 +122,7 @@ void ObjectFactory::createGhost(Map* map, std::string type, Orientation orientat
 
 
 
-	npc = new NonPlayerCharacter(new AnimatedObject(id, pos, std::make_shared<Animation>(spawnV, 200), 1.0, 1.0, speed, orientation, true));
+	NonPlayerCharacter* npc = new NonPlayerCharacter(new AnimatedObject(id, pos, std::make_shared<Animation>(spawnV, 200), 1.0, 1.0, speed, orientation, true));
 
 	npc->addAnimation("Spawn", std::make_shared<Animation>(spawnV, 200));
 	npc->addAnimation("North", std::make_shared<Animation>(northV, 200));
@@ -137,20 +136,17 @@ void ObjectFactory::createGhost(Map* map, std::string type, Orientation orientat
 	this->clearVectors();
 	this->ghostCreated = true;
 
-
 }
 
 
 
 void ObjectFactory::createWitch(Map* map){
 
-	NonPlayerCharacter* npc = nullptr;
-
 	std::string id = "Witch";
 
-	this->loadVectors("Witch");
+	this->loadVectors(id);
 
-	npc = new NonPlayerCharacter(new AnimatedObject(id, { 490, 360 }, std::make_shared<Animation>(inactiveV, 200), 0.0, 0.0, 0, NONE, true));
+	NonPlayerCharacter* npc = new NonPlayerCharacter(new AnimatedObject(id, { 490, 360 }, std::make_shared<Animation>(spawnV, 200), 0.0, 0.0, 0, NONE, true));
 
 	npc->addAnimation("Inactive", std::make_shared<Animation>(inactiveV, 200));
 	npc->addAnimation("Spawn", std::make_shared<Animation>(spawnV, 200));
@@ -159,11 +155,10 @@ void ObjectFactory::createWitch(Map* map){
 	npc->addAnimation("East", std::make_shared<Animation>(eastV, 200));
 	npc->addAnimation("West", std::make_shared<Animation>(westV, 200));
 	npc->addAnimation("Death", std::make_shared<Animation>(deathV, 200));
+	npc->addAnimation("Projectile", std::make_shared<Animation>(projectileV, 200));
 
-	//Will set witch specific ai when created
-	//npc->setAI(new DefaultAI(npc, this->getGameInstance()->getMap()));
 	map->addObject(npc);
-
+	npc->setAI(new WitchAI(npc, map));
 	this->clearVectors();
 	this->witchCreated = true;
 }
@@ -171,9 +166,9 @@ void ObjectFactory::createWitch(Map* map){
 void ObjectFactory::createPlayer(Map* map){
 	std::string id = "Player";
 
-	this->loadVectors("Player");
+	this->loadVectors(id);
 
-	NonPlayerCharacter* HeroPlayer = new NonPlayerCharacter(new AnimatedObject("test006", { 33, 33 }, std::make_shared<Animation>(southV, 200), 1.0, 1.0, 3, SOUTH, true));
+	NonPlayerCharacter* HeroPlayer = new NonPlayerCharacter(new AnimatedObject(id, { 33, 33 }, std::make_shared<Animation>(southV, 200), 1.0, 1.0, 3, SOUTH, true));
 
 	HeroPlayer->addAnimation("North", std::make_shared<Animation>(northV, 200));
 	HeroPlayer->addAnimation("South", std::make_shared<Animation>(southV, 200));
