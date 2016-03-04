@@ -1,11 +1,7 @@
-#define _CRTDBG_MAP_ALLOC
-#include <stdlib.h>
-#include <crtdbg.h>
-//#include	<vld.h>
-#include	<SDL.h>
 #include	<GameInstance.h>
 #include	"ObjectFactory.h"
 
+//	Default values are used if no configuration file is found
 #define		DEFAULT_WINDOW_WIDTH	640
 #define		DEFAULT_WINDOW_HEIGHT	480
 
@@ -14,12 +10,18 @@
 
 int main(int, char** argv)
 {
+	//	This is the main configuration file all game assets are loaded through
 	Configuration mainConfig = Configuration("main.cfg");
 
+	//	Start SDL
 	SDL_Init(SDL_INIT_EVERYTHING);
 	IMG_Init(IMG_INIT_PNG);
 	TTF_Init();
+
+	//	Set logging priority. Use SDL_LOG_PRIORITY_CRITICAL for release
 	SDL_LogSetAllPriority(SDL_LOG_PRIORITY_INFO);
+
+	//	Create main window, get window height and width from configuration or use default if not found
 	SDL_Window* mainWindow = SDL_CreateWindow(
 		"MurrayEngine",
 		100,
@@ -28,21 +30,30 @@ int main(int, char** argv)
 		mainConfig.getProperty("WINDOW_HEIGHT", DEFAULT_WINDOW_HEIGHT),
 		SDL_WINDOW_SHOWN);
 
+	//	Quit if main window failed to create
 	if (mainWindow == nullptr)
 		return 0;
 
+	//	Initialize main renderer
 	SDL_Renderer* mainRenderer = SDL_CreateRenderer(mainWindow, -1, SDL_RENDERER_PRESENTVSYNC);
 
+	//	Quit if main renderer failed to create
 	if (mainRenderer == nullptr)
 		return 0;
 
-	//	Create game instance
+	//	Create game instance using main window, main renderer and main configuration file
 	GameInstance* gameInstance = new GameInstance(mainWindow, mainRenderer, mainConfig);
+
+	//	Create factory used to set up game assets and objects
 	Factory*	  objectFactory = new ObjectFactory();
+
+	//	Set factory in game instance
 	gameInstance->setFactory(objectFactory);
 
-	//	Initialize game by loading all configuration files
+	//	Initialize game by loading all assets, creating map and objects within
 	gameInstance->initialize();
+
+	//	When assets are initialized, we can set up keys
 
 	//	Add keys to key controller
 	gameInstance->getKeyController()->addAction(SDL_SCANCODE_W, new MoveAction(gameInstance->getMap()->getPlayerCharacter(), gameInstance->getMap(), NORTH), true);
@@ -63,7 +74,6 @@ int main(int, char** argv)
 		{
 			gameInstance->exit();
 			delete gameInstance;
-			_CrtDumpMemoryLeaks();
 			quitGame = true;
 		}
 	}
