@@ -8,6 +8,8 @@
 #include	"DamageAction.h"
 #include	"ChangeInputModeAction.h"
 
+class GameInstance;
+
 class KeyController
 {
 public:

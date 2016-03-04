@@ -3,11 +3,6 @@
 
 #define		DEFAULT_FRAME_LIMIT		30
 
-GameInstance::GameInstance()
-{
-	
-}
-
 GameInstance::GameInstance(SDL_Window* window, SDL_Renderer* renderer, Configuration configuration)
 {
 	this->frameLimiter = FrameLimiter(Timer(), configuration.getProperty("FRAME_LIMIT", DEFAULT_FRAME_LIMIT));
@@ -19,10 +14,8 @@ GameInstance::GameInstance(SDL_Window* window, SDL_Renderer* renderer, Configura
 	this->mainConfig = configuration;
 	this->configurations;
 	this->map;
-	this->keyState;
 	this->factory = nullptr;
 	this->keyController = nullptr;
-	//this->objectFactory = nullptr;
 }
 
 GameInstance::~GameInstance()
@@ -53,9 +46,6 @@ GameInstance::~GameInstance()
 	//	Delete factory
 	if (this->factory != nullptr)
 		delete this->factory;
-	/*
-	if (this->objectFactory != nullptr)
-		delete this->objectFactory;*/
 
 }
 
@@ -65,6 +55,7 @@ bool GameInstance::initialize()
 	bool tempKeyController = false;
 	bool tempObjFactory = false;
 
+	//	Create a default Factory object if no Factory has been provided
 	if (this->factory == nullptr)
 	{
 		tempFactory = true;
@@ -81,22 +72,8 @@ bool GameInstance::initialize()
 		if (this->factory->getWindow() == nullptr)
 			this->factory->setWindow(this->instanceWindow);
 	}
-	/*
-	if (this->objectFactory == nullptr)
-	{
-		tempObjFactory = true;
-		this->objectFactory = new ObjectFactory(this);
 
-		std::string output = "No ObjectFactory defined, creating default temporary.";
-		SDL_LogInfo(SDL_LOG_CATEGORY_APPLICATION, output.c_str());
-	}
-	else
-	{
-		std::string output = "Using defined objectFactory";
-		SDL_LogDebug(SDL_LOG_CATEGORY_APPLICATION, output.c_str());
-	}*/
-
-
+	//	Create a default KeyController if no KeyController has been provided
 	if (this->keyController == nullptr)
 	{
 		tempKeyController = true;
@@ -111,6 +88,7 @@ bool GameInstance::initialize()
 		SDL_LogDebug(SDL_LOG_CATEGORY_APPLICATION, output.c_str());
 	}
 
+	//	Set GameInstance call-back on Factory
 	this->factory->setGameInstance(this);
 
 	std::vector<Configuration>	configurations;
@@ -119,13 +97,14 @@ bool GameInstance::initialize()
 	//	Load configurations
 	for (auto key : this->mainConfig)
 	{
-		// bool	keyIdentified = false;
+		//	Configuration files are identified by having _CONFIG at the end of the key
 		std::size_t found = key.first.find("_CONFIG");
 		if (found != std::string::npos)
 		{
-			// keyIdentified = true;
 			std::string fileName = key.second;
 			Configuration newConfig = Configuration(fileName);
+
+			//	All configuration files must have a NAME key defining its name, if not it will not be loaded
 			if (newConfig.getProperty("NAME", "NOTFOUND") != "NOTFOUND")
 				this->configurations.insert(std::map<std::string, Configuration>::value_type(newConfig.getProperty("NAME", "NOTFOUND"), newConfig));
 		}
@@ -136,112 +115,40 @@ bool GameInstance::initialize()
 	for (auto key : this->configurations)
 	{
 		Configuration config = key.second;
+
+		//	An asset configuration file is defined by the key TYPE
 		const std::string type = config.getProperty("TYPE", "UNKNOWN");
 
+		//	If TYPE is TextureAsset, the file will be loaded
 		if (type == "TextureAsset")
 		{
-			//TextureAssetFactory assetFactory = TextureAssetFactory(this->instanceRenderer);
+			//	Create TextureAsset from configuration file
 			TextureAsset* tempAsset = this->factory->createAsset(config);
-			//	HACK: Create class InvalidAsset and use for invalid assets
-			//if (tempAsset.getType() != "InvalidAsset")
-			//{
-				this->textureAssets.insert(std::map<std::string, TextureAsset*>::value_type(config.getProperty("NAME", "UNKNOWN"), tempAsset));
-				SDL_Log("Asset Loaded");
-			//}
-		}
-		else if (type == "SoundAsset")
-		{
 
-		}
-		else if (type == "Map")
-		{
-
+			//	Insert asset into textureAssets
+			this->textureAssets.insert(std::map<std::string, TextureAsset*>::value_type(config.getProperty("NAME", "UNKNOWN"), tempAsset));
 		}
 	}
 
 
-	//	Load map
+	//	Map must be loaded separate from other assets in configurations, since it depends on all
+	//	other assets already being loaded
 	for (auto key : this->configurations)
 	{
 		if (key.second.getProperty("TYPE", "UNKNOWN") == "Map")
 		{
-			//MapFactory mapFactory = MapFactory(this->instanceWindow, this->instanceRenderer, this);
 			if (!mapLoaded)
 			{
 				this->setMap(this->factory->createMap(key.second));
-
-
-				//objectFactory->init();
-				//objectFactory->createGhost("Evolved", SOUTH, { 33, 350 });
-				
 				mapLoaded = true;
 			}
 		}
-	
-	
 	}
-	/*
-	
-	
-	
-	for (auto key : this->configurations)
-	{
-		Configuration config = key.second;
-		if (config.getProperty("TYPE", "UNKNOWN") == "Object")
-		{
-			Object* tempObject = this->objectFactory->createObject(config);
-
-			this->tempHolder.push_back(tempObject);
-
-		}
-	}
-
-	for (auto key : this->configurations)
-	{
-		Configuration config = key.second;
-		if (config.getProperty("TYPE", "UNKNOWN") == "Animation")
-		{
-
-			if (tempMap.size() > 0){
-				tempMap.clear();
-			}
-
-			tempMap = this->objectFactory->createAnimation(config);
-
-			for (auto obj : tempHolder)
-			{
-				std::string objID = obj->getId();
-				SDL_Log(objID.c_str());
-
-				if (objID.find(key.second.getProperty("ID", "UNKNOWN")))
-				{
-
-					for (auto v : tempMap)
-					{
-						std::string identifier = v.first;
-
-						std::vector<std::shared_ptr<Texture>> vec = v.second;
-						obj->addAnimation(identifier, std::make_shared<Animation>(vec, 200));
-
-						this->map->addObject(obj);
-	
-					}
-
-				}
-			}
-
-		}
-	}
-
-	*/
-
-
-	//	Test map
 
 	//	Everything initialized below this point
 
-	//	Set game instance on key controller. If we do this before things might be missing from GameInstance, causing
-	//	strange behaviour
+	//	GameInstance must be set on KeyController *AFTER* assets and map has been initialized,
+	//	otherwise actions defined that depends on Object* will not have valid pointers
 	this->keyController->setGameInstance(this);
 
 	if (tempFactory)
@@ -252,12 +159,6 @@ bool GameInstance::initialize()
 		std::string output = "Removing temporary factory";
 		SDL_LogInfo(SDL_LOG_CATEGORY_APPLICATION, output.c_str());
 	}
-	/*
-	if (tempObjFactory){
-		delete this->objectFactory;
-		this->objectFactory = nullptr;
-	}*/
-
 
 	this->frameRateGUIObject = new GUIObject({ 10, 10 }, nullptr);
 	this->getMap()->getCamera()->getGUI()->addObject(this->frameRateGUIObject);

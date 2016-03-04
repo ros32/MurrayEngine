@@ -3,6 +3,7 @@
 
 #include	"GameInstance.h"
 #include	"Factory.h"
+#include	"DefaultAI.h"
 
 class GameInstance;
 class ObjectFactory: public Factory
