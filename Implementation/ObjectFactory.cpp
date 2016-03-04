@@ -373,6 +373,10 @@ void ObjectFactory::loadVectors(std::string type){
 		this->spawnV.push_back(std::make_shared<Texture>(this->getGameInstance()->getTextureAsset("WitchSpritesheet"), "WitchLightning3"));
 		this->spawnV.push_back(std::make_shared<Texture>(this->getGameInstance()->getTextureAsset("WitchSpritesheet"), "WitchLightning4"));
 
+		projectileV.push_back(std::make_shared<Texture>(this->getGameInstance()->getTextureAsset("ProjectileSheet"), "RedBall"));
+		projectileV.push_back(std::make_shared<Texture>(this->getGameInstance()->getTextureAsset("ProjectileSheet"), "BlueBall"));
+		projectileV.push_back(std::make_shared<Texture>(this->getGameInstance()->getTextureAsset("ProjectileSheet"), "GreenBall"));
+
 	}
 	else{
 
