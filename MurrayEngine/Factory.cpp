@@ -22,7 +22,7 @@ void	Factory::setGameInstance(GameInstance*	instance)
 std::shared_ptr<Animation> Factory::createAnimation(Configuration configuration)
 {
 	unsigned int time = configuration.getProperty("TIME", 200);
-	std::map < std::string, std::vector<std::string, std::string>> returnMap;
+	//std::map < std::string, std::vector<std::string, std::string> > returnMap;
 
 	for (auto key : configuration)
 	{
