@@ -11,11 +11,11 @@ public:
 	GUIObject(Position pos, TextureAsset* texture);
 	~GUIObject();
 
-	Position		getPosition();
-	TextureAsset*	getTexture();
+	virtual Position		getPosition();
+	virtual TextureAsset*	getTexture();
 
-	void			setPosition(Position pos);
-	void			setTexture(TextureAsset* texture);
+	virtual void	setPosition(Position pos);
+	virtual void	setTexture(TextureAsset* texture);
 
 private:
 

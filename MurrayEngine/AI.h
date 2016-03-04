@@ -5,9 +5,13 @@
 #include	"Map.h"
 
 ///-------------------------------------------------------------------------------------------------
-/// <summary>	An ai. </summary>
+/// <summary> An AI (or Artificial Intelligence) is the decision-making interface for a 
+/// 		  NonPlayerCharacter. A NonPlayerCharacter will query the AI for a new command 
+/// 		  each time the action queue is processed, and the AI will, through AI::doNext() 
+/// 		  (and implementation), provide the NonPlayerCharacter with actions 
+/// 		  to perform. </summary>
 ///
-/// <remarks>	Rosen, 2016-02-28. </remarks>
+/// <remarks> Rosen, 2016-02-28. </remarks>
 ///-------------------------------------------------------------------------------------------------
 class AI
 {

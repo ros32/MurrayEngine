@@ -24,9 +24,6 @@
     <ClInclude Include="Factory.h" />
     <ClInclude Include="FrameLimiter.h" />
     <ClInclude Include="GameInstance.h" />
-    <ClInclude Include="GUIObservable.h" />
-    <ClInclude Include="GUIObserver.h" />
-    <ClInclude Include="GUIText.h" />
     <ClInclude Include="Object.h" />
     <ClInclude Include="GUI.h" />
     <ClInclude Include="GUIObject.h" />
