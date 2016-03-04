@@ -128,11 +128,8 @@
     </Font>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="ObjectFactory.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\MurrayEngine\ObjectFactory.h">
-      <Filter>Source Files</Filter>
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

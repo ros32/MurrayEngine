@@ -6,7 +6,7 @@
 #include	"Action.h"
 #include	"GameInstance.h"
 #include	"DamageAction.h"
-#include	"CopyAction.h"
+#include	"ChangeInputModeAction.h"
 
 class KeyController
 {
@@ -16,7 +16,7 @@ public:
 
 	void	checkState();
 
-	void	addAction(SDL_Scancode key, Action* action);
+	void	addAction(SDL_Scancode key, Action* action, bool repeat);
 
 	void	setGameInstance(GameInstance* instance);
 
@@ -30,10 +30,10 @@ private:
 
 	Object*							playerCharacter;
 
-	std::map<SDL_Scancode, bool>	keys;
-	std::map<SDL_Scancode, bool>	lastStatus;
-	std::map<SDL_Scancode, bool>	repeat;
-	std::map<SDL_Scancode, Action*>	actions;
+	std::map< SDL_Scancode, bool >	keys;
+	std::map< SDL_Scancode, bool >	lastStatus;
+	std::map< SDL_Scancode, bool >	repeat;
+	std::map< SDL_Scancode, Action* >	actions;
 
 	void	debugSetup();
 

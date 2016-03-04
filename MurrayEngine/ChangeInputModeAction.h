@@ -4,6 +4,8 @@
 #include	"Action.h"
 #include	"KeyController.h"
 
+class KeyController;
+
 class ChangeInputModeAction: public Action
 {
 public:

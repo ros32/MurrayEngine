@@ -1,7 +1,12 @@
 #define _CRTDBG_MAP_ALLOC
 #include	"Factory.h"
 
-Factory::Factory() { }
+Factory::Factory()
+{
+	this->window = nullptr;
+	this->renderer = nullptr;
+	this->gameInstance = nullptr;
+}
 Factory::~Factory()	{ }
 
 void	Factory::setWindow(SDL_Window* window)
@@ -187,4 +192,14 @@ KeyController*	Factory::createKeyController(Configuration configuration)
 
 	return new KeyController();
 
+}
+
+GameInstance*	Factory::getGameInstance()
+{
+	return this->gameInstance;
+}
+
+SDL_Window*		Factory::getWindow()
+{
+	return this->window;
 }

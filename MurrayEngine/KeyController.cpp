@@ -330,13 +330,15 @@ void	KeyController::setGameInstance(GameInstance* instance)
 		this->debugSetup();
 }
 
-void	KeyController::addAction(SDL_Scancode key, Action* action)
+void	KeyController::addAction(SDL_Scancode key, Action* action, bool repeat)
 {
 	this->actions[key] = action;
+	this->repeat[key] = repeat;
 }
 
 void	KeyController::debugSetup()
 {
+	/*
 	this->actions[SDL_SCANCODE_W] = new MoveAction(this->gameInstance->getMap()->getPlayerCharacter(), this->gameInstance->getMap(), NORTH);
 	this->actions[SDL_SCANCODE_S] = new MoveAction(this->gameInstance->getMap()->getPlayerCharacter(), this->gameInstance->getMap(), SOUTH);
 	this->actions[SDL_SCANCODE_D] = new MoveAction(this->gameInstance->getMap()->getPlayerCharacter(), this->gameInstance->getMap(), EAST);
@@ -346,6 +348,7 @@ void	KeyController::debugSetup()
 	this->repeat[SDL_SCANCODE_S] = true;
 	this->repeat[SDL_SCANCODE_A] = true;
 	this->repeat[SDL_SCANCODE_D] = true;
+	*/
 }
 
 void	KeyController::setTextInputMode(bool inputMode)

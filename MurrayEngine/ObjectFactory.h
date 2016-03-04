@@ -2,19 +2,22 @@
 #define	_OBJECT_FACTORY_H
 
 #include	"GameInstance.h"
+#include	"Factory.h"
 
 class GameInstance;
-class ObjectFactory 
+class ObjectFactory: public Factory
 {
 public:
-	ObjectFactory(GameInstance* gameInstance);
+	ObjectFactory();
 	~ObjectFactory();
 
-	void createGhostGroup(std::string type);
-	void createGhost(std::string Id, Orientation orientation, Position pos);
-	void createWitch();
-	void createPlayer();
-	void init();
+	Map*	createMap(Configuration configuration);
+
+	void createGhostGroup(Map* map, std::string type);
+	void createGhost(Map* map, std::string Id, Orientation orientation, Position pos);
+	void createWitch(Map* map);
+	void createPlayer(Map* map);
+	void init(Map* map);
 
 	bool witchCreated, playerCreated, ghostCreated;
 

@@ -26,10 +26,13 @@ public:
 	void	setWindow(SDL_Window* window);
 	void	setGameInstance(GameInstance* instance);
 
-	virtual Object*				createObject(Configuration config);
-	Map*						createMap(Configuration config);
-	TextureAsset*				createAsset(Configuration configuration);
-	KeyController*				createKeyController(Configuration configuration);
+	GameInstance*	getGameInstance();
+	SDL_Window*			getWindow();
+
+	virtual Object*						createObject(Configuration config);
+	virtual Map*						createMap(Configuration config);
+	virtual TextureAsset*				createAsset(Configuration configuration);
+	virtual KeyController*				createKeyController(Configuration configuration);
 	virtual std::shared_ptr<Animation>	createAnimation(Configuration configuarion);
 
 private:

@@ -22,7 +22,7 @@ GameInstance::GameInstance(SDL_Window* window, SDL_Renderer* renderer, Configura
 	this->keyState;
 	this->factory = nullptr;
 	this->keyController = nullptr;
-	this->objectFactory = nullptr;
+	//this->objectFactory = nullptr;
 }
 
 GameInstance::~GameInstance()
@@ -53,9 +53,9 @@ GameInstance::~GameInstance()
 	//	Delete factory
 	if (this->factory != nullptr)
 		delete this->factory;
-
+	/*
 	if (this->objectFactory != nullptr)
-		delete this->objectFactory;
+		delete this->objectFactory;*/
 
 }
 
@@ -78,7 +78,10 @@ bool GameInstance::initialize()
 	{
 		std::string output = "Using defined factory";
 		SDL_LogDebug(SDL_LOG_CATEGORY_APPLICATION, output.c_str());
+		if (this->factory->getWindow() == nullptr)
+			this->factory->setWindow(this->instanceWindow);
 	}
+	/*
 	if (this->objectFactory == nullptr)
 	{
 		tempObjFactory = true;
@@ -91,7 +94,7 @@ bool GameInstance::initialize()
 	{
 		std::string output = "Using defined objectFactory";
 		SDL_LogDebug(SDL_LOG_CATEGORY_APPLICATION, output.c_str());
-	}
+	}*/
 
 
 	if (this->keyController == nullptr)
@@ -168,8 +171,8 @@ bool GameInstance::initialize()
 				this->setMap(this->factory->createMap(key.second));
 
 
-				objectFactory->init();
-				objectFactory->createGhost("Evolved", SOUTH, { 33, 350 });
+				//objectFactory->init();
+				//objectFactory->createGhost("Evolved", SOUTH, { 33, 350 });
 				
 				mapLoaded = true;
 			}
@@ -249,11 +252,11 @@ bool GameInstance::initialize()
 		std::string output = "Removing temporary factory";
 		SDL_LogInfo(SDL_LOG_CATEGORY_APPLICATION, output.c_str());
 	}
-
+	/*
 	if (tempObjFactory){
 		delete this->objectFactory;
 		this->objectFactory = nullptr;
-	}
+	}*/
 
 
 	this->frameRateGUIObject = new GUIObject({ 10, 10 }, nullptr);
@@ -372,4 +375,9 @@ void			GameInstance::doActions()
 {
 	if (this->map != nullptr)
 		this->map->doActionQueue();
+}
+
+KeyController*	GameInstance::getKeyController()
+{
+	return this->keyController;
 }

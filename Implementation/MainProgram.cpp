@@ -4,6 +4,7 @@
 //#include	<vld.h>
 #include	<SDL.h>
 #include	<GameInstance.h>
+#include	"ObjectFactory.h"
 
 #define		DEFAULT_WINDOW_WIDTH	640
 #define		DEFAULT_WINDOW_HEIGHT	480
@@ -35,7 +36,20 @@ int main(int, char** argv)
 	if (mainRenderer == nullptr)
 		return 0;
 
+	//	Create game instance
 	GameInstance* gameInstance = new GameInstance(mainWindow, mainRenderer, mainConfig);
+	Factory*	  objectFactory = new ObjectFactory();
+	gameInstance->setFactory(objectFactory);
+
+	//	Initialize game by loading all configuration files
+	gameInstance->initialize();
+
+	//	Add keys to key controller
+	gameInstance->getKeyController()->addAction(SDL_SCANCODE_W, new MoveAction(gameInstance->getMap()->getPlayerCharacter(), gameInstance->getMap(), NORTH), true);
+	gameInstance->getKeyController()->addAction(SDL_SCANCODE_S, new MoveAction(gameInstance->getMap()->getPlayerCharacter(), gameInstance->getMap(), SOUTH), true);
+	gameInstance->getKeyController()->addAction(SDL_SCANCODE_A, new MoveAction(gameInstance->getMap()->getPlayerCharacter(), gameInstance->getMap(), WEST), true);
+	gameInstance->getKeyController()->addAction(SDL_SCANCODE_D, new MoveAction(gameInstance->getMap()->getPlayerCharacter(), gameInstance->getMap(), EAST), true);
+	gameInstance->getKeyController()->addAction(SDL_SCANCODE_SPACE, new DamageAction(gameInstance->getMap()->getPlayerCharacter(), gameInstance->getMap()), false);
 
 	bool quitGame = false;
 	while (!quitGame)
