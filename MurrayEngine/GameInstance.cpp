@@ -27,15 +27,6 @@ GameInstance::~GameInstance()
 		delete asset.second;
 	}
 
-	this->textureAssets.clear();
-
-	for (auto asset : this->assets)
-	{
-		delete asset.second;
-	}
-
-	this->assets.clear();
-
 	//	Delete map
 	delete this->map;
 
