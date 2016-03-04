@@ -125,7 +125,7 @@ private:
 	typedef std::map<std::string, std::shared_ptr<Animation>>::iterator iterator;
 
 	/// <summary>	The collision texture. </summary>
-	std::shared_ptr<Texture>	collisionTexture = nullptr;
+	std::shared_ptr<Texture>	collisionTexture;
 
 };
 

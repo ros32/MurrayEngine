@@ -78,7 +78,7 @@ private:
 	Map* map;
 
 	/// <summary>	The direction. </summary>
-	Orientation direction = NONE;
+	Orientation direction;
 };
 
 
