@@ -131,10 +131,10 @@
     </Font>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\MurrayEngine\ObjectFactory.h">
+    <ClInclude Include="WitchAI.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="WitchAI.h">
+    <ClInclude Include="ObjectFactory.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
