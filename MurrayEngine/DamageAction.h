@@ -7,7 +7,7 @@ The concrete action DamageAction
 
 #include "Object.h"
 #include "Action.h"
-#include "map.h"
+#include "Map.h"
 #include "ProjectileObject.h"
 #include "NonPlayerCharacter.h"
 
