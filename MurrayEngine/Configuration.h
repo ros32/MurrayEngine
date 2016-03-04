@@ -13,7 +13,9 @@
 #endif
 
 ///-------------------------------------------------------------------------------------------------
-/// <summary>	A configuration. </summary>
+/// <summary>	The Configuration class is very similar to the Properties class in Java,
+/// 			in that it contains a map of keys and values that can be loaded from
+/// 			a file.</summary>
 ///
 /// <remarks>	Rosen, 2016-02-28. </remarks>
 ///-------------------------------------------------------------------------------------------------
@@ -22,14 +24,21 @@ class Configuration
 public:
 
 	///-------------------------------------------------------------------------------------------------
-	/// <summary>	Default constructor. </summary>
+	/// <summary>	Create an empty Configuration object. </summary>
 	///
 	/// <remarks>	Rosen, 2016-02-28. </remarks>
 	///-------------------------------------------------------------------------------------------------
 	Configuration();
 
 	///-------------------------------------------------------------------------------------------------
-	/// <summary>	Constructor. </summary>
+	/// <summary>	Create a Configuration object by importing a .cfg file.
+	/// 			
+	/// 			Files used by the Configuration class has the extension .cfg and follows
+	/// 			(somewhat) the INI-file syntax, in that KEY=VALUE and whitespace is not
+	/// 			allowed.
+	///
+	/// 			All .cfg files must use \n line breaks to be compatible with both Windows
+	/// 			and UNIX. Using \r\n line breaks in UNIX will cause unexpected behavior.</summary>
 	///
 	/// <remarks>	Rosen, 2016-02-28. </remarks>
 	///
@@ -59,7 +68,7 @@ public:
 	typedef std::map<std::string, std::string>::const_iterator const_iterator;
 
 	///-------------------------------------------------------------------------------------------------
-	/// <summary>	Gets a property. </summary>
+	/// <summary>	Get a string value from a key, or return an empty string. </summary>
 	///
 	/// <remarks>	Rosen, 2016-02-28. </remarks>
 	///
@@ -70,7 +79,7 @@ public:
 	std::string		getProperty(std::string key);
 
 	///-------------------------------------------------------------------------------------------------
-	/// <summary>	Gets a property. </summary>
+	/// <summary>	Get a string value from a key, or return the provided string defaultValue  </summary>
 	///
 	/// <remarks>	Rosen, 2016-02-28. </remarks>
 	///
@@ -82,7 +91,8 @@ public:
 	std::string		getProperty(std::string key, std::string defaultValue);
 
 	///-------------------------------------------------------------------------------------------------
-	/// <summary>	Gets a property. </summary>
+	/// <summary>	Interpret a property value from a key into an int, or return the provided
+	/// 			int defaultValue. </summary>
 	///
 	/// <remarks>	Rosen, 2016-02-28. </remarks>
 	///
@@ -104,7 +114,14 @@ public:
 	void			setProperty(std::string key, std::string value);
 
 	///-------------------------------------------------------------------------------------------------
-	/// <summary>	Import configuration. </summary>
+	/// <summary>	Import configuration.
+	/// 			
+	/// 			Files used by the Configuration class has the extension .cfg and follows
+	/// 			(somewhat) the INI-file syntax, in that KEY=VALUE and whitespace is not
+	/// 			allowed.
+	///
+	/// 			All .cfg files must use \n line breaks to be compatible with both Windows
+	/// 			and UNIX. Using \r\n line breaks in UNIX will cause unexpected behavior.</summary>
 	///
 	/// <remarks>	Rosen, 2016-02-28. </remarks>
 	///
@@ -122,7 +139,7 @@ public:
 	void			exportConfig(std::string fileName);
 
 	///-------------------------------------------------------------------------------------------------
-	/// <summary>	Gets the begin. </summary>
+	/// <summary>	The begin() iterator. </summary>
 	///
 	/// <remarks>	Rosen, 2016-02-28. </remarks>
 	///
@@ -131,7 +148,7 @@ public:
 	iterator		begin();
 
 	///-------------------------------------------------------------------------------------------------
-	/// <summary>	Gets the begin. </summary>
+	/// <summary>	The constant begin() iterator. </summary>
 	///
 	/// <remarks>	Rosen, 2016-02-28. </remarks>
 	///
@@ -140,7 +157,7 @@ public:
 	const_iterator	begin() const;
 
 	///-------------------------------------------------------------------------------------------------
-	/// <summary>	Gets the end. </summary>
+	/// <summary>	The end() iterator. </summary>
 	///
 	/// <remarks>	Rosen, 2016-02-28. </remarks>
 	///
@@ -149,7 +166,7 @@ public:
 	iterator		end();
 
 	///-------------------------------------------------------------------------------------------------
-	/// <summary>	Gets the end. </summary>
+	/// <summary>	The constant end() iterator. </summary>
 	///
 	/// <remarks>	Rosen, 2016-02-28. </remarks>
 	///
