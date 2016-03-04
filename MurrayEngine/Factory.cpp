@@ -82,16 +82,16 @@ Map*				Factory::createMap(Configuration configuration)
 			Position	pos = { posX * (cellSize), posY * (cellSize) };
 			std::stringstream ss(key.second);
 			std::string segment;
-			std::vector<std::string> splitString;
+			//std::vector<std::string> splitString;
 			std::string tileset;
 			std::string texture;
 
 			while (std::getline(ss, segment, '.'))
 			{
-				splitString.push_back(segment);
+				//splitString.push_back(segment);
 			}
 
-			if (splitString.size() >= 2)
+			/*if (splitString.size() >= 2)
 			{
 				tileset = splitString[0];
 				texture = splitString[1];
@@ -99,7 +99,10 @@ Map*				Factory::createMap(Configuration configuration)
 			else
 			{
 
-			}
+			}*/
+			tileset = "tileset";
+			texture = "CobbleStoneM";
+
 			if (gameInstance != nullptr)
 			{
 				auto texture2 = std::make_shared<Texture>(gameInstance->getTextureAsset(tileset), texture);
