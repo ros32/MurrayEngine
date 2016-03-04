@@ -114,6 +114,9 @@
     <ClInclude Include="Asset.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="ChangeInputModeAction.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Test.cpp">
@@ -192,6 +195,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="CopyAction.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ChangeInputModeAction.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

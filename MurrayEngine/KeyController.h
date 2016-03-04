@@ -20,6 +20,10 @@ public:
 
 	void	setGameInstance(GameInstance* instance);
 
+	void	setTextInputMode(bool inputMode);
+
+	bool	getTextInputMode();
+
 private:
 
 	GameInstance*					gameInstance;
@@ -27,15 +31,16 @@ private:
 	Object*							playerCharacter;
 
 	std::map<SDL_Scancode, bool>	keys;
+	std::map<SDL_Scancode, bool>	lastStatus;
+	std::map<SDL_Scancode, bool>	repeat;
 	std::map<SDL_Scancode, Action*>	actions;
 
 	void	debugSetup();
 
-	bool wasPressed;
+	bool	textInputMode;
 
 
 
 };
 
-
-#endif // !_KEY_CONTROLLER_H
+#endif

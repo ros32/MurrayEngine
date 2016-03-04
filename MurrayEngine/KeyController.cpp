@@ -135,7 +135,137 @@ KeyController::KeyController()
 	this->actions.insert(std::map<SDL_Scancode, Action*>::value_type(SDL_SCANCODE_F11, nullptr));
 	this->actions.insert(std::map<SDL_Scancode, Action*>::value_type(SDL_SCANCODE_F12, nullptr));
 
-	this->wasPressed = false;
+	this->lastStatus;
+
+	this->lastStatus.insert(std::map<SDL_Scancode, bool>::value_type(SDL_SCANCODE_0, false));
+	this->lastStatus.insert(std::map<SDL_Scancode, bool>::value_type(SDL_SCANCODE_1, false));
+	this->lastStatus.insert(std::map<SDL_Scancode, bool>::value_type(SDL_SCANCODE_2, false));
+	this->lastStatus.insert(std::map<SDL_Scancode, bool>::value_type(SDL_SCANCODE_3, false));
+	this->lastStatus.insert(std::map<SDL_Scancode, bool>::value_type(SDL_SCANCODE_4, false));
+	this->lastStatus.insert(std::map<SDL_Scancode, bool>::value_type(SDL_SCANCODE_5, false));
+	this->lastStatus.insert(std::map<SDL_Scancode, bool>::value_type(SDL_SCANCODE_6, false));
+	this->lastStatus.insert(std::map<SDL_Scancode, bool>::value_type(SDL_SCANCODE_7, false));
+	this->lastStatus.insert(std::map<SDL_Scancode, bool>::value_type(SDL_SCANCODE_8, false));
+	this->lastStatus.insert(std::map<SDL_Scancode, bool>::value_type(SDL_SCANCODE_9, false));
+
+	this->lastStatus.insert(std::map<SDL_Scancode, bool>::value_type(SDL_SCANCODE_A, false));
+	this->lastStatus.insert(std::map<SDL_Scancode, bool>::value_type(SDL_SCANCODE_B, false));
+	this->lastStatus.insert(std::map<SDL_Scancode, bool>::value_type(SDL_SCANCODE_C, false));
+	this->lastStatus.insert(std::map<SDL_Scancode, bool>::value_type(SDL_SCANCODE_D, false));
+	this->lastStatus.insert(std::map<SDL_Scancode, bool>::value_type(SDL_SCANCODE_E, false));
+	this->lastStatus.insert(std::map<SDL_Scancode, bool>::value_type(SDL_SCANCODE_F, false));
+	this->lastStatus.insert(std::map<SDL_Scancode, bool>::value_type(SDL_SCANCODE_G, false));
+	this->lastStatus.insert(std::map<SDL_Scancode, bool>::value_type(SDL_SCANCODE_H, false));
+	this->lastStatus.insert(std::map<SDL_Scancode, bool>::value_type(SDL_SCANCODE_I, false));
+	this->lastStatus.insert(std::map<SDL_Scancode, bool>::value_type(SDL_SCANCODE_J, false));
+	this->lastStatus.insert(std::map<SDL_Scancode, bool>::value_type(SDL_SCANCODE_K, false));
+	this->lastStatus.insert(std::map<SDL_Scancode, bool>::value_type(SDL_SCANCODE_L, false));
+	this->lastStatus.insert(std::map<SDL_Scancode, bool>::value_type(SDL_SCANCODE_M, false));
+	this->lastStatus.insert(std::map<SDL_Scancode, bool>::value_type(SDL_SCANCODE_N, false));
+	this->lastStatus.insert(std::map<SDL_Scancode, bool>::value_type(SDL_SCANCODE_O, false));
+	this->lastStatus.insert(std::map<SDL_Scancode, bool>::value_type(SDL_SCANCODE_P, false));
+	this->lastStatus.insert(std::map<SDL_Scancode, bool>::value_type(SDL_SCANCODE_Q, false));
+	this->lastStatus.insert(std::map<SDL_Scancode, bool>::value_type(SDL_SCANCODE_R, false));
+	this->lastStatus.insert(std::map<SDL_Scancode, bool>::value_type(SDL_SCANCODE_S, false));
+	this->lastStatus.insert(std::map<SDL_Scancode, bool>::value_type(SDL_SCANCODE_T, false));
+	this->lastStatus.insert(std::map<SDL_Scancode, bool>::value_type(SDL_SCANCODE_U, false));
+	this->lastStatus.insert(std::map<SDL_Scancode, bool>::value_type(SDL_SCANCODE_V, false));
+	this->lastStatus.insert(std::map<SDL_Scancode, bool>::value_type(SDL_SCANCODE_W, false));
+	this->lastStatus.insert(std::map<SDL_Scancode, bool>::value_type(SDL_SCANCODE_X, false));
+	this->lastStatus.insert(std::map<SDL_Scancode, bool>::value_type(SDL_SCANCODE_Y, false));
+	this->lastStatus.insert(std::map<SDL_Scancode, bool>::value_type(SDL_SCANCODE_Z, false));
+
+	this->lastStatus.insert(std::map<SDL_Scancode, bool>::value_type(SDL_SCANCODE_LALT, false));
+	this->lastStatus.insert(std::map<SDL_Scancode, bool>::value_type(SDL_SCANCODE_LCTRL, false));
+
+	this->lastStatus.insert(std::map<SDL_Scancode, bool>::value_type(SDL_SCANCODE_RALT, false));
+	this->lastStatus.insert(std::map<SDL_Scancode, bool>::value_type(SDL_SCANCODE_RCTRL, false));
+
+	this->lastStatus.insert(std::map<SDL_Scancode, bool>::value_type(SDL_SCANCODE_SPACE, false));
+
+	this->lastStatus.insert(std::map<SDL_Scancode, bool>::value_type(SDL_SCANCODE_ESCAPE, false));
+
+	this->lastStatus.insert(std::map<SDL_Scancode, bool>::value_type(SDL_SCANCODE_TAB, false));
+	this->lastStatus.insert(std::map<SDL_Scancode, bool>::value_type(SDL_SCANCODE_CAPSLOCK, false));
+
+	this->lastStatus.insert(std::map<SDL_Scancode, bool>::value_type(SDL_SCANCODE_F1, false));
+	this->lastStatus.insert(std::map<SDL_Scancode, bool>::value_type(SDL_SCANCODE_F2, false));
+	this->lastStatus.insert(std::map<SDL_Scancode, bool>::value_type(SDL_SCANCODE_F3, false));
+	this->lastStatus.insert(std::map<SDL_Scancode, bool>::value_type(SDL_SCANCODE_F4, false));
+	this->lastStatus.insert(std::map<SDL_Scancode, bool>::value_type(SDL_SCANCODE_F5, false));
+	this->lastStatus.insert(std::map<SDL_Scancode, bool>::value_type(SDL_SCANCODE_F6, false));
+	this->lastStatus.insert(std::map<SDL_Scancode, bool>::value_type(SDL_SCANCODE_F7, false));
+	this->lastStatus.insert(std::map<SDL_Scancode, bool>::value_type(SDL_SCANCODE_F8, false));
+	this->lastStatus.insert(std::map<SDL_Scancode, bool>::value_type(SDL_SCANCODE_F9, false));
+	this->lastStatus.insert(std::map<SDL_Scancode, bool>::value_type(SDL_SCANCODE_F10, false));
+	this->lastStatus.insert(std::map<SDL_Scancode, bool>::value_type(SDL_SCANCODE_F11, false));
+	this->lastStatus.insert(std::map<SDL_Scancode, bool>::value_type(SDL_SCANCODE_F12, false));
+
+	this->repeat;
+
+	this->repeat.insert(std::map<SDL_Scancode, bool>::value_type(SDL_SCANCODE_0, false));
+	this->repeat.insert(std::map<SDL_Scancode, bool>::value_type(SDL_SCANCODE_1, false));
+	this->repeat.insert(std::map<SDL_Scancode, bool>::value_type(SDL_SCANCODE_2, false));
+	this->repeat.insert(std::map<SDL_Scancode, bool>::value_type(SDL_SCANCODE_3, false));
+	this->repeat.insert(std::map<SDL_Scancode, bool>::value_type(SDL_SCANCODE_4, false));
+	this->repeat.insert(std::map<SDL_Scancode, bool>::value_type(SDL_SCANCODE_5, false));
+	this->repeat.insert(std::map<SDL_Scancode, bool>::value_type(SDL_SCANCODE_6, false));
+	this->repeat.insert(std::map<SDL_Scancode, bool>::value_type(SDL_SCANCODE_7, false));
+	this->repeat.insert(std::map<SDL_Scancode, bool>::value_type(SDL_SCANCODE_8, false));
+	this->repeat.insert(std::map<SDL_Scancode, bool>::value_type(SDL_SCANCODE_9, false));
+
+	this->repeat.insert(std::map<SDL_Scancode, bool>::value_type(SDL_SCANCODE_A, false));
+	this->repeat.insert(std::map<SDL_Scancode, bool>::value_type(SDL_SCANCODE_B, false));
+	this->repeat.insert(std::map<SDL_Scancode, bool>::value_type(SDL_SCANCODE_C, false));
+	this->repeat.insert(std::map<SDL_Scancode, bool>::value_type(SDL_SCANCODE_D, false));
+	this->repeat.insert(std::map<SDL_Scancode, bool>::value_type(SDL_SCANCODE_E, false));
+	this->repeat.insert(std::map<SDL_Scancode, bool>::value_type(SDL_SCANCODE_F, false));
+	this->repeat.insert(std::map<SDL_Scancode, bool>::value_type(SDL_SCANCODE_G, false));
+	this->repeat.insert(std::map<SDL_Scancode, bool>::value_type(SDL_SCANCODE_H, false));
+	this->repeat.insert(std::map<SDL_Scancode, bool>::value_type(SDL_SCANCODE_I, false));
+	this->repeat.insert(std::map<SDL_Scancode, bool>::value_type(SDL_SCANCODE_J, false));
+	this->repeat.insert(std::map<SDL_Scancode, bool>::value_type(SDL_SCANCODE_K, false));
+	this->repeat.insert(std::map<SDL_Scancode, bool>::value_type(SDL_SCANCODE_L, false));
+	this->repeat.insert(std::map<SDL_Scancode, bool>::value_type(SDL_SCANCODE_M, false));
+	this->repeat.insert(std::map<SDL_Scancode, bool>::value_type(SDL_SCANCODE_N, false));
+	this->repeat.insert(std::map<SDL_Scancode, bool>::value_type(SDL_SCANCODE_O, false));
+	this->repeat.insert(std::map<SDL_Scancode, bool>::value_type(SDL_SCANCODE_P, false));
+	this->repeat.insert(std::map<SDL_Scancode, bool>::value_type(SDL_SCANCODE_Q, false));
+	this->repeat.insert(std::map<SDL_Scancode, bool>::value_type(SDL_SCANCODE_R, false));
+	this->repeat.insert(std::map<SDL_Scancode, bool>::value_type(SDL_SCANCODE_S, false));
+	this->repeat.insert(std::map<SDL_Scancode, bool>::value_type(SDL_SCANCODE_T, false));
+	this->repeat.insert(std::map<SDL_Scancode, bool>::value_type(SDL_SCANCODE_U, false));
+	this->repeat.insert(std::map<SDL_Scancode, bool>::value_type(SDL_SCANCODE_V, false));
+	this->repeat.insert(std::map<SDL_Scancode, bool>::value_type(SDL_SCANCODE_W, false));
+	this->repeat.insert(std::map<SDL_Scancode, bool>::value_type(SDL_SCANCODE_X, false));
+	this->repeat.insert(std::map<SDL_Scancode, bool>::value_type(SDL_SCANCODE_Y, false));
+	this->repeat.insert(std::map<SDL_Scancode, bool>::value_type(SDL_SCANCODE_Z, false));
+
+	this->repeat.insert(std::map<SDL_Scancode, bool>::value_type(SDL_SCANCODE_LALT, false));
+	this->repeat.insert(std::map<SDL_Scancode, bool>::value_type(SDL_SCANCODE_LCTRL, false));
+
+	this->repeat.insert(std::map<SDL_Scancode, bool>::value_type(SDL_SCANCODE_RALT, false));
+	this->repeat.insert(std::map<SDL_Scancode, bool>::value_type(SDL_SCANCODE_RCTRL, false));
+
+	this->repeat.insert(std::map<SDL_Scancode, bool>::value_type(SDL_SCANCODE_SPACE, false));
+
+	this->repeat.insert(std::map<SDL_Scancode, bool>::value_type(SDL_SCANCODE_ESCAPE, false));
+
+	this->repeat.insert(std::map<SDL_Scancode, bool>::value_type(SDL_SCANCODE_TAB, false));
+	this->repeat.insert(std::map<SDL_Scancode, bool>::value_type(SDL_SCANCODE_CAPSLOCK, false));
+
+	this->repeat.insert(std::map<SDL_Scancode, bool>::value_type(SDL_SCANCODE_F1, false));
+	this->repeat.insert(std::map<SDL_Scancode, bool>::value_type(SDL_SCANCODE_F2, false));
+	this->repeat.insert(std::map<SDL_Scancode, bool>::value_type(SDL_SCANCODE_F3, false));
+	this->repeat.insert(std::map<SDL_Scancode, bool>::value_type(SDL_SCANCODE_F4, false));
+	this->repeat.insert(std::map<SDL_Scancode, bool>::value_type(SDL_SCANCODE_F5, false));
+	this->repeat.insert(std::map<SDL_Scancode, bool>::value_type(SDL_SCANCODE_F6, false));
+	this->repeat.insert(std::map<SDL_Scancode, bool>::value_type(SDL_SCANCODE_F7, false));
+	this->repeat.insert(std::map<SDL_Scancode, bool>::value_type(SDL_SCANCODE_F8, false));
+	this->repeat.insert(std::map<SDL_Scancode, bool>::value_type(SDL_SCANCODE_F9, false));
+	this->repeat.insert(std::map<SDL_Scancode, bool>::value_type(SDL_SCANCODE_F10, false));
+	this->repeat.insert(std::map<SDL_Scancode, bool>::value_type(SDL_SCANCODE_F11, false));
+	this->repeat.insert(std::map<SDL_Scancode, bool>::value_type(SDL_SCANCODE_F12, false));
 	
 }
 
@@ -157,36 +287,24 @@ void	KeyController::checkState()
 
 	for (auto key : this->keys)
 	{
-		if (currentKeyState[key.first]) {
+		if (currentKeyState[key.first] && (this->repeat[key.first] || !this->lastStatus[key.first]))
+		{
 			this->keys[key.first] = true;
-			tempS = std::to_string(key.first);
 		}
-		else{
+		else
+		{
 			this->keys[key.first] = false;
-			
-			
 		}
-			
-	}
-
-	if (tempS != std::to_string(SDL_SCANCODE_SPACE) && wasPressed){
-		wasPressed = false;
+		this->lastStatus[key.first] = (currentKeyState[key.first]) ? true : false;
 	}
 
 	for (auto key : this->actions)
 	{
-		if (this->keys[key.first] && key.second != nullptr && !wasPressed){
-
-			if (this->keys[key.first] = SDL_SCANCODE_SPACE){
-				wasPressed = true;
-			}
-				
+		if (this->keys[key.first] && key.second != nullptr)
+		{		
 			key.second->execute();
-		}
-			
+		}	
 	}
-	
-	
 }
 
 void	KeyController::setGameInstance(GameInstance* instance)
@@ -224,5 +342,18 @@ void	KeyController::debugSetup()
 	this->actions[SDL_SCANCODE_D] = new MoveAction(this->gameInstance->getMap()->getPlayerCharacter(), this->gameInstance->getMap(), EAST);
 	this->actions[SDL_SCANCODE_A] = new MoveAction(this->gameInstance->getMap()->getPlayerCharacter(), this->gameInstance->getMap(), WEST);
 	this->actions[SDL_SCANCODE_SPACE] = new DamageAction(this->gameInstance->getMap()->getPlayerCharacter(),this->gameInstance->getMap());
-//	this->actions[SDL_SCANCODE_SPACE] = new CopyAction(this->gameInstance->getMap()->getPlayerCharacter(), new DamageAction(this->gameInstance->getMap()->getPlayerCharacter(),this->gameInstance->getMap()));
+	this->repeat[SDL_SCANCODE_W] = true;
+	this->repeat[SDL_SCANCODE_S] = true;
+	this->repeat[SDL_SCANCODE_A] = true;
+	this->repeat[SDL_SCANCODE_D] = true;
+}
+
+void	KeyController::setTextInputMode(bool inputMode)
+{
+	this->textInputMode = inputMode;
+}
+
+bool	KeyController::getTextInputMode()
+{
+	return this->textInputMode;
 }

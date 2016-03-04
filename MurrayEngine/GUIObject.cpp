@@ -32,3 +32,8 @@ TextureAsset*	GUIObject::getTexture()
 {
 	return this->texture;
 }
+
+void		GUIObject::setPosition(Position pos)
+{
+	this->position = pos;
+}

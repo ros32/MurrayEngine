@@ -16,6 +16,7 @@
     <ClInclude Include="AnimatedObject.h" />
     <ClInclude Include="Animation.h" />
     <ClInclude Include="Asset.h" />
+    <ClInclude Include="ChangeInputModeAction.h" />
     <ClInclude Include="CollisionEvent.h" />
     <ClInclude Include="Configuration.h" />
     <ClInclude Include="CopyAction.h" />
@@ -49,6 +50,7 @@
     <ClCompile Include="Action.cpp" />
     <ClCompile Include="AI.cpp" />
     <ClCompile Include="AnimatedObject.cpp" />
+    <ClCompile Include="ChangeInputModeAction.cpp" />
     <ClCompile Include="CollisionEvent.cpp" />
     <ClCompile Include="Configuration.cpp" />
     <ClCompile Include="CopyAction.cpp" />
