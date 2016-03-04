@@ -1,4 +1,3 @@
-#define _CRTDBG_MAP_ALLOC
 #include "CollisionEvent.h"
 
 CollisionEvent::CollisionEvent(Object* objectA, Object* objectB){

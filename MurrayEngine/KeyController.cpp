@@ -1,4 +1,3 @@
-#define _CRTDBG_MAP_ALLOC
 #include	"KeyController.h"
 
 KeyController::KeyController()

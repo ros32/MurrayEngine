@@ -1,4 +1,3 @@
-#define _CRTDBG_MAP_ALLOC
 #include "TextureAsset.h"
 
 TextureAsset::TextureAsset(SDL_Renderer* renderer, const char* filePath, unsigned int cellSize, unsigned int offset, SDL_Color colorKey) : 

@@ -1,4 +1,3 @@
-#define _CRTDBG_MAP_ALLOC
 #include "ProjectileObject.h"
 
 ProjectileObject::ProjectileObject(std::string id, Position currentPosition, Position targetPosition, std::shared_ptr<Animation> animation, double maxSpeed, double acceleration, int currentSpeed, Orientation orientation, bool isCollidable): 
