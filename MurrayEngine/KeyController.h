@@ -2,8 +2,6 @@
 #define	_KEY_CONTROLLER_H
 
 #include	<map>
-#include	<SDL.h>
-#include	"Action.h"
 #include	"GameInstance.h"
 #include	"DamageAction.h"
 #include	"ChangeInputModeAction.h"

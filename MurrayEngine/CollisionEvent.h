@@ -2,7 +2,6 @@
 #define COLLISION_EVENT_H
 
 #include	"Object.h"
-#include	"Texture.h"
 
 class CollisionEvent {
 

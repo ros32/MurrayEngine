@@ -8,11 +8,6 @@
 ///-------------------------------------------------------------------------------------------------
 #define		FRAME_AVG_HISTORY_SAMPLE			2
 
-#ifdef _WIN32
-#include <SDL.h>
-#elif __linux__
-#include <SDL2/SDL.h>
-#endif
 #include	<vector>
 #include	"Timer.h"
 

@@ -1,7 +1,6 @@
 #ifndef _GAME_INSTANCE_H
 #define	_GAME_INSTANCE_H
 
-#include	<memory>
 #include	"Factory.h"
 #include	"FrameLimiter.h"
 #include	"KeyController.h"

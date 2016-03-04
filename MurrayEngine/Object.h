@@ -2,15 +2,10 @@
 #define _GENERIC_OBJECT_H
 
 #include	<memory>
-#include	<math.h>
 #include	<algorithm>
-#include	<assert.h>
-#include	<string>
 #include	"Orientation.h"
 #include	"Position.h"
-#include	"TextureAsset.h"
 #include	"Timer.h"
-#include	"Physics.h"
 #include	"Action.h"
 #include	"Texture.h"
 

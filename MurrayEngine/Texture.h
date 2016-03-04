@@ -1,11 +1,6 @@
 #ifndef _TEXTURE_H
 #define	_TEXTURE_H
 
-#ifdef _WIN32
-#include <SDL.h>
-#elif __linux__
-#include <SDL2/SDL.h>
-#endif
 #include	"TextureAsset.h"
 
 struct Texture
