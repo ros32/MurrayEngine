@@ -26,7 +26,6 @@ void	DefaultAI::doNext()
 
 	//	Run if there is no active action or active action is completed
 	if (npc != nullptr && map != nullptr && 
-		(map->getPlayerCharacter() == nullptr || (map->getPlayerCharacter() != nullptr && map->getPlayerCharacter()->getId() != npc->getId())) &&
 		(npc->getAction() == nullptr || (npc->getAction() != nullptr && npc->getAction()->isCompleted() == true)))
 	{
 		this->move();
