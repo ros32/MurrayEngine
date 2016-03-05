@@ -27,22 +27,33 @@ NonPlayerCharacter::~NonPlayerCharacter()
 
 std::string NonPlayerCharacter::getId()
 {
-	return this->baseObject->getId();
+	if (this->baseObject != nullptr)
+		return this->baseObject->getId();
+	else
+		return "NO_BASE_OBJ";
 }
 
 void	NonPlayerCharacter::setId(std::string id)
 {
-	this->baseObject->setId(id);
+	if (this->baseObject != nullptr)
+		this->baseObject->setId(id);
 }
 
 Position NonPlayerCharacter::getCurrentPosition()
 {
-	return this->baseObject->getCurrentPosition();
+	if (this->baseObject != nullptr)
+		return this->baseObject->getCurrentPosition();
+	else
+		return{ 0, 0 };
 }
 
 
-std::shared_ptr<Animation> NonPlayerCharacter::getAnimation(std::string key){
-return this->baseObject->getAnimation(key);
+std::shared_ptr<Animation> NonPlayerCharacter::getAnimation(std::string key)
+{
+	if (this->baseObject != nullptr)
+		return this->baseObject->getAnimation(key);
+	else
+		return nullptr;
 }
 
 
@@ -50,135 +61,181 @@ return this->baseObject->getAnimation(key);
 
 void NonPlayerCharacter::setCurrentPosition(int x, int y)
 {
-	this->baseObject->setCurrentPosition(x, y);
+	if (this->baseObject != nullptr)
+		this->baseObject->setCurrentPosition(x, y);
 }
 
 void	NonPlayerCharacter::setCurrentPosition(Position pos)
 {
-	this->baseObject->setCurrentPosition(pos);
+	if (this->baseObject != nullptr)
+		this->baseObject->setCurrentPosition(pos);
 }
 
-Position NonPlayerCharacter::getTargetPosition(){
-
-	return this->baseObject->getTargetPosition();
+Position NonPlayerCharacter::getTargetPosition()
+{
+	if (this->baseObject != nullptr)
+		return this->baseObject->getTargetPosition();
+	else
+		return{ 0, 0 };
 }
 
 void NonPlayerCharacter::setTargetPosition(int x, int y)
 {
-	this->baseObject->setTargetPosition(x, y);
+	if (this->baseObject != nullptr)
+		this->baseObject->setTargetPosition(x, y);
 }
 
 void	NonPlayerCharacter::setTargetPosition(Position pos)
 {
-	this->baseObject->setTargetPosition(pos);
+	if (this->baseObject != nullptr)
+		this->baseObject->setTargetPosition(pos);
 }
 
 void NonPlayerCharacter::setOrientation(Orientation orientation)
 {
-	this->baseObject->setOrientation(orientation);
+	if (this->baseObject != nullptr)
+		this->baseObject->setOrientation(orientation);
 }
 
 Orientation NonPlayerCharacter::getOrientation()
 {
-	return this->baseObject->getOrientation();
+	if (this->baseObject != nullptr)
+		return this->baseObject->getOrientation();
+	else
+		return NONE;
 }
 
 double NonPlayerCharacter::getMaxSpeed()
 {
-	return this->baseObject->getMaxSpeed();
+	if (this->baseObject != nullptr)
+		return this->baseObject->getMaxSpeed();
+	else
+		return 0.0;
 }
 
 void	NonPlayerCharacter::setMaxSpeed(double speed)
 {
-	this->baseObject->setMaxSpeed(speed);
+	if (this->baseObject != nullptr)
+		this->baseObject->setMaxSpeed(speed);
 }
 
 bool NonPlayerCharacter::getIsCollidable()
 {
-	return this->baseObject->getIsCollidable();
+	if (this->baseObject != nullptr)
+		return this->baseObject->getIsCollidable();
+	else
+		return false;
 }
 
 void NonPlayerCharacter::reverseMove()
 {
-	this->baseObject->reverseMove();
+	if (this->baseObject != nullptr)
+		this->baseObject->reverseMove();
 }
 
 void NonPlayerCharacter::move()
 {
-	this->baseObject->move();
+	if (this->baseObject != nullptr)
+		this->baseObject->move();
 }
 
 bool NonPlayerCharacter::collideBox(Object* objectB)
 {
-	return this->baseObject->collideBox(objectB);
+	if (this->baseObject != nullptr)
+		return this->baseObject->collideBox(objectB);
+	else
+		return false;
 }
 
 bool NonPlayerCharacter::readAlpha(SDL_Surface* surface, int x, int y)
 {
-	return this->baseObject->readAlpha(surface, x, y);
+	if (this->baseObject != nullptr)
+		return this->baseObject->readAlpha(surface, x, y);
+	else
+		return false;
 }
 
 bool NonPlayerCharacter::collidePixel(Object* objectB)
 {
-	return this->baseObject->collidePixel(objectB);
+	if (this->baseObject != nullptr)
+		return this->baseObject->collidePixel(objectB);
+	else
+		return false;
 }
 
 std::shared_ptr<Texture>		NonPlayerCharacter::getTexture()
 {
-	return this->baseObject->getTexture();
+	if (this->baseObject != nullptr)
+		return this->baseObject->getTexture();
+	return nullptr;
 }
 
 std::shared_ptr<Texture>		NonPlayerCharacter::getCollisionTexture()
 {
-	return this->baseObject->getCollisionTexture();
+	if (this->baseObject != nullptr)
+		return this->baseObject->getCollisionTexture();
+	return nullptr;
 }
 
 void NonPlayerCharacter::render(int x, int y)
 {
-	this->baseObject->render(x, y);
+	if (this->baseObject != nullptr)
+		this->baseObject->render(x, y);
 }
 
 int		NonPlayerCharacter::getCurrentSpeed()
 {
-	return this->baseObject->getCurrentSpeed();
+	if (this->baseObject != nullptr)
+		return this->baseObject->getCurrentSpeed();
+	return 0;
 }
 
 void   NonPlayerCharacter::jump()
 {
-	this->baseObject->jump();
+	if (this->baseObject != nullptr)
+		this->baseObject->jump();
 }
 void   NonPlayerCharacter::doDamage()
 {
-	this->baseObject->doDamage();
+	if (this->baseObject != nullptr)
+		this->baseObject->doDamage();
 }
 void  NonPlayerCharacter::takeDamage()
 {
-	this->baseObject->takeDamage();
+	if (this->baseObject != nullptr)
+		this->baseObject->takeDamage();
 }
 
 void	NonPlayerCharacter::setTexture(std::shared_ptr<Texture> texture)
 {
-	this->baseObject->setTexture(texture);
+	if (this->baseObject != nullptr)
+		this->baseObject->setTexture(texture);
 }
 
 Uint32	NonPlayerCharacter::getLastRender()
 {
-	return this->baseObject->getLastRender();
+	if (this->baseObject != nullptr)
+		return this->baseObject->getLastRender();
+	return 0;
 }
 
 Uint32	NonPlayerCharacter::getLastMove()
 {
-	return this->baseObject->getLastMove();
+	if (this->baseObject != nullptr)
+		return this->baseObject->getLastMove();
+	return 0;
 }
 
 void	NonPlayerCharacter::setLastMove(Uint32 lastMove)
 {
-	this->baseObject->setLastMove(lastMove);
+	if (this->baseObject != nullptr)
+		this->baseObject->setLastMove(lastMove);
 }
 
 void	NonPlayerCharacter::setLastRender(Uint32 lastRender)
 {
-	this->baseObject->setLastRender(lastRender);
+	if (this->baseObject != nullptr)
+		this->baseObject->setLastRender(lastRender);
 }
 
 void		NonPlayerCharacter::addAction(Action* action)
@@ -188,22 +245,27 @@ void		NonPlayerCharacter::addAction(Action* action)
 
 std::shared_ptr<Animation>	NonPlayerCharacter::getAnimation()
 {
-	return this->baseObject->getAnimation();
+	if (this->baseObject != nullptr)
+		return this->baseObject->getAnimation();
+	return nullptr;
 }
 
 void		NonPlayerCharacter::setAnimation(std::shared_ptr<Animation> animation)
 {
-	this->baseObject->setAnimation(animation);
+	if (this->baseObject != nullptr)
+		this->baseObject->setAnimation(animation);
 }
 
 void		NonPlayerCharacter::addAnimation(std::string key, std::shared_ptr<Animation> animation)
 {
-	this->baseObject->addAnimation(key, animation);
+	if (this->baseObject != nullptr)
+		this->baseObject->addAnimation(key, animation);
 }
 
 void		NonPlayerCharacter::changeAnimation(std::string key)
 {
-	this->baseObject->changeAnimation(key);
+	if (this->baseObject != nullptr)
+		this->baseObject->changeAnimation(key);
 }
 
 AnimatedObject*		NonPlayerCharacter::getBaseObject()
