@@ -1,10 +1,5 @@
 #include "AnimatedObject.h"
 
-AnimatedObject::AnimatedObject() : Object()
-{
-
-}
-
 AnimatedObject::AnimatedObject(std::string id, Position currentPosition, std::shared_ptr<Animation> animation, double maxSpeed, double acceleration, int currentSpeed, Orientation orientation, bool isCollidable) :
 	Object(id, currentPosition, nullptr, maxSpeed, acceleration, currentSpeed, orientation, isCollidable)
 {

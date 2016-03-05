@@ -1,10 +1,5 @@
 #include "Object.h"
 
-Object::Object()
-{
-
-}
-
 Object::Object(std::string id, Position currentPosition, std::shared_ptr<Texture> texture, double maxSpeed, double acceleration, int currentSpeed, Orientation orientation, bool isCollidable)
 {
 	this->id = id;
