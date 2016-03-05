@@ -45,7 +45,7 @@ TextureAsset::TextureAsset(SDL_Renderer* renderer, const char* filePath, unsigne
 
 	std::string output = "TextureAsset created with font: \"" + std::string(filePath) + "\", size: " + std::to_string(fontSize) + ", text: \"" + text + "\", color: { " + 
 		std::to_string(color.a) + ", " + std::to_string(color.b) + ", " + std::to_string(color.g) + ", " + std::to_string(color.r) + " }.";
-	SDL_LogDebug(SDL_LOG_CATEGORY_VIDEO, output.c_str());
+	//SDL_LogDebug(SDL_LOG_CATEGORY_VIDEO, output.c_str());
 }
 
 TextureAsset::~TextureAsset()

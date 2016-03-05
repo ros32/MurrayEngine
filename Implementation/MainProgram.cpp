@@ -19,7 +19,7 @@ int main(int, char** argv)
 	TTF_Init();
 
 	//	Set logging priority. Use SDL_LOG_PRIORITY_CRITICAL for release
-	SDL_LogSetAllPriority(SDL_LOG_PRIORITY_INFO);
+	SDL_LogSetAllPriority(SDL_LOG_PRIORITY_DEBUG);
 
 	//	Create main window, get window height and width from configuration or use default if not found
 	SDL_Window* mainWindow = SDL_CreateWindow(
