@@ -21,6 +21,7 @@ DefaultAI::~DefaultAI()
 
 void	DefaultAI::doNext()
 {
+	/*
 	NonPlayerCharacter*				npc = AI::getSourceNPC();
 	Map*							map = AI::getMap();
 
@@ -30,7 +31,7 @@ void	DefaultAI::doNext()
 	{
 		this->move();
 	}
-
+	*/
 
 }
 
