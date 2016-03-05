@@ -100,3 +100,8 @@ std::shared_ptr<Texture>	AnimatedObject::getCollisionTexture()
 		this->collisionTexture = this->animation->textures[0];
 	return this->collisionTexture;
 }
+
+std::string					AnimatedObject::getId()
+{
+	return Object::getId();
+}

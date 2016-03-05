@@ -110,6 +110,8 @@ public:
 	///-------------------------------------------------------------------------------------------------
 	std::shared_ptr<Texture>	getCollisionTexture();
 
+	virtual std::string getId();
+
 private:
 	/// <summary>	The animation map. </summary>
 	std::map<std::string, std::shared_ptr<Animation>> animationMap;
