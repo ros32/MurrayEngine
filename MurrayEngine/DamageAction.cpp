@@ -49,8 +49,8 @@ void DamageAction::execute()
 
 		animation = source->getAnimation("Projectile");
 
-		ProjectileObject* projectile = new ProjectileObject("Projectile", startPosition, targetPosition, animation, 1.0, 1.0, 15, orientation, true);
-		NonPlayerCharacter* pr = new NonPlayerCharacter(projectile);
+		NonPlayerCharacter* pr  = new NonPlayerCharacter("Projectile", startPosition, animation, 1.0, 1.0, 15, orientation, true);
+		pr->setTargetPosition(targetPosition);
 		this->map->addObject(pr);
 	
 		pr->addAction(new MoveAction(pr, map, orientation, 50));

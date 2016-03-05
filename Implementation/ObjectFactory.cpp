@@ -44,7 +44,6 @@ NonPlayerCharacter*	ObjectFactory::createNonPlayerCharacter(std::string type, st
 	std::vector < std::shared_ptr<Texture> >  deathVector;
 	std::vector < std::shared_ptr<Texture> >  projectileVector;
 
-	AnimatedObject* animatedObject = nullptr;
 	NonPlayerCharacter* npc = nullptr;
 
 	if (type == "Ghost")
@@ -77,14 +76,12 @@ NonPlayerCharacter*	ObjectFactory::createNonPlayerCharacter(std::string type, st
 		eastVector.push_back(std::make_shared<Texture>(this->getGameInstance()->getTextureAsset("EpicSpriteSheet"), "GhostRight3"));
 		eastVector.push_back(std::make_shared<Texture>(this->getGameInstance()->getTextureAsset("EpicSpriteSheet"), "GhostRight2"));
 
-		animatedObject = new AnimatedObject(id, pos, std::make_shared<Animation>(spawnVector, 200), 1.0, 1.0, 2, direction, true);
-		animatedObject->addAnimation("Spawn", std::make_shared<Animation>(spawnVector, 200));
-		animatedObject->addAnimation("North", std::make_shared<Animation>(northVector, 200));
-		animatedObject->addAnimation("South", std::make_shared<Animation>(southVector, 200));
-		animatedObject->addAnimation("East", std::make_shared<Animation>(eastVector, 200));
-		animatedObject->addAnimation("West", std::make_shared<Animation>(westVector, 200));
-
-		npc = new NonPlayerCharacter(animatedObject);
+		npc = new NonPlayerCharacter(id, pos, std::make_shared<Animation>(spawnVector, 200), 1.0, 1.0, 2, direction, true);
+		npc->addAnimation("Spawn", std::make_shared<Animation>(spawnVector, 200));
+		npc->addAnimation("North", std::make_shared<Animation>(northVector, 200));
+		npc->addAnimation("South", std::make_shared<Animation>(southVector, 200));
+		npc->addAnimation("East", std::make_shared<Animation>(eastVector, 200));
+		npc->addAnimation("West", std::make_shared<Animation>(westVector, 200));
 
 	}
 	else if (type == "Evolved")
@@ -136,12 +133,12 @@ NonPlayerCharacter*	ObjectFactory::createNonPlayerCharacter(std::string type, st
 		eastVector.push_back(std::make_shared<Texture>(this->getGameInstance()->getTextureAsset("EpicSpriteSheet"), "MouthRight8"));
 		eastVector.push_back(std::make_shared<Texture>(this->getGameInstance()->getTextureAsset("EpicSpriteSheet"), "MouthRight2"));
 
-		animatedObject = new AnimatedObject(id, pos, std::make_shared<Animation>(spawnVector, 200), 1.0, 1.0, 4, direction, true);
-		animatedObject->addAnimation("Spawn", std::make_shared<Animation>(spawnVector, 200));
-		animatedObject->addAnimation("North", std::make_shared<Animation>(northVector, 200));
-		animatedObject->addAnimation("South", std::make_shared<Animation>(southVector, 200));
-		animatedObject->addAnimation("East", std::make_shared<Animation>(eastVector, 200));
-		animatedObject->addAnimation("West", std::make_shared<Animation>(westVector, 200));
+		npc = new NonPlayerCharacter(id, pos, std::make_shared<Animation>(spawnVector, 200), 1.0, 1.0, 4, direction, true);
+		npc->addAnimation("Spawn", std::make_shared<Animation>(spawnVector, 200));
+		npc->addAnimation("North", std::make_shared<Animation>(northVector, 200));
+		npc->addAnimation("South", std::make_shared<Animation>(southVector, 200));
+		npc->addAnimation("East", std::make_shared<Animation>(eastVector, 200));
+		npc->addAnimation("West", std::make_shared<Animation>(westVector, 200));
 
 	}
 	else if (type == "Witch")
@@ -244,14 +241,14 @@ NonPlayerCharacter*	ObjectFactory::createNonPlayerCharacter(std::string type, st
 		projectileVector.push_back(std::make_shared<Texture>(this->getGameInstance()->getTextureAsset("ProjectileSheet"), "BlueBall"));
 		projectileVector.push_back(std::make_shared<Texture>(this->getGameInstance()->getTextureAsset("ProjectileSheet"), "GreenBall"));
 
-		animatedObject = new AnimatedObject(id, pos, std::make_shared<Animation>(spawnVector, 200), 1.0, 1.0, 0, direction, true);
-		animatedObject->addAnimation("Spawn", std::make_shared<Animation>(spawnVector, 200));
-		animatedObject->addAnimation("North", std::make_shared<Animation>(northVector, 200));
-		animatedObject->addAnimation("South", std::make_shared<Animation>(southVector, 200));
-		animatedObject->addAnimation("East", std::make_shared<Animation>(eastVector, 200));
-		animatedObject->addAnimation("West", std::make_shared<Animation>(westVector, 200));
-		animatedObject->addAnimation("Inactive", std::make_shared<Animation>(inactiveVector, 200));
-		animatedObject->addAnimation("Projectile", std::make_shared<Animation>(projectileVector, 200));
+		npc = new NonPlayerCharacter(id, pos, std::make_shared<Animation>(spawnVector, 200), 1.0, 1.0, 0, direction, true);
+		npc->addAnimation("Spawn", std::make_shared<Animation>(spawnVector, 200));
+		npc->addAnimation("North", std::make_shared<Animation>(northVector, 200));
+		npc->addAnimation("South", std::make_shared<Animation>(southVector, 200));
+		npc->addAnimation("East", std::make_shared<Animation>(eastVector, 200));
+		npc->addAnimation("West", std::make_shared<Animation>(westVector, 200));
+		npc->addAnimation("Inactive", std::make_shared<Animation>(inactiveVector, 200));
+		npc->addAnimation("Projectile", std::make_shared<Animation>(projectileVector, 200));
 
 
 	}
@@ -282,16 +279,14 @@ NonPlayerCharacter*	ObjectFactory::createNonPlayerCharacter(std::string type, st
 		projectileVector.push_back(std::make_shared<Texture>(this->getGameInstance()->getTextureAsset("ProjectileSheet"), "BlueBall"));
 		projectileVector.push_back(std::make_shared<Texture>(this->getGameInstance()->getTextureAsset("ProjectileSheet"), "GreenBall"));
 
-		animatedObject = new AnimatedObject(id, pos, std::make_shared<Animation>(southVector, 200), 1.0, 1.0, 3, direction, true);
-		animatedObject->addAnimation("North", std::make_shared<Animation>(northVector, 200));
-		animatedObject->addAnimation("South", std::make_shared<Animation>(southVector, 200));
-		animatedObject->addAnimation("East", std::make_shared<Animation>(eastVector, 200));
-		animatedObject->addAnimation("West", std::make_shared<Animation>(westVector, 200));
-		animatedObject->addAnimation("Projectile", std::make_shared<Animation>(projectileVector, 200));
+		npc = new NonPlayerCharacter(id, pos, std::make_shared<Animation>(southVector, 200), 1.0, 1.0, 3, direction, true);
+		npc->addAnimation("North", std::make_shared<Animation>(northVector, 200));
+		npc->addAnimation("South", std::make_shared<Animation>(southVector, 200));
+		npc->addAnimation("East", std::make_shared<Animation>(eastVector, 200));
+		npc->addAnimation("West", std::make_shared<Animation>(westVector, 200));
+		npc->addAnimation("Projectile", std::make_shared<Animation>(projectileVector, 200));
 	}
 
-	if (animatedObject != nullptr)
-		npc = new NonPlayerCharacter(animatedObject);
 	return npc;
 
 }
