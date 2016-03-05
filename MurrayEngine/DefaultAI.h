@@ -30,7 +30,7 @@ public:
 	/// <param name="npc">	[in,out] If non-null, the npc. </param>
 	/// <param name="map">	[in,out] If non-null, the map. </param>
 	///-------------------------------------------------------------------------------------------------
-	DefaultAI(Object* npc, Map* map);
+	DefaultAI(NonPlayerCharacter* npc, Map* map);
 
 	///-------------------------------------------------------------------------------------------------
 	/// <summary>	Destructor. </summary>
@@ -66,7 +66,7 @@ private:
 	///
 	/// <returns>	The opposite direction. </returns>
 	///-------------------------------------------------------------------------------------------------
-	Orientation					getOppositeDirection(Orientation direction);
+	Orientation		getOppositeDirection(Orientation direction);
 
 	/// <summary>	The current action. </summary>
 	Action*		currentAction;

@@ -8,7 +8,7 @@ class WitchAI : public AI{
 
 public:
 	WitchAI();
-	WitchAI(Object* npc, Map* map);
+	WitchAI(NonPlayerCharacter* npc, Map* map);
 	~WitchAI();
 
 	void	doNext();
@@ -17,9 +17,6 @@ private:
 
 	Position playerPosition;
 	Position bossPosition;
-
-	Object*	npc;
-	Map*	map;
 
 	int bossHeight;
 	int bossWidth;

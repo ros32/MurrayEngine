@@ -4,7 +4,7 @@ WitchAI::WitchAI() : AI() {
 
 }
 
-WitchAI::WitchAI(Object* npc, Map* map) : AI(npc, map){
+WitchAI::WitchAI(NonPlayerCharacter* npc, Map* map) : AI(npc, map){
 
 }
 WitchAI::~WitchAI(){
@@ -13,8 +13,8 @@ WitchAI::~WitchAI(){
 
 void WitchAI::doNext(){
 
-	npc = AI::getSourceNPC();
-	map = AI::getMap();
+	NonPlayerCharacter* npc =	AI::getSourceNPC();
+	Map* map =					AI::getMap();
 
 	if (npc != nullptr && map != nullptr && map->getPlayerCharacter() != nullptr &&
 		(npc->getAction() == nullptr || (npc->getAction() != nullptr && npc->getAction()->isCompleted() == true)))
@@ -34,6 +34,9 @@ void WitchAI::doNext(){
 }
 
 void WitchAI::lookForPlayer(){
+
+	NonPlayerCharacter* npc = AI::getSourceNPC();
+	Map* map = AI::getMap();
 
 	bossPosition = npc->getCurrentPosition();
 	bossHeight = npc->getTexture()->asset->getHeight();

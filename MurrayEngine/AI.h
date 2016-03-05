@@ -2,6 +2,9 @@
 #define	_AI_H
 
 #include	"Map.h"
+#include	"NonPlayerCharacter.h"
+
+class NonPlayerCharacter;
 
 ///-------------------------------------------------------------------------------------------------
 /// <summary> An AI (or Artificial Intelligence) is the decision-making interface for a 
@@ -31,7 +34,7 @@ public:
 	/// <param name="npc">	[in,out] If non-null, the npc. </param>
 	/// <param name="map">	[in,out] If non-null, the map. </param>
 	///-------------------------------------------------------------------------------------------------
-	AI(Object* npc, Map* map);
+	AI(NonPlayerCharacter* npc, Map* map);
 
 	///-------------------------------------------------------------------------------------------------
 	/// <summary>	Destructor. </summary>
@@ -54,7 +57,7 @@ public:
 	///
 	/// <param name="npc">	[in,out] If non-null, the npc. </param>
 	///-------------------------------------------------------------------------------------------------
-	void				setSourceNPC(Object* npc);
+	void				setSourceNPC(NonPlayerCharacter* npc);
 
 	///-------------------------------------------------------------------------------------------------
 	/// <summary>	Gets source npc. </summary>
@@ -63,7 +66,7 @@ public:
 	///
 	/// <returns>	null if it fails, else the source npc. </returns>
 	///-------------------------------------------------------------------------------------------------
-	Object*				getSourceNPC();
+	NonPlayerCharacter*				getSourceNPC();
 
 	///-------------------------------------------------------------------------------------------------
 	/// <summary>	Sets a map. </summary>
@@ -86,7 +89,7 @@ public:
 private:
 
 	/// <summary>	The npc. </summary>
-	Object*				npc;
+	NonPlayerCharacter*				npc;
 
 	/// <summary>	The map. </summary>
 	Map*				map;
