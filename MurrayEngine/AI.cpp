@@ -17,14 +17,6 @@ AI::~AI()
 
 }
 
-void	AI::doNext()
-{
-	if (npc != nullptr)
-	{
-		//	Let implementation handle this logic
-	}
-}
-
 NonPlayerCharacter*	AI::getSourceNPC()
 {
 	return this->npc;
