@@ -35,7 +35,7 @@ std::shared_ptr<Animation> AnimatedObject::getAnimation(std::string key)
 		std::string errorMessage = "A value for key \"" + key + "\" does not exist";
 		SDL_LogWarn(SDL_LOG_CATEGORY_APPLICATION, errorMessage.c_str());
 	}
-
+	return nullptr;
 }
 
 void		AnimatedObject::setAnimation(std::shared_ptr<Animation> animation)

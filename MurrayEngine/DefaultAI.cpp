@@ -228,6 +228,7 @@ bool		DefaultAI::canSeePlayer()
 		//	Move back NPC to original position
 		npc->setCurrentPosition(currentPosition);
 	}
+	return false;
 }
 
 std::vector<Orientation>	DefaultAI::getValidDirections()

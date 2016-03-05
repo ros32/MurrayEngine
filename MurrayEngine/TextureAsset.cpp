@@ -113,7 +113,7 @@ void			TextureAsset::unload()
 
 	//	Log to debuglog
 	std::string output = "TextureAsset \"" + std::string(this->filePath) + "\" was unloaded";
-	SDL_LogDebug(SDL_LOG_CATEGORY_VIDEO, output.c_str());
+	//SDL_LogDebug(SDL_LOG_CATEGORY_VIDEO, output.c_str());
 }
 
 SDL_Texture*	TextureAsset::getTexture()
