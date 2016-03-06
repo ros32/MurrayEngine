@@ -2,7 +2,7 @@
 
 ObjectFactory::ObjectFactory()
 {
-
+	this->counter = 0;
 }
 ObjectFactory::~ObjectFactory()
 {
