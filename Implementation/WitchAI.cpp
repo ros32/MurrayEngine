@@ -12,7 +12,7 @@ WitchAI::~WitchAI(){
 }
 
 void WitchAI::doNext(){
-	/*
+
 	NonPlayerCharacter* npc =	AI::getSourceNPC();
 	Map* map =					AI::getMap();
 
@@ -31,7 +31,7 @@ void WitchAI::doNext(){
 			lookForPlayer();
 		}
 	}
-	*/
+
 }
 
 void WitchAI::lookForPlayer(){
