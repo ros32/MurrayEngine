@@ -1,7 +1,14 @@
 #include	"Tile.h"
 
-Tile::Tile(Position currentPosition, std::shared_ptr<Texture> texture, Orientation orientation, bool isCollidable, bool isPassable) : 
-	Object("tile", currentPosition, texture, 0.0, 0.0, 0, orientation, isCollidable)
+int	Tile::counter = 0;
+
+std::string	Tile::getNextId()
+{
+	return "Tile" + std::to_string(Tile::counter++);
+}
+
+Tile::Tile(Position currentPosition, std::shared_ptr<Texture> texture, Orientation orientation, bool isCollidable, bool isPassable) :
+Object(Tile::getNextId(), currentPosition, texture, 0.0, 0.0, 0, orientation, isCollidable)
 {
 
 }

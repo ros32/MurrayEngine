@@ -16,6 +16,8 @@ public:
 
 private:
 
+	static int counter;
+	static std::string getNextId();
 
 
 };
