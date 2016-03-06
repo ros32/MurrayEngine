@@ -4,6 +4,7 @@ NonPlayerCharacter::NonPlayerCharacter(std::string id, Position currentPosition,
 	AnimatedObject(id, currentPosition, animation, maxSpeed, acceleration, currentSpeed, orientation, isCollidable)
 {
 	this->actionQueue;
+	this->ai = nullptr;
 }
 
 
