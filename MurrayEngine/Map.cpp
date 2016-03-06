@@ -11,6 +11,7 @@ Map::Map()
 	this->passableMap;
 	this->tileGrid;
 	this->gridSize = DEFAULT_GRID_SIZE;
+	this->playerCharacter = nullptr;
 
 }
 
@@ -24,6 +25,7 @@ Map::Map(SDL_Window* window, SDL_Renderer* renderer)
 	this->passableMap;
 	this->tileGrid;
 	this->gridSize = DEFAULT_GRID_SIZE;
+	this->playerCharacter = nullptr;
 	
 }
 
