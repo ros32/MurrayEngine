@@ -1,19 +1,20 @@
-#OBJS specifies which files to compile as part of the project 
-OBJS = *.h *.cpp 
+SCRCS = *.cpp
+OBJS = $(SCRCS:.cpp=.o)
+CC = g++
+DEBUG = -g
+CFLAGS = -c -std=c++11 $(DEBUG)
+LFLAGS = -c -std=c++11 $(DEBUG)
+OUT=../lib/libmurray.a
 
-#CC specifies which compiler we're using 
-CC = g++ 
+default: all $(OUT)
 
-#COMPILER_FLAGS specifies the additional compilation options we're using 
-# -w suppresses all warnings 
-COMPILER_FLAGS = -w -std=gnu++11
+all:
+	$(CC) $(LFLAGS) $(SCRCS)
 
-#LINKER_FLAGS specifies the libraries we're linking against 
-LINKER_FLAGS = -L. -lSDL2 -lSDL2_image -lSDL2_ttf
+$(OUT) :
+	ar rcs $(OUT) $(OBJS)
 
-#OBJ_NAME specifies the name of our exectuable 
-OBJ_NAME = Test 
+clean:
+	rm -f *.o $(OUT)
 
-#This is the target that compiles our executable 
-all : $(OBJS) 
-	$(CC) $(OBJS) $(COMPILER_FLAGS) $(LINKER_FLAGS) -o $(OBJ_NAME)
+
