@@ -85,8 +85,6 @@ void		AnimatedObject::render(int x, int y)
 		Object::render(x, y);
 		this->setLastRender(lastRender);
 	}
-
-	
 }
 
 std::shared_ptr<Texture>	AnimatedObject::getCollisionTexture()

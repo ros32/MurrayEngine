@@ -99,6 +99,12 @@
     <ClInclude Include="ChangeInputModeAction.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="CollisionAction.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DefaultCollisionAction.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Timer.cpp">
@@ -159,6 +165,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="ChangeInputModeAction.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CollisionAction.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DefaultCollisionAction.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

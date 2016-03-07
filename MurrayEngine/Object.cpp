@@ -18,6 +18,7 @@ Object::Object(std::string id, Position currentPosition, std::shared_ptr<Texture
 	this->lastRender = 0;
 	this->lastMove = 0;
 	this->collisionEvent;
+	this->collisionAction = nullptr;
 
 }
 
@@ -393,7 +394,7 @@ void	Object::changeAnimation(std::string key){
 
 void	Object::doAction()
 {
-
+	
 }
 
 Action*	Object::getAction()
@@ -414,3 +415,13 @@ std::shared_ptr<Animation> Object::getAnimation(std::string key){
 void Object::addAnimation(std::string key, std::shared_ptr<Animation> animation){
 
 }
+void Object::setCollisionAction(CollisionAction* collisionAction){
+	this->collisionAction = collisionAction;
+
+}
+void Object::doCollisionAction(Object* obj){
+
+
+}
+
+

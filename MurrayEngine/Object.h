@@ -8,7 +8,9 @@
 #include	"Timer.h"
 #include	"Action.h"
 #include	"Texture.h"
+#include	"DefaultCollisionAction.h"
 
+class CollisionAction;
 class CollisionEvent;
 struct Animation;
 
@@ -89,6 +91,9 @@ public:
 
 	virtual void	addAnimation(std::string key, std::shared_ptr<Animation> animation);
 
+	virtual void	setCollisionAction(CollisionAction* collisionAction);
+	virtual void	doCollisionAction(Object* obj);
+
 protected:
 
 	Timer			timer;
@@ -139,6 +144,7 @@ private:
 	float			mass;
 
 	CollisionEvent* collisionEvent;
+	CollisionAction* collisionAction;
 	
 };
 

@@ -316,7 +316,7 @@ void Map::move()
 	}
 }
 	
-Camera*		Map::getCamera()
+Camera*	Map::getCamera()
 {
 	return this->camera;
 }
@@ -326,22 +326,22 @@ Object*	Map::getPlayerCharacter()
 	return this->playerCharacter;
 }
 
-void			Map::setPlayerCharacter(Object* playerCharacter)
+void Map::setPlayerCharacter(Object* playerCharacter)
 {
 	this->playerCharacter = playerCharacter;
 }
 
-int				Map::getTileSize()
+int	Map::getTileSize()
 {
 	return this->tileSize;
 }
 
-void			Map::setTileSize(int tileSize)
+void Map::setTileSize(int tileSize)
 {
 	this->tileSize = tileSize;
 }
 
-void		Map::calculateMapMaxSize(std::vector<Tile*> tiles)
+void Map::calculateMapMaxSize(std::vector<Tile*> tiles)
 {
 	int maxX = 0;
 	int maxY = 0;
@@ -355,18 +355,16 @@ void		Map::calculateMapMaxSize(std::vector<Tile*> tiles)
 	this->mapMaxSize = { maxX, maxY };
 }
 
-void			Map::doActionQueue()
+void Map::doActionQueue()
 {
 	for (auto object : this->objects)
 	{
 		if (object != nullptr)
 			object->doAction();
 	}
-
-
 }
 
-void			Map::generateMaps()
+void Map::generateMaps()
 {
 	Position maxSize = this->getMapMaxSize();
 	int sizeX = this->getTileSize();
@@ -384,7 +382,7 @@ void			Map::generateMaps()
 	}
 }
 
-bool			Map::getCollision(Position posA, Position posB)
+bool Map::getCollision(Position posA, Position posB)
 {
 	Position maxSize = this->getMapMaxSize();
 	int		tileSize = this->getTileSize();
@@ -520,6 +518,7 @@ Position	Map::tryMove(Object* object, Position targetPosition, bool onlyCheckCol
 						otherObject->getIsCollidable() && object->collidePixel(otherObject))
 					{
 						collision = true;
+						object->doCollisionAction(otherObject);
 						break;
 					}
 				}

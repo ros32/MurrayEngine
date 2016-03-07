@@ -5,6 +5,9 @@
 #include	"Factory.h"
 #include	"DefaultAI.h"
 #include	"WitchAI.h"
+#include	"ExtendedCollisionAction.h"
+
+class ExtendedCollisionAction;
 
 class GameInstance;
 class ObjectFactory: public Factory

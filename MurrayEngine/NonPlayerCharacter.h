@@ -4,7 +4,9 @@
 #include	<queue>
 #include	"AnimatedObject.h"
 #include	"AI.h"
+#include    "DefaultCollisionAction.h"
 
+class CollisionAction;
 class AI;
 
 class NonPlayerCharacter : public AnimatedObject
@@ -22,6 +24,10 @@ public:
 
 	virtual bool actionExists();
 
+	virtual void setCollisionAction(CollisionAction* collisionAction);
+
+	virtual void doCollisionAction(NonPlayerCharacter* obj);
+
 protected:
 
 	
@@ -31,6 +37,8 @@ private:
 	AI*								ai;
 
 	std::queue<Action*>	actionQueue;
+
+	CollisionAction* collisionAction;
 
 };
 

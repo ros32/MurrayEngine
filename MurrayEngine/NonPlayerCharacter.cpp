@@ -70,3 +70,17 @@ bool NonPlayerCharacter::actionExists()
 		return true;
 	return false;
 }
+
+void NonPlayerCharacter::setCollisionAction(CollisionAction* collisionAction){
+	this->collisionAction = collisionAction;
+}
+
+void NonPlayerCharacter::doCollisionAction(NonPlayerCharacter* obj){
+
+	if (this->collisionAction == nullptr){
+
+		this->collisionAction = new DefaultCollisionAction(this);
+	}
+
+	this->collisionAction->execute(obj);
+}

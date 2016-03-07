@@ -299,6 +299,7 @@ void	ObjectFactory::createPlayer(Map* map, Orientation direction, Position pos)
 	{
 		map->addObject(player);
 		map->setPlayerCharacter(player);
+		player->setCollisionAction(new ExtendedCollisionAction(player));
 
 		std::string out = "A player character \"" + playerName + "\" was added to the map";
 		SDL_LogInfo(SDL_LOG_CATEGORY_APPLICATION, out.c_str());

@@ -17,10 +17,12 @@
     <ClInclude Include="Animation.h" />
     <ClInclude Include="Asset.h" />
     <ClInclude Include="ChangeInputModeAction.h" />
+    <ClInclude Include="CollisionAction.h" />
     <ClInclude Include="CollisionEvent.h" />
     <ClInclude Include="Configuration.h" />
     <ClInclude Include="DamageAction.h" />
     <ClInclude Include="DefaultAI.h" />
+    <ClInclude Include="DefaultCollisionAction.h" />
     <ClInclude Include="Factory.h" />
     <ClInclude Include="FrameLimiter.h" />
     <ClInclude Include="GameInstance.h" />
@@ -45,10 +47,12 @@
     <ClCompile Include="AI.cpp" />
     <ClCompile Include="AnimatedObject.cpp" />
     <ClCompile Include="ChangeInputModeAction.cpp" />
+    <ClCompile Include="CollisionAction.cpp" />
     <ClCompile Include="CollisionEvent.cpp" />
     <ClCompile Include="Configuration.cpp" />
     <ClCompile Include="DamageAction.cpp" />
     <ClCompile Include="DefaultAI.cpp" />
+    <ClCompile Include="DefaultCollisionAction.cpp" />
     <ClCompile Include="Factory.cpp" />
     <ClCompile Include="FrameLimiter.cpp" />
     <ClCompile Include="GameInstance.cpp" />

@@ -79,6 +79,7 @@ xcopy /Y "$(SolutionDir)lib\SDL2_ttf-2.0.12\lib\x86\*.dll" "$(OutDir)*.dll"</Com
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="ExtendedCollisionAction.cpp" />
     <ClCompile Include="MainProgram.cpp" />
     <ClCompile Include="ObjectFactory.cpp" />
     <ClCompile Include="WitchAI.cpp" />
@@ -128,6 +129,7 @@ xcopy /Y "$(SolutionDir)lib\SDL2_ttf-2.0.12\lib\x86\*.dll" "$(OutDir)*.dll"</Com
     <Font Include="8bitOperatorPlusSC-Bold.ttf" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ExtendedCollisionAction.h" />
     <ClInclude Include="ObjectFactory.h" />
     <ClInclude Include="WitchAI.h" />
   </ItemGroup>
