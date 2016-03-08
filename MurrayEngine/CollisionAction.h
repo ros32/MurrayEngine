@@ -12,7 +12,7 @@ public:
 	virtual ~CollisionAction() = 0;
 
 	virtual void execute(NonPlayerCharacter* objB) = 0;
-	virtual CollisionAction* copy();
+
 
 
 private:

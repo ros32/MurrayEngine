@@ -18,6 +18,3 @@ void CollisionAction::execute(NonPlayerCharacter* objB){
 
 }
 
-CollisionAction* CollisionAction::copy(){
-	return nullptr;
-}

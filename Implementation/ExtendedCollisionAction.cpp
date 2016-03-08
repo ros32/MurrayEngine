@@ -136,7 +136,3 @@ void ExtendedCollisionAction::execute(NonPlayerCharacter* objB){
 
 
 
-CollisionAction* ExtendedCollisionAction::copy(){
-
-	return new ExtendedCollisionAction(this->objA);
-}

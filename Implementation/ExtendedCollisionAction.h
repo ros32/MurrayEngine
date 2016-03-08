@@ -15,7 +15,7 @@ public:
 
 	void execute(NonPlayerCharacter* objB);
 
-	CollisionAction* copy();
+
 
 private:
 

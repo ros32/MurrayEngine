@@ -5,7 +5,6 @@
 #include <SDL.h>
 
 class NonPlayerCharacter;
-//class CollisionAction;
 
 class DefaultCollisionAction : public CollisionAction{
 
@@ -16,7 +15,7 @@ public:
 
 	void execute(NonPlayerCharacter* objB);
 
-	CollisionAction* copy();
+
 
 private:
 	NonPlayerCharacter* objA;

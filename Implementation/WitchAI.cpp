@@ -48,14 +48,21 @@ void WitchAI::lookForPlayer(){
 
 	if ((playerPosition.x + playerWidth > bossPosition.x) && playerPosition.x < bossPosition.x + bossWidth){
 		if (playerPosition.y > bossPosition.y){
+			
 			npc->setOrientation(SOUTH);
 			npc->changeAnimation("South");
-			npc->addAction(new DamageAction(npc, map));
+			if (!npc->actionExists())
+				npc->addAction(new DamageAction(npc, map));
+			
+			
 		}
 		else{
 			npc->setOrientation(NORTH);
 			npc->changeAnimation("North");
-			npc->addAction(new DamageAction(npc, map));
+			if (!npc->actionExists())
+				npc->addAction(new DamageAction(npc, map));
+			
+
 		}
 
 	}
@@ -63,12 +70,18 @@ void WitchAI::lookForPlayer(){
 		if (playerPosition.x < bossPosition.x){
 			npc->setOrientation(WEST);
 			npc->changeAnimation("West");
-			npc->addAction(new DamageAction(npc, map));
+			if (!npc->actionExists())
+				npc->addAction(new DamageAction(npc, map));
+			
+
 		}
 		else{
 			npc->setOrientation(EAST);
 			npc->changeAnimation("East");
-			npc->addAction(new DamageAction(npc, map));
+			if (!npc->actionExists())
+				npc->addAction(new DamageAction(npc, map));
+			
+
 		}
 	}
 

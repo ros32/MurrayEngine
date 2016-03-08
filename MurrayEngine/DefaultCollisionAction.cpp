@@ -14,9 +14,7 @@ void DefaultCollisionAction::execute(NonPlayerCharacter* objB){
 
 }
 
-CollisionAction* DefaultCollisionAction::copy(){
 
-	return new DefaultCollisionAction (this->objA);
-}
+
 
 
