@@ -32,9 +32,9 @@
 	      <arg line=" --xml --xml-version=2 --enable=all --inconclusive --language=c++ ./MurrayEngine/*.cpp"/>
 	      <redirector error="cppcheck.xml"/>
 	    </exec>
-	    <exec dir="${build.native}" executable="/bin/sed">
+	    <!--<exec dir="${build.native}" executable="/bin/sed">
 		<arg line="-i &apos;s%\(&lt;location file=&quot;\)%\1MurrayEngine/%&apos; cppcheck.xml" />
-	    </exec>
+	    </exec>-->
 	</target>
 
 	<target name="cppcheck2" description="C++ code check" >
