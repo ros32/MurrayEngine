@@ -273,7 +273,7 @@ void Map::addObject(Object* object)
 void Map::removeObject(Object* object)
 {
 
-//	objects.erase(std::remove(objects.begin(), objects.end(), object), objects.end());
+	objects.erase(std::remove(objects.begin(), objects.end(), object), objects.end());
 	/*
 	for (int i = objects.size()-1; i >= 0; i--){
 		if (objects[i] == object)
@@ -286,19 +286,21 @@ void Map::removeObject(Object* object)
 void Map::move()
 
 {
+
+	//auto object : this->objects
 	//	Loop for all objects in vector
-	for (auto object : this->objects)
+	for (int i = 0; i < objects.size() - 1; i++)
 	{
 		
 		//	If object is to be moved
-		if (object != nullptr && (object->getTargetPosition().x != 0 || object->getTargetPosition().y != 0))
+		if (objects[i] != nullptr && (objects[i]->getTargetPosition().x != 0 || objects[i]->getTargetPosition().y != 0))
 		{
 
 			//	Store objects current position (const)
-			const Position currentPosition = object->getCurrentPosition();
+			const Position currentPosition = objects[i]->getCurrentPosition();
 
 			//	Store objects target position (const)
-			const Position targetPosition = object->getTargetPosition();
+			const Position targetPosition = objects[i]->getTargetPosition();
 
 			//	Store current position with target position applied
 			Position finalPosition = { currentPosition.x + targetPosition.x, currentPosition.y + targetPosition.y };
@@ -306,12 +308,12 @@ void Map::move()
 			//	If final position is negative, return and do not move
 			if (finalPosition.x < 0 || finalPosition.y < 0)
 			{
-				object->setTargetPosition({ 0, 0 });
+				objects[i]->setTargetPosition({ 0, 0 });
 				break;
 			}
 			
-			object->setCurrentPosition(this->tryMove(object, targetPosition, false));
-			object->setTargetPosition({ 0, 0 });
+			objects[i]->setCurrentPosition(this->tryMove(objects[i], targetPosition, false));
+			objects[i]->setTargetPosition({ 0, 0 });
 		}
 	}
 }
@@ -742,3 +744,4 @@ bool	Map::canMove(Object* object, Orientation direction)
 	object->setCurrentPosition(currentPosition);
 	return true;
 }
+

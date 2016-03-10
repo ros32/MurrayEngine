@@ -84,6 +84,7 @@ public:
 	bool						canMove(Object* object, Orientation direction);
 
 
+
 private:
 
 	int tileSize;

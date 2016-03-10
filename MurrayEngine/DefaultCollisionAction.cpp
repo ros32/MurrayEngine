@@ -2,6 +2,7 @@
 
 DefaultCollisionAction::DefaultCollisionAction(Object* objA){
 	this->objA = objA;
+	this->objB = nullptr;
 }
 
 DefaultCollisionAction::~DefaultCollisionAction(){
@@ -9,8 +10,10 @@ DefaultCollisionAction::~DefaultCollisionAction(){
 }
 
 void DefaultCollisionAction::execute(Object* objB){
+	this->objA->reverseMove();
+	
 
-	SDL_Log("A collision has been detected");
+	//SDL_Log("A collision has been detected");
 
 }
 

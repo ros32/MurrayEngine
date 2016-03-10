@@ -16,9 +16,10 @@ Map*		ObjectFactory::createMap(Configuration configuration)
 
 	//	Create objects in map
 	//this->init(map);
-	
+
 	this->createPlayer(map, SOUTH, { 33, 33 });
-	
+
+	this->createGhost(map, EAST, { 500, 500 });
 	this->createGhost(map, EAST, { 576, 352 });
 	this->createGhost(map, SOUTH, { 500, 448 });
 	this->createGhost(map, WEST, { 384, 352 });
@@ -299,7 +300,7 @@ void	ObjectFactory::createPlayer(Map* map, Orientation direction, Position pos)
 	{
 		map->addObject(player);
 		map->setPlayerCharacter(player);
-		player->setCollisionAction(new ExtendedCollisionAction(player));
+		player->setCollisionAction(new ExtendedCollisionAction(this, map, player));
 
 		std::string out = "A player character \"" + playerName + "\" was added to the map";
 		SDL_LogInfo(SDL_LOG_CATEGORY_APPLICATION, out.c_str());
@@ -314,6 +315,7 @@ void	ObjectFactory::createGhost(Map* map, Orientation direction, Position pos)
 	{
 		npc->setAI(new DefaultAI(npc, map));
 		map->addObject(npc);
+		npc->setCollisionAction(new ExtendedCollisionAction(this, map, npc));
 
 		std::string out = "A ghost NPC \"" + ghostName + "\" was added to the map";
 		SDL_LogInfo(SDL_LOG_CATEGORY_APPLICATION, out.c_str());
@@ -322,6 +324,7 @@ void	ObjectFactory::createGhost(Map* map, Orientation direction, Position pos)
 
 void	ObjectFactory::createEvolvedGhost(Map* map, Orientation direction, Position pos)
 {
+	
 	std::string ghostName = "Evolved" + std::to_string(this->counter++);
 	NonPlayerCharacter*	npc = this->createNonPlayerCharacter("Evolved", ghostName, direction, pos);
 	if (npc != nullptr)

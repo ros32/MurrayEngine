@@ -10,7 +10,7 @@ class ObjectFactory;
 class ExtendedCollisionAction : public CollisionAction{
 
 public:
-	ExtendedCollisionAction(Object* objA);
+	ExtendedCollisionAction(ObjectFactory* objectFactory, Map* map, Object* objA);
 	~ExtendedCollisionAction();
 
 	void execute(Object* objB);
@@ -22,6 +22,7 @@ private:
 	Object* objA;
 	Object* objB;
 	ObjectFactory* objectFactory;
+	GameInstance* gameInstance;
 
 	Map* map;
 };
