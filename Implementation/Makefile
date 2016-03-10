@@ -2,7 +2,7 @@ SRCS = ExtendedCollisionAction.cpp ObjectFactory.cpp WitchAI.cpp MainProgram.cpp
 OBJS = $(SRCS:.cpp=.o)
 MAIN = test
 CC = g++
-DEBUG = -g
+DEBUG = -g -Wall
 CFLAGS = -std=c++11 $(DEBUG)
 LFLAGS = -L. -L../lib
 INCLUDES = -I. -I../MurrayEngine
