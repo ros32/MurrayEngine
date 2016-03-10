@@ -3,7 +3,6 @@
 
 #include "CollisionAction.h"
 #include "Object.h"
-#include <SDL.h>
 
 class Object;
 
