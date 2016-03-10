@@ -3,7 +3,7 @@
 
 #include "CollisionAction.h"
 #include "Object.h"
-#include "map.h"
+#include "Map.h"
 #include "ObjectFactory.h"
 
 class ObjectFactory;
