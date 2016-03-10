@@ -9,7 +9,7 @@ class GUIObject
 public:
 	GUIObject();
 	GUIObject(Position pos, TextureAsset* texture);
-	~GUIObject();
+	virtual ~GUIObject();
 
 	virtual Position		getPosition();
 	virtual TextureAsset*	getTexture();

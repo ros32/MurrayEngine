@@ -35,7 +35,7 @@ int main(int, char** argv)
 		return 0;
 
 	//	Initialize main renderer
-	SDL_Renderer* mainRenderer = SDL_CreateRenderer(mainWindow, -1, SDL_RENDERER_SOFTWARE);
+	SDL_Renderer* mainRenderer = SDL_CreateRenderer(mainWindow, -1, SDL_RENDERER_PRESENTVSYNC);
 
 	//	Quit if main renderer failed to create
 	if (mainRenderer == nullptr)
