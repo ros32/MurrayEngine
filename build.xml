@@ -7,7 +7,7 @@
 	<property name="app" location="PROG3"/>
 	<property name="make.cmd" value="/usr/bin/make"/>
 	<property name="build.native" value="./"/>
-	<property name="src" value="./MurrayEngine"/>
+	<property name="src" value="./MurrayEngine/"/>
 	<property name="src2" value="./Implementation"/>
 	<property name="cppcheck.cmd" value="/usr/bin/cppcheck"/>
 
@@ -28,9 +28,9 @@
 	</target>
 
 	<target name="cppcheck" description="C++ code check" >
-	    <exec dir="${src}" executable="${cppcheck.cmd}" failonerror="true">
-	      <arg line=" --xml --xml-version=2 --enable=all --inconclusive --language=c++ *.cpp"/>
-	      <redirector error="cppcheck.xml"/>
+	    <exec dir="${build.native}" executable="${cppcheck.cmd}" failonerror="true">
+	      <arg line=" --xml --xml-version=2 --enable=all --inconclusive --language=c++ ${src}*.cpp"/>
+	      <redirector error="${src}cppcheck.xml"/>
 	    </exec>
 	</target>
 
