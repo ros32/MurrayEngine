@@ -528,7 +528,6 @@ Position	Map::tryMove(Object* object, Position targetPosition, bool onlyCheckCol
 						otherObject->getIsCollidable() && object->collidePixel(otherObject))
 					{
 						collision = true;
-						object->doCollisionAction(otherObject);
 						break;
 					}
 				}

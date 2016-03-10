@@ -1,6 +1,6 @@
 #include "ExtendedCollisionAction.h"
 
-ExtendedCollisionAction::ExtendedCollisionAction(NonPlayerCharacter* objA){
+ExtendedCollisionAction::ExtendedCollisionAction(Object* objA){
 	this->objA = objA;
 	this->objB = nullptr;
 }
@@ -10,9 +10,9 @@ ExtendedCollisionAction::~ExtendedCollisionAction(){
 }
 
 
-void ExtendedCollisionAction::execute(NonPlayerCharacter* objB){
+void ExtendedCollisionAction::execute(Object* objB){
 
-	SDL_Log("inside ext coll");
+	SDL_Log("An extended collision has been detected");
 
 	std::string typeA;
 	std::string typeB;
@@ -63,7 +63,7 @@ void ExtendedCollisionAction::execute(NonPlayerCharacter* objB){
 		typeB = "Projectile";
 	}
 
-	
+
 
 	//Determin event
 	if (typeA == "Normal"){
@@ -72,7 +72,7 @@ void ExtendedCollisionAction::execute(NonPlayerCharacter* objB){
 
 			Position spawnPosition = objA->getCurrentPosition();
 			//...Delete both ghosts
-			objectFactory->createEvolvedGhost(map, SOUTH, spawnPosition);
+			//objectFactory->createEvolvedGhost(map, SOUTH, spawnPosition);
 		}
 
 		else if (typeB == "Evolved" || typeB == "Witch"){

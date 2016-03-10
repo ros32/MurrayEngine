@@ -6,7 +6,7 @@ CollisionAction::CollisionAction(){
 
 }
 
-CollisionAction::CollisionAction(NonPlayerCharacter* objA){
+CollisionAction::CollisionAction(Object* objA){
 
 }
 
@@ -14,7 +14,7 @@ CollisionAction::~CollisionAction(){
 
 }
 
-void CollisionAction::execute(NonPlayerCharacter* objB){
+void CollisionAction::execute(Object* objB){
 
 }
 

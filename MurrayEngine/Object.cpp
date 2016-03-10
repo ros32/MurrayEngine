@@ -297,6 +297,7 @@ bool Object::collidePixel(Object* objectB)
 			if (alphaA && alphaB)
 			{
 				this->reverseMove();
+				this->doCollisionAction(objectB);
 				SDL_FreeSurface(SurfaceA);
 				SDL_FreeSurface(SurfaceB);
 				return true;
@@ -416,11 +417,22 @@ void Object::addAnimation(std::string key, std::shared_ptr<Animation> animation)
 
 }
 void Object::setCollisionAction(CollisionAction* collisionAction){
+	
+	if (this->getId().find("Hero")){
+
+	}
+	
+	
 	this->collisionAction = collisionAction;
 
 }
 void Object::doCollisionAction(Object* obj){
+	 if (this->collisionAction == nullptr){
 
+		this->collisionAction = (new DefaultCollisionAction(this));
+	}
+
+	this->collisionAction->execute(obj);
 
 }
 

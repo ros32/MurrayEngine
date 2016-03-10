@@ -24,9 +24,6 @@ public:
 
 	virtual bool actionExists();
 
-	virtual void setCollisionAction(CollisionAction* collisionAction);
-
-	virtual void doCollisionAction(NonPlayerCharacter* obj);
 
 protected:
 

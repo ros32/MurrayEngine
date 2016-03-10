@@ -4,22 +4,22 @@
 #include "CollisionAction.h"
 #include <SDL.h>
 
-class NonPlayerCharacter;
+class Object;
 
 class DefaultCollisionAction : public CollisionAction{
 
 public:
 
-	DefaultCollisionAction(NonPlayerCharacter* objA);
+	DefaultCollisionAction(Object* objA);
 	~DefaultCollisionAction();
 
-	void execute(NonPlayerCharacter* objB);
+	void execute(Object* objB);
 
 
 
 private:
-	NonPlayerCharacter* objA;
-	NonPlayerCharacter* objB;
+	Object* objA;
+	Object* objB;
 
 };
 

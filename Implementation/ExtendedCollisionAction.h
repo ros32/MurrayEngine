@@ -2,7 +2,7 @@
 #define _EXTENDED_COLLISION_ACTION_H
 
 #include "CollisionAction.h"
-#include "NonPlayerCharacter.h"
+#include "Object.h"
 #include "map.h"
 #include "ObjectFactory.h"
 
@@ -10,17 +10,17 @@ class ObjectFactory;
 class ExtendedCollisionAction : public CollisionAction{
 
 public:
-	ExtendedCollisionAction(NonPlayerCharacter* objA);
+	ExtendedCollisionAction(Object* objA);
 	~ExtendedCollisionAction();
 
-	void execute(NonPlayerCharacter* objB);
+	void execute(Object* objB);
 
 
 
 private:
 
-	NonPlayerCharacter* objA;
-	NonPlayerCharacter* objB;
+	Object* objA;
+	Object* objB;
 	ObjectFactory* objectFactory;
 
 	Map* map;

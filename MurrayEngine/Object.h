@@ -10,10 +10,10 @@
 #include	"Texture.h"
 #include	"DefaultCollisionAction.h"
 
+class NonPlayerCharacter;
 class CollisionAction;
 class CollisionEvent;
 struct Animation;
-
 class Action;
 
 ///	<summary>
