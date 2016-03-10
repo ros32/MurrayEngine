@@ -1,4 +1,4 @@
-SRCS = ObjectFactory.cpp WitchAI.cpp MainProgram.cpp
+SRCS = ExtendedCollisionAction.cpp ObjectFactory.cpp WitchAI.cpp MainProgram.cpp
 OBJS = $(SRCS:.cpp=.o)
 MAIN = test
 CC = g++
