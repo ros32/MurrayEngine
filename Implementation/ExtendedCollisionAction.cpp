@@ -102,16 +102,15 @@ void ExtendedCollisionAction::execute(Object* objB){
 		}
 
 		else if (typeB == "Evolved" || typeB == "Witch"){
-			//do nothing..?
+			//do nothing.. Should never happen.
 		}
 
 		else if (typeB == "Hero"){
 			//Kill objectB / reduce life of objectB
 		}
 		else if (typeB == "Projectile"){
-			//is a projectile
 			//Kill objectA or reduce life of objectA
-			//Delete objectB
+			map->removeObject(objB);
 		}
 		else {
 			//is a wall, do nothing
@@ -130,6 +129,7 @@ void ExtendedCollisionAction::execute(Object* objB){
 			//is a projectile
 			//Kill objectA or reduce life of objectA
 			//Delete objectB
+			map->removeObject(objB);
 		}
 		else{
 			//is a wall
@@ -142,6 +142,7 @@ void ExtendedCollisionAction::execute(Object* objB){
 		}
 		else if (typeB == "Projectile"){
 			//Damage typeA and delete typeB
+			map->removeObject(objB);
 
 		}
 		else if (typeB == "Witch"){
@@ -154,23 +155,38 @@ void ExtendedCollisionAction::execute(Object* objB){
 
 	else if (typeA == "Projectile"){
 		if (typeB == "Hero" || typeB == "Ghost" || typeB == "Evolved" || typeB == "Witch"){
+			
+			map->removeObject(objA);
+			
 			//Delete objA and damage/delete objB
 		}
 		else if (typeB == "Projectile"){
 			//Delete both objA and objB
+			map->removeObject(objA);
+			map->removeObject(objB);
 		}
 		else{
 			//Is a wall
+			map->removeObject(objA);
 		}
 	}
 
 	else if (typeA == "Witch"){
 		if (typeB == "Projectile"){
 			//delete projectile and damage/kill witch
+			map->removeObject(objB);
 		}
 		else{
 			//do nothing
 		}
+	}
+	else if (typeA == "Wall"){
+
+		if (typeB == "Projectile"){
+
+			map->removeObject(objB);
+		}
+
 	}
 
 }

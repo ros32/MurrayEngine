@@ -27,6 +27,9 @@
     <ClCompile Include="ExtendedCollisionAction.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="DamageAction.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="main.cfg">
@@ -141,6 +144,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ExtendedCollisionAction.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DamageAction.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

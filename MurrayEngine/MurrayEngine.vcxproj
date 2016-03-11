@@ -20,7 +20,6 @@
     <ClInclude Include="CollisionAction.h" />
     <ClInclude Include="CollisionEvent.h" />
     <ClInclude Include="Configuration.h" />
-    <ClInclude Include="DamageAction.h" />
     <ClInclude Include="DefaultAI.h" />
     <ClInclude Include="DefaultCollisionAction.h" />
     <ClInclude Include="Factory.h" />
@@ -51,7 +50,6 @@
     <ClCompile Include="CollisionAction.cpp" />
     <ClCompile Include="CollisionEvent.cpp" />
     <ClCompile Include="Configuration.cpp" />
-    <ClCompile Include="DamageAction.cpp" />
     <ClCompile Include="DefaultAI.cpp" />
     <ClCompile Include="DefaultCollisionAction.cpp" />
     <ClCompile Include="Factory.cpp" />

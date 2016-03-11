@@ -24,6 +24,7 @@ public:
 	void					createGhost(Map* map, Orientation direction, Position pos);
 	void					createEvolvedGhost(Map* map, Orientation direction, Position pos);
 	void					createWitch(Map* map, Orientation direction, Position pos);
+	NonPlayerCharacter*		createProjectile(Map* map, Orientation direction, Position pos, Position targetPosition, std::shared_ptr<Animation> animation);
 
 private:
 

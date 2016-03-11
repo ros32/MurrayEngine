@@ -124,6 +124,8 @@ public:
 	///-------------------------------------------------------------------------------------------------
 	void								setWindow(SDL_Window* window);
 
+	virtual NonPlayerCharacter* createProjectile(Map* map, Orientation direction, Position pos, Position targetPosition, std::shared_ptr<Animation> animation);
+
 private:
 
 	SDL_Window*			window;

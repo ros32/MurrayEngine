@@ -4,8 +4,8 @@ WitchAI::WitchAI() : AI() {
 
 }
 
-WitchAI::WitchAI(NonPlayerCharacter* npc, Map* map) : AI(npc, map){
-
+WitchAI::WitchAI(NonPlayerCharacter* npc, Map* map, ObjectFactory* objectFactory) : AI(npc, map){
+	this->objectFactory = objectFactory;
 }
 WitchAI::~WitchAI(){
 
@@ -52,7 +52,7 @@ void WitchAI::lookForPlayer(){
 			npc->setOrientation(SOUTH);
 			npc->changeAnimation("South");
 			if (!npc->actionExists())
-				npc->addAction(new DamageAction(npc, map));
+				npc->addAction(new DamageAction(npc, map, objectFactory));
 			
 			
 		}
@@ -60,7 +60,7 @@ void WitchAI::lookForPlayer(){
 			npc->setOrientation(NORTH);
 			npc->changeAnimation("North");
 			if (!npc->actionExists())
-				npc->addAction(new DamageAction(npc, map));
+				npc->addAction(new DamageAction(npc, map, objectFactory));
 			
 
 		}
@@ -71,7 +71,7 @@ void WitchAI::lookForPlayer(){
 			npc->setOrientation(WEST);
 			npc->changeAnimation("West");
 			if (!npc->actionExists())
-				npc->addAction(new DamageAction(npc, map));
+				npc->addAction(new DamageAction(npc, map, objectFactory));
 			
 
 		}
@@ -79,7 +79,7 @@ void WitchAI::lookForPlayer(){
 			npc->setOrientation(EAST);
 			npc->changeAnimation("East");
 			if (!npc->actionExists())
-				npc->addAction(new DamageAction(npc, map));
+				npc->addAction(new DamageAction(npc, map, objectFactory));
 			
 
 		}

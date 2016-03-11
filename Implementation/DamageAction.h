@@ -10,6 +10,7 @@ The concrete action DamageAction
 #include "Map.h"
 #include "ProjectileObject.h"
 #include "NonPlayerCharacter.h"
+#include "ObjectFactory.h"
 
 #ifdef _WIN32
 #include <SDL.h>
@@ -17,11 +18,12 @@ The concrete action DamageAction
 #include <SDL2/SDL.h>
 #endif
 
+class ObjectFactory;
 class DamageAction : public Action{
 
 public:
 //	DamageAction(GameInstance* instance, Object* source, std::vector<Object*> targets);
-	DamageAction(Object* source, Map* map);
+	DamageAction(Object* source, Map* map, Factory* objectFactory);
 	~DamageAction();
 
 	void execute();
@@ -32,6 +34,7 @@ private:
 
 //	GameInstance* instance;
 	Object* source;
+	Factory* objectFactory;
 	std::vector<Object*> targets;
 	Map* map;
 };

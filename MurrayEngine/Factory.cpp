@@ -203,3 +203,8 @@ SDL_Window*		Factory::getWindow()
 {
 	return this->window;
 }
+
+NonPlayerCharacter* Factory::createProjectile(Map* map, Orientation direction, Position pos, Position targetPosition, std::shared_ptr<Animation> animation){
+
+	return nullptr;
+}

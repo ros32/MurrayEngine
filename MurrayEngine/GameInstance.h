@@ -4,6 +4,7 @@
 #include	"Factory.h"
 #include	"FrameLimiter.h"
 #include	"KeyController.h"
+#include	"Map.h"
 
 class Factory;
 class KeyController;

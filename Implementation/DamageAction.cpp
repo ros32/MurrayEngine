@@ -8,10 +8,11 @@ DamageAction::DamageAction(GameInstance* instance, Object* source, std::vector<O
 }
 */
 
-DamageAction::DamageAction(Object* source, Map* map)
+DamageAction::DamageAction(Object* source, Map* map, Factory* objectFactory)
 {
 	this->source = source;
 	this->map = map;
+	this->objectFactory = objectFactory;
 }
 
 DamageAction::~DamageAction()
@@ -49,18 +50,18 @@ void DamageAction::execute()
 
 		animation = source->getAnimation("Projectile");
 
-		NonPlayerCharacter* pr  = new NonPlayerCharacter("Projectile", startPosition, animation, 1.0, 1.0, 15, orientation, true);
+
+		NonPlayerCharacter* pr = objectFactory->createProjectile(map, orientation, startPosition, targetPosition, animation);
+
 		pr->setTargetPosition(targetPosition);
 		this->map->addObject(pr);
-	
 		pr->addAction(new MoveAction(pr, map, orientation, 50));
 
-	
 }
 
 Action*	DamageAction::copy()
 {
-	return new DamageAction(this->source, this->map);
+	return new DamageAction(this->source, this->map, this->objectFactory);
 }
 
 

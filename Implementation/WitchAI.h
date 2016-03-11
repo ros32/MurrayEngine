@@ -3,12 +3,14 @@
 
 #include "AI.h"
 #include "DamageAction.h"
+#include "ObjectFactory.h"
 
+class ObjectFactory;
 class WitchAI : public AI{
 
 public:
 	WitchAI();
-	WitchAI(NonPlayerCharacter* npc, Map* map);
+	WitchAI(NonPlayerCharacter* npc, Map* map, ObjectFactory* objectFactory);
 	~WitchAI();
 
 	void	doNext();
@@ -24,6 +26,8 @@ private:
 	int playerWidth;
 
 	void lookForPlayer();
+
+	ObjectFactory* objectFactory;
 
 };
 

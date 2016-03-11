@@ -3,8 +3,8 @@
 
 #include	<map>
 #include	"GameInstance.h"
-#include	"DamageAction.h"
 #include	"ChangeInputModeAction.h"
+#include	"Object.h"
 
 class GameInstance;
 
