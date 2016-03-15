@@ -95,6 +95,9 @@
     <None Include="EnemyAnimation.cfg">
       <Filter>Resource Files</Filter>
     </None>
+    <None Include="Makefile">
+      <Filter>Resource Files</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Image Include="spritesheet.bmp">

@@ -102,6 +102,7 @@ xcopy /Y "$(SolutionDir)lib\SDL2_ttf-2.0.12\lib\x86\*.dll" "$(OutDir)*.dll"</Com
     <None Include="HeroSpriteSheet.cfg" />
     <None Include="keys.cfg" />
     <None Include="main.cfg" />
+    <None Include="Makefile" />
     <None Include="map.cfg" />
     <None Include="Player.cfg" />
     <None Include="ProjectileSheet.cfg" />
