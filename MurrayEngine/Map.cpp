@@ -13,6 +13,10 @@ Map::Map()
 	this->gridSize = DEFAULT_GRID_SIZE;
 	this->playerCharacter = nullptr;
 
+	this->collisionEvent = nullptr;
+	this->mapMaxSize = { 0, 0 };
+	this->tileSize = 0;
+
 }
 
 Map::Map(SDL_Window* window, SDL_Renderer* renderer)
@@ -27,6 +31,10 @@ Map::Map(SDL_Window* window, SDL_Renderer* renderer)
 	this->gridSize = DEFAULT_GRID_SIZE;
 	this->playerCharacter = nullptr;
 	
+	this->collisionEvent = nullptr;
+	this->mapMaxSize = { 0, 0 };
+	this->tileSize = 0;
+
 }
 
 Map::~Map()

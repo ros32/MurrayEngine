@@ -5,6 +5,9 @@ DefaultAI::DefaultAI() : AI()
 	this->lastMovePosition = { 0, 0 };
 	this->lastMoveSuccess = true;
 	this->playerRecentlySeen = false;
+
+	this->playerLastSeenDirection = NONE;
+	this->currentAction = nullptr;
 }
 
 DefaultAI::DefaultAI(NonPlayerCharacter* npc, Map* map) : AI(npc, map)
@@ -12,6 +15,9 @@ DefaultAI::DefaultAI(NonPlayerCharacter* npc, Map* map) : AI(npc, map)
 	this->lastMovePosition = { 0, 0 };
 	this->lastMoveSuccess = true;
 	this->playerRecentlySeen = false;
+
+	this->playerLastSeenDirection = NONE;
+	this->currentAction = nullptr;
 }
 
 DefaultAI::~DefaultAI()

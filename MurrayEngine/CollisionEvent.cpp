@@ -3,6 +3,12 @@
 CollisionEvent::CollisionEvent(Object* objectA, Object* objectB){
 	this->objectA = objectA;
 	this->objectB = objectB;
+	this->orgSurfaceA = nullptr;
+	this->orgSurfaceB = nullptr;
+	this->SurfaceA = nullptr;
+	this->SurfaceB = nullptr;
+	this->aRect = nullptr;
+	this->bRect = nullptr;
 
 }
 

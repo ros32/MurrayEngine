@@ -11,14 +11,18 @@ Object::Object(std::string id, Position currentPosition, std::shared_ptr<Texture
 	this->orientation = orientation;
 	this->targetPosition = { 0, 0 };
 	this->isCollidable = isCollidable;
-	this->lastPosition;
+	this->lastPosition = currentPosition;
 	this->timer = Timer();
 
 	this->timer.start();
 	this->lastRender = 0;
 	this->lastMove = 0;
-	this->collisionEvent;
+	this->collisionEvent = nullptr;
 	this->collisionAction = nullptr;
+
+	this->force = 0;
+	this->velocity = 0;
+	this->mass = 0;
 
 }
 

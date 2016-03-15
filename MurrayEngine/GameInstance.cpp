@@ -12,10 +12,11 @@ GameInstance::GameInstance(SDL_Window* window, SDL_Renderer* renderer, Configura
 	this->exited = false;
 	this->mainConfig = configuration;
 	this->configurations;
-	this->map;
+	this->map = nullptr;
 	this->factory = nullptr;
 	this->keyController = nullptr;
 	this->inputGUIObject = new InputGUIObject(renderer, { 64, 32 });
+	this->frameRateGUIObject = nullptr;
 }
 
 GameInstance::~GameInstance()

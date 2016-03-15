@@ -2,6 +2,9 @@
 
 KeyController::KeyController()
 {
+	this->gameInstance = nullptr;
+	this->playerCharacter = nullptr;
+
 	this->keys;
 
 	this->keys.insert(std::map<SDL_Scancode, bool>::value_type(SDL_SCANCODE_0, false));

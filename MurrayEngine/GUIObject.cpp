@@ -2,8 +2,8 @@
 
 GUIObject::GUIObject()
 {
-	this->position;
-	this->texture;
+	this->position = { 0, 0 };
+	this->texture = nullptr;
 }
 
 GUIObject::GUIObject(Position pos, TextureAsset* texture)
