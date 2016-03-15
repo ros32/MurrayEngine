@@ -17,3 +17,8 @@ void	ChangeInputModeAction::execute()
 		this->keyController->setTextInputMode(!this->keyController->getTextInputMode());
 	}
 }
+
+Action*	ChangeInputModeAction::copy()
+{
+	return new ChangeInputModeAction(this->keyController);
+}

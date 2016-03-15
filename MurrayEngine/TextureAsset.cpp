@@ -76,6 +76,8 @@ void			TextureAsset::loadFile(const char* filePath)
 void			TextureAsset::loadText(const char* filePath, unsigned int fontSize, std::string text, SDL_Color color)
 {
 	TTF_Font*	font = TTF_OpenFont(filePath, fontSize);
+	if (font == nullptr)
+		SDL_LogError(SDL_LOG_CATEGORY_RENDER, SDL_GetError());
 	SDL_Surface* textSurface = TTF_RenderText_Solid(font, text.c_str(), color);
 	TTF_CloseFont(font);
 	if (textSurface == NULL)

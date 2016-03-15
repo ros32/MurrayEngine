@@ -4,6 +4,7 @@
 #include	"Factory.h"
 #include	"FrameLimiter.h"
 #include	"KeyController.h"
+#include	"InputGUIObject.h"
 #include	"Map.h"
 
 class Factory;
@@ -159,6 +160,8 @@ public:
 	///-------------------------------------------------------------------------------------------------
 	void				setKeyController(KeyController* keyController);
 
+	InputGUIObject*		getInputObject();
+
 private:
 
 	///-------------------------------------------------------------------------------------------------
@@ -230,6 +233,8 @@ private:
 
 	/// <summary>	The frame rate graphical user interface object. </summary>
 	GUIObject*		frameRateGUIObject;
+
+	InputGUIObject*	inputGUIObject;
 
 };
 

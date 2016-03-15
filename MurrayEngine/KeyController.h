@@ -31,6 +31,7 @@ private:
 	Object*							playerCharacter;
 
 	std::map< SDL_Scancode, bool >	keys;
+	std::map< SDL_Scancode, char >	chars;
 	std::map< SDL_Scancode, bool >	lastStatus;
 	std::map< SDL_Scancode, bool >	repeat;
 	std::map< SDL_Scancode, Action* >	actions;

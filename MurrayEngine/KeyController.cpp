@@ -68,6 +68,49 @@ KeyController::KeyController()
 	this->keys.insert(std::map<SDL_Scancode, bool>::value_type(SDL_SCANCODE_F11, false));
 	this->keys.insert(std::map<SDL_Scancode, bool>::value_type(SDL_SCANCODE_F12, false));
 
+	this->chars;
+
+	this->chars.insert(std::map<SDL_Scancode, char>::value_type(SDL_SCANCODE_0, '0'));
+	this->chars.insert(std::map<SDL_Scancode, char>::value_type(SDL_SCANCODE_1, '1'));
+	this->chars.insert(std::map<SDL_Scancode, char>::value_type(SDL_SCANCODE_2, '2'));
+	this->chars.insert(std::map<SDL_Scancode, char>::value_type(SDL_SCANCODE_3, '3'));
+	this->chars.insert(std::map<SDL_Scancode, char>::value_type(SDL_SCANCODE_4, '4'));
+	this->chars.insert(std::map<SDL_Scancode, char>::value_type(SDL_SCANCODE_5, '5'));
+	this->chars.insert(std::map<SDL_Scancode, char>::value_type(SDL_SCANCODE_6, '6'));
+	this->chars.insert(std::map<SDL_Scancode, char>::value_type(SDL_SCANCODE_7, '7'));
+	this->chars.insert(std::map<SDL_Scancode, char>::value_type(SDL_SCANCODE_8, '8'));
+	this->chars.insert(std::map<SDL_Scancode, char>::value_type(SDL_SCANCODE_9, '9'));
+
+	this->chars.insert(std::map<SDL_Scancode, char>::value_type(SDL_SCANCODE_A, 'A'));
+	this->chars.insert(std::map<SDL_Scancode, char>::value_type(SDL_SCANCODE_B, 'B'));
+	this->chars.insert(std::map<SDL_Scancode, char>::value_type(SDL_SCANCODE_C, 'C'));
+	this->chars.insert(std::map<SDL_Scancode, char>::value_type(SDL_SCANCODE_D, 'D'));
+	this->chars.insert(std::map<SDL_Scancode, char>::value_type(SDL_SCANCODE_E, 'E'));
+	this->chars.insert(std::map<SDL_Scancode, char>::value_type(SDL_SCANCODE_F, 'F'));
+	this->chars.insert(std::map<SDL_Scancode, char>::value_type(SDL_SCANCODE_G, 'G'));
+	this->chars.insert(std::map<SDL_Scancode, char>::value_type(SDL_SCANCODE_H, 'H'));
+	this->chars.insert(std::map<SDL_Scancode, char>::value_type(SDL_SCANCODE_I, 'I'));
+	this->chars.insert(std::map<SDL_Scancode, char>::value_type(SDL_SCANCODE_J, 'J'));
+	this->chars.insert(std::map<SDL_Scancode, char>::value_type(SDL_SCANCODE_K, 'K'));
+	this->chars.insert(std::map<SDL_Scancode, char>::value_type(SDL_SCANCODE_L, 'L'));
+	this->chars.insert(std::map<SDL_Scancode, char>::value_type(SDL_SCANCODE_M, 'M'));
+	this->chars.insert(std::map<SDL_Scancode, char>::value_type(SDL_SCANCODE_N, 'N'));
+	this->chars.insert(std::map<SDL_Scancode, char>::value_type(SDL_SCANCODE_O, 'O'));
+	this->chars.insert(std::map<SDL_Scancode, char>::value_type(SDL_SCANCODE_P, 'P'));
+	this->chars.insert(std::map<SDL_Scancode, char>::value_type(SDL_SCANCODE_Q, 'Q'));
+	this->chars.insert(std::map<SDL_Scancode, char>::value_type(SDL_SCANCODE_R, 'R'));
+	this->chars.insert(std::map<SDL_Scancode, char>::value_type(SDL_SCANCODE_S, 'S'));
+	this->chars.insert(std::map<SDL_Scancode, char>::value_type(SDL_SCANCODE_T, 'T'));
+	this->chars.insert(std::map<SDL_Scancode, char>::value_type(SDL_SCANCODE_U, 'U'));
+	this->chars.insert(std::map<SDL_Scancode, char>::value_type(SDL_SCANCODE_V, 'V'));
+	this->chars.insert(std::map<SDL_Scancode, char>::value_type(SDL_SCANCODE_W, 'W'));
+	this->chars.insert(std::map<SDL_Scancode, char>::value_type(SDL_SCANCODE_X, 'X'));
+	this->chars.insert(std::map<SDL_Scancode, char>::value_type(SDL_SCANCODE_Y, 'Y'));
+	this->chars.insert(std::map<SDL_Scancode, char>::value_type(SDL_SCANCODE_Z, 'Z'));
+	this->chars.insert(std::map<SDL_Scancode, char>::value_type(SDL_SCANCODE_SPACE, ' '));
+
+
+
 	this->actions;
 
 	this->actions.insert(std::map<SDL_Scancode, Action*>::value_type(SDL_SCANCODE_0, nullptr));
@@ -265,6 +308,8 @@ KeyController::KeyController()
 	this->repeat.insert(std::map<SDL_Scancode, bool>::value_type(SDL_SCANCODE_F10, false));
 	this->repeat.insert(std::map<SDL_Scancode, bool>::value_type(SDL_SCANCODE_F11, false));
 	this->repeat.insert(std::map<SDL_Scancode, bool>::value_type(SDL_SCANCODE_F12, false));
+
+	this->textInputMode = false;
 	
 }
 
@@ -283,12 +328,13 @@ void	KeyController::checkState()
 	const Uint8*	currentKeyState = SDL_GetKeyboardState(NULL);
 	std::string tempS;
 
-
 	for (auto key : this->keys)
 	{
 		if (currentKeyState[key.first] && (this->repeat[key.first] || !this->lastStatus[key.first]))
 		{
 			this->keys[key.first] = true;
+			if (this->textInputMode)
+				this->keys[key.first] = (currentKeyState[key.first] != this->lastStatus[key.first]);
 		}
 		else
 		{
@@ -296,13 +342,36 @@ void	KeyController::checkState()
 		}
 		this->lastStatus[key.first] = (currentKeyState[key.first]) ? true : false;
 	}
-
-	for (auto key : this->actions)
+	if (this->textInputMode)
 	{
-		if (this->keys[key.first] && key.second != nullptr)
-		{		
-			key.second->execute();
-		}	
+		if (keys[SDL_SCANCODE_BACKSPACE])
+			this->gameInstance->getInputObject()->removeChar();
+		else if (keys[SDL_SCANCODE_RETURN] || keys[SDL_SCANCODE_RETURN2])
+		{
+			this->textInputMode = false;
+		}
+		else
+		{
+			for (auto key : this->chars)
+			{
+				if (this->keys[key.first])
+				{
+					this->gameInstance->getInputObject()->addChar(key.second);
+				}
+			}
+			
+		}
+
+	}
+	else
+	{
+		for (auto key : this->actions)
+		{
+			if (this->keys[key.first] && key.second != nullptr)
+			{		
+				key.second->execute();
+			}	
+		}
 	}
 }
 

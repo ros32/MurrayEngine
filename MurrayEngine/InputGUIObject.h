@@ -6,10 +6,26 @@
 class InputGUIObject: public GUIObject
 {
 public:
-	InputGUIObject();
+	InputGUIObject(SDL_Renderer* renderer, Position pos);
 	~InputGUIObject();
 
+	TextureAsset*	getTexture();
+
+	void			addChar(char c);
+	void			removeChar();
+
+	bool			isVisible();
+	void			setVisible(bool visible);
+
+	std::string		getText();
+
+	void			clearText();
+
 private:
+
+	SDL_Renderer*	renderer;
+	std::string		text;
+	bool			visible;
 
 };
 

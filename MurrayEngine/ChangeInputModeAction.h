@@ -14,6 +14,8 @@ public:
 
 	void	execute();
 
+	Action*	copy();
+
 private:
 
 	KeyController* keyController;

@@ -61,6 +61,7 @@ int main(int, char** argv)
 	gameInstance->getKeyController()->addAction(SDL_SCANCODE_A, new MoveAction(gameInstance->getMap()->getPlayerCharacter(), gameInstance->getMap(), WEST), true);
 	gameInstance->getKeyController()->addAction(SDL_SCANCODE_D, new MoveAction(gameInstance->getMap()->getPlayerCharacter(), gameInstance->getMap(), EAST), true);
 	gameInstance->getKeyController()->addAction(SDL_SCANCODE_SPACE, new DamageAction(gameInstance->getMap()->getPlayerCharacter(), gameInstance->getMap(), objectFactory), false);
+	gameInstance->getKeyController()->addAction(SDL_SCANCODE_RETURN, new ChangeInputModeAction(gameInstance->getKeyController()), false);
 
 	bool quitGame = false;
 	while (!quitGame)

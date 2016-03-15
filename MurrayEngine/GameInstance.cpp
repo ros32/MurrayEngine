@@ -15,6 +15,7 @@ GameInstance::GameInstance(SDL_Window* window, SDL_Renderer* renderer, Configura
 	this->map;
 	this->factory = nullptr;
 	this->keyController = nullptr;
+	this->inputGUIObject = new InputGUIObject(renderer, { 64, 32 });
 }
 
 GameInstance::~GameInstance()
@@ -140,6 +141,7 @@ bool GameInstance::initialize()
 	//	GameInstance must be set on KeyController *AFTER* assets and map has been initialized,
 	//	otherwise actions defined that depends on Object* will not have valid pointers
 	this->keyController->setGameInstance(this);
+	this->map->getCamera()->getGUI()->addObject(this->inputGUIObject);
 
 	if (tempFactory)
 	{
@@ -271,4 +273,9 @@ void			GameInstance::doActions()
 KeyController*	GameInstance::getKeyController()
 {
 	return this->keyController;
+}
+
+InputGUIObject*	GameInstance::getInputObject()
+{
+	return this->inputGUIObject;
 }
