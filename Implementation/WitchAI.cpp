@@ -4,7 +4,7 @@ WitchAI::WitchAI() : AI() {
 
 }
 
-WitchAI::WitchAI(NonPlayerCharacter* npc, Map* map, ObjectFactory* objectFactory) : AI(npc, map){
+WitchAI::WitchAI(NonPlayerCharacter* npc, Map* map) : AI(npc, map){
 	this->objectFactory = objectFactory;
 }
 WitchAI::~WitchAI(){
@@ -51,17 +51,11 @@ void WitchAI::lookForPlayer(){
 			
 			npc->setOrientation(SOUTH);
 			npc->changeAnimation("South");
-			if (!npc->actionExists())
-				npc->addAction(new DamageAction(npc, map, objectFactory));
-			
-			
+		
 		}
 		else{
 			npc->setOrientation(NORTH);
 			npc->changeAnimation("North");
-			if (!npc->actionExists())
-				npc->addAction(new DamageAction(npc, map, objectFactory));
-			
 
 		}
 
@@ -69,18 +63,12 @@ void WitchAI::lookForPlayer(){
 	else if ((playerPosition.y + playerHeight > bossPosition.y && playerPosition.y < bossPosition.y + bossHeight)){
 		if (playerPosition.x < bossPosition.x){
 			npc->setOrientation(WEST);
-			npc->changeAnimation("West");
-			if (!npc->actionExists())
-				npc->addAction(new DamageAction(npc, map, objectFactory));
-			
+			npc->changeAnimation("West");	
 
 		}
 		else{
 			npc->setOrientation(EAST);
-			npc->changeAnimation("East");
-			if (!npc->actionExists())
-				npc->addAction(new DamageAction(npc, map, objectFactory));
-			
+			npc->changeAnimation("East");		
 
 		}
 	}

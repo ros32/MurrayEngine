@@ -343,7 +343,8 @@ void	ObjectFactory::createWitch(Map* map, Orientation direction, Position pos)
 	NonPlayerCharacter*	npc = this->createNonPlayerCharacter("Witch", wicthName, direction, pos);
 	if (npc != nullptr)
 	{
-		npc->setAI(new WitchAI(npc, map, this));
+		npc->setAI(new WitchAI(npc, map));
+		npc->setCollisionAction(new ExtendedCollisionAction(this, map, npc));
 		map->addObject(npc);
 
 		std::string out = "A witch NPC \"" + wicthName + "\" was added to the map";
@@ -351,17 +352,4 @@ void	ObjectFactory::createWitch(Map* map, Orientation direction, Position pos)
 	}
 }
 
-NonPlayerCharacter* ObjectFactory::createProjectile(Map* map, Orientation direction, Position pos, Position targetPosition, std::shared_ptr<Animation> animation){
-	
-	std::string projectileName = "Projectile" + std::to_string(this->counter++);
-	NonPlayerCharacter* projectile = new NonPlayerCharacter(projectileName, pos, animation, 1.0, 1.0, 15, direction, true);
 
-	/*
-	projectile->setTargetPosition(targetPosition);
-	map->addObject(projectile);
-	projectile->addAction(new MoveAction(projectile, map, direction, 50));
-	
-	*/
-	return projectile;
-
-}

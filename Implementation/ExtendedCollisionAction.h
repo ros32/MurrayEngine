@@ -10,6 +10,7 @@ class ObjectFactory;
 class ExtendedCollisionAction : public CollisionAction{
 
 public:
+	ExtendedCollisionAction(Map* map, Object* objA);
 	ExtendedCollisionAction(ObjectFactory* objectFactory, Map* map, Object* objA);
 	~ExtendedCollisionAction();
 

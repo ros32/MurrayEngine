@@ -10,7 +10,7 @@ class WitchAI : public AI{
 
 public:
 	WitchAI();
-	WitchAI(NonPlayerCharacter* npc, Map* map, ObjectFactory* objectFactory);
+	WitchAI(NonPlayerCharacter* npc, Map* map);
 	~WitchAI();
 
 	void	doNext();

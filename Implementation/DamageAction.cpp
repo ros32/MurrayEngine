@@ -1,18 +1,13 @@
 #include "DamageAction.h"
-/*
-DamageAction::DamageAction(GameInstance* instance, Object* source, std::vector<Object*> targets) 
-{	
-	this->instance = instance;
-	this->source = source;
-	this->targets = targets;
-}
-*/
 
-DamageAction::DamageAction(Object* source, Map* map, Factory* objectFactory)
+int		DamageAction::counter = 0;
+
+DamageAction::DamageAction(Object* source, Map* map)
 {
 	this->source = source;
 	this->map = map;
-	this->objectFactory = objectFactory;
+	this->counter;
+	
 }
 
 DamageAction::~DamageAction()
@@ -22,6 +17,7 @@ DamageAction::~DamageAction()
 
 void DamageAction::execute()
 {
+
 	Orientation orientation;
 	orientation = source->getOrientation();
 
@@ -49,19 +45,21 @@ void DamageAction::execute()
 	}
 
 		animation = source->getAnimation("Projectile");
+		std::string id = ("Projectile" + std::to_string(counter++));
 
-
-		NonPlayerCharacter* pr = objectFactory->createProjectile(map, orientation, startPosition, targetPosition, animation);
+		NonPlayerCharacter* pr = new NonPlayerCharacter(id, startPosition, animation, 0.0, 0.0, 15, orientation, true );
 
 		pr->setTargetPosition(targetPosition);
-		this->map->addObject(pr);
+		pr->setCollisionAction(new ExtendedCollisionAction(map, pr));
 		pr->addAction(new MoveAction(pr, map, orientation, 50));
+		this->map->addObject(pr);
+		
 
 }
 
 Action*	DamageAction::copy()
 {
-	return new DamageAction(this->source, this->map, this->objectFactory);
+	return new DamageAction(this->source, this->map);
 }
 
 

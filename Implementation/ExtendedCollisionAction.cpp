@@ -1,5 +1,14 @@
 #include "ExtendedCollisionAction.h"
 
+
+ExtendedCollisionAction::ExtendedCollisionAction(Map* map, Object* objA){
+	this->map = map;
+	this->objA = objA;
+	this->objB = nullptr;
+	this->objectFactory = nullptr;
+
+}
+
 ExtendedCollisionAction::ExtendedCollisionAction(ObjectFactory* objectFactory, Map* map, Object* objA){
 	this->map = map;
 	this->objectFactory = objectFactory;
@@ -85,9 +94,9 @@ void ExtendedCollisionAction::execute(Object* objB){
 		typeB = "Wall";
 	}
 
-	std::string outString;
-	outString = "Collision detected between: " + typeA + " and " + typeB + ".";
-	SDL_Log(outString.c_str());
+//	std::string outString;
+	//outString = "Collision detected between: " + typeA + " and " + typeB + ".";
+//	SDL_Log(outString.c_str());
 
 	//Determin event
 	if (typeA == "Ghost"){
@@ -98,7 +107,8 @@ void ExtendedCollisionAction::execute(Object* objB){
 			objB->reverseMove();
 			map->removeObject(objA);
 			
-			objectFactory->createEvolvedGhost(map, SOUTH, spawnPosition);
+			if (objectFactory != nullptr)
+				objectFactory->createEvolvedGhost(map, SOUTH, spawnPosition);
 		}
 
 		else if (typeB == "Evolved" || typeB == "Witch"){
@@ -107,6 +117,7 @@ void ExtendedCollisionAction::execute(Object* objB){
 
 		else if (typeB == "Hero"){
 			//Kill objectB / reduce life of objectB
+
 		}
 		else if (typeB == "Projectile"){
 			//Kill objectA or reduce life of objectA
@@ -126,6 +137,7 @@ void ExtendedCollisionAction::execute(Object* objB){
 			//Kill objectB / reduce life of objectB
 		}
 		else if (typeB == "Projectile"){
+			map->removeObject(objB);
 			//is a projectile
 			//Kill objectA or reduce life of objectA
 			//Delete objectB
@@ -156,25 +168,29 @@ void ExtendedCollisionAction::execute(Object* objB){
 	else if (typeA == "Projectile"){
 		if (typeB == "Hero" || typeB == "Ghost" || typeB == "Evolved" || typeB == "Witch"){
 			
-			map->removeObject(objA);
-			
+		//	map->removeObject(objA);
+		//	map->removeObject(objB);
+				
 			//Delete objA and damage/delete objB
 		}
 		else if (typeB == "Projectile"){
 			//Delete both objA and objB
-			map->removeObject(objA);
-			map->removeObject(objB);
+		//	map->removeObject(objA);
+		//	map->removeObject(objB);
+			
 		}
 		else{
 			//Is a wall
-			map->removeObject(objA);
+		//	map->removeObject(objA);
 		}
 	}
 
 	else if (typeA == "Witch"){
 		if (typeB == "Projectile"){
 			//delete projectile and damage/kill witch
+			map->removeObject(objA);
 			map->removeObject(objB);
+			
 		}
 		else{
 			//do nothing

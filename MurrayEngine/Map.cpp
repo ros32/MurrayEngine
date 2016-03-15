@@ -297,7 +297,7 @@ void Map::move()
 
 	//auto object : this->objects
 	//	Loop for all objects in vector
-	for (int i = 0; i < objects.size() - 1; i++)
+	for (int i = 0; i < objects.size() ; i++)
 	{
 		
 		//	If object is to be moved
@@ -320,8 +320,13 @@ void Map::move()
 				break;
 			}
 			
-			objects[i]->setCurrentPosition(this->tryMove(objects[i], targetPosition, false));
-			objects[i]->setTargetPosition({ 0, 0 });
+			if (i < objects.size()){
+				objects[i]->setCurrentPosition(this->tryMove(objects[i], targetPosition, false));
+			}
+			if (i < objects.size()){
+				objects[i]->setTargetPosition({ 0, 0 });
+			}
+
 		}
 	}
 }
