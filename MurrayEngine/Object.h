@@ -64,12 +64,9 @@ public:
 	virtual Uint32					getLastMove();
 	virtual Uint32					getLastRender();
 	virtual void					setLastRender(Uint32 lastRender);
-//	virtual void					setLastMove(Uint32 lastMove);
 
 	//	Actions
-	virtual void					move();
 	virtual void					reverseMove();
-	virtual void					takeDamage();
 
 	//	Action queue
 	virtual void					addAction(Action* action);

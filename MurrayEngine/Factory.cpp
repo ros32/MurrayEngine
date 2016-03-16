@@ -96,7 +96,6 @@ Map*				Factory::createMap(Configuration configuration)
 TextureAsset*	Factory::createAsset(Configuration configuration)
 {
 
-	std::string name = configuration.getProperty("NAME", "UNKNOWN");
 	std::string filePath = configuration.getProperty("PATH", "UNKNOWN");
 	unsigned int	cellSize = configuration.getProperty("CELL_SIZE", 32);
 	unsigned int	offset = configuration.getProperty("OFFSET", 0);

@@ -51,14 +51,9 @@ void	DefaultAI::move()
 	{
 
 		const Position currentPosition = npc->getCurrentPosition();
-		const Position maxSize = map->getMapMaxSize();
-		const int width = npc->getTexture()->asset->getWidth();
-		const int height = npc->getTexture()->asset->getHeight();
 		Orientation currentDirection = npc->getOrientation();
 
 		int moveTimes = 2;
-
-		//int scopeWidth = 0;
 
 		//	Check if last move was successful
 		if (npc->getCurrentPosition().x == this->lastMovePosition.x && npc->getCurrentPosition().y == this->lastMovePosition.y)
@@ -208,8 +203,6 @@ bool		DefaultAI::canSeePlayer()
 	{
 		Position relativeMovePosition = { -(currentPosition.x - playerPosition.x), -(currentPosition.y - playerPosition.y) };
 
-		int moveAxis = (std::abs(relativeMovePosition.x) > std::abs(relativeMovePosition.y)) ? width : height;
-
 		Position maxTravelRange = map->tryMove(npc, relativeMovePosition, true);
 
 		//	Move NPC to target
@@ -220,13 +213,11 @@ bool		DefaultAI::canSeePlayer()
 		Position areaSearchB = { maxTravelRange.x + width, maxTravelRange.y + height };
 
 		//	See if player is within reach
-		bool playerWithinSight = false;
 		std::vector<Object*> nearbyObjects = map->getObject(areaSearchA, areaSearchB);
 		for (auto object : nearbyObjects)
 		{
 			if (map->getPlayerCharacter() != nullptr && object->getId() == map->getPlayerCharacter()->getId())
 			{
-				playerWithinSight = true;
 				break;
 			}
 		}

@@ -143,7 +143,7 @@ Tile* Map::getTile(Position pos)
 				int height = itm->second->getTexture()->asset->getHeight();
 				int width = itm->second->getTexture()->asset->getWidth();
 				if (pos.x >= currentPosition.x && pos.x < currentPosition.x + height && //	X coordinate is within x of the tile
-					pos.y >= currentPosition.y && pos.y < currentPosition.y + height)	//	Y coordinate is within y of the tile
+					pos.y >= currentPosition.y && pos.y < currentPosition.y + width)	//	Y coordinate is within y of the tile
 					return itm->second;
 			}
 		}

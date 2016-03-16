@@ -105,23 +105,6 @@ void Object::reverseMove()
 
 }
 
-void Object::move()
-{
-	/*
-	//Save the currentposition before we move
-	
-	this->lastPosition = this->currentPosition;
-
-	//Add the velocity to the current position
-	currentPosition.x += this->currentSpeed * this->targetPosition.x;
-	currentPosition.y += this->currentSpeed * this->targetPosition.y;
-
-	this->targetPosition = { 0, 0 };
-	*/
-}
-
-
-
 bool Object::collideBox(Object* objectB)
 {
 	if (objectB == nullptr)
@@ -338,17 +321,12 @@ void Object::render(int x, int y)
 	{
 		this->texture->asset->render(x, y, this->texture->name);
 		this->lastRender = this->timer.getTicks();
-}
+	}
 }
 
 int		Object::getCurrentSpeed()
 {
 	return this->currentSpeed;
-}
-
-void  Object::takeDamage()
-{
-	SDL_Log("Taking some damage");
 }
 
 void	Object::setTexture(std::shared_ptr<Texture> texture)
@@ -365,16 +343,6 @@ Uint32	Object::getLastMove()
 {
 	return this->lastMove;
 }
-
-
-/*
-void	Object::setLastMove(Uint32 lastMove)
-{
-this->lastMove = lastMove;
-}
-
-*/
-
 
 void	Object::setLastRender(Uint32 lastRender)
 {
@@ -421,10 +389,8 @@ void Object::setCollisionAction(CollisionAction* collisionAction){
 void Object::doCollisionAction(Object* obj){
 
 	 if (this->collisionAction == nullptr){
-
 		this->collisionAction = (new DefaultCollisionAction(this));
-	}
-
+	 }
 	this->collisionAction->execute(obj);
 
 }
