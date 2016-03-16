@@ -56,11 +56,11 @@ int main(int, char** argv)
 	//	When assets are initialized, we can set up keys
 
 	//	Add keys to key controller
-	gameInstance->getKeyController()->addAction(SDL_SCANCODE_W, new MoveAction(gameInstance->getMap()->getPlayerCharacter(), gameInstance->getMap(), NORTH), true);
-	gameInstance->getKeyController()->addAction(SDL_SCANCODE_S, new MoveAction(gameInstance->getMap()->getPlayerCharacter(), gameInstance->getMap(), SOUTH), true);
-	gameInstance->getKeyController()->addAction(SDL_SCANCODE_A, new MoveAction(gameInstance->getMap()->getPlayerCharacter(), gameInstance->getMap(), WEST), true);
-	gameInstance->getKeyController()->addAction(SDL_SCANCODE_D, new MoveAction(gameInstance->getMap()->getPlayerCharacter(), gameInstance->getMap(), EAST), true);
-	gameInstance->getKeyController()->addAction(SDL_SCANCODE_SPACE, new DamageAction(gameInstance->getMap()->getPlayerCharacter(), gameInstance->getMap()), false);
+	gameInstance->getKeyController()->addAction(SDL_SCANCODE_W, new PlayerMoveAction("Hero", gameInstance, NORTH), true);
+	gameInstance->getKeyController()->addAction(SDL_SCANCODE_S, new PlayerMoveAction("Hero", gameInstance, SOUTH), true);
+	gameInstance->getKeyController()->addAction(SDL_SCANCODE_A, new PlayerMoveAction("Hero", gameInstance, WEST), true);
+	gameInstance->getKeyController()->addAction(SDL_SCANCODE_D, new PlayerMoveAction("Hero", gameInstance, EAST), true);
+	gameInstance->getKeyController()->addAction(SDL_SCANCODE_SPACE, new DamageAction("Hero", gameInstance), false);
 	gameInstance->getKeyController()->addAction(SDL_SCANCODE_RETURN, new ChangeInputModeAction(gameInstance->getKeyController()), false);
 	gameInstance->getKeyController()->addAction(SDL_SCANCODE_F1, new ChangeMapAction(gameInstance, "SmallMap"), false);
 

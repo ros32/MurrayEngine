@@ -24,6 +24,8 @@ public:
 	std::vector<Object*>	getObject(Position pos);
 	std::vector<Object*>	getObject(Position posa, Position posB);
 
+	Object*					getObjectById(std::string id);
+
 	///	<summary>
 	///	Return the Tile on a given position
 	///	</summary>

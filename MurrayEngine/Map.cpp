@@ -739,3 +739,13 @@ bool	Map::canMove(Object* object, Orientation direction)
 	return true;
 }
 
+Object*			Map::getObjectById(std::string id)
+{
+	for (auto object : this->objects)
+	{
+		if (object->getId() == id)
+			return object;
+	}
+
+	return nullptr;
+}

@@ -294,7 +294,7 @@ NonPlayerCharacter*	ObjectFactory::createNonPlayerCharacter(std::string type, st
 
 void	ObjectFactory::createPlayer(Map* map, Orientation direction, Position pos)
 {
-	std::string playerName = "Hero" + std::to_string(this->counter++);
+	std::string playerName = "Hero";
 	NonPlayerCharacter*	player = this->createNonPlayerCharacter("Hero", playerName, direction, pos);
 	if (player != nullptr)
 	{

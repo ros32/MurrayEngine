@@ -7,6 +7,7 @@
 #include	"InputGUIObject.h"
 #include	"Map.h"
 #include	"ChangeMapAction.h"
+#include	"PlayerMoveAction.h"
 
 class Factory;
 class KeyController;

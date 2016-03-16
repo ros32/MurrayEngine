@@ -22,7 +22,7 @@ class ObjectFactory;
 class DamageAction : public Action{
 
 public:
-	DamageAction(Object* source, Map* map);
+	DamageAction(std::string source, GameInstance* gameInstance);
 	~DamageAction();
 
 	void execute();
@@ -31,9 +31,9 @@ public:
 
 private:
 
-	Object* source;
+	std::string source;
 	std::vector<Object*> targets;
-	Map* map;
+	GameInstance* gameInstance;
 	static int counter;
 };
 
