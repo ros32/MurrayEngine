@@ -354,7 +354,7 @@ void Map::calculateMapMaxSize(std::vector<Tile*> tiles)
 void Map::doActionQueue()
 {
 
-	for (int i = 0; i < objects.size()-1; i++){
+	for (int i = 0; i < objects.size(); i++){
 		if (objects[i] != nullptr){
 			objects[i]->doAction();
 		}
