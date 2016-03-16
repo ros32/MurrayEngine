@@ -95,20 +95,11 @@ void Configuration::importConfig(std::string fileName)
 	file.clear();
 }
 
-//Creates a file with a specified filename and stores keys + values
-//Should perhaps check if file exists before writing, and then replace it
 void Configuration::exportConfig(std::string fileName)
 {
 	std::string tempString;
 	std::string lineString;
-
-	// TODO: Cleanup debug code
-
-	configurationData.insert(std::pair<std::string, std::string>("ehhej", "ehneh"));
-	configurationData.insert(std::pair<std::string, std::string>("Age", "666"));
-	configurationData.insert(std::pair<std::string, std::string>("; Im a comment", " "));
 	
-
 	for (std::map <std::string, std::string>::iterator iter = configurationData.begin(); iter != configurationData.end(); ++iter)
 	{
 
@@ -127,9 +118,7 @@ void Configuration::exportConfig(std::string fileName)
 	{
 		std::string msg = "Error exporting configuration, could not open file";
 		SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, msg.c_str());		
-	}
-
-	
+	}	
 }
 
 std::string Configuration::getProperty(std::string key)

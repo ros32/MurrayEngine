@@ -64,13 +64,11 @@ public:
 	virtual Uint32					getLastMove();
 	virtual Uint32					getLastRender();
 	virtual void					setLastRender(Uint32 lastRender);
-	virtual void					setLastMove(Uint32 lastMove);
+//	virtual void					setLastMove(Uint32 lastMove);
 
 	//	Actions
 	virtual void					move();
 	virtual void					reverseMove();
-	virtual void					jump();
-	virtual void					doDamage();
 	virtual void					takeDamage();
 
 	//	Action queue
@@ -138,10 +136,6 @@ private:
 	Uint8 red, green, blue, alpha;
 
 	Uint32 rmask, gmask, bmask, amask;
-
-	float			velocity;
-	float			force;
-	float			mass;
 
 	CollisionEvent* collisionEvent;
 	CollisionAction* collisionAction;

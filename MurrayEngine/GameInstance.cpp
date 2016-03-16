@@ -45,8 +45,6 @@ GameInstance::~GameInstance()
 bool GameInstance::initialize()
 {
 	bool tempFactory = false;
-	bool tempKeyController = false;
-	bool tempObjFactory = false;
 
 	//	Create a default Factory object if no Factory has been provided
 	if (this->factory == nullptr)
@@ -69,7 +67,6 @@ bool GameInstance::initialize()
 	//	Create a default KeyController if no KeyController has been provided
 	if (this->keyController == nullptr)
 	{
-		tempKeyController = true;
 		this->keyController = new KeyController();
 
 		std::string output = "No Key Controller defined, creating default.";
@@ -84,7 +81,6 @@ bool GameInstance::initialize()
 	//	Set GameInstance call-back on Factory
 	this->factory->setGameInstance(this);
 
-	std::vector<Configuration>	configurations;
 	bool	mapLoaded = false;
 
 	//	Load configurations
@@ -219,11 +215,6 @@ bool GameInstance::exit()
 
 	this->exited = true;
 	return true;
-}
-
-void GameInstance::loadConfigurations()
-{
-
 }
 
 bool GameInstance::isInitialized()

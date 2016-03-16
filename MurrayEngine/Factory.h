@@ -34,17 +34,6 @@ public:
 	virtual ~Factory();
 
 	///-------------------------------------------------------------------------------------------------
-	/// <summary>	Creates an object and returns a pointer to it </summary>
-	///
-	/// <remarks>	Rosen, 2016-03-04. </remarks>
-	///
-	/// <param name="config">	The configuration. </param>
-	///
-	/// <returns>	null if it fails, else the new object. </returns>
-	///-------------------------------------------------------------------------------------------------
-	virtual Object*						createObject(Configuration config);
-
-	///-------------------------------------------------------------------------------------------------
 	/// <summary>	Creates a map. </summary>
 	///
 	/// <remarks>	Rosen, 2016-03-04. </remarks>
@@ -76,17 +65,6 @@ public:
 	/// <returns>	null if it fails, else the new key controller. </returns>
 	///-------------------------------------------------------------------------------------------------
 	virtual KeyController*				createKeyController(Configuration configuration);
-
-	///-------------------------------------------------------------------------------------------------
-	/// <summary>	Creates an animation. </summary>
-	///
-	/// <remarks>	Rosen, 2016-03-04. </remarks>
-	///
-	/// <param name="configuarion">	The configuarion. </param>
-	///
-	/// <returns>	The new animation. </returns>
-	///-------------------------------------------------------------------------------------------------
-	virtual std::shared_ptr<Animation>	createAnimation(Configuration configuarion);
 
 	///-------------------------------------------------------------------------------------------------
 	/// <summary>	Gets game instance. </summary>
@@ -124,7 +102,7 @@ public:
 	///-------------------------------------------------------------------------------------------------
 	void								setWindow(SDL_Window* window);
 
-	virtual NonPlayerCharacter* createProjectile(Map* map, Orientation direction, Position pos, Position targetPosition, std::shared_ptr<Animation> animation);
+//	virtual NonPlayerCharacter* createProjectile(Map* map, Orientation direction, Position pos, Position targetPosition, std::shared_ptr<Animation> animation);
 
 private:
 

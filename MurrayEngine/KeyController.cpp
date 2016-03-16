@@ -329,7 +329,6 @@ void	KeyController::checkState()
 	if (this->gameInstance != nullptr && this->gameInstance->getMap() != nullptr)
 	{
 		const Uint8*	currentKeyState = SDL_GetKeyboardState(NULL);
-		std::string tempS;
 
 		for (auto key : this->keys)
 		{

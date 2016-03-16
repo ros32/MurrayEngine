@@ -19,28 +19,6 @@ void	Factory::setGameInstance(GameInstance*	instance)
 	this->gameInstance = instance;
 }
 
-std::shared_ptr<Animation> Factory::createAnimation(Configuration configuration)
-{
-	unsigned int time = configuration.getProperty("TIME", 200);
-	//std::map < std::string, std::vector<std::string, std::string> > returnMap;
-
-	for (auto key : configuration)
-	{
-		std::size_t found = key.first.find("IMAGE_");
-		if (found != std::string::npos)
-		{
-			//std::string
-		}
-	}
-
-	return nullptr;
-}
-
-//	FIXME
-Object*		Factory::createObject(Configuration configuration)	
-{ 
-	return nullptr;
-}
 
 Map*				Factory::createMap(Configuration configuration)
 {
@@ -110,34 +88,6 @@ Map*				Factory::createMap(Configuration configuration)
 		}
 	}
 
-	/*while (tileMap.size() != 0)
-	{
-		Tile key = tileMap.back();
-		tileMap.pop_back();
-		int posX = (key.getCurrentPosition().x / 32);
-		int posY = (key.getCurrentPosition().y / 32);
-
-		if (posX < 0)
-			posX = 0;
-		if (posY < 0)
-			posY = 0;
-
-		size_t i = (size_t)posX;
-		size_t j = (size_t)posY;
-
-		if (tiles.size() < i + 1)
-		{
-			tiles.resize(i + 1);
-			tiles[i] = std::vector<Tile>();
-		}
-		if (tiles[i].size() < j + 1)
-		{
-			tiles[i].resize(j + 1);
-		}
-
-		tiles[i][j] = key;
-	}*/
-
 	map->setTiles(tiles);
 
 	return map;
@@ -204,7 +154,3 @@ SDL_Window*		Factory::getWindow()
 	return this->window;
 }
 
-NonPlayerCharacter* Factory::createProjectile(Map* map, Orientation direction, Position pos, Position targetPosition, std::shared_ptr<Animation> animation){
-
-	return nullptr;
-}

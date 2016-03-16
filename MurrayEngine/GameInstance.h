@@ -167,13 +167,6 @@ public:
 private:
 
 	///-------------------------------------------------------------------------------------------------
-	/// <summary>	Loads the configurations. </summary>
-	///
-	/// <remarks>	Rosen, 2016-03-04. </remarks>
-	///-------------------------------------------------------------------------------------------------
-	void			loadConfigurations();
-
-	///-------------------------------------------------------------------------------------------------
 	/// <summary>	Renders the objects. </summary>
 	///
 	/// <remarks>	Rosen, 2016-03-04. </remarks>
@@ -195,6 +188,7 @@ private:
 	void			doActions();
 
 	/// <summary>	The configurations. </summary>
+
 	std::map<std::string, Configuration> configurations;
 
 	/// <summary>	The assets. </summary>

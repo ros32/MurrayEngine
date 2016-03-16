@@ -168,20 +168,20 @@ void ExtendedCollisionAction::execute(Object* objB){
 	else if (typeA == "Projectile"){
 		if (typeB == "Hero" || typeB == "Ghost" || typeB == "Evolved" || typeB == "Witch"){
 			
-		//	map->removeObject(objA);
-		//	map->removeObject(objB);
+			map->removeObject(objA);
+			map->removeObject(objB);
 				
 			//Delete objA and damage/delete objB
 		}
 		else if (typeB == "Projectile"){
 			//Delete both objA and objB
-		//	map->removeObject(objA);
-		//	map->removeObject(objB);
+			map->removeObject(objA);
+			map->removeObject(objB);
 			
 		}
 		else{
 			//Is a wall
-		//	map->removeObject(objA);
+			map->removeObject(objA);
 		}
 	}
 

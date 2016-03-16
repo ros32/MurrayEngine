@@ -20,10 +20,6 @@ Object::Object(std::string id, Position currentPosition, std::shared_ptr<Texture
 	this->collisionEvent = nullptr;
 	this->collisionAction = nullptr;
 
-	this->force = 0;
-	this->velocity = 0;
-	this->mass = 0;
-
 }
 
 Object::~Object()
@@ -350,14 +346,6 @@ int		Object::getCurrentSpeed()
 	return this->currentSpeed;
 }
 
-void   Object::jump()
-{
-	SDL_Log("Jumping");
-}
-void   Object::doDamage()
-{
-	SDL_Log("doing some damage");
-}
 void  Object::takeDamage()
 {
 	SDL_Log("Taking some damage");
@@ -378,10 +366,15 @@ Uint32	Object::getLastMove()
 	return this->lastMove;
 }
 
+
+/*
 void	Object::setLastMove(Uint32 lastMove)
 {
-	this->lastMove = lastMove;
+this->lastMove = lastMove;
 }
+
+*/
+
 
 void	Object::setLastRender(Uint32 lastRender)
 {

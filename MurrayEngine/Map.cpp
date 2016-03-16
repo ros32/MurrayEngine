@@ -97,45 +97,8 @@ std::vector<Object*>	Map::getObject(Position posA, Position posB)
 
 std::vector<Tile*>	Map::getTiles(Position posA, Position posB)
 {
-	/*
-	std::vector < Tile* >	tempVector;
-
-	int left = std::min(posA.x, posB.x);
-	int right = std::max(posA.x, posB.x);
-	int bottom = std::min(posA.y, posB.y);
-	int top = std::max(posA.y, posB.y);
-
-	for (auto tile : this->tiles)
-	{
-	bool hit = true;
-	Position pos = tile->getCurrentPosition();
-	int otherLeft = pos.x;
-	int otherRight = pos.x + tile->getCollisionTexture()->asset->getWidth();
-	int otherBottom = pos.y;
-	int otherTop = pos.y + tile->getCollisionTexture()->asset->getHeight();
-
-	if (right < otherLeft){
-	hit = false;
-	}
-	else if (left > otherRight){
-	hit = false;
-	}
-	else if (top < otherBottom){
-	hit = false;
-	}
-	else if (bottom > otherTop){
-	hit = false;
-	}
-
-	if (hit)
-	tempVector.push_back(tile);
-	}
-
-	return tempVector;
-	*/
-
 	std::map<Position, std::map<Position, Tile*> >::iterator it;
-	std::vector<std::vector<Tile*> >	tileVectors;
+
 	std::vector<Tile*>					foundTiles;
 
 	Position lower = { std::min(posA.x, posB.x), std::min(posA.y, posB.y) };
@@ -166,22 +129,6 @@ std::vector<Tile*>	Map::getTiles(Position posA, Position posB)
 
 Tile* Map::getTile(Position pos)
 {
-	//	std::vector <std::vector<Tile>>::iterator row;
-	//	std::vector<Tile>::iterator column;
-	/*
-	for (auto tile : this->tiles)
-	{
-		Position currentPosition = tile->getCurrentPosition();
-		int height = tile->getTexture()->asset->getHeight();
-		int width = tile->getTexture()->asset->getWidth();
-
-		if (pos.x >= currentPosition.x && pos.x < currentPosition.x + height && //	X coordinate is within x of the tile
-			pos.y >= currentPosition.y && pos.y < currentPosition.y + height)	//	Y coordinate is within y of the tile
-			return tile;
-
-	}
-	*/
-
 	std::map<Position, std::map<Position, Tile*> >::iterator it;
 
 	for (it = this->tileGrid.begin(); it != this->tileGrid.end(); it++)
@@ -214,14 +161,7 @@ void Map::render()
 	Position	cameraMaxPosition = { this->camera->getPosition().x + this->camera->getWidth(), this->camera->getPosition().x + this->camera->getWidth() };
 	for (auto object : this->getTiles(cameraPosition, cameraMaxPosition))
 	{
-		/*if ((object->getCurrentPosition().x >= (this->camera->getPosition().x - object->getTexture()->asset->getCellSize()) && object->getCurrentPosition().x <= (this->camera->getPosition().x + this->camera->getWidth() + object->getTexture()->asset->getCellSize())) &&
-			(object->getCurrentPosition().y >= (this->camera->getPosition().y - object->getTexture()->asset->getCellSize()) && object->getCurrentPosition().y <= (this->camera->getPosition().y + this->camera->getHeight() + object->getTexture()->asset->getCellSize())))
-		{
-			//	Object is within camera view
 
-			//	Render object with camera offset
-			
-		}*/
 		object->render(object->getCurrentPosition().x - this->camera->getPosition().x, object->getCurrentPosition().y - this->camera->getPosition().y);
 	}
 
@@ -243,8 +183,6 @@ void Map::render()
 
 void Map::setTiles(std::vector<Tile*> tiles)
 {
-		//this->tiles = tiles;
-		//this->generateMaps();
 		this->calculateMapMaxSize(tiles);
 		this->createGrid(tiles);
 }
@@ -261,22 +199,12 @@ void Map::addObject(Object* object)
 
 void Map::removeObject(Object* object)
 {
-
 	objects.erase(std::remove(objects.begin(), objects.end(), object), objects.end());
-	/*
-	for (int i = objects.size()-1; i >= 0; i--){
-		if (objects[i] == object)
-			objects.erase(objects.begin()+1);
-
-	}*/
-
 }
 
 void Map::move()
 
 {
-
-	//auto object : this->objects
 	//	Loop for all objects in vector
 	for (int i = 0; i < objects.size() ; i++)
 	{
@@ -359,15 +287,6 @@ void Map::doActionQueue()
 			objects[i]->doAction();
 		}
 	}
-
-	/*
-		for (auto object : this->objects)
-	{
-		if (object != nullptr)
-			object->doAction();
-	}
-	*/
-
 }
 
 void Map::generateMaps()
@@ -454,7 +373,6 @@ Position	Map::tryMove(Object* object, Position targetPosition, bool onlyCheckCol
 		const int height = object->getTexture()->asset->getHeight();
 		const int width = object->getTexture()->asset->getWidth();
 
-		int minSize = std::min(width, height);
 		int moveDistance = (onlyCheckCollision) ? 2 : 1;
 
 		//	Store the iterators current position
@@ -643,17 +561,7 @@ Position				Map::tryMove(Object* object, Position targetPosition, bool relativeP
 		std::string out = "This is iteration " + std::to_string(iteration++);
 		SDL_LogCritical(SDL_LOG_CATEGORY_APPLICATION, out.c_str());
 	}
-	/*
-	if (moveX && !negX && (padding < currentPosition.x - lastGoodPosition.x))
-		lastGoodPosition.x = -padding;
-	else if (moveX && negX && (padding > currentPosition.x - lastGoodPosition.x))
-		lastGoodPosition.x = +padding;
 
-	if (moveY && !negY && (padding < currentPosition.y - lastGoodPosition.y))
-		lastGoodPosition.y = -padding;
-	else if (moveY && negY && (padding > currentPosition.y - lastGoodPosition.y))
-		lastGoodPosition.y = +padding;
-		*/
 	object->setCurrentPosition(currentPosition);
 
 	return lastGoodPosition;
