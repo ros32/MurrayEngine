@@ -15,7 +15,6 @@
 class Map
 {
 public:
-	Map();
 	Map(SDL_Window* window, SDL_Renderer* renderer);
 	~Map();
 

@@ -34,7 +34,7 @@ public:
 	///
 	/// <remarks>	Rosen, 2016-02-28. </remarks>
 	///-------------------------------------------------------------------------------------------------
-	Camera();
+	//Camera();
 
 	///-------------------------------------------------------------------------------------------------
 	/// <summary>	Constructor. </summary>
@@ -174,7 +174,7 @@ private:
 	CameraFocus			focusType;
 
 	/// <summary>	The graphical user interface. </summary>
-	GUI					gui;
+	GUI*					gui;
 
 };
 

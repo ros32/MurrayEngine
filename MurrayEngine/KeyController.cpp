@@ -326,54 +326,55 @@ KeyController::~KeyController()
 
 void	KeyController::checkState()
 {
-	
-	
-	const Uint8*	currentKeyState = SDL_GetKeyboardState(NULL);
-	std::string tempS;
+	if (this->gameInstance != nullptr && this->gameInstance->getMap() != nullptr)
+	{
+		const Uint8*	currentKeyState = SDL_GetKeyboardState(NULL);
+		std::string tempS;
 
-	for (auto key : this->keys)
-	{
-		if (currentKeyState[key.first] && (this->repeat[key.first] || !this->lastStatus[key.first]))
+		for (auto key : this->keys)
 		{
-			this->keys[key.first] = true;
-			if (this->textInputMode)
-				this->keys[key.first] = (currentKeyState[key.first] != this->lastStatus[key.first]);
-		}
-		else
-		{
-			this->keys[key.first] = false;
-		}
-		this->lastStatus[key.first] = (currentKeyState[key.first]) ? true : false;
-	}
-	if (this->textInputMode)
-	{
-		if (keys[SDL_SCANCODE_BACKSPACE])
-			this->gameInstance->getInputObject()->removeChar();
-		else if (keys[SDL_SCANCODE_RETURN] || keys[SDL_SCANCODE_RETURN2])
-		{
-			this->textInputMode = false;
-		}
-		else
-		{
-			for (auto key : this->chars)
+			if (currentKeyState[key.first] && (this->repeat[key.first] || !this->lastStatus[key.first]))
 			{
-				if (this->keys[key.first])
-				{
-					this->gameInstance->getInputObject()->addChar(key.second);
-				}
+				this->keys[key.first] = true;
+				if (this->textInputMode)
+					this->keys[key.first] = (currentKeyState[key.first] != this->lastStatus[key.first]);
 			}
-			
+			else
+			{
+				this->keys[key.first] = false;
+			}
+			this->lastStatus[key.first] = (currentKeyState[key.first]) ? true : false;
 		}
-
-	}
-	else
-	{
-		for (auto key : this->actions)
+		if (this->textInputMode)
 		{
-			if (this->keys[key.first] && key.second != nullptr)
-			{		
-				key.second->execute();
-			}	
+			if (keys[SDL_SCANCODE_BACKSPACE])
+				this->gameInstance->getMap()->getCamera()->getGUI()->getInputObject()->removeChar();
+			else if (keys[SDL_SCANCODE_RETURN] || keys[SDL_SCANCODE_RETURN2])
+			{
+				this->textInputMode = false;
+			}
+			else
+			{
+				for (auto key : this->chars)
+				{
+					if (this->keys[key.first])
+					{
+						this->gameInstance->getMap()->getCamera()->getGUI()->getInputObject()->addChar(key.second);
+					}
+				}
+			
+			}
+
+		}
+		else
+		{
+			for (auto key : this->actions)
+			{
+				if (this->keys[key.first] && key.second != nullptr)
+				{		
+					key.second->execute();
+				}	
+			}
 		}
 	}
 }

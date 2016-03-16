@@ -1,15 +1,5 @@
 #include	"Camera.h"
 
-Camera::Camera()
-{
-	this->position = { 0, 0 };
-	this->height = 0;
-	this->width = 0;
-	this->focusType = FREE_FOCUS;
-	this->gui;
-	this->renderer = nullptr;
-}
-
 Camera::Camera(SDL_Window* window)
 {
 	//	Set position to 0,0
@@ -21,7 +11,9 @@ Camera::Camera(SDL_Window* window)
 	//	Use OBJECT_FOCUS as standard
 	this->focusType = FREE_FOCUS;
 
-	this->renderer = nullptr;
+	this->renderer = SDL_GetRenderer(window);
+
+	this->gui = new GUI(renderer);
 }
 
 Camera::~Camera()
@@ -66,7 +58,7 @@ CameraFocus	Camera::getFocusType()
 
 GUI*		Camera::getGUI()
 {
-	return &this->gui;
+	return this->gui;
 }
 
 void		Camera::setFocusType(CameraFocus focusType)

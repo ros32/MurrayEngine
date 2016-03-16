@@ -6,6 +6,7 @@
 #include	"KeyController.h"
 #include	"InputGUIObject.h"
 #include	"Map.h"
+#include	"ChangeMapAction.h"
 
 class Factory;
 class KeyController;
@@ -160,7 +161,7 @@ public:
 	///-------------------------------------------------------------------------------------------------
 	void				setKeyController(KeyController* keyController);
 
-	InputGUIObject*		getInputObject();
+	void				setMap(std::string mapName);
 
 private:
 
@@ -201,6 +202,8 @@ private:
 	/// <summary>	The texture assets. </summary>
 	std::map<std::string, TextureAsset*> textureAssets;
 
+	std::map<std::string, Configuration> maps;
+
 	/// <summary>	The instance window. </summary>
 	SDL_Window*		instanceWindow;
 
@@ -234,7 +237,7 @@ private:
 	/// <summary>	The frame rate graphical user interface object. </summary>
 	GUIObject*		frameRateGUIObject;
 
-	InputGUIObject*	inputGUIObject;
+	bool			mapChanged;
 
 };
 

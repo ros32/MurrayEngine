@@ -1,24 +1,5 @@
 #include "Map.h"
 
-
-Map::Map()
-{
-	this->tileSize;
-	this->camera = new Camera();
-	this->tiles;
-	this->objects;
-	this->collisionMap;
-	this->passableMap;
-	this->tileGrid;
-	this->gridSize = DEFAULT_GRID_SIZE;
-	this->playerCharacter = nullptr;
-
-	this->collisionEvent = nullptr;
-	this->mapMaxSize = { 0, 0 };
-	this->tileSize = 0;
-
-}
-
 Map::Map(SDL_Window* window, SDL_Renderer* renderer)
 {
 	this->tileSize;

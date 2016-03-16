@@ -1,13 +1,19 @@
 #include "GUI.h"
 
-GUI::GUI()
+GUI::GUI(SDL_Renderer* renderer)
 {
 	this->guiObjects;
+	this->inputGUIObject = new InputGUIObject(renderer, { 64, 32 });
 }
 
 GUI::~GUI()
 {
 
+}
+
+InputGUIObject*	GUI::getInputObject()
+{
+	return this->inputGUIObject;
 }
 
 std::vector<GUIObject*>	GUI::getGUIObjects()
@@ -60,4 +66,7 @@ void	GUI::render()
 				object->getTexture()->render(object->getPosition().x, object->getPosition().y, NULL);
 		}
 	}
+	if (this->inputGUIObject != nullptr && this->inputGUIObject->getTexture() != nullptr)
+		this->inputGUIObject->getTexture()->render(this->inputGUIObject->getPosition().x, this->inputGUIObject->getPosition().y, NULL);
+
 }

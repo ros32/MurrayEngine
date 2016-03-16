@@ -17,6 +17,7 @@
     <ClInclude Include="Animation.h" />
     <ClInclude Include="Asset.h" />
     <ClInclude Include="ChangeInputModeAction.h" />
+    <ClInclude Include="ChangeMapAction.h" />
     <ClInclude Include="CollisionAction.h" />
     <ClInclude Include="CollisionEvent.h" />
     <ClInclude Include="Configuration.h" />
@@ -47,6 +48,7 @@
     <ClCompile Include="AI.cpp" />
     <ClCompile Include="AnimatedObject.cpp" />
     <ClCompile Include="ChangeInputModeAction.cpp" />
+    <ClCompile Include="ChangeMapAction.cpp" />
     <ClCompile Include="CollisionAction.cpp" />
     <ClCompile Include="CollisionEvent.cpp" />
     <ClCompile Include="Configuration.cpp" />

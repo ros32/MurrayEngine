@@ -4,6 +4,7 @@
 #include	<vector>
 #include	<algorithm>
 #include	"GUIObject.h"
+#include	"InputGUIObject.h"
 
 ///-------------------------------------------------------------------------------------------------
 /// <summary>	A graphical user interface. </summary>
@@ -19,7 +20,7 @@ public:
 	///
 	/// <remarks>	Rosen, 2016-02-28. </remarks>
 	///-------------------------------------------------------------------------------------------------
-	GUI();
+	GUI(SDL_Renderer* renderer);
 
 	///-------------------------------------------------------------------------------------------------
 	/// <summary>	Destructor. </summary>
@@ -62,10 +63,14 @@ public:
 	///-------------------------------------------------------------------------------------------------
 	void	render();
 
+	InputGUIObject*		getInputObject();
+
 private:
 
 	/// <summary>	The graphical user interface objects. </summary>
 	std::vector<GUIObject*>		guiObjects;
+
+	InputGUIObject*	inputGUIObject;
 
 };
 

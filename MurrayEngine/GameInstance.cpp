@@ -15,8 +15,9 @@ GameInstance::GameInstance(SDL_Window* window, SDL_Renderer* renderer, Configura
 	this->map = nullptr;
 	this->factory = nullptr;
 	this->keyController = nullptr;
-	this->inputGUIObject = new InputGUIObject(renderer, { 64, 32 });
 	this->frameRateGUIObject = nullptr;
+	this->maps;
+	this->mapChanged = false;
 }
 
 GameInstance::~GameInstance()
@@ -129,11 +130,24 @@ bool GameInstance::initialize()
 	{
 		if (key.second.getProperty("TYPE", "UNKNOWN") == "Map")
 		{
-			if (!mapLoaded)
+
+			if (!mapLoaded && 1 == 2)
 			{
 				this->setMap(this->factory->createMap(key.second));
 				mapLoaded = true;
 			}
+			this->maps.insert(std::make_pair(key.second.getProperty("NAME", "UNKNOWN"), key.second));
+		}
+	}
+	if (!mapLoaded && this->maps.size() > 0)
+	{
+		std::string output = "No DEFAULT_MAP specified, using first available Map found.";
+		SDL_LogWarn(SDL_LOG_CATEGORY_APPLICATION, output.c_str());
+		for (auto map : this->maps)
+		{
+			this->setMap(this->factory->createMap(map.second));
+			mapLoaded = true;
+			break;
 		}
 	}
 
@@ -142,7 +156,6 @@ bool GameInstance::initialize()
 	//	GameInstance must be set on KeyController *AFTER* assets and map has been initialized,
 	//	otherwise actions defined that depends on Object* will not have valid pointers
 	this->keyController->setGameInstance(this);
-	this->map->getCamera()->getGUI()->addObject(this->inputGUIObject);
 
 	if (tempFactory)
 	{
@@ -178,18 +191,23 @@ bool GameInstance::run()
 		}
 		
 		this->keyController->checkState();
-		this->doActions();
-		//	Clear renderer
-		SDL_RenderClear(this->instanceRenderer);
-		TextureAsset*	tempTexture = new TextureAsset(this->instanceRenderer, "8bitOperatorPlusSC-Bold.ttf", 24, std::to_string(frameLimiter.getAvgFrames()), { 255, 255, 255 });
-		this->frameRateGUIObject->setTexture(tempTexture);
-		
-		this->moveObjects();
-		this->renderObjects();
-		SDL_RenderPresent(this->instanceRenderer);
-		delete tempTexture;
-		this->frameRateGUIObject->setTexture(nullptr);
-		this->frameLimiter.limit();
+		if (!this->mapChanged)
+		{
+			this->doActions();
+			//	Clear renderer
+			SDL_RenderClear(this->instanceRenderer);
+			TextureAsset*	tempTexture = new TextureAsset(this->instanceRenderer, "8bitOperatorPlusSC-Bold.ttf", 24, std::to_string(frameLimiter.getAvgFrames()), { 255, 255, 255 });
+			this->frameRateGUIObject->setTexture(tempTexture);
+
+			this->moveObjects();
+			this->renderObjects();
+			SDL_RenderPresent(this->instanceRenderer);
+			delete tempTexture;
+			this->frameRateGUIObject->setTexture(nullptr);
+			this->frameLimiter.limit();
+		}
+		else
+			mapChanged = false;
 	}
 
 	this->runned = true;
@@ -276,7 +294,27 @@ KeyController*	GameInstance::getKeyController()
 	return this->keyController;
 }
 
-InputGUIObject*	GameInstance::getInputObject()
+void			GameInstance::setMap(std::string mapName)
 {
-	return this->inputGUIObject;
+	if (mapName != "" && this->maps.size() > 0)
+	{
+		for (auto map : this->maps)
+		{
+			if (map.second.getProperty("NAME", "UNKNOWN") == mapName)
+			{
+				delete this->map;
+				bool tempFactory = (this->factory == nullptr);
+				if(tempFactory)
+					this->factory = new Factory();
+				this->setMap(this->factory->createMap(map.second));
+				if (tempFactory)
+				{
+					delete this->factory;
+					this->factory = nullptr;
+				}
+				this->mapChanged = true;
+				break;
+			}
+		}
+	}
 }
