@@ -91,37 +91,21 @@ xcopy /Y "$(SolutionDir)lib\SDL2_ttf-2.0.12\lib\x86\*.dll" "$(OutDir)*.dll"</Com
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Boss.cfg" />
-    <None Include="BossAnimation.cfg" />
-    <None Include="Enemy.cfg" />
-    <None Include="EnemyAnimation.cfg" />
     <None Include="HeartSheet.cfg" />
-    <None Include="HeroAnimation.cfg" />
     <None Include="EpicSpriteSheet.cfg" />
-    <None Include="gamemap.cfg" />
-    <None Include="HeroSpriteSheet.cfg" />
     <None Include="keys.cfg" />
     <None Include="main.cfg" />
     <None Include="Makefile" />
     <None Include="map.cfg" />
-    <None Include="Player.cfg" />
     <None Include="ProjectileSheet.cfg" />
-    <None Include="ProjectilesSpriteSheet.cfg" />
-    <None Include="ReinBearSpriteSheet.cfg" />
     <None Include="SmallMap.cfg" />
-    <None Include="spritesheet.cfg" />
     <None Include="tileset.cfg" />
-    <None Include="wallmap.cfg" />
     <None Include="WitchSpritesheet.cfg" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="EpicSpriteSheet.png" />
     <Image Include="HeartSheet.png" />
-    <Image Include="HeroSpriteSheet.png" />
     <Image Include="ProjectileSheet.png" />
-    <Image Include="ProjectilesSpriteSheet.png" />
-    <Image Include="ReinBearSpriteSheet.png" />
-    <Image Include="spritesheet.bmp" />
     <Image Include="spritesheet.png" />
     <Image Include="tileset.png" />
     <Image Include="WitchSpritesheet.png" />

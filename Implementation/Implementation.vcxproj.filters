@@ -38,9 +38,6 @@
     <None Include="map.cfg">
       <Filter>Resource Files</Filter>
     </None>
-    <None Include="spritesheet.cfg">
-      <Filter>Resource Files</Filter>
-    </None>
     <None Include="tileset.cfg">
       <Filter>Resource Files</Filter>
     </None>
@@ -48,21 +45,6 @@
       <Filter>Resource Files</Filter>
     </None>
     <None Include="keys.cfg">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="gamemap.cfg">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="wallmap.cfg">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="HeroSpriteSheet.cfg">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="ProjectilesSpriteSheet.cfg">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="ReinBearSpriteSheet.cfg">
       <Filter>Resource Files</Filter>
     </None>
     <None Include="EpicSpriteSheet.cfg">
@@ -74,25 +56,7 @@
     <None Include="SmallMap.cfg">
       <Filter>Resource Files</Filter>
     </None>
-    <None Include="HeroAnimation.cfg">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="Player.cfg">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="Enemy.cfg">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="BossAnimation.cfg">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="Boss.cfg">
-      <Filter>Resource Files</Filter>
-    </None>
     <None Include="HeartSheet.cfg">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="EnemyAnimation.cfg">
       <Filter>Resource Files</Filter>
     </None>
     <None Include="Makefile">
@@ -100,9 +64,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="spritesheet.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
     <Image Include="spritesheet.png">
       <Filter>Resource Files</Filter>
     </Image>
@@ -110,15 +71,6 @@
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="WitchSpritesheet.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="HeroSpriteSheet.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="ProjectilesSpriteSheet.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="ReinBearSpriteSheet.png">
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="EpicSpriteSheet.png">

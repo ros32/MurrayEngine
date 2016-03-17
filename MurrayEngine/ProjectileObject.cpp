@@ -5,7 +5,6 @@ ProjectileObject::ProjectileObject(std::string id, Position currentPosition, Pos
 
 	this->targetPosition = targetPosition;
 	this->animation = animation;
-	this->map = nullptr;
 }
 
 ProjectileObject::~ProjectileObject(){

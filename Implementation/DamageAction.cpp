@@ -33,19 +33,19 @@ void DamageAction::execute()
 			Position targetPosition;
 			switch (orientation){
 			case NORTH:
-				startPosition = { sourceObject->getCurrentPosition().x, sourceObject->getCurrentPosition().y - sourceObject->getTexture()->asset->getWidth() };
+				startPosition = { sourceObject->getCurrentPosition().x, sourceObject->getCurrentPosition().y - sourceObject->getTexture()->asset->getHeight() };
 				targetPosition = { 0, -2 };
 				break;
 			case SOUTH:
-				startPosition = { sourceObject->getCurrentPosition().x, sourceObject->getCurrentPosition().y + sourceObject->getTexture()->asset->getWidth() };
-				targetPosition = {0, 2 };
+				startPosition = { sourceObject->getCurrentPosition().x, sourceObject->getCurrentPosition().y + sourceObject->getTexture()->asset->getHeight() };
+				targetPosition = { 0, 2 };
 				break;
 			case WEST:
-				startPosition = { sourceObject->getCurrentPosition().x - sourceObject->getTexture()->asset->getHeight(), sourceObject->getCurrentPosition().y };
+				startPosition = { sourceObject->getCurrentPosition().x - sourceObject->getTexture()->asset->getWidth(), sourceObject->getCurrentPosition().y };
 				targetPosition = { -2, 0};
 				break;
 			case EAST:
-				startPosition = { sourceObject->getCurrentPosition().x + sourceObject->getTexture()->asset->getHeight(), sourceObject->getCurrentPosition().y };
+				startPosition = { sourceObject->getCurrentPosition().x + sourceObject->getTexture()->asset->getWidth(), sourceObject->getCurrentPosition().y };
 				targetPosition = { 2, 0 };
 				break;
 			}
