@@ -3,7 +3,6 @@
 KeyController::KeyController()
 {
 	this->gameInstance = nullptr;
-	this->playerCharacter = nullptr;
 
 	this->keys;
 
@@ -381,22 +380,6 @@ void	KeyController::checkState()
 void	KeyController::setGameInstance(GameInstance* instance)
 {
 	this->gameInstance = instance;
-
-	if (this->gameInstance != nullptr && this->gameInstance->getMap() != nullptr)
-		this->playerCharacter = this->gameInstance->getMap()->getPlayerCharacter();
-	else
-		this->playerCharacter = nullptr;
-
-	//	Set up basic controls if not defined
-	bool	keysDefined = false;
-	for (auto key : this->actions)
-	{
-		if (key.second != nullptr)
-		{
-			keysDefined = true;
-			break;
-		}
-	}
 }
 
 void	KeyController::addAction(SDL_Scancode key, Action* action, bool repeat)

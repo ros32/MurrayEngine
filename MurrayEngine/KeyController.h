@@ -28,8 +28,6 @@ private:
 
 	GameInstance*					gameInstance;
 
-	Object*							playerCharacter;
-
 	std::map< SDL_Scancode, bool >	keys;
 	std::map< SDL_Scancode, char >	chars;
 	std::map< SDL_Scancode, bool >	lastStatus;
