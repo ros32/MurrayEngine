@@ -15,14 +15,12 @@ GameInstance::GameInstance(SDL_Window* window, SDL_Renderer* renderer, Configura
 	this->map = nullptr;
 	this->factory = nullptr;
 	this->keyController = nullptr;
-	this->frameRateGUIObject = nullptr;
 	this->maps;
 	this->mapChanged = false;
 }
 
 GameInstance::~GameInstance()
 {
-	delete this->frameRateGUIObject;
 
 	//	Delete texture assets
 	for (auto asset : this->textureAssets)
@@ -162,9 +160,6 @@ bool GameInstance::initialize()
 		SDL_LogInfo(SDL_LOG_CATEGORY_APPLICATION, output.c_str());
 	}
 
-	this->frameRateGUIObject = new GUIObject({ 10, 10 }, nullptr);
-	this->getMap()->getCamera()->getGUI()->addObject(this->frameRateGUIObject);
-
 	this->initialized = true;
 	return true;
 
@@ -192,14 +187,10 @@ bool GameInstance::run()
 			this->doActions();
 			//	Clear renderer
 			SDL_RenderClear(this->instanceRenderer);
-			TextureAsset*	tempTexture = new TextureAsset(this->instanceRenderer, "8bitOperatorPlusSC-Bold.ttf", 24, std::to_string(frameLimiter.getAvgFrames()), { 255, 255, 255 });
-			this->frameRateGUIObject->setTexture(tempTexture);
 
 			this->moveObjects();
 			this->renderObjects();
 			SDL_RenderPresent(this->instanceRenderer);
-			delete tempTexture;
-			this->frameRateGUIObject->setTexture(nullptr);
 			this->frameLimiter.limit();
 		}
 		else

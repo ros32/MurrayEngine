@@ -1,13 +1,6 @@
 #ifndef _FRAME_LIMITER_H
 #define	_FRAME_LIMITER_H
 
-///-------------------------------------------------------------------------------------------------
-/// <summary>	A macro that defines frame average history sample. </summary>
-///
-/// <remarks>	Rosen, 2016-02-28. </remarks>
-///-------------------------------------------------------------------------------------------------
-#define		FRAME_AVG_HISTORY_SAMPLE			2
-
 #include	"Timer.h"
 
 ///-------------------------------------------------------------------------------------------------
@@ -42,15 +35,6 @@ public:
 	/// <remarks>	Rosen, 2016-02-28. </remarks>
 	///-------------------------------------------------------------------------------------------------
 	~FrameLimiter();
-
-	///-------------------------------------------------------------------------------------------------
-	/// <summary>	Gets average frames. </summary>
-	///
-	/// <remarks>	Rosen, 2016-02-28. </remarks>
-	///
-	/// <returns>	The average frames. </returns>
-	///-------------------------------------------------------------------------------------------------
-	Uint32			getAvgFrames();
 
 	///-------------------------------------------------------------------------------------------------
 	/// <summary>	Gets the limit. </summary>
@@ -91,12 +75,6 @@ private:
 
 	/// <summary>	The timer. </summary>
 	Timer			timer;
-
-	/// <summary>	The frame history[ frame average history sample]. </summary>
-	Uint32			frameHistory[FRAME_AVG_HISTORY_SAMPLE];
-
-	/// <summary>	The next average element. </summary>
-	unsigned int	nextAvgElement;
 
 };
 
