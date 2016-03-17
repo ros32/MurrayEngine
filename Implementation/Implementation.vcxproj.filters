@@ -35,9 +35,6 @@
     <None Include="main.cfg">
       <Filter>Resource Files</Filter>
     </None>
-    <None Include="map.cfg">
-      <Filter>Resource Files</Filter>
-    </None>
     <None Include="tileset.cfg">
       <Filter>Resource Files</Filter>
     </None>
@@ -56,17 +53,11 @@
     <None Include="SmallMap.cfg">
       <Filter>Resource Files</Filter>
     </None>
-    <None Include="HeartSheet.cfg">
-      <Filter>Resource Files</Filter>
-    </None>
     <None Include="Makefile">
       <Filter>Resource Files</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="spritesheet.png">
-      <Filter>Resource Files</Filter>
-    </Image>
     <Image Include="tileset.png">
       <Filter>Resource Files</Filter>
     </Image>
@@ -79,14 +70,8 @@
     <Image Include="ProjectileSheet.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="HeartSheet.png">
-      <Filter>Resource Files</Filter>
-    </Image>
   </ItemGroup>
   <ItemGroup>
-    <Font Include="8bitOperatorPlus8-Bold.ttf">
-      <Filter>Resource Files</Filter>
-    </Font>
     <Font Include="8bitOperatorPlusSC-Bold.ttf">
       <Filter>Resource Files</Filter>
     </Font>
