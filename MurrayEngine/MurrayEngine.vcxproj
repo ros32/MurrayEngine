@@ -36,7 +36,6 @@
     <ClInclude Include="Orientation.h" />
     <ClInclude Include="PlayerMoveAction.h" />
     <ClInclude Include="Position.h" />
-    <ClInclude Include="ProjectileObject.h" />
     <ClInclude Include="Texture.h" />
     <ClInclude Include="TextureAsset.h" />
     <ClInclude Include="Tile.h" />
@@ -65,7 +64,6 @@
     <ClCompile Include="MoveAction.cpp" />
     <ClCompile Include="NonPlayerCharacter.cpp" />
     <ClCompile Include="PlayerMoveAction.cpp" />
-    <ClCompile Include="ProjectileObject.cpp" />
     <ClCompile Include="TextureAsset.cpp" />
     <ClCompile Include="Tile.cpp" />
     <ClCompile Include="Timer.cpp" />

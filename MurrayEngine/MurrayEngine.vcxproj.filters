@@ -27,7 +27,6 @@
     <ClCompile Include="Timer.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="InputGUIObject.cpp" />
-    <ClCompile Include="ProjectileObject.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Action.h" />
@@ -60,6 +59,5 @@
     <ClInclude Include="Tile.h" />
     <ClInclude Include="Timer.h" />
     <ClInclude Include="Camera.h" />
-    <ClInclude Include="ProjectileObject.h" />
   </ItemGroup>
 </Project>
