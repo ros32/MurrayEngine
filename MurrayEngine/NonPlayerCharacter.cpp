@@ -5,6 +5,7 @@ NonPlayerCharacter::NonPlayerCharacter(std::string id, Position currentPosition,
 {
 	this->actionQueue;
 	this->ai = nullptr;
+	this->collisionAction = nullptr;
 }
 
 

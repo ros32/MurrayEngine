@@ -8,7 +8,7 @@ PlayerMoveAction::PlayerMoveAction(std::string source, GameInstance* gameInstanc
 	this->currentRepeat = 1;
 }
 
-PlayerMoveAction::PlayerMoveAction(std::string, GameInstance* map, Orientation direction, int repeat)
+PlayerMoveAction::PlayerMoveAction(std::string source, GameInstance* gameInstance, Orientation direction, int repeat)
 {
 	this->source = source;
 	this->gameInstance = gameInstance;
