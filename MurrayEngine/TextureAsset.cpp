@@ -122,7 +122,6 @@ void			TextureAsset::generateIndex()
 	int sizeX = 0;
 	int sizeY = 0;
 	int posX = 0;
-	int posY = 0;
 	int offsetX = this->offset;
 	int offsetY = this->offset;
 	int i = 0;
@@ -133,7 +132,7 @@ void			TextureAsset::generateIndex()
 	//	As long as there fits SDL_Rects (+ offset) in the X-axis of the SDL_Texture, do:
 	do
 	{
-		posY = 0;
+		int posY = 0;
 		std::vector<SDL_Rect> tempVector;
 		this->index.push_back(tempVector);
 
