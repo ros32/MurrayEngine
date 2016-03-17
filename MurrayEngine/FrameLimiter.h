@@ -4,7 +4,9 @@
 #include	"Timer.h"
 
 ///-------------------------------------------------------------------------------------------------
-/// <summary>	A frame limiter. </summary>
+/// <summary>	The FrameLimiter class controls the flow of the game, by limiting the amounts 
+/// 			of frames rendered per second.
+/// 			</summary>
 ///
 /// <remarks>	Rosen, 2016-02-28. </remarks>
 ///-------------------------------------------------------------------------------------------------

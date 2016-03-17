@@ -3,6 +3,11 @@
 
 #include	<tuple>
 
+///-------------------------------------------------------------------------------------------------
+/// <summary>	The Position struct is a representation of a point in a 2D plane. </summary>
+///
+/// <remarks>	Rosen, 2016-03-17. </remarks>
+///-------------------------------------------------------------------------------------------------
 struct Position
 {
 	int x;

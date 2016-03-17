@@ -7,7 +7,7 @@
 #include	"InputGUIObject.h"
 
 ///-------------------------------------------------------------------------------------------------
-/// <summary>	A graphical user interface. </summary>
+/// <summary>	The GUI class displays text to the player. </summary>
 ///
 /// <remarks>	Rosen, 2016-02-28. </remarks>
 ///-------------------------------------------------------------------------------------------------

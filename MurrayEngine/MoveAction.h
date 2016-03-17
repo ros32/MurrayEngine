@@ -9,7 +9,8 @@ Triggers the movements of all movable objects
 #include "Map.h"
 
 ///-------------------------------------------------------------------------------------------------
-/// <summary>	A move action. </summary>
+/// <summary>	A MoveAction is an implementation of the Action interface that causes an object to
+/// 			move. When executed, an object is moved in a specified direction. </summary>
 ///
 /// <remarks>	Rosen, 2016-02-29. </remarks>
 ///-------------------------------------------------------------------------------------------------

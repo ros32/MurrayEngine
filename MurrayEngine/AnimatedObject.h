@@ -5,7 +5,11 @@
 #include	"Animation.h"
 
 ///-------------------------------------------------------------------------------------------------
-/// <summary>	An animated object. </summary>
+/// <summary>	An animated object is an extension of Object, and contains tools to handle different animations.
+/// 			
+/// 			While an Object has a static image, AnimatedObject can contain several animations that can be switched between.
+/// 			
+/// 			AnimatedObject can therefore also be used for Objects that require several static images. </summary>
 ///
 /// <remarks>	Rosen, 2016-02-28. </remarks>
 ///-------------------------------------------------------------------------------------------------

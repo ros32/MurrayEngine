@@ -21,7 +21,13 @@ enum CameraFocus
 };
 
 ///-------------------------------------------------------------------------------------------------
-/// <summary>	A camera. </summary>
+/// <summary>	The Camera class controls what should be rendered in the game. Everything within the Cameras
+/// 			SDL_Rect will be rendered, whereas everything outside will not (with the exception of a padding
+/// 			area around the camera to reduce stuttering).
+/// 			
+/// 			The Camera can be either bound to the player (OBJECT_FOCUS) or be free-floating (FREE_FOCUS).
+/// 			
+/// 			The Camera class also contains a GUI to display data on the screen. </summary>
 ///
 /// <remarks>	Rosen, 2016-02-28. </remarks>
 ///-------------------------------------------------------------------------------------------------

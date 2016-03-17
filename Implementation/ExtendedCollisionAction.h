@@ -7,6 +7,13 @@
 #include "ObjectFactory.h"
 
 class ObjectFactory;
+
+///-------------------------------------------------------------------------------------------------
+/// <summary>	The ExtendedCollisionAction is an implementation of the CollisionAction interface
+/// 			that controls collision for the objects in our implementation. </summary>
+///
+/// <remarks>	Rosen, 2016-03-17. </remarks>
+///-------------------------------------------------------------------------------------------------
 class ExtendedCollisionAction : public CollisionAction{
 
 public:

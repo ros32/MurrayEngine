@@ -6,7 +6,8 @@
 #include	"Texture.h"
 
 ///-------------------------------------------------------------------------------------------------
-/// <summary>	An animation. </summary>
+/// <summary>	An Animation is a struct containing a set of Textures, the time each texture should 
+/// 			be displayed and the last texture displayed. </summary>
 ///
 /// <remarks>	Rosen, 2016-02-28. </remarks>
 ///-------------------------------------------------------------------------------------------------

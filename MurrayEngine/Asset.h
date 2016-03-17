@@ -4,7 +4,7 @@
 #include <string>
 
 ///-------------------------------------------------------------------------------------------------
-/// <summary>	An asset. </summary>
+/// <summary>	An Asset is an interface for an external resource used by the engine. </summary>
 ///
 /// <remarks>	Rosen, 2016-02-28. </remarks>
 ///-------------------------------------------------------------------------------------------------

@@ -19,6 +19,13 @@ The concrete action DamageAction
 #endif
 
 class ObjectFactory;
+
+///-------------------------------------------------------------------------------------------------
+/// <summary>	The DamageAction is an implementation of Action, that launches projectiles
+/// 			from a source. </summary>
+///
+/// <remarks>	Rosen, 2016-03-17. </remarks>
+///-------------------------------------------------------------------------------------------------
 class DamageAction : public Action{
 
 public:

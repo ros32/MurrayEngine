@@ -2,7 +2,11 @@
 #define _ACTION_H
 
 ///-------------------------------------------------------------------------------------------------
-/// <summary>	An action. </summary>
+/// <summary>	The Action interface depicts Actions that can be launched by the user (from the keyboard)
+/// 			or the AI (from the AI interface implementations). Each Action is parameterized in the
+/// 			constructor and is performed by using execute().
+/// 			
+/// 			A progress system exist for actions that should take more than one tick to perform. </summary>
 ///
 /// <remarks>	Rosen, 2016-02-28. </remarks>
 ///-------------------------------------------------------------------------------------------------

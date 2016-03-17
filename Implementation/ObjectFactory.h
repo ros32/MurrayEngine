@@ -10,6 +10,13 @@
 class ExtendedCollisionAction;
 
 class GameInstance;
+
+///-------------------------------------------------------------------------------------------------
+/// <summary>	The ObjectFactory class is an extension of the default Factory class in the Engine,
+/// 			and includes several methods to create game objects. </summary>
+///
+/// <remarks>	Rosen, 2016-03-17. </remarks>
+///-------------------------------------------------------------------------------------------------
 class ObjectFactory: public Factory
 {
 public:

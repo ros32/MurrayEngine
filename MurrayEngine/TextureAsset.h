@@ -15,9 +15,17 @@
 #include "Asset.h"
 #include "Position.h"
 
-//	Inform about TextureAsset so Texture knows what it is.
-class TextureAsset;
-
+///-------------------------------------------------------------------------------------------------
+/// <summary>	The TextureAsset class is an implementation of the Asset interface that handles
+/// 			textures.
+/// 			
+/// 			The TextureAsset class creates a large SDL_Texture from an image file, and indexes it
+/// 			with SDL_Rects, thus creating a sprite sheet.
+/// 			
+/// 			The TextureAsset class can also render text to SDL_Texture </summary>
+///
+/// <remarks>	Rosen, 2016-03-17. </remarks>
+///-------------------------------------------------------------------------------------------------
 class TextureAsset : public Asset
 {
 private:

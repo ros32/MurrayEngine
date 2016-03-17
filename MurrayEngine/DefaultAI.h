@@ -7,7 +7,13 @@
 #include "MoveAction.h"
 
 ///-------------------------------------------------------------------------------------------------
-/// <summary>	A default ai. </summary>
+/// <summary>	This is a simple default AI implementation provided in the Engine.
+/// 			
+/// 			This AI will perform the following:
+/// 			
+/// 			* Try to move in the last successful direction  
+/// 			* If not possible - try to move in any other direction than backwards  
+/// 			* If not posssible - try to move backwards. </summary>
 ///
 /// <remarks>	Rosen, 2016-02-28. </remarks>
 ///-------------------------------------------------------------------------------------------------

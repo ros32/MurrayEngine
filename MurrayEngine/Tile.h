@@ -3,6 +3,13 @@
 
 #include	"Object.h"
 
+///-------------------------------------------------------------------------------------------------
+/// <summary>	The Tile class is the basic component of Maps.
+/// 			
+/// 			Each Tile represent a geographical location on the map. </summary>
+///
+/// <remarks>	Rosen, 2016-03-17. </remarks>
+///-------------------------------------------------------------------------------------------------
 class Tile: public Object
 {
 public:
