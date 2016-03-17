@@ -19,7 +19,6 @@
     <ClInclude Include="ChangeInputModeAction.h" />
     <ClInclude Include="ChangeMapAction.h" />
     <ClInclude Include="CollisionAction.h" />
-    <ClInclude Include="CollisionEvent.h" />
     <ClInclude Include="Configuration.h" />
     <ClInclude Include="DefaultAI.h" />
     <ClInclude Include="DefaultCollisionAction.h" />
@@ -51,7 +50,6 @@
     <ClCompile Include="ChangeInputModeAction.cpp" />
     <ClCompile Include="ChangeMapAction.cpp" />
     <ClCompile Include="CollisionAction.cpp" />
-    <ClCompile Include="CollisionEvent.cpp" />
     <ClCompile Include="Configuration.cpp" />
     <ClCompile Include="DefaultAI.cpp" />
     <ClCompile Include="DefaultCollisionAction.cpp" />

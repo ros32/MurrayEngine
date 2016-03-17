@@ -17,7 +17,6 @@ Object::Object(std::string id, Position currentPosition, std::shared_ptr<Texture
 	this->timer.start();
 	this->lastRender = 0;
 	this->lastMove = 0;
-	this->collisionEvent = nullptr;
 	this->collisionAction = nullptr;
 
 }
@@ -301,12 +300,6 @@ bool Object::collidePixel(Object* objectB)
 	SDL_FreeSurface(SurfaceA);
 	SDL_FreeSurface(SurfaceB);
 	return false;
-}
-
-
-void Object::setCollisionEvent(CollisionEvent* collisionEvent){
-
-	this->collisionEvent = collisionEvent;
 }
 
 

@@ -22,12 +22,6 @@ MoveAction::~MoveAction(){
 }
 void MoveAction::execute()
 {
-	std::string identity = source->getId();
-	std::string prStr = "Projectile";
-
-	if (identity.find(prStr) != std::string::npos){
-		SDL_Log("projectile is moving!");
-	}
 
 	if (this->currentRepeat > 0 || repeat == -1)
 	{

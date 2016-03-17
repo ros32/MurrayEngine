@@ -12,7 +12,6 @@
 
 class NonPlayerCharacter;
 class CollisionAction;
-class CollisionEvent;
 struct Animation;
 class Action;
 
@@ -77,8 +76,6 @@ public:
 
 	virtual	void					changeAnimation(std::string key);
 
-	virtual void					setCollisionEvent(CollisionEvent* event);
-
 	//	Texture asset used by object
 	std::shared_ptr<Texture>			texture;
 
@@ -134,7 +131,6 @@ private:
 
 	Uint32 rmask, gmask, bmask, amask;
 
-	CollisionEvent* collisionEvent;
 	CollisionAction* collisionAction;
 	
 };

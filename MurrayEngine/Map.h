@@ -10,8 +10,6 @@
 #include "Camera.h"
 #include "AnimatedObject.h"
 
-#include "CollisionEvent.h"
-
 class Map
 {
 public:
@@ -97,8 +95,6 @@ private:
 	std::vector <Object>		tempVector;
 
 	Object*						playerCharacter;
-
-	CollisionEvent*				collisionEvent;
 
 	std::vector<std::vector<bool>>		collisionMap;
 	std::vector<std::vector<bool>>		passableMap;
