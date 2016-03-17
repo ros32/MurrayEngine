@@ -36,8 +36,6 @@ private:
 	std::map< SDL_Scancode, bool >	repeat;
 	std::map< SDL_Scancode, Action* >	actions;
 
-	void	debugSetup();
-
 	bool	textInputMode;
 
 
