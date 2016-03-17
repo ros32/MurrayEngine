@@ -162,10 +162,6 @@ SDL_Rect*		TextureAsset::getSourceRect(unsigned int x, unsigned int y)
 {
 	size_t sizeX = 0;
 	size_t sizeY = 0;
-	if (x >= 0)
-		sizeX = (size_t)x;
-	if (y >= 0)
-		sizeY = (size_t)y;
 
 	if (this->index.size() >  sizeX)
 	{
