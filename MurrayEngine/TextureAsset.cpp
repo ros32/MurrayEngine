@@ -43,6 +43,11 @@ TextureAsset::TextureAsset(SDL_Renderer* renderer, const char* filePath, unsigne
 
 	this->loadText(filePath, fontSize, text, color);
 
+
+	std::string output = "TextureAsset created with font: \"" + std::string(filePath) + "\", size: " + std::to_string(fontSize) + ", text: \"" + text + "\", color: { " +
+		std::to_string(color.a) + ", " + std::to_string(color.b) + ", " + std::to_string(color.g) + ", " + std::to_string(color.r) + " }.";
+	SDL_LogDebug(SDL_LOG_CATEGORY_VIDEO, output.c_str());
+
 }
 
 TextureAsset::~TextureAsset()
@@ -109,6 +114,10 @@ void			TextureAsset::unload()
 	SDL_FreeSurface(this->surface);
 	this->texture = nullptr;
 	this->surface = nullptr;
+
+	//	Log to debuglog
+		std::string output = "TextureAsset \"" + std::string(this->filePath) + "\" was unloaded";
+		SDL_LogDebug(SDL_LOG_CATEGORY_VIDEO, output.c_str());
 
 }
 

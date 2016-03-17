@@ -19,7 +19,7 @@ int main(int, char** argv)
 	TTF_Init();
 
 	//	Set logging priority. Use SDL_LOG_PRIORITY_CRITICAL for release
-	SDL_LogSetAllPriority(SDL_LOG_PRIORITY_DEBUG);
+	SDL_LogSetAllPriority(SDL_LOG_PRIORITY_CRITICAL);
 
 	//	Create main window, get window height and width from configuration or use default if not found
 	SDL_Window* mainWindow = SDL_CreateWindow(
@@ -79,10 +79,6 @@ int main(int, char** argv)
 			quitGame = true;
 		}
 	}
-
-
-
-
 
 	SDL_DestroyRenderer(mainRenderer);
 	SDL_DestroyWindow(mainWindow);
