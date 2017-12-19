@@ -36,7 +36,7 @@ public:
 	///
 	/// <returns>	null if it fails, else the texture. </returns>
 	///-------------------------------------------------------------------------------------------------
-	TextureAsset*	getTexture();
+	TextureAsset*	getTexture() override;
 
 	///-------------------------------------------------------------------------------------------------
 	/// <summary>	Adds a character. </summary>
@@ -61,7 +61,7 @@ public:
 	///
 	/// <returns>	true if visible, false if not. </returns>
 	///-------------------------------------------------------------------------------------------------
-	bool			isVisible();
+	bool			isVisible() = delete;
 
 	///-------------------------------------------------------------------------------------------------
 	/// <summary>	Sets a visible. </summary>
@@ -70,7 +70,7 @@ public:
 	///
 	/// <param name="visible">	true to show, false to hide. </param>
 	///-------------------------------------------------------------------------------------------------
-	void			setVisible(bool visible);
+	void			setVisible(bool visible) = delete;
 
 	///-------------------------------------------------------------------------------------------------
 	/// <summary>	Gets the text. </summary>

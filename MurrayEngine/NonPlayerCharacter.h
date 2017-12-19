@@ -70,7 +70,7 @@ public:
 	///
 	/// <param name="action">	[in,out] If non-null, the action. </param>
 	///-------------------------------------------------------------------------------------------------
-	virtual void					addAction(Action* action);
+	void					addAction(Action* action) override;
 
 	///-------------------------------------------------------------------------------------------------
 	/// <summary>	Gets the action. </summary>
@@ -79,14 +79,14 @@ public:
 	///
 	/// <returns>	null if it fails, else the action. </returns>
 	///-------------------------------------------------------------------------------------------------
-	virtual Action*					getAction();
+	Action*					getAction() override;
 
 	///-------------------------------------------------------------------------------------------------
 	/// <summary>	Executes the action operation. </summary>
 	///
 	/// <remarks>	Rosen, 2016-03-17. </remarks>
 	///-------------------------------------------------------------------------------------------------
-	virtual void					doAction();
+	void					doAction() override;
 
 	///-------------------------------------------------------------------------------------------------
 	/// <summary>	Queries if a given action exists. </summary>

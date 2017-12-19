@@ -66,7 +66,7 @@ public:
 	///
 	/// <returns>	null if it fails, else the source npc. </returns>
 	///-------------------------------------------------------------------------------------------------
-	NonPlayerCharacter*				getSourceNPC();
+	NonPlayerCharacter*				getSourceNPC() const;
 
 	///-------------------------------------------------------------------------------------------------
 	/// <summary>	Sets a map. </summary>
@@ -84,7 +84,7 @@ public:
 	///
 	/// <returns>	null if it fails, else the map. </returns>
 	///-------------------------------------------------------------------------------------------------
-	Map*				getMap();
+	Map*				getMap() const;
 
 private:
 

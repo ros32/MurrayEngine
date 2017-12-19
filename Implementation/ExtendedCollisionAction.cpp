@@ -1,15 +1,17 @@
 #include "ExtendedCollisionAction.h"
 
 
-ExtendedCollisionAction::ExtendedCollisionAction(Map* map, Object* objA){
+ExtendedCollisionAction::ExtendedCollisionAction(Map* map, Object* objA): gameInstance(nullptr)
+{
 	this->map = map;
 	this->objA = objA;
 	this->objB = nullptr;
 	this->objectFactory = nullptr;
-
 }
 
-ExtendedCollisionAction::ExtendedCollisionAction(ObjectFactory* objectFactory, Map* map, Object* objA){
+ExtendedCollisionAction::ExtendedCollisionAction(ObjectFactory* objectFactory, Map* map, Object* objA): gameInstance(
+	nullptr)
+{
 	this->map = map;
 	this->objectFactory = objectFactory;
 	this->objA = objA;
@@ -30,17 +32,14 @@ void ExtendedCollisionAction::execute(Object* objB){
 	std::string typeA;
 	std::string typeB;
 
-	std::string aId;
-	std::string bId;
+	auto aId = objA->getId();
+	auto bId = objB->getId();
 
-	aId = objA->getId();
-	bId = objB->getId();
-
-	std::string ghostString = "Ghost";
-	std::string heroString = "Hero";
-	std::string evolvedString = "Evolved";
-	std::string witchString = "Witch";
-	std::string projectileString = "Projectile";
+	const std::string ghostString = "Ghost";
+	const std::string heroString = "Hero";
+	const std::string evolvedString = "Evolved";
+	const std::string witchString = "Witch";
+	const std::string projectileString = "Projectile";
 
 	
 
@@ -102,8 +101,7 @@ void ExtendedCollisionAction::execute(Object* objB){
 	if (typeA == "Ghost"){
 
 		if (typeB == "Ghost"){
-
-			Position spawnPosition = objA->getCurrentPosition();
+			const auto spawnPosition = objA->getCurrentPosition();
 			objB->reverseMove();
 			map->removeObject(objA);
 			

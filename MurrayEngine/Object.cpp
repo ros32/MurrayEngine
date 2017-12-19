@@ -1,6 +1,7 @@
 #include "Object.h"
 
-Object::Object(std::string id, Position currentPosition, std::shared_ptr<Texture> texture, double maxSpeed, double acceleration, int currentSpeed, Orientation orientation, bool isCollidable)
+Object::Object(const std::string id, const Position currentPosition, const std::shared_ptr<Texture> texture, const double maxSpeed, double acceleration, const int currentSpeed, const Orientation orientation, const bool isCollidable):
+	red(0), green(0), blue(0), alpha(0), rmask(0), gmask(0), bmask(0), amask(0)
 {
 	this->id = id;
 	this->currentPosition = currentPosition;
@@ -9,7 +10,7 @@ Object::Object(std::string id, Position currentPosition, std::shared_ptr<Texture
 	this->currentSpeed = currentSpeed;
 	//this->acceleration = acceleration;
 	this->orientation = orientation;
-	this->targetPosition = { 0, 0 };
+	this->targetPosition = {0, 0};
 	this->isCollidable = isCollidable;
 	this->lastPosition = currentPosition;
 	this->timer = Timer();
@@ -18,7 +19,6 @@ Object::Object(std::string id, Position currentPosition, std::shared_ptr<Texture
 	this->lastRender = 0;
 	this->lastMove = 0;
 	this->collisionAction = nullptr;
-
 }
 
 Object::~Object()
@@ -31,7 +31,7 @@ std::string Object::getId()
 	return id;
 }
 
-void	Object::setId(std::string id)
+void	Object::setId(const std::string id)
 {
 	this->id = id;
 }
@@ -46,7 +46,7 @@ void Object::setCurrentPosition(int x, int y)
 	this->currentPosition = { x, y };
 }
 
-void	Object::setCurrentPosition(Position pos)
+void	Object::setCurrentPosition(const Position pos)
 {
 	this->currentPosition = pos;
 }
@@ -61,12 +61,12 @@ void Object::setTargetPosition(int x, int y)
 	this->targetPosition = { x, y };
 }
 
-void	Object::setTargetPosition(Position pos)
+void	Object::setTargetPosition(const Position pos)
 {
 	this->targetPosition = pos;
 }
 
-void Object::setOrientation(Orientation orientation)
+void Object::setOrientation(const Orientation orientation)
 {
 	this->orientation = orientation;
 }
@@ -81,7 +81,7 @@ double Object::getMaxSpeed()
 	return maxSpeed;
 }
 
-void	Object::setMaxSpeed(double speed)
+void	Object::setMaxSpeed(const double speed)
 {
 	this->maxSpeed = speed;
 }
@@ -109,17 +109,17 @@ bool Object::collideBox(Object* objectB)
 	if (objectB == nullptr)
 		return false;
 
-	bool hit = true;
+	auto hit = true;
 
-	int left = this->getCurrentPosition().x;
-	int right = this->getCurrentPosition().x + this->getCollisionTexture()->asset->getWidth();
-	int bottom = this->getCurrentPosition().y;
-	int top = this->getCurrentPosition().y + this->getCollisionTexture()->asset->getHeight();
+	const auto left = this->getCurrentPosition().x;
+	const auto right = this->getCurrentPosition().x + this->getCollisionTexture()->asset->getWidth();
+	const auto bottom = this->getCurrentPosition().y;
+	const auto top = this->getCurrentPosition().y + this->getCollisionTexture()->asset->getHeight();
 
-	int otherLeft = objectB->getCurrentPosition().x;
-	int otherRight = objectB->getCurrentPosition().x + objectB->getCollisionTexture()->asset->getWidth();
-	int otherBottom = objectB->getCurrentPosition().y;
-	int otherTop = objectB->getCurrentPosition().y + objectB->getCollisionTexture()->asset->getHeight();
+	const auto otherLeft = objectB->getCurrentPosition().x;
+	const auto otherRight = objectB->getCurrentPosition().x + objectB->getCollisionTexture()->asset->getWidth();
+	const auto otherBottom = objectB->getCurrentPosition().y;
+	const auto otherTop = objectB->getCurrentPosition().y + objectB->getCollisionTexture()->asset->getHeight();
 
 	//Checks if there is a distance between the current object sides and the other object sides.
 	if (right < otherLeft){
@@ -139,12 +139,11 @@ bool Object::collideBox(Object* objectB)
 
 
 
-bool Object::readAlpha(SDL_Surface* surface, int x, int y)
+bool Object::readAlpha(SDL_Surface* surface, const int x, const int y)
 {
-
-	int bpp = surface->format->BytesPerPixel;
-	Uint8* p = (Uint8*)surface->pixels + y * surface->pitch + x * bpp;
-	Uint32 pixelColor;
+	const int bpp = surface->format->BytesPerPixel;
+	auto p = static_cast<Uint8*>(surface->pixels) + y * surface->pitch + x * bpp;
+	Uint32 pixelColor = 0;
 
 	switch(bpp)
 	{
@@ -155,7 +154,7 @@ bool Object::readAlpha(SDL_Surface* surface, int x, int y)
 		break;
 	case(2):
 		//	SDL_Log("Bpp is 2");
-		pixelColor = *(Uint16*)p;
+		pixelColor = *reinterpret_cast<Uint16*>(p);
 		break;
 	case(3):
 		//	SDL_Log("Bpp is 3");
@@ -166,7 +165,7 @@ bool Object::readAlpha(SDL_Surface* surface, int x, int y)
 		break;
 	case(4):
 		//	SDL_Log("Bpp is 4");
-		pixelColor = *(Uint32*)p;
+		pixelColor = *reinterpret_cast<Uint32*>(p);
 		break;
 	default:
 		break;
@@ -191,38 +190,38 @@ bool Object::collidePixel(Object* objectB)
 	}
 
 	//	Store Textures
-	const std::shared_ptr<Texture> textureA = this->getCollisionTexture();
-	const std::shared_ptr<Texture> textureB = objectB->getCollisionTexture();
+	const auto textureA = this->getCollisionTexture();
+	const auto textureB = objectB->getCollisionTexture();
 
-	const Position currentPositionA = this->getCurrentPosition();
-	const Position currentPositionB = objectB->getCurrentPosition();
+	const auto currentPositionA = this->getCurrentPosition();
+	const auto currentPositionB = objectB->getCurrentPosition();
 
-	const int widthA = textureA->asset->getWidth();
-	const int heightA = textureA->asset->getHeight();
+	const auto widthA = textureA->asset->getWidth();
+	const auto heightA = textureA->asset->getHeight();
 
-	const int widthB = textureB->asset->getWidth();
-	const int heightB = textureB->asset->getHeight();
+	const auto widthB = textureB->asset->getWidth();
+	const auto heightB = textureB->asset->getHeight();
 
 	//Map positions of rectangles for objectA (this)
-	int axLeft = currentPositionA.x;
-	int ayTop = currentPositionA.y;
-	int axRight = currentPositionA.x + widthA - 1;
-	int ayBottom = currentPositionA.y + heightA - 1;
+	const auto axLeft = currentPositionA.x;
+	const auto ayTop = currentPositionA.y;
+	const auto axRight = currentPositionA.x + widthA - 1;
+	const auto ayBottom = currentPositionA.y + heightA - 1;
 
 	//Map positions of rectangles for objectB
-	int bxLeft = currentPositionB.x;
-	int byTop = currentPositionB.y;
-	int bxRight = currentPositionB.x + widthB - 1;
-	int byBottom = currentPositionB.y + heightB - 1;
+	const auto bxLeft = currentPositionB.x;
+	const auto byTop = currentPositionB.y;
+	const auto bxRight = currentPositionB.x + widthB - 1;
+	const auto byBottom = currentPositionB.y + heightB - 1;
 
 	//Get the values of the intersected rectangle where our pixel collision check will occur
-	int left = std::max(axLeft, bxLeft);
-	int right = std::min(axRight, bxRight);
-	int top = std::max(ayTop, byTop);
-	int bottom = std::min(ayBottom, byBottom);
+	const auto left = std::max(axLeft, bxLeft);
+	const auto right = std::min(axRight, bxRight);
+	const auto top = std::max(ayTop, byTop);
+	const auto bottom = std::min(ayBottom, byBottom);
 
-	SDL_Rect* aRect = textureA->name;
-	SDL_Rect* bRect = textureB->name;
+	const auto aRect = textureA->name;
+	const auto bRect = textureB->name;
 
 	SDL_Rect targetRectA;
 	SDL_Rect targetRectB;
@@ -233,12 +232,8 @@ bool Object::collidePixel(Object* objectB)
 	targetRectB.y = 0;
 
 	//Get the surfaces we need to pass to readAlpha
-	SDL_Surface* orgSurfaceA = textureA->asset->getSurface();
-	SDL_Surface* orgSurfaceB = textureB->asset->getSurface();
-
-	//Create destination surfaces for the blit;
-	SDL_Surface* SurfaceA;
-	SDL_Surface* SurfaceB;
+	const auto orgSurfaceA = textureA->asset->getSurface();
+	const auto orgSurfaceB = textureB->asset->getSurface();
 
 	if (SDL_BYTEORDER == SDL_BIG_ENDIAN){
 		rmask = 0xff000000;
@@ -253,8 +248,8 @@ bool Object::collidePixel(Object* objectB)
 		amask = 0xff000000;
 	}
 
-	SurfaceA = SDL_CreateRGBSurface(NULL, widthA, heightA, 32, rmask, gmask, bmask, amask);
-	SurfaceB = SDL_CreateRGBSurface(NULL, widthB, heightB, 32, rmask, gmask, bmask, amask);
+	const auto SurfaceA = SDL_CreateRGBSurface(NULL, widthA, heightA, 32, rmask, gmask, bmask, amask);
+	const auto SurfaceB = SDL_CreateRGBSurface(NULL, widthB, heightB, 32, rmask, gmask, bmask, amask);
 
 	SDL_BlitSurface(orgSurfaceA, aRect, SurfaceA, &targetRectA);
 	SDL_BlitSurface(orgSurfaceB, bRect, SurfaceB, &targetRectB);
@@ -265,16 +260,13 @@ bool Object::collidePixel(Object* objectB)
 	}
 
 
-	bool alphaA;
-	bool alphaB;
-
 	//Loop through the pixels of the intersection
-	for (int yAxis = top; yAxis <= bottom; yAxis++)
+	for (auto yAxis = top; yAxis <= bottom; yAxis++)
 	{
-		for (int xAxis = left; xAxis <= right; xAxis++)
+		for (auto xAxis = left; xAxis <= right; xAxis++)
 		{
-			alphaA = readAlpha(SurfaceA, xAxis - axLeft, yAxis - ayTop);
-			alphaB = readAlpha(SurfaceB, xAxis - bxLeft, yAxis - byTop);
+			const auto alphaA = readAlpha(SurfaceA, xAxis - axLeft, yAxis - ayTop);
+			const auto alphaB = readAlpha(SurfaceB, xAxis - bxLeft, yAxis - byTop);
 
 			if (alphaA && alphaB)
 			{
@@ -337,7 +329,7 @@ Uint32	Object::getLastMove()
 	return this->lastMove;
 }
 
-void	Object::setLastRender(Uint32 lastRender)
+void	Object::setLastRender(const Uint32 lastRender)
 {
 	this->lastRender = lastRender;
 }

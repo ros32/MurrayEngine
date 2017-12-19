@@ -16,10 +16,10 @@ public:
 	Tile(Position currentPosition, std::shared_ptr<Texture> texture, Orientation orientation, bool collidable, bool passable);
 	~Tile();
 
-	Position	getCurrentPosition();
-	void		setCurrentPosition(Position pos);
-	bool		getIsCollidable();
-	void render(int x, int y);
+	Position	getCurrentPosition() override;
+	void		setCurrentPosition(Position pos) override;
+	bool		getIsCollidable() override;
+	void render(int x, int y) override;
 
 private:
 

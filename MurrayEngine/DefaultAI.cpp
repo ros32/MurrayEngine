@@ -120,11 +120,11 @@ bool	DefaultAI::findPlayer(Orientation orientation)
 	//	that rectangle
 
 	//	Define rectangle to search within
-	Position	positionA = { 0, 0 };
-	Position	positionB = { 0, 0 };
+	Position	positionA;
+	Position	positionB;
 
 	//	Store move direction as string
-	std::string currentDirection = "NONE";
+	std::string currentDirection;
 
 	//	Depending on NPC orientation, the rectangle will vary
 	switch (orientation)
@@ -182,7 +182,7 @@ bool	DefaultAI::findPlayer(Orientation orientation)
 	return playerFound;
 }
 
-bool		DefaultAI::canSeePlayer()
+bool		DefaultAI::canSeePlayer() const
 {
 	NonPlayerCharacter*		npc = this->getSourceNPC();
 	Map*					map = this->getMap();
@@ -201,19 +201,19 @@ bool		DefaultAI::canSeePlayer()
 	if ((std::abs(playerPosition.x - currentPosition.x) < width * 3) ||
 		(std::abs(playerPosition.y - currentPosition.y) < height * 3))
 	{
-		Position relativeMovePosition = { -(currentPosition.x - playerPosition.x), -(currentPosition.y - playerPosition.y) };
+		const Position relativeMovePosition = { -(currentPosition.x - playerPosition.x), -(currentPosition.y - playerPosition.y) };
 
-		Position maxTravelRange = map->tryMove(npc, relativeMovePosition, true);
+		const Position maxTravelRange = map->tryMove(npc, relativeMovePosition, true);
 
 		//	Move NPC to target
 		npc->setCurrentPosition(maxTravelRange);
 
 		//	Select an area 1 px larger than the npc and see if we are touching the player
-		Position areaSearchA = { maxTravelRange.x - 1, maxTravelRange.y - 1 };
-		Position areaSearchB = { maxTravelRange.x + width, maxTravelRange.y + height };
+		const Position areaSearchA = { maxTravelRange.x - 1, maxTravelRange.y - 1 };
+		const Position areaSearchB = { maxTravelRange.x + width, maxTravelRange.y + height };
 
 		//	See if player is within reach
-		std::vector<Object*> nearbyObjects = map->getObject(areaSearchA, areaSearchB);
+		auto nearbyObjects = map->getObject(areaSearchA, areaSearchB);
 		for (auto object : nearbyObjects)
 		{
 			if (map->getPlayerCharacter() != nullptr && object->getId() == map->getPlayerCharacter()->getId())
@@ -228,7 +228,7 @@ bool		DefaultAI::canSeePlayer()
 	return false;
 }
 
-std::vector<Orientation>	DefaultAI::getValidDirections()
+std::vector<Orientation>	DefaultAI::getValidDirections() const
 {
 	NonPlayerCharacter*		npc = this->getSourceNPC();
 	Map*					map = this->getMap();

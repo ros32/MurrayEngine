@@ -26,7 +26,7 @@ public:
 	///
 	/// <param name="objA">	[in,out] If non-null, the object a. </param>
 	///-------------------------------------------------------------------------------------------------
-	DefaultCollisionAction(Object* objA);
+	explicit DefaultCollisionAction(Object* objA);
 
 	///-------------------------------------------------------------------------------------------------
 	/// <summary>	Destructor. </summary>
@@ -42,7 +42,7 @@ public:
 	///
 	/// <param name="objB">	[in,out] If non-null, the object b. </param>
 	///-------------------------------------------------------------------------------------------------
-	void execute(Object* objB);
+	void execute(Object* objB) override;
 
 
 

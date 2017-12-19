@@ -2,7 +2,8 @@
 
 #define		DEFAULT_FRAME_LIMIT		30
 
-GameInstance::GameInstance(SDL_Window* window, SDL_Renderer* renderer, Configuration configuration)
+GameInstance::GameInstance(SDL_Window* window, SDL_Renderer* renderer, Configuration configuration): frameRateGUIObject(
+	nullptr)
 {
 	this->frameLimiter = FrameLimiter(Timer(), configuration.getProperty("FRAME_LIMIT", DEFAULT_FRAME_LIMIT));
 	this->instanceWindow = window;
@@ -42,7 +43,7 @@ GameInstance::~GameInstance()
 
 bool GameInstance::initialize()
 {
-	bool tempFactory = false;
+	auto tempFactory = false;
 
 	//	Create a default Factory object if no Factory has been provided
 	if (this->factory == nullptr)
@@ -79,16 +80,16 @@ bool GameInstance::initialize()
 	//	Set GameInstance call-back on Factory
 	this->factory->setGameInstance(this);
 
-	bool	mapLoaded = false;
+	auto mapLoaded = false;
 
 	//	Load configurations
 	for (auto key : this->mainConfig)
 	{
 		//	Configuration files are identified by having _CONFIG at the end of the key
-		std::size_t found = key.first.find("_CONFIG");
+		const auto found = key.first.find("_CONFIG");
 		if (found != std::string::npos)
 		{
-			std::string fileName = key.second;
+			const std::string fileName = key.second;
 			Configuration newConfig = Configuration(fileName);
 
 			//	All configuration files must have a NAME key defining its name, if not it will not be loaded
@@ -99,18 +100,18 @@ bool GameInstance::initialize()
 	}
 
 	//	Load assets
-	for (auto key : this->configurations)
+	for (const auto key : this->configurations)
 	{
-		Configuration config = key.second;
+		auto config = key.second;
 
 		//	An asset configuration file is defined by the key TYPE
-		const std::string type = config.getProperty("TYPE", "UNKNOWN");
+		const auto type = config.getProperty("TYPE", "UNKNOWN");
 
 		//	If TYPE is TextureAsset, the file will be loaded
 		if (type == "TextureAsset")
 		{
 			//	Create TextureAsset from configuration file
-			TextureAsset* tempAsset = this->factory->createAsset(config);
+			auto tempAsset = this->factory->createAsset(config);
 
 			//	Insert asset into textureAssets
 			this->textureAssets.insert(std::map<std::string, TextureAsset*>::value_type(config.getProperty("NAME", "UNKNOWN"), tempAsset));
@@ -137,7 +138,7 @@ bool GameInstance::initialize()
 	{
 		std::string output = "No DEFAULT_MAP specified, using first available Map found.";
 		SDL_LogWarn(SDL_LOG_CATEGORY_APPLICATION, output.c_str());
-		for (auto map : this->maps)
+		for (const auto map : this->maps)
 		{
 			this->setMap(this->factory->createMap(map.second));
 			mapLoaded = true;
@@ -167,7 +168,7 @@ bool GameInstance::initialize()
 
 bool GameInstance::run()
 {
-	while (1)
+	while (true)
 	{
 		this->frameLimiter.start();
 		//	Define SDL Event
@@ -208,29 +209,29 @@ bool GameInstance::exit()
 	return true;
 }
 
-bool GameInstance::isInitialized()
+bool GameInstance::isInitialized() const
 {
 	return this->initialized;
 }
 
-bool GameInstance::isRun()
+bool GameInstance::isRun() const
 {
 	return this->runned;
 }
 
-bool GameInstance::isExited()
+bool GameInstance::isExited() const
 {
 	return this->exited;
 }
 
-void GameInstance::moveObjects()
+void GameInstance::moveObjects() const
 {
 	this->map->move();
 	if (this->map->getCamera()->getFocusType() == OBJECT_FOCUS)
 		this->map->getCamera()->center(this->map->getPlayerCharacter()->getCurrentPosition());
 }
 
-void GameInstance::renderObjects()
+void GameInstance::renderObjects() const
 {
 	this->map->render();
 	this->map->getCamera()->getGUI()->render();
@@ -238,8 +239,7 @@ void GameInstance::renderObjects()
 
 TextureAsset*	GameInstance::getTextureAsset(std::string name)
 {
-	std::map<std::string, TextureAsset*>::iterator iterator;
-	iterator = this->textureAssets.find(name);
+	const auto iterator = this->textureAssets.find(name);
 	if (iterator != this->textureAssets.end())
 		return iterator->second;
 	return nullptr;
@@ -250,7 +250,7 @@ void			GameInstance::setMap(Map* map)
 	this->map = map;
 }
 
-Factory*		GameInstance::getFactory()
+Factory*		GameInstance::getFactory() const
 {
 	return this->factory;
 }
@@ -260,23 +260,23 @@ void			GameInstance::setFactory(Factory* factory)
 	this->factory = factory;
 }
 
-Map*			GameInstance::getMap()
+Map*			GameInstance::getMap() const
 {
 	return this->map;
 }
 
-void			GameInstance::doActions()
+void			GameInstance::doActions() const
 {
 	if (this->map != nullptr)
 		this->map->doActionQueue();
 }
 
-KeyController*	GameInstance::getKeyController()
+KeyController*	GameInstance::getKeyController() const
 {
 	return this->keyController;
 }
 
-void			GameInstance::setMap(std::string mapName)
+void			GameInstance::setMap(const std::string mapName)
 {
 	if (mapName != "" && this->maps.size() > 0)
 	{
@@ -285,7 +285,7 @@ void			GameInstance::setMap(std::string mapName)
 			if (map.second.getProperty("NAME", "UNKNOWN") == mapName)
 			{
 				delete this->map;
-				bool tempFactory = (this->factory == nullptr);
+				const auto tempFactory = (this->factory == nullptr);
 				if(tempFactory)
 					this->factory = new Factory();
 				this->setMap(this->factory->createMap(map.second));

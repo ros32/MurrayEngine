@@ -21,7 +21,7 @@ public:
 	ExtendedCollisionAction(ObjectFactory* objectFactory, Map* map, Object* objA);
 	~ExtendedCollisionAction();
 
-	void execute(Object* objB);
+	void execute(Object* objB) override;
 
 
 

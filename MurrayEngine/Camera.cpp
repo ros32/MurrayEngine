@@ -21,17 +21,17 @@ Camera::~Camera()
 
 }
 
-int	Camera::getHeight()
+int	Camera::getHeight() const
 {
 	return this->height;
 }
 
-int Camera::getWidth()
+int Camera::getWidth() const
 {
 	return this->width;
 }
 
-Position	Camera::getPosition()
+Position	Camera::getPosition() const
 {
 	return this->position;
 }
@@ -41,27 +41,27 @@ void		Camera::setWindow(SDL_Window* window)
 	SDL_GetWindowSize(window, &this->width, &this->height);
 }
 
-void		Camera::move(int x, int y)
+void		Camera::move(const int x, const int y)
 {
 	this->position = { this->position.x + x, this->position.y + y };
 }
 
-void		Camera::center(Position pos)
+void		Camera::center(const Position pos)
 {
 	this->position = { pos.x - (this->width / 2), pos.y - (this->height / 2) };
 }
 
-CameraFocus	Camera::getFocusType()
+CameraFocus	Camera::getFocusType() const
 {
 	return this->focusType;
 }
 
-GUI*		Camera::getGUI()
+GUI*		Camera::getGUI() const
 {
 	return this->gui;
 }
 
-void		Camera::setFocusType(CameraFocus focusType)
+void		Camera::setFocusType(const CameraFocus focusType)
 {
 	this->focusType = focusType;
 }

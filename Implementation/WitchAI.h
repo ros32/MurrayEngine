@@ -13,7 +13,7 @@ public:
 	WitchAI(NonPlayerCharacter* npc, Map* map);
 	~WitchAI();
 
-	void	doNext();
+	void	doNext() override;
 
 private:
 

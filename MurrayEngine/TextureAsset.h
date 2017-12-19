@@ -59,11 +59,11 @@ public:
 	void			loadFile(const char* filePath);
 	void			loadText(const char* filePath, unsigned int fontSize, std::string text, SDL_Color color);
 
-	void	load();
+	void	load() = delete;
 	void	unload();
 
 	void	setTextureNameIndex(std::map<std::string, Position> map);
-	std::string		getType();
+	std::string		getType() override;
 
 	int		getCellSize();
 

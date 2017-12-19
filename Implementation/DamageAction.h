@@ -11,12 +11,6 @@ The concrete action DamageAction
 #include "NonPlayerCharacter.h"
 #include "ExtendedCollisionAction.h"
 
-#ifdef _WIN32
-#include <SDL.h>
-#elif __linux__
-#include <SDL2/SDL.h>
-#endif
-
 class ObjectFactory;
 
 ///-------------------------------------------------------------------------------------------------
@@ -31,9 +25,9 @@ public:
 	DamageAction(std::string source, GameInstance* gameInstance);
 	~DamageAction();
 
-	void execute();
+	void execute() override;
 
-	Action*	copy();
+	Action*	copy() override;
 
 private:
 

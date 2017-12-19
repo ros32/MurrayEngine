@@ -17,7 +17,7 @@ AI::~AI()
 
 }
 
-NonPlayerCharacter*	AI::getSourceNPC()
+NonPlayerCharacter*	AI::getSourceNPC() const
 {
 	return this->npc;
 }
@@ -32,7 +32,7 @@ void	AI::setMap(Map* map)
 	this->map = map;
 }
 
-Map*	AI::getMap()
+Map*	AI::getMap() const
 {
 	return this->map;
 }

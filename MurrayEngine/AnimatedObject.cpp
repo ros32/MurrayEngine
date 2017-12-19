@@ -1,10 +1,10 @@
 #include "AnimatedObject.h"
 
-AnimatedObject::AnimatedObject(std::string id, Position currentPosition, std::shared_ptr<Animation> animation, double maxSpeed, double acceleration, int currentSpeed, Orientation orientation, bool isCollidable) :
+AnimatedObject::AnimatedObject(const std::string id, const Position currentPosition, const std::shared_ptr<Animation> animation, const double maxSpeed, const double acceleration, const int currentSpeed, const Orientation orientation, const bool isCollidable) :
 	Object(id, currentPosition, nullptr, maxSpeed, acceleration, currentSpeed, orientation, isCollidable)
 {
 	this->animation = animation;
-	this->setTexture(this->animation->textures[0]);
+	this->Object::setTexture(this->animation->textures[0]);
 }
 
 AnimatedObject::~AnimatedObject()
@@ -12,39 +12,36 @@ AnimatedObject::~AnimatedObject()
 
 }
 
-std::shared_ptr<Animation>	AnimatedObject::getAnimation()
+std::shared_ptr<Animation>	AnimatedObject::getAnimation() const
 {
 	return this->animation;
 }
 
 std::shared_ptr<Animation> AnimatedObject::getAnimation(std::string key)
 {
-	iterator iterator;
-	iterator = this->animationMap.find(key);
+	const iterator iterator = this->animationMap.find(key);
 
 	if (iterator != this->animationMap.end()){
-		std::shared_ptr<Animation> tempAnimation = iterator->second;
+		auto tempAnimation = iterator->second;
 		return tempAnimation;
 	}
 	else{
-		std::string errorMessage = "A value for key \"" + key + "\" does not exist";
+		auto errorMessage = "A value for key \"" + key + "\" does not exist";
 		SDL_LogWarn(SDL_LOG_CATEGORY_APPLICATION, errorMessage.c_str());
 	}
 	return nullptr;
 }
 
-void		AnimatedObject::setAnimation(std::shared_ptr<Animation> animation)
+void		AnimatedObject::setAnimation(const std::shared_ptr<Animation> animation)
 {
 	this->animation = animation;
 }
 
 void		AnimatedObject::addAnimation(std::string key, std::shared_ptr<Animation> animation){
-	//Check if animation already exists, otherwise add to map.
-	iterator iterator;
-	iterator = this->animationMap.find(key);
+	const iterator iterator = this->animationMap.find(key);
 
 	if (iterator != this->animationMap.end()){
-		std::string errorMessage = "A value for key \"" + key + "\" already exist";
+		auto errorMessage = "A value for key \"" + key + "\" already exist";
 		SDL_LogWarn(SDL_LOG_CATEGORY_APPLICATION, errorMessage.c_str());
 
 	}
@@ -55,23 +52,21 @@ void		AnimatedObject::addAnimation(std::string key, std::shared_ptr<Animation> a
 }
 
 void		AnimatedObject::changeAnimation(std::string key){
-	//Check if key exists, if it does, change to requested animation
-	iterator iterator;
-	iterator = this->animationMap.find(key);
+	const iterator iterator = this->animationMap.find(key);
 
 	if (iterator != this->animationMap.end()){
-		std::shared_ptr<Animation> tempAnimation = iterator->second;
+		const auto tempAnimation = iterator->second;
 		this->setAnimation(tempAnimation);
 	}
 	else{
-		std::string errorMessage = "A value for key \"" + key + "\" does not exist";
+		auto errorMessage = "A value for key \"" + key + "\" does not exist";
 		SDL_LogWarn(SDL_LOG_CATEGORY_APPLICATION, errorMessage.c_str());
 	}
 }
 
-void		AnimatedObject::render(int x, int y)
+void		AnimatedObject::render(const int x, const int y)
 {
-	Uint32 lastRender = this->getLastRender();
+	const auto lastRender = this->getLastRender();
 	if (this->timer.getTicks() > this->getLastRender() + this->animation->time)
 	{
 		if (this->animation->lastTexture >= this->animation->textures.size())

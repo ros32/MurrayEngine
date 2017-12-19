@@ -77,7 +77,7 @@ public:
 	///
 	/// <returns>	true if initialized, false if not. </returns>
 	///-------------------------------------------------------------------------------------------------
-	bool			isInitialized();
+	bool			isInitialized() const;
 
 	///-------------------------------------------------------------------------------------------------
 	/// <summary>	Query if this object is run. </summary>
@@ -86,7 +86,7 @@ public:
 	///
 	/// <returns>	true if run, false if not. </returns>
 	///-------------------------------------------------------------------------------------------------
-	bool			isRun();
+	bool			isRun() const;
 
 	///-------------------------------------------------------------------------------------------------
 	/// <summary>	Query if this object is exited. </summary>
@@ -95,7 +95,7 @@ public:
 	///
 	/// <returns>	true if exited, false if not. </returns>
 	///-------------------------------------------------------------------------------------------------
-	bool			isExited();
+	bool			isExited() const;
 
 	///-------------------------------------------------------------------------------------------------
 	/// <summary>	Gets the map. </summary>
@@ -104,7 +104,7 @@ public:
 	///
 	/// <returns>	null if it fails, else the map. </returns>
 	///-------------------------------------------------------------------------------------------------
-	Map*			getMap();
+	Map*			getMap() const;
 
 	///-------------------------------------------------------------------------------------------------
 	/// <summary>	Sets a map. </summary>
@@ -142,7 +142,7 @@ public:
 	///
 	/// <returns>	null if it fails, else the factory. </returns>
 	///-------------------------------------------------------------------------------------------------
-	Factory*			getFactory();
+	Factory*			getFactory() const;
 
 	///-------------------------------------------------------------------------------------------------
 	/// <summary>	Gets key controller. </summary>
@@ -151,7 +151,7 @@ public:
 	///
 	/// <returns>	null if it fails, else the key controller. </returns>
 	///-------------------------------------------------------------------------------------------------
-	KeyController*		getKeyController();
+	KeyController*		getKeyController() const;
 
 	///-------------------------------------------------------------------------------------------------
 	/// <summary>	Sets key controller. </summary>
@@ -171,21 +171,21 @@ private:
 	///
 	/// <remarks>	Rosen, 2016-03-04. </remarks>
 	///-------------------------------------------------------------------------------------------------
-	void			renderObjects();
+	void			renderObjects() const;
 
 	///-------------------------------------------------------------------------------------------------
 	/// <summary>	Move objects. </summary>
 	///
 	/// <remarks>	Rosen, 2016-03-04. </remarks>
 	///-------------------------------------------------------------------------------------------------
-	void			moveObjects();
+	void			moveObjects() const;
 	
 	///-------------------------------------------------------------------------------------------------
 	/// <summary>	Executes the actions operation. </summary>
 	///
 	/// <remarks>	Rosen, 2016-03-04. </remarks>
 	///-------------------------------------------------------------------------------------------------
-	void			doActions();
+	void			doActions() const;
 
 	/// <summary>	The configurations. </summary>
 

@@ -152,7 +152,7 @@ public:
 	///
 	/// <returns>	null if it fails, else the camera. </returns>
 	///-------------------------------------------------------------------------------------------------
-	Camera*						getCamera();
+	Camera*						getCamera() const;
 
 	///-------------------------------------------------------------------------------------------------
 	/// <summary>	Sets a camera. </summary>
@@ -161,7 +161,7 @@ public:
 	///
 	/// <param name="camera">	[in,out] If non-null, the camera. </param>
 	///-------------------------------------------------------------------------------------------------
-	void						setCamera(Camera* camera);
+	void						setCamera(Camera* camera) = delete;
 
 	///-------------------------------------------------------------------------------------------------
 	/// <summary>	Gets player character. </summary>
@@ -170,7 +170,7 @@ public:
 	///
 	/// <returns>	null if it fails, else the player character. </returns>
 	///-------------------------------------------------------------------------------------------------
-	Object*						getPlayerCharacter();
+	Object*						getPlayerCharacter() const;
 
 	///-------------------------------------------------------------------------------------------------
 	/// <summary>	Sets player character. </summary>
@@ -188,7 +188,7 @@ public:
 	///
 	/// <returns>	The map maximum size. </returns>
 	///-------------------------------------------------------------------------------------------------
-	Position					getMapMaxSize();
+	Position					getMapMaxSize() const;
 
 	///-------------------------------------------------------------------------------------------------
 	/// <summary>	Gets tile size. </summary>
@@ -197,7 +197,7 @@ public:
 	///
 	/// <returns>	The tile size. </returns>
 	///-------------------------------------------------------------------------------------------------
-	int							getTileSize();
+	int							getTileSize() const;
 
 	///-------------------------------------------------------------------------------------------------
 	/// <summary>	Sets tile size. </summary>
@@ -235,7 +235,7 @@ public:
 	/// <param name="posA">	The position a. </param>
 	/// <param name="posB">	The position b. </param>
 	///-------------------------------------------------------------------------------------------------
-	void						getPassable(Position posA, Position posB);
+	void						getPassable(Position posA, Position posB) = delete;
 
 	///-------------------------------------------------------------------------------------------------
 	/// <summary>	Try move. </summary>

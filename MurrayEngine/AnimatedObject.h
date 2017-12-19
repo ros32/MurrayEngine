@@ -48,7 +48,7 @@ public:
 	/// <param name="x">	The x coordinate. </param>
 	/// <param name="y">	The y coordinate. </param>
 	///-------------------------------------------------------------------------------------------------
-	void	render(int x, int y);
+	void	render(int x, int y) override;
 
 	///-------------------------------------------------------------------------------------------------
 	/// <summary>	Gets the animation. </summary>
@@ -57,7 +57,7 @@ public:
 	///
 	/// <returns>	The animation. </returns>
 	///-------------------------------------------------------------------------------------------------
-	std::shared_ptr<Animation>	getAnimation();
+	std::shared_ptr<Animation>	getAnimation() const;
 
 	///-------------------------------------------------------------------------------------------------
 	/// <summary>	Gets an animation. </summary>
@@ -68,7 +68,7 @@ public:
 	///
 	/// <returns>	The animation. </returns>
 	///-------------------------------------------------------------------------------------------------
-	std::shared_ptr<Animation>  getAnimation(std::string key);
+	std::shared_ptr<Animation>  getAnimation(std::string key) override;
 
 	///-------------------------------------------------------------------------------------------------
 	/// <summary>	Sets an animation. </summary>
@@ -87,7 +87,7 @@ public:
 	/// <param name="key">			The key. </param>
 	/// <param name="animation">	The animation. </param>
 	///-------------------------------------------------------------------------------------------------
-	void						addAnimation(std::string key, std::shared_ptr<Animation> animation);
+	void						addAnimation(std::string key, std::shared_ptr<Animation> animation) override;
 
 	///-------------------------------------------------------------------------------------------------
 	/// <summary>	Change animation. </summary>
@@ -96,7 +96,7 @@ public:
 	///
 	/// <param name="key">	The key. </param>
 	///-------------------------------------------------------------------------------------------------
-	void						changeAnimation(std::string key);
+	void						changeAnimation(std::string key) override;
 
 	///-------------------------------------------------------------------------------------------------
 	/// <summary>	Gets collision texture. </summary>
@@ -105,7 +105,7 @@ public:
 	///
 	/// <returns>	The collision texture. </returns>
 	///-------------------------------------------------------------------------------------------------
-	std::shared_ptr<Texture>	getCollisionTexture();
+	std::shared_ptr<Texture>	getCollisionTexture() override;
 
 private:
 	/// <summary>	The animation map. </summary>

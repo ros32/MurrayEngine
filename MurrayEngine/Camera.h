@@ -49,7 +49,7 @@ public:
 	///
 	/// <param name="window">	[in,out] If non-null, the window. </param>
 	///-------------------------------------------------------------------------------------------------
-	Camera(SDL_Window* window);
+	explicit Camera(SDL_Window* window);
 
 	///-------------------------------------------------------------------------------------------------
 	/// <summary>	Destructor. </summary>
@@ -65,7 +65,7 @@ public:
 	///
 	/// <returns>	The camera rectangle. </returns>
 	///-------------------------------------------------------------------------------------------------
-	SDL_Rect			getCameraRect();
+	SDL_Rect			getCameraRect() = delete;
 
 	///-------------------------------------------------------------------------------------------------
 	/// <summary>	Gets the height. </summary>
@@ -74,7 +74,7 @@ public:
 	///
 	/// <returns>	The height. </returns>
 	///-------------------------------------------------------------------------------------------------
-	int					getHeight();
+	int					getHeight() const;
 
 	///-------------------------------------------------------------------------------------------------
 	/// <summary>	Gets the width. </summary>
@@ -83,7 +83,7 @@ public:
 	///
 	/// <returns>	The width. </returns>
 	///-------------------------------------------------------------------------------------------------
-	int					getWidth();
+	int					getWidth() const;
 
 	///-------------------------------------------------------------------------------------------------
 	/// <summary>	Gets the position. </summary>
@@ -92,7 +92,7 @@ public:
 	///
 	/// <returns>	The position. </returns>
 	///-------------------------------------------------------------------------------------------------
-	Position			getPosition();
+	Position			getPosition() const;
 
 	///-------------------------------------------------------------------------------------------------
 	/// <summary>	Sets a position. </summary>
@@ -101,7 +101,7 @@ public:
 	///
 	/// <param name="pos">	The position. </param>
 	///-------------------------------------------------------------------------------------------------
-	void				setPosition(Position pos);
+	void				setPosition(Position pos) = delete;
 
 	///-------------------------------------------------------------------------------------------------
 	/// <summary>	Moves. </summary>
@@ -120,7 +120,7 @@ public:
 	///
 	/// <returns>	The focus type. </returns>
 	///-------------------------------------------------------------------------------------------------
-	CameraFocus			getFocusType();
+	CameraFocus			getFocusType() const;
 
 	///-------------------------------------------------------------------------------------------------
 	/// <summary>	Sets focus type. </summary>
@@ -156,7 +156,7 @@ public:
 	///
 	/// <returns>	null if it fails, else the graphical user interface. </returns>
 	///-------------------------------------------------------------------------------------------------
-	GUI*				getGUI();
+	GUI*				getGUI() const;
 
 private:
 

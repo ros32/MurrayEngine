@@ -30,7 +30,7 @@ public:
 	///
 	/// <param name="objA">	[in,out] If non-null, the object a. </param>
 	///-------------------------------------------------------------------------------------------------
-	CollisionAction(Object* objA);
+	explicit CollisionAction(Object* objA);
 
 	///-------------------------------------------------------------------------------------------------
 	/// <summary>	Destructor. </summary>

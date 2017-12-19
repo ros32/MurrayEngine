@@ -61,7 +61,7 @@ private:
 	///
 	/// <returns>	The valid directions. </returns>
 	///-------------------------------------------------------------------------------------------------
-	std::vector<Orientation>	getValidDirections();
+	std::vector<Orientation>	getValidDirections() const;
 
 	///-------------------------------------------------------------------------------------------------
 	/// <summary>	Gets opposite direction. </summary>
@@ -102,7 +102,7 @@ private:
 	///
 	/// <returns>	true if we can see player, false if not. </returns>
 	///-------------------------------------------------------------------------------------------------
-	bool	canSeePlayer();
+	bool	canSeePlayer() const;
 
 	/// <summary>	The last move position. </summary>
 	Position	lastMovePosition;

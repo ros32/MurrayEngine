@@ -3,6 +3,7 @@
 
 #include	"GameInstance.h"
 #include	"Map.h"
+#include	<sstream>
 
 class GameInstance;
 class KeyController;
@@ -73,7 +74,7 @@ public:
 	///
 	/// <returns>	null if it fails, else the game instance. </returns>
 	///-------------------------------------------------------------------------------------------------
-	GameInstance*						getGameInstance();
+	GameInstance*						getGameInstance() const;
 
 	///-------------------------------------------------------------------------------------------------
 	/// <summary>	Sets game instance. </summary>
@@ -91,7 +92,7 @@ public:
 	///
 	/// <returns>	null if it fails, else the window. </returns>
 	///-------------------------------------------------------------------------------------------------
-	SDL_Window*							getWindow();
+	SDL_Window*							getWindow() const;
 
 	///-------------------------------------------------------------------------------------------------
 	/// <summary>	Sets a window. </summary>

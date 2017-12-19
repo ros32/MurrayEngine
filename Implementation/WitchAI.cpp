@@ -1,12 +1,14 @@
 #include "WitchAI.h"
 
-WitchAI::WitchAI() : AI() {
-
+WitchAI::WitchAI() : AI(), bossHeight(0), bossWidth(0), playerHeight(0), playerWidth(0), objectFactory(nullptr)
+{
 }
 
-WitchAI::WitchAI(NonPlayerCharacter* npc, Map* map) : AI(npc, map){
-	this->objectFactory = objectFactory;
+WitchAI::WitchAI(NonPlayerCharacter* npc, Map* map) : AI(npc, map), bossHeight(0), bossWidth(0), playerHeight(0),
+                                                      playerWidth(0), objectFactory(nullptr)
+{
 }
+
 WitchAI::~WitchAI(){
 
 }

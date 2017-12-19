@@ -10,17 +10,17 @@ Action::~Action()
 
 }
 
-bool	Action::isCompleted()
+bool	Action::isCompleted() const
 {
 	return (this->progress >= 1);
 }
 
-void	Action::setProgress(double progress)
+void	Action::setProgress(const double progress)
 {
 	this->progress = progress;
 }
 
-void	Action::updateProgress(double progress)
+void	Action::updateProgress(const double progress)
 {
 	this->progress += progress;
 }
